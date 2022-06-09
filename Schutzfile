@@ -1,5 +1,10 @@
 {
   "fedora-34": {
+    "dependencies": {
+      "osbuild": {
+        "commit": "3ab2ddd481a6882d73990fa58e81cbc3ca639c36"
+      }
+    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/fedora.repo",
@@ -41,14 +46,14 @@
           {
             "title": "updates",
             "name": "updates",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f34/f34-x86_64-updates-released-20220330"
+            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f34/f34-x86_64-updates-released-20220519"
           }
         ],
         "aarch64": [
           {
             "title": "updates",
             "name": "updates",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f34/f34-aarch64-updates-released-20220330"
+            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f34/f34-aarch64-updates-released-20220519"
           }
         ]
       },
@@ -58,20 +63,25 @@
           {
             "title": "updates-modular",
             "name": "updates-modular",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f34/f34-x86_64-updates-released-modular-20220330"
+            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f34/f34-x86_64-updates-released-modular-20220519"
           }
         ],
         "aarch64": [
           {
             "title": "updates-modular",
             "name": "updates-modular",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f34/f34-aarch64-updates-released-modular-20220330"
+            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f34/f34-aarch64-updates-released-modular-20220519"
           }
         ]
       }
     ]
   },
   "fedora-35": {
+    "dependencies": {
+      "osbuild": {
+        "commit": "3ab2ddd481a6882d73990fa58e81cbc3ca639c36"
+      }
+    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/fedora.repo",
@@ -113,14 +123,14 @@
           {
             "title": "updates",
             "name": "updates",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-updates-released-20220330"
+            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-updates-released-20220519"
           }
         ],
         "aarch64": [
           {
             "title": "updates",
             "name": "updates",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-aarch64-updates-released-20220330"
+            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-aarch64-updates-released-20220519"
           }
         ]
       },
@@ -130,20 +140,39 @@
           {
             "title": "updates-modular",
             "name": "updates-modular",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-updates-released-modular-20220330"
+            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-updates-released-modular-20220519"
           }
         ],
         "aarch64": [
           {
             "title": "updates-modular",
             "name": "updates-modular",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-aarch64-updates-released-modular-20220330"
+            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-aarch64-updates-released-modular-20220519"
           }
         ]
       }
     ]
   },
+  "rhel-8.4": {
+    "dependencies": {
+      "osbuild": {
+        "commit": "3ab2ddd481a6882d73990fa58e81cbc3ca639c36"
+      }
+    }
+  },
+  "rhel-8.5": {
+    "dependencies": {
+      "osbuild": {
+        "commit": "3ab2ddd481a6882d73990fa58e81cbc3ca639c36"
+      }
+    }
+  },
   "rhel-8.6": {
+    "dependencies": {
+      "osbuild": {
+        "commit": "3ab2ddd481a6882d73990fa58e81cbc3ca639c36"
+      }
+    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/rhel8internal.repo",
@@ -185,6 +214,11 @@
     ]
   },
   "rhel-9.0": {
+    "dependencies": {
+      "osbuild": {
+        "commit": "3ab2ddd481a6882d73990fa58e81cbc3ca639c36"
+      }
+    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/rhel9internal.repo",
@@ -225,7 +259,26 @@
       }
     ]
   },
+  "centos-8": {
+    "dependencies": {
+      "osbuild": {
+        "commit": "3ab2ddd481a6882d73990fa58e81cbc3ca639c36"
+      }
+    }
+  },
+  "centos-9": {
+    "dependencies": {
+      "osbuild": {
+        "commit": "3ab2ddd481a6882d73990fa58e81cbc3ca639c36"
+      }
+    }
+  },
   "centos-stream-9": {
+    "dependencies": {
+      "osbuild": {
+        "commit": "3ab2ddd481a6882d73990fa58e81cbc3ca639c36"
+      }
+    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/centos.repo",
@@ -267,6 +320,11 @@
     ]
   },
   "centos-stream-8": {
+      "dependencies": {
+        "osbuild": {
+          "commit": "3ab2ddd481a6882d73990fa58e81cbc3ca639c36"
+        }
+      },
     "repos": [
       {
         "file": "/etc/yum.repos.d/CentOS-Stream-BaseOS.repo",

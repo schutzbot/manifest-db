@@ -1,0 +1,75 @@
+stages:
+  - init
+  - test
+  - finish
+
+.base:
+  before_script:
+    - schutzbot/ci_details.sh > ci-details-before-run
+    - cat schutzbot/team_ssh_keys.txt | tee -a ~/.ssh/authorized_keys > /dev/null
+  after_script:
+    - schutzbot/ci_details.sh > ci-details-after-run || true
+    - schutzbot/update_github_status.sh update || true
+  interruptible: true
+  tags:
+    - terraform
+  artifacts:
+    paths:
+      - ci-artifacts
+      - ci-details-before-run
+      - ci-details-after-run
+      - "*.repo"
+    when: always
+
+.terraform:
+  extends: .base
+  tags:
+    - terraform
+
+
+init:
+  stage: init
+  tags:
+    - shell
+  script:
+    - schutzbot/update_github_status.sh start
+  interruptible: true
+
+Manifests:
+  stage: test
+  extends: .terraform
+  script:
+    - schutzbot/deploy.sh
+    - sudo schutzbot/selinux-context.sh
+    - sudo test/cases/manifest_tests
+  artifacts:
+    when: always
+    paths:
+      - generated-image-infos/
+  parallel:
+    matrix:
+      - RUNNER:
+          - aws/fedora-34-x86_64
+          - aws/fedora-34-aarch64
+          - aws/fedora-35-x86_64
+          - aws/fedora-35-aarch64
+          - aws/centos-stream-8-x86_64
+          - aws/centos-stream-8-aarch64
+          - aws/centos-stream-9-x86_64
+          - aws/centos-stream-9-aarch64
+      - RUNNER:
+          - aws/rhel-8.5-ga-x86_64
+          - aws/rhel-8.5-ga-aarch64
+          - aws/rhel-8.6-nightly-x86_64
+          - aws/rhel-8.6-nightly-aarch64
+          - aws/rhel-9.0-nightly-x86_64
+          - aws/rhel-9.0-nightly-aarch64
+        INTERNAL_NETWORK: "true"
+
+finish:
+  stage: finish
+  dependencies: []
+  tags:
+    - shell
+  script:
+    - schutzbot/update_github_status.sh finish

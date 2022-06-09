@@ -272,6 +272,11 @@ def build_image(test: TestCase, osb: OSBuild, args: argparse.Namespace) -> bool:
         return False
 
 
+def write_json(name, result, folder):
+    os.makedirs(folder, exist_ok=True)
+    with open(os.path.join(folder, f"{name}.json"), "w", encoding="utf-8") as f:
+        json.dump(result, f)
+
 # pylint: disable=[too-many-return-statements]
 
 
@@ -420,6 +425,12 @@ def main():
         default="/var/lib/osbuild/out",
         help="directory where result objects are stored")
     parser.add_argument(
+        "--image-info-output",
+        metavar="DIRECTORY",
+        type=os.path.abspath,
+        default="generated-image-infos/",
+        help="directory where produced image info JSON will be stored")
+    parser.add_argument(
         "--arch",
         metavar="ARCHITECTURE",
         type=str,
@@ -470,6 +481,10 @@ def main():
 
     tests = list(load_tests("test/data/images"))
     tests = list(filter(make_filter(args), tests))
+
+    if not tests:
+        print(f" {RED}FAIL{RESET}: no tests to run")
+        return 1
 
     for t in tests:
         print(f"{t.id}", end="", flush=True)
