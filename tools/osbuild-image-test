@@ -479,7 +479,7 @@ def main():
 
     print(f"Running in {os.path.realpath(os.curdir)}")
 
-    tests = list(load_tests("test/data/images"))
+    tests = list(load_tests("manifest-db"))
     tests = list(filter(make_filter(args), tests))
 
     if not tests:
