@@ -224,10 +224,13 @@ def detect_checkpoints(test: TestCase) -> List[str]:
 
 
 def build_image(test: TestCase, osb: OSBuild, args: argparse.Namespace) -> bool:
-    if test.error:
-        return None
-
     exports = detect_exports(test)
+    # construct the result path
+    pipeline = test.manifest.pipelines[exports[0]]
+    # assume if there's no filename in the last stage that image.raw will work
+    filename = pipeline.stages[-1].options.get("filename", "image.raw")
+    image_path = os.path.join(osb.outdir, exports[0], filename)
+
     checkpoints = detect_checkpoints(test)
 
     try:
@@ -238,25 +241,24 @@ def build_image(test: TestCase, osb: OSBuild, args: argparse.Namespace) -> bool:
                          exports=exports,
                          checkpoints=checkpoints)
         test.result = result
+        test.result["image"] = image_path
+
         return True
     except RuntimeError as e:
         test.error = str(e)
         return False
 
 
-#pylint: disable=[too-many-return-statements]
+# pylint: disable=[too-many-return-statements]
 def inspect_image(test: TestCase, imi: ImageInfo, args: argparse.Namespace) -> bool:
-    if test.error:
-        return None
-
     if args.dry_run:
         return True
 
-    if not test.image_info:
-        return None
-
     if "image" not in test.result:
         test.error = "image not produced"
+        return False
+    if not os.path.exists(test.result["image"]):
+        test.error = f"image {test.result['image']} not found"
         return False
 
     try:
@@ -315,6 +317,36 @@ def print_stats(tests: List[TestCase]) -> None:
         print(f"\t{image_type}: {count}")
 
 
+def run_test(test, osb: OSBuild, imi: ImageInfo, args):
+    print(f"{test.id}", end="", flush=True)
+    if test.error:
+        print(f" {RED}FAIL{RESET}: {test.error}")
+        return
+
+    if not build_image(test, osb, args):
+        print(f" {RED}FAIL{RESET}: {test.error}")
+        return
+
+    if test.error:
+        print(f" {RED}FAIL{RESET}: {test.error}")
+        return
+
+    if not test.image_info:
+        print(f" {RED}FAIL{RESET}: No image info to compare to")
+        return
+
+    if "image" not in test.result:
+        test.error = "image not produced"
+        print(f" {RED}FAIL{RESET}: {test.error}")
+        return
+
+    if not inspect_image(test, imi, args):
+        print(f" {RED}FAIL{RESET}: {test.error}")
+        return
+
+    print(f" {GREEN}SUCCESS{RESET}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="osbuild image tests")
     parser.add_argument(
@@ -330,7 +362,7 @@ def main():
         metavar="PATH",
         type=os.path.abspath,
         dest="image_info",
-        default="/usr/bin/osbuild-image-info",
+        default="tools/image-info",
         help="path to the image-info executable"
     )
     parser.add_argument(
@@ -406,21 +438,10 @@ def main():
     imi = ImageInfo(args.image_info)
 
     for t in tests:
-        print(f"{t.id}", end="", flush=True)
-        res = build_image(t, osb, args)
-        if res is None:
-            print("")
-        elif not res:
-            print(f" {RED}FAIL{RESET}: {t.error}", end="")
+        run_test(t, osb, imi, args)
 
-        res = inspect_image(t, imi, args)
-        if res is None:
-            print("")
-        elif not res:
-            print(f" {RED}FAIL{RESET}: {t.error}", end="")
-
-        print("")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
