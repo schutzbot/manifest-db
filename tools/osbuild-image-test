@@ -22,6 +22,7 @@ RESET = "\033[0m"
 GREEN = "\033[32m"
 BOLD = "\033[1m"
 RED = "\033[31m"
+YELLOW = "\033[33m"
 
 
 class OSBuild:
@@ -320,37 +321,32 @@ def print_stats(tests: List[TestCase]) -> None:
 def run_test(test, osb: OSBuild, imi: ImageInfo, args):
     print(f"{test.id}", end="", flush=True)
     if test.error:
-        print(f" {RED}FAIL{RESET}: {test.error}")
-        return
+        print(f" {YELLOW}Warning (ignoring){RESET}: {test.error}")
+        return True
+
+    if not test.image_info:
+        print(f" {YELLOW}Warning (ignoring){RESET}: No image info to compare to")
+        return True
 
     if not build_image(test, osb, args):
         print(f" {RED}FAIL{RESET}: {test.error}")
-        return
+        return False
 
     if test.error:
         print(f" {RED}FAIL{RESET}: {test.error}")
-        return
-
-    if not test.image_info:
-        print(f" {RED}FAIL{RESET}: No image info to compare to")
-        return
-
-    if "image" not in test.result:
-        test.error = "image not produced"
-        print(f" {RED}FAIL{RESET}: {test.error}")
-        return
+        return False
 
     if not inspect_image(test, imi, args):
         print(f" {RED}FAIL{RESET}: {test.error}")
-        return
+        return False
 
     print(f" {GREEN}SUCCESS{RESET}")
+    return True
 
 
 def main():
     parser = argparse.ArgumentParser(description="osbuild image tests")
-    parser.add_argument(
-        "--osbuild-path",
+    parser.add_argument( "--osbuild-path",
         metavar="PATH",
         type=os.path.abspath,
         dest="osbuild",
@@ -437,10 +433,12 @@ def main():
     osb = OSBuild(args.osbuild, args.store, args.output)
     imi = ImageInfo(args.image_info)
 
+    success = True
     for t in tests:
-        run_test(t, osb, imi, args)
+        if not run_test(t, osb, imi, args):
+            success = False
 
-    return 0
+    return 1 if not success else 0
 
 
 if __name__ == "__main__":
