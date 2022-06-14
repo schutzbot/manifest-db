@@ -10,6 +10,7 @@ import os
 import platform
 import subprocess
 import sys
+import traceback
 
 from collections import defaultdict
 from typing import Iterator, List, Optional
@@ -23,6 +24,22 @@ GREEN = "\033[32m"
 BOLD = "\033[1m"
 RED = "\033[31m"
 YELLOW = "\033[33m"
+
+
+def show_validation(result, name="validation"):
+
+    print(f"{BOLD}{name}{RESET} ", end='')
+
+    if result:
+        print(f"is {BOLD}{GREEN}valid{RESET}")
+        return
+
+    print(f"has {BOLD}{RED}errors{RESET}:")
+    print("")
+
+    for error in result:
+        print(f"{BOLD}{error.id}{RESET}:")
+        print(f"  {error.message}\n")
 
 
 class OSBuild:
@@ -161,7 +178,7 @@ class TestCase:
 
         return cls(path, data)
 
-    def load_manifest(self, index: osbuild.meta.Index) -> bool:
+    def load_manifest(self, index: osbuild.meta.Index, verbose=False) -> bool:
         info = index.detect_format_info(self.desc)
         if not info:
             self.error = "Unsupported manifest format"
@@ -172,12 +189,16 @@ class TestCase:
         try:
             res = fmt.validate(self.desc, index)
             if not res:
+                if verbose:
+                    show_validation(res)
                 self.error = "Invalid manifest: validation failed"
                 return False
 
             self.manifest = fmt.load(self.desc, index)
         except Exception as e:  # pylint: disable=broad-except
-            self.error = str(e)
+            if verbose:
+                print(traceback.format_exc())
+            self.error = f"EXCEPTION: {e}"
             return False
 
         return True
@@ -409,6 +430,12 @@ def main():
         default="/usr/lib/osbuild",
         help="directory containing the osbuild modules and library"
     )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        default=False,
+        help="output more info"
+    )
 
     args = parser.parse_args()
 
@@ -422,7 +449,7 @@ def main():
     for t in tests:
         print(f"{t.id}", end="", flush=True)
 
-        res = t.load_manifest(index)
+        res = t.load_manifest(index, verbose=args.verbose)
         if not res:
             print(f" {RED}FAIL{RESET}: {t.error}", end="")
 
