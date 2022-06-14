@@ -290,6 +290,12 @@ def inspect_image(test: TestCase, imi: ImageInfo, args: argparse.Namespace) -> b
         test.error = str(e)
         return False
 
+    write_json(test.id, result, args.imi_output)
+
+    if not test.image_info:
+        print(f" {YELLOW}Warning{RESET}: No image info to compare to; ", end="")
+        return True
+
     if result != test.image_info:
         test.error = "image-info mismatch"
         return False
@@ -343,10 +349,6 @@ def run_test(test, osb: OSBuild, imi: ImageInfo, args):
     print(f"{test.id}", end="", flush=True)
     if test.error:
         print(f" {YELLOW}Warning (ignoring){RESET}: {test.error}")
-        return True
-
-    if not test.image_info:
-        print(f" {YELLOW}Warning (ignoring){RESET}: No image info to compare to")
         return True
 
     if not build_image(test, osb, args):
