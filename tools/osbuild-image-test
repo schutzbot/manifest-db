@@ -11,6 +11,7 @@ import platform
 import subprocess
 import sys
 import traceback
+import shutil
 
 from collections import defaultdict
 from typing import Iterator, List, Optional
@@ -366,6 +367,16 @@ def run_test(test, osb: OSBuild, imi: ImageInfo, args):
     print(f" {GREEN}SUCCESS{RESET}")
     return True
 
+def clean_output(output):
+    """
+    Empty the output folder as it can get quite big after a few runs.
+    """
+    for root, dirs, files in os.walk(output):
+        for f in files:
+            os.unlink(os.path.join(root, f))
+        for d in dirs:
+            shutil.rmtree(os.path.join(root, d))
+
 
 def main():
     parser = argparse.ArgumentParser(description="osbuild image tests")
@@ -466,6 +477,7 @@ def main():
     for t in tests:
         if not run_test(t, osb, imi, args):
             success = False
+        clean_output(args.output)
 
     return 1 if not success else 0
 
