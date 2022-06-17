@@ -1,0 +1,122 @@
+#!/bin/env python
+
+import argparse
+import json
+import os
+import sys
+import zipfile
+import tempfile
+from os import path
+
+import gitlab
+
+IMI_DIRECTORY = "generated-image-infos"
+MANIFEST_DB_PROJECT_ID = 36844106
+
+
+def list_jobs(pipeline, token):
+    """
+    Connects to the gitlab API and retrives the list of the jobs contained in a
+    given pipeline.
+    """
+    gl = gitlab.Gitlab("https://gitlab.com", oauth_token=token)
+    project = gl.projects.get(MANIFEST_DB_PROJECT_ID)
+    pipeline = project.pipelines.get(pipeline)
+    return pipeline.jobs.list(all=True), project
+
+
+def get_job_dir(tempdir, job):
+    """
+    Returns a directory where to store a job's artifacts
+    """
+    directory = path.join(tempdir, str(job.get_id()))
+    os.makedirs(directory, exist_ok=True)
+    return directory
+
+
+def download_artifacts(directory, project, job):
+    """
+    Download an artificact.zip if available for a given job and extract it.
+    Can raise an exception if no artifacts are available.
+    """
+    filename = os.path.join(directory, "artifact.zip")
+    with open(filename, "wb") as f:
+        project.jobs.get(job.get_id()).artifacts(streamed=True, action=f.write)
+    z = zipfile.ZipFile(filename)
+    z.extractall(directory)
+    print(f"    downloading artifact.zip to {filename} for job {job.get_id()}")
+
+
+def download_image_infos(job_dir, project, job):
+    """
+    Downloads the image info and return their path as a list
+    """
+    try:
+        download_artifacts(job_dir, project, job)
+    except gitlab.exceptions.GitlabGetError as e:
+        print(f"    {e} ⚠️")
+        return []
+    image_info_directory = os.path.join(job_dir, IMI_DIRECTORY)
+    try:
+        image_infos = os.listdir(image_info_directory)
+        print(f"    image information imported for {job.get_id()}")
+        return [os.path.join(image_info_directory, image_info) for image_info in image_infos]
+    except FileNotFoundError:
+        print(f"    no image information for {job.get_id()}")
+        return []
+
+
+def update_db(image_info_path):
+    """
+    Take a downloaded image info and write its content into the corresponding
+    test case in the database.
+    """
+    image_info = os.path.basename(image_info_path)
+    print(f"    {image_info}:", end=" ")
+    # load the image info content
+    with open(image_info_path, "r", encoding="utf-8") as f:
+        image_info_data = json.load(f)
+    # load test case
+    test_case_path = os.path.join("manifest-db", image_info)
+    with open(test_case_path, "r", encoding="utf-8") as f:
+        tc_data = json.load(f)
+    # update test case
+    print(f"updating {test_case_path}:", end=" ")
+    tc_data["image-info"] = image_info_data
+    with open(test_case_path, "w", encoding="utf-8") as f:
+        json.dump(tc_data, f, indent=2)
+    print("✅")
+
+
+def import_image_infos(tempdir, pipeline, token):
+    """
+    Imports the image info from a pipeline into the database.
+    """
+    jobs, project = list_jobs(pipeline, token)
+    for job in jobs:
+        print(f"Job {job.get_id()}:")
+        # for each downloaded image info, update the test cases
+        for image_info_path in download_image_infos(get_job_dir(tempdir, job), project, job):
+            update_db(image_info_path)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Import image-info from ci jobs")
+    parser.add_argument(
+        "--pipeline-id",
+        required=True,
+        help="Id of the pipeline on gitlab"
+    )
+    parser.add_argument(
+        "--token",
+        required=True,
+        help="gitlab token"
+    )
+
+    args = parser.parse_args()
+    with tempfile.TemporaryDirectory() as tempdir:
+        import_image_infos(tempdir, args.pipeline_id, args.token)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
