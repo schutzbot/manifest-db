@@ -1,0 +1,99 @@
+#!/bin/env python
+
+import argparse
+import json
+import os
+import sys
+import zipfile
+import tempfile
+from os import path
+
+import gitlab
+
+IMI_DIRECTORY = "generated-image-infos"
+MANIFEST_DB_PROJECT_ID = 36844106
+
+
+def import_image_infos(pipeline, token, verbose=False):
+    success = True
+    gl = gitlab.Gitlab("https://gitlab.com", oauth_token=token)
+    project = gl.projects.get(MANIFEST_DB_PROJECT_ID)
+    pipeline = project.pipelines.get(pipeline)
+    jobs = pipeline.jobs.list(all=True)
+    for job in jobs:
+        if verbose:
+            print(f"Job {job.get_id()}:")
+        directory = path.join(tempfile.TemporaryDirectory().name, str(job.get_id()))
+        os.makedirs(directory, exist_ok=True)
+        filename = os.path.join(directory, "artifact.zip")
+        if verbose:
+            print(f"    downloading artifact.zip to {filename} for job {job.get_id()}")
+        try:
+            with open(filename, "wb") as f:
+                project.jobs.get(job.get_id()).artifacts(streamed=True, action=f.write)
+            z = zipfile.ZipFile(filename)
+            z.extractall(directory)
+            if verbose:
+                print(f"    image information imported for {job.get_id()}")
+            try:
+                imis = os.listdir(os.path.join(directory, IMI_DIRECTORY))
+            except FileNotFoundError:
+                continue
+            # for each downloaded image info, update the test cases
+            for imi in imis:
+                imi_path = os.path.join(directory, IMI_DIRECTORY, imi)
+                if verbose:
+                    print(f"    {imi}:")
+                # load image info
+                with open(imi_path, "r", encoding="utf-8") as f:
+                    imi_data = json.load(f)
+                # load test case
+                test_case_path = os.path.join("manifest-db", imi)
+                with open(test_case_path, "r", encoding="utf-8") as f:
+                    tc_data = json.load(f)
+                # update test case
+                tc_data["image-info"] = imi_data
+                try:
+                    if verbose:
+                        print(f"        updating {test_case_path}:", end=" ")
+                    with open(test_case_path, "w", encoding="utf-8") as f:
+                        json.dump(tc_data, f, indent=2)
+                    if verbose:
+                        print("✅")
+                except Exception as e:  # pylint: disable=[broad-except]
+                    success = False
+                    if verbose:
+                        print(f"{e} ❌")
+        except gitlab.exceptions.GitlabGetError as e:
+            if verbose:
+                print(f"    {e} ⚠️")
+    return success
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Import image-info from ci jobs")
+    parser.add_argument(
+        "--pipeline-id",
+        required=True,
+        help="Id of the pipeline on gitlab"
+    )
+    parser.add_argument(
+        "--token",
+        required=True,
+        help="gitlab token"
+    )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        default=False,
+        help="output more info"
+    )
+
+    args = parser.parse_args()
+    if not import_image_infos(args.pipeline_id, args.token, args.verbose):
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
