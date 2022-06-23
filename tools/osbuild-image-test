@@ -354,6 +354,9 @@ def run_test(test, osb: OSBuild, imi: ImageInfo, args):
         print(f" {YELLOW}Warning (ignoring){RESET}: {test.error}")
         return True
 
+    if args.skip_inspection:
+        print(f"{YELLOW}Building only{RESET}: ", end="", flush=True)
+
     if not build_image(test, osb, args):
         print(f" {RED}FAIL{RESET}: {test.error}")
         return False
@@ -362,7 +365,7 @@ def run_test(test, osb: OSBuild, imi: ImageInfo, args):
         print(f" {RED}FAIL{RESET}: {test.error}")
         return False
 
-    if not inspect_image(test, imi, args):
+    if not args.skip_inspection and not inspect_image(test, imi, args):
         print(f" {RED}FAIL{RESET}: {test.error}")
         return False
 
@@ -451,6 +454,12 @@ def main():
         action="store_true",
         default=False,
         help="output more info"
+    )
+    parser.add_argument(
+        "--skip-inspection",
+        action="store_true",
+        default=True,
+        help="Disengage comparison of  the built images to their reference in the DB"
     )
 
     args = parser.parse_args()
