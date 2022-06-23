@@ -273,6 +273,8 @@ def build_image(test: TestCase, osb: OSBuild, args: argparse.Namespace) -> bool:
 
 
 # pylint: disable=[too-many-return-statements]
+
+
 def inspect_image(test: TestCase, imi: ImageInfo, args: argparse.Namespace) -> bool:
     if args.dry_run:
         return True
@@ -367,6 +369,7 @@ def run_test(test, osb: OSBuild, imi: ImageInfo, args):
     print(f" {GREEN}SUCCESS{RESET}")
     return True
 
+
 def clean_output(output):
     """
     Empty the output folder as it can get quite big after a few runs.
@@ -380,13 +383,13 @@ def clean_output(output):
 
 def main():
     parser = argparse.ArgumentParser(description="osbuild image tests")
-    parser.add_argument( "--osbuild-path",
-        metavar="PATH",
-        type=os.path.abspath,
-        dest="osbuild",
-        default="/usr/bin/osbuild",
-        help="path to the osbuild executable"
-    )
+    parser.add_argument("--osbuild-path",
+                        metavar="PATH",
+                        type=os.path.abspath,
+                        dest="osbuild",
+                        default="/usr/bin/osbuild",
+                        help="path to the osbuild executable"
+                        )
     parser.add_argument(
         "--image-info-path",
         metavar="PATH",
