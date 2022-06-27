@@ -471,7 +471,7 @@ def main():
         "--skip-inspection",
         action="store_true",
         default=False,
-        help="Disengage comparison of  the built images to their reference in the DB"
+        help="Disengage comparison of the built images to their reference in the DB"
     )
 
     args = parser.parse_args()
