@@ -298,7 +298,7 @@ def inspect_image(test: TestCase, imi: ImageInfo, args: argparse.Namespace) -> b
         test.error = str(e)
         return False
 
-    write_json(test.id, result, args.imi_output)
+    write_json(test.id, result, args.image_info_output)
 
     if not args.skip_inspection :
         if not test.image_info:
