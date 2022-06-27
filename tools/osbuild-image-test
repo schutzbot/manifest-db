@@ -300,13 +300,14 @@ def inspect_image(test: TestCase, imi: ImageInfo, args: argparse.Namespace) -> b
 
     write_json(test.id, result, args.imi_output)
 
-    if not test.image_info:
-        print(f" {YELLOW}Warning{RESET}: No image info to compare to; ", end="")
-        return True
+    if not args.skip_inspection :
+        if not test.image_info:
+            print(f" {YELLOW}Warning{RESET}: No image info to compare to; ", end="")
+            return True
 
-    if result != test.image_info:
-        test.error = "image-info mismatch"
-        return False
+        if result != test.image_info:
+            test.error = "image-info mismatch"
+            return False
 
     return True
 
@@ -370,7 +371,7 @@ def run_test(test, osb: OSBuild, imi: ImageInfo, args):
         print(f" {RED}FAIL{RESET}: {test.error}")
         return False
 
-    if not args.skip_inspection and not inspect_image(test, imi, args):
+    if not inspect_image(test, imi, args):
         print(f" {RED}FAIL{RESET}: {test.error}")
         return False
 
@@ -469,7 +470,7 @@ def main():
     parser.add_argument(
         "--skip-inspection",
         action="store_true",
-        default=True,
+        default=False,
         help="Disengage comparison of  the built images to their reference in the DB"
     )
 
