@@ -246,7 +246,7 @@ def detect_checkpoints(test: TestCase) -> List[str]:
     return checkpoints
 
 
-def build_image(test: TestCase, osb: OSBuild, args: argparse.Namespace) -> bool:
+def build_image(test: TestCase, osb: OSBuild) -> bool:
     exports = detect_exports(test)
     # construct the result path
     pipeline = test.manifest.pipelines[exports[0]]
@@ -256,74 +256,37 @@ def build_image(test: TestCase, osb: OSBuild, args: argparse.Namespace) -> bool:
 
     checkpoints = detect_checkpoints(test)
 
-    try:
-        if args.dry_run:
-            return True
-
-        result = osb.run(manifest=test.desc,
-                         exports=exports,
-                         checkpoints=checkpoints)
-        test.result = result
-        test.result["image"] = image_path
-
-        return True
-    except RuntimeError as e:
-        test.error = str(e)
-        return False
-
-
-def write_json(name, result, folder):
-    os.makedirs(folder, exist_ok=True)
-    with open(os.path.join(folder, f"{name}.json"), "w", encoding="utf-8") as f:
-        json.dump(result, f)
-
-# pylint: disable=[too-many-return-statements]
-
-
-def inspect_image(test: TestCase, imi: ImageInfo, args: argparse.Namespace) -> bool:
-    if args.dry_run:
-        return True
-
-    if "image" not in test.result:
-        test.error = "image not produced"
-        return False
-    if not os.path.exists(test.result["image"]):
+    test.result = osb.run(manifest=test.desc, exports=exports, checkpoints=checkpoints)
+    test.result["image"] = image_path
+    if not os.path.exists(image_path):
         test.error = f"image {test.result['image']} not found"
         return False
-
-    try:
-        result = imi.run(test.result["image"])
-        test.result = result
-    except RuntimeError as e:
-        test.error = str(e)
-        return False
-
-    write_json(test.id, result, args.image_info_output)
-
-    if not args.skip_inspection :
-        if not test.image_info:
-            print(f" {YELLOW}Warning{RESET}: No image info to compare to; ", end="")
-            return True
-
-        if result != test.image_info:
-            test.error = "image-info mismatch"
-            return False
-
     return True
 
 
-def make_filter(args):
+def dump_image_info(test, folder):
+    os.makedirs(folder, exist_ok=True)
+    with open(os.path.join(folder, f"{test.id}.json"), "w", encoding="utf-8") as f:
+        json.dump(test.result, f)
+
+
+def compare_image_info(test: TestCase):
+    if test.built_image_info != test.image_info:
+        test.error = "image-info mismatch"
+
+
+def make_filter(arch, distro, name):
     def fn(test):
         info = test.info
 
-        if args.arch and info["arch"] != args.arch:
+        if arch and info["arch"] != arch:
             return False
 
-        if args.distro and info["distro"] != args.distro:
+        if distro and info["distro"] != distro:
             return False
 
-        if args.name:
-            return fnmatch.fnmatch(test.id, args.name)
+        if name:
+            return fnmatch.fnmatch(test.id, name)
 
         return True
 
@@ -354,42 +317,33 @@ def print_stats(tests: List[TestCase]) -> None:
         print(f"\t{image_type}: {count}")
 
 
-def run_test(test, osb: OSBuild, imi: ImageInfo, args):
-    print(f"{test.id}", end="", flush=True)
-    if test.error:
-        print(f" {YELLOW}Warning (ignoring){RESET}: {test.error}")
-        return True
-
-    if args.skip_inspection:
-        print(f"{YELLOW}Building only{RESET}: ", end="", flush=True)
-
-    if not build_image(test, osb, args):
-        print(f" {RED}FAIL{RESET}: {test.error}")
+def build_test(test, osb: OSBuild, imi: ImageInfo) -> bool:
+    """
+    Build the manifest in the test case and compile the image-info out of it.
+    Upon error, store the reason in test.error and return False.
+    """
+    try:
+        if not build_image(test, osb):
+            return False
+        test.built_image_info = imi.run(test.result["image"])
+    except RuntimeError as e:
+        test.error = str(e)
         return False
-
-    if test.error:
-        print(f" {RED}FAIL{RESET}: {test.error}")
-        return False
-
-    if not inspect_image(test, imi, args):
-        print(f" {RED}FAIL{RESET}: {test.error}")
-        return False
-
-    print(f" {GREEN}SUCCESS{RESET}")
     return True
 
 
-def clean_output(output):
+def clean_output(folder):
     """
     Empty the output folder as it can get quite big after a few runs.
     """
-    for root, dirs, files in os.walk(output):
+    for root, dirs, files in os.walk(folder):
         for f in files:
             os.unlink(os.path.join(root, f))
         for d in dirs:
             shutil.rmtree(os.path.join(root, d))
 
 
+#pylint: disable=too-many-branches
 def main():
     parser = argparse.ArgumentParser(description="osbuild image tests")
     parser.add_argument("--osbuild-path",
@@ -468,10 +422,11 @@ def main():
         help="output more info"
     )
     parser.add_argument(
-        "--skip-inspection",
+        "--generator-mode",
         action="store_true",
         default=False,
-        help="Disengage comparison of the built images to their reference in the DB"
+        help="Disengage comparison of the built images to their reference in the"
+        " DB, turns the program into an image-info generator"
     )
 
     args = parser.parse_args()
@@ -481,7 +436,7 @@ def main():
     print(f"Running in {os.path.realpath(os.curdir)}")
 
     tests = list(load_tests("manifest-db"))
-    tests = list(filter(make_filter(args), tests))
+    tests = list(filter(make_filter(args.arch, args.ditro, args.name), tests))
 
     if not tests:
         print(f" {RED}FAIL{RESET}: no tests to run")
@@ -501,10 +456,49 @@ def main():
     osb = OSBuild(args.osbuild, args.store, args.output)
     imi = ImageInfo(args.image_info)
 
-    success = True
+    success = True  # Set to False upon the first error
     for t in tests:
-        if not run_test(t, osb, imi, args):
+        print(f"{t.id}", end=" ", flush=True)
+        if args.dry_run:
+            print(f" Dry run: {GREEN}SUCCESS{RESET}")
+            continue
+        # Skip test cases that have failed validation of their manifest
+        if t.error:
+            print(f" {YELLOW}Warning (ignoring){RESET}: {t.error}")
+            continue
+
+        # If the generator_mode flag is set, the program behaves as an
+        # image-info generator and skip the validation step. Which means that it
+        # won't error out if the comparison fails. Also it will trigger the
+        # build for every image regardless of the presence of an image-info in
+        # the corresponding test case to validate against.
+        if args.generator_mode:
+            print("Building only:", end=" ", flush=True)
+        else:
+            print("Building & Comparing:", end=" ", flush=True)
+            # If the program is configured to build & compare, then if the
+            # test case haven't an image-info to compare to, it's useless to
+            # build it. Because in this mode we are only interested in comparing
+            # with what's in the DB.
+            if not t.image_info:
+                print(f" {YELLOW}Warning (ignoring){RESET}: No image info to compare to")
+                continue
+
+        if build_test(t, osb, imi):
+            # Every generated image-info needs to be written to disk regardless
+            # of the being in generated mode or not. So that if running the
+            # program on a CI, one can download an image-info that failed
+            # comparison.
+            dump_image_info(t, args.image_info_output)
+            if not args.generator_mode:
+                compare_image_info(t)
+        if t.error:
+            print(f" {RED}FAIL{RESET}: {t.error}")
             success = False
+        else:
+            print(f" {GREEN}SUCCESS{RESET}")
+
+        # in any case, clean the output folder to avoid filling out disk space
         clean_output(args.output)
 
     return 1 if not success else 0

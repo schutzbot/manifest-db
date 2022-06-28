@@ -27,7 +27,7 @@ try:
     subprocess.run(["tools/osbuild-image-test",
                     f"--arch={platform.machine()}",
                     f"--distro={distro}",
-                    "--skip-inspection"],
+                    "--generator-mode"],
                     check=True)
 except CalledProcessError:
     sys.exit(1)
