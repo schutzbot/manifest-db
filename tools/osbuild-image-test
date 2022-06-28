@@ -27,41 +27,26 @@ RED = "\033[31m"
 YELLOW = "\033[33m"
 
 
-def show_validation(result, name="validation"):
-
-    print(f"{BOLD}{name}{RESET} ", end='')
-
-    if result:
-        print(f"is {BOLD}{GREEN}valid{RESET}")
-        return
-
-    print(f"has {BOLD}{RED}errors{RESET}:")
-    print("")
-
-    for error in result:
-        print(f"{BOLD}{error.id}{RESET}:")
-        print(f"  {error.message}\n")
-
-
 class OSBuild:
-    def __init__(self, path, store, outdir):
+    """
+    Takes care of building images using OSBuild
+    """
+
+    def __init__(self, path, store, outdir, verbose):
         self.path = path
         self.store = store
         self.outdir = outdir
         self.checkpoints = []
-        self.verbosity = 1
+        self.verbosity = 2 if verbose else 1
 
     def compile(self, manifest: dict, exports: List, checkpoints=None):
-        res = self.run([],
+        res = self._run([],
                        manifest=manifest,
                        exports=exports,
                        checkpoints=checkpoints)
         return res
 
-    def inspect(self, manifest: dict) -> dict:
-        return self.run(args=["--inspect"], manifest=manifest)
-
-    def run(self,
+    def _run(self,
             args: Optional[List[str]] = None,
             manifest: Optional[dict] = None,
             exports: Optional[List] = None,
@@ -122,9 +107,13 @@ class OSBuild:
 
 
 class ImageInfo:
-    def __init__(self, path: str):
+    """
+    Invokes the image-info executable
+    """
+
+    def __init__(self, path: str, verbose):
         self.path = path
-        self.verbosity = 1
+        self.verbosity = 2 if verbose else 1
 
     def run(self, target: str):
         cmd = [
@@ -148,23 +137,36 @@ class ImageInfo:
         return json.loads(r.stdout.decode("utf-8"))
 
 
+#pylint: disable=too-many-instance-attributes
 class TestCase:
-    def __init__(self, path, data: dict) -> None:
+    """
+    Hosts a test case with its input manifest and desired image-info,
+    can validate the manifest
+    can use OSBuild to build the manifest
+    can use ImageInfo to produce a resulting image-info from this build
+    can compare the produced image-info from the reference one
+    can dump the built image-info to disk
+    """
+
+    def __init__(self, path, data: dict, osb: OSBuild, imi: ImageInfo) -> None:
         self.path = path
+        self.osb = osb
+        self.imi = imi
         self.id = data["id"]
         self.info = data["desc"]
         self.desc = data["manifest"]
-        self.image_info = data.get("image-info")
+        self.desired_image_info = data.get("image-info")
 
         self.manifest: Optional[osbuild.Manifest] = None
         self.result: Optional[dict] = None
         self.error: Optional[str] = None
+        self.built_image_info = None
 
     def __str__(self):
         res = str(self.id)
         extra = []
 
-        if not self.image_info:
+        if not self.desired_image_info:
             extra += ["no-image-info"]
 
         if extra:
@@ -173,11 +175,26 @@ class TestCase:
         return res
 
     @classmethod
-    def load(cls, path: str) -> "TestCase":
+    def load(cls, path: str, osb: OSBuild, imi: ImageInfo) -> "TestCase":
         with open(path, "r", encoding='utf8') as f:
             data = json.load(f)
 
-        return cls(path, data)
+        return cls(path, data, osb, imi)
+
+    @staticmethod
+    def _show_validation(result, name="validation"):
+        print(f"{BOLD}{name}{RESET} ", end='')
+
+        if result:
+            print(f"is {BOLD}{GREEN}valid{RESET}")
+            return
+
+        print(f"has {BOLD}{RED}errors{RESET}:")
+        print("")
+
+        for error in result:
+            print(f"{BOLD}{error.id}{RESET}:")
+            print(f"  {error.message}\n")
 
     def load_manifest(self, index: osbuild.meta.Index, verbose=False) -> bool:
         info = index.detect_format_info(self.desc)
@@ -191,7 +208,7 @@ class TestCase:
             res = fmt.validate(self.desc, index)
             if not res:
                 if verbose:
-                    show_validation(res)
+                    TestCase._show_validation(res)
                 self.error = "Invalid manifest: validation failed"
                 return False
 
@@ -204,132 +221,143 @@ class TestCase:
 
         return True
 
+    def _detect_exports(self) -> List[str]:
+        pipelines = self.manifest.pipelines
+        if not pipelines:
+            return []
+        # for now we just assume the last pipeline is the export
+        return [next(reversed(pipelines))]
 
-class ImageTestSuite:
-    pass
+    def _detect_checkpoints(self) -> List[str]:
+        checkpoints = []
+        manifest = self.manifest
 
+        build = manifest.get("build")
+        if build:
+            checkpoints += [build.name]
 
-def load_tests(path) -> Iterator[TestCase]:
-    files = os.scandir(path)
+        commit = manifest.get("ostree-commit")
+        if commit:
+            checkpoints += [commit.name]
 
-    for entry in files:
-        if not entry.is_file():
-            continue
+        return checkpoints
 
-        fullpath = os.path.join(path, entry.name)
-        case = TestCase.load(fullpath)
-        yield case
+    def build(self) -> bool:
+        """
+        Build the manifest in the test case and compile the image-info out of it.
+        Upon error, store the reason in test.error and return False.
+        """
+        try:
+            # Build the image using OSBuild
+            self.result = self.osb.compile(
+                self.desc,
+                self._detect_exports(),
+                self._detect_checkpoints())
 
+            # construct the image path
+            # assume if there's no filename in the last stage that image.raw will work
+            pipeline = self.manifest.pipelines[self._detect_exports()[0]]
+            filename = pipeline.stages[-1].options.get("filename", "image.raw")
+            image_path = os.path.join(self.osb.outdir, self._detect_exports()[0], filename)
 
-def detect_exports(test: TestCase) -> List[str]:
+            # check if the image exists
+            if not os.path.exists(image_path):
+                self.error = f"image {image_path} not produced"
+                return False
 
-    pipelines = test.manifest.pipelines
-    if not pipelines:
-        return []
-
-    # for now we just assume the last pipeline is the export
-    return [next(reversed(pipelines))]
-
-
-def detect_checkpoints(test: TestCase) -> List[str]:
-    checkpoints = []
-    manifest = test.manifest
-
-    build = manifest.get("build")
-    if build:
-        checkpoints += [build.name]
-
-    commit = manifest.get("ostree-commit")
-    if commit:
-        checkpoints += [commit.name]
-
-    return checkpoints
-
-
-def build_image(test: TestCase, osb: OSBuild) -> bool:
-    exports = detect_exports(test)
-    # construct the result path
-    pipeline = test.manifest.pipelines[exports[0]]
-    # assume if there's no filename in the last stage that image.raw will work
-    filename = pipeline.stages[-1].options.get("filename", "image.raw")
-    image_path = os.path.join(osb.outdir, exports[0], filename)
-
-    checkpoints = detect_checkpoints(test)
-
-    test.result = osb.run(manifest=test.desc, exports=exports, checkpoints=checkpoints)
-    test.result["image"] = image_path
-    if not os.path.exists(image_path):
-        test.error = f"image {test.result['image']} not found"
-        return False
-    return True
-
-
-def dump_image_info(test, folder):
-    os.makedirs(folder, exist_ok=True)
-    with open(os.path.join(folder, f"{test.id}.json"), "w", encoding="utf-8") as f:
-        json.dump(test.result, f)
-
-
-def compare_image_info(test: TestCase):
-    if test.built_image_info != test.image_info:
-        test.error = "image-info mismatch"
-
-
-def make_filter(arch, distro, name):
-    def fn(test):
-        info = test.info
-
-        if arch and info["arch"] != arch:
+            # compile the image-info
+            self.built_image_info = self.imi.run(image_path)
+        except RuntimeError as e:
+            self.error = str(e)
             return False
-
-        if distro and info["distro"] != distro:
-            return False
-
-        if name:
-            return fnmatch.fnmatch(test.id, name)
-
         return True
 
-    return fn
-
-
-def print_stats(tests: List[TestCase]) -> None:
-    distors = defaultdict(int)
-    archs = defaultdict(int)
-    types = defaultdict(int)
-
-    for test in tests:
-        print(test)
-        distors[test.info["distro"]] += 1
-        archs[test.info["arch"]] += 1
-        types[test.info["image-type"]] += 1
-
-    print("Distributions:")
-    for distro, count in sorted(distors.items()):
-        print(f"\t{distro}: {count}")
-
-    print("Architectures:")
-    for arch, count in sorted(archs.items()):
-        print(f"\t{arch}: {count}")
-
-    print("Image types:")
-    for image_type, count in sorted(types.items()):
-        print(f"\t{image_type}: {count}")
-
-
-def build_test(test, osb: OSBuild, imi: ImageInfo) -> bool:
-    """
-    Build the manifest in the test case and compile the image-info out of it.
-    Upon error, store the reason in test.error and return False.
-    """
-    try:
-        if not build_image(test, osb):
+    def compare(self):
+        if self.built_image_info != self.desired_image_info:
+            self.error = "image-info mismatch"
             return False
-        test.built_image_info = imi.run(test.result["image"])
-    except RuntimeError as e:
-        test.error = str(e)
-        return False
-    return True
+        return True
+
+    def dump(self, folder):
+        os.makedirs(folder, exist_ok=True)
+        with open(os.path.join(folder, f"{self.id}.json"), "w", encoding="utf-8") as f:
+            json.dump(self.built_image_info, f)
+
+
+class TestCases:
+    """
+    Tool to load, filter, and print stats about test cases
+    """
+
+    @staticmethod
+    def _load_tests(path, osb: OSBuild, imi: ImageInfo) -> Iterator[TestCase]:
+        files = os.scandir(path)
+
+        for entry in files:
+            if not entry.is_file():
+                continue
+
+            fullpath = os.path.join(path, entry.name)
+            case = TestCase.load(fullpath, osb, imi)
+            yield case
+
+    @staticmethod
+    def _make_filter(arch, distro, name):
+        def fn(test):
+            info = test.info
+
+            if arch and info["arch"] != arch:
+                return False
+
+            if distro and info["distro"] != distro:
+                return False
+
+            if name:
+                return fnmatch.fnmatch(test.id, name)
+
+            return True
+
+        return fn
+
+    @staticmethod
+    def _print_stats(tests: List[TestCase]) -> None:
+        distros = defaultdict(int)
+        archs = defaultdict(int)
+        types = defaultdict(int)
+
+        for test in tests:
+            print(test)
+            distros[test.info["distro"]] += 1
+            archs[test.info["arch"]] += 1
+            types[test.info["image-type"]] += 1
+
+        print("Distributions:")
+        for distro, count in sorted(distros.items()):
+            print(f"\t{distro}: {count}")
+
+        print("Architectures:")
+        for arch, count in sorted(archs.items()):
+            print(f"\t{arch}: {count}")
+
+        print("Image types:")
+        for image_type, count in sorted(types.items()):
+            print(f"\t{image_type}: {count}")
+
+    @staticmethod
+    def load(arch, distro, name, verbose, libdir, osb: OSBuild, imi: ImageInfo, db="manifest-db") -> List[TestCase]:
+        index = osbuild.meta.Index(libdir)
+        tests = list(TestCases._load_tests(db, osb, imi))
+        tests = list(filter(TestCases._make_filter(arch, distro, name), tests))
+
+        # Validate the manifests of the selected test cases
+        for test in tests:
+            print(f"{test.id}", end="", flush=True)
+            if not test.load_manifest(index, verbose=verbose):
+                print(f" {RED}FAIL{RESET}: {test.error}", end="")
+            print("")
+
+        TestCases._print_stats(tests)
+        return tests
 
 
 def clean_output(folder):
@@ -431,40 +459,31 @@ def main():
 
     args = parser.parse_args()
 
-    index = osbuild.meta.Index(args.libdir)
-
     print(f"Running in {os.path.realpath(os.curdir)}")
 
-    tests = list(load_tests("manifest-db"))
-    tests = list(filter(make_filter(args.arch, args.ditro, args.name), tests))
+    tests = TestCases.load(
+        args.arch,
+        args.distro,
+        args.name,
+        args.verbose,
+        args.libdir,
+        OSBuild(args.osbuild, args.store, args.output, args.verbose),
+        ImageInfo(args.image_info, args.verbose))
 
+    success = True
     if not tests:
-        print(f" {RED}FAIL{RESET}: no tests to run")
-        return 1
+        print(f"{RED}FAIL{RESET}: no tests to run")
+        success = False
 
-    for t in tests:
-        print(f"{t.id}", end="", flush=True)
-
-        res = t.load_manifest(index, verbose=args.verbose)
-        if not res:
-            print(f" {RED}FAIL{RESET}: {t.error}", end="")
-
-        print("")
-
-    print_stats(tests)
-
-    osb = OSBuild(args.osbuild, args.store, args.output)
-    imi = ImageInfo(args.image_info)
-
-    success = True  # Set to False upon the first error
-    for t in tests:
-        print(f"{t.id}", end=" ", flush=True)
+    for test in tests:
+        print(f"{test.id}", end=" ", flush=True)
+        # Skip for dry run
         if args.dry_run:
-            print(f" Dry run: {GREEN}SUCCESS{RESET}")
+            print(f"Dry run: {GREEN}SUCCESS{RESET}")
             continue
         # Skip test cases that have failed validation of their manifest
-        if t.error:
-            print(f" {YELLOW}Warning (ignoring){RESET}: {t.error}")
+        if test.error:
+            print(f"{YELLOW}Warning (ignoring){RESET}: {test.error}")
             continue
 
         # If the generator_mode flag is set, the program behaves as an
@@ -480,23 +499,23 @@ def main():
             # test case haven't an image-info to compare to, it's useless to
             # build it. Because in this mode we are only interested in comparing
             # with what's in the DB.
-            if not t.image_info:
-                print(f" {YELLOW}Warning (ignoring){RESET}: No image info to compare to")
+            if not test.desired_image_info:
+                print(f"{YELLOW}Warning (ignoring){RESET}: No image info to compare to")
                 continue
 
-        if build_test(t, osb, imi):
+        if test.build():
             # Every generated image-info needs to be written to disk regardless
-            # of the being in generated mode or not. So that if running the
-            # program on a CI, one can download an image-info that failed
-            # comparison.
-            dump_image_info(t, args.image_info_output)
+            # of the program running in generated mode or not. So that by
+            # running the program on a CI, one can download an image-info that
+            # failed comparison.
+            test.dump(args.image_info_output)
             if not args.generator_mode:
-                compare_image_info(t)
-        if t.error:
-            print(f" {RED}FAIL{RESET}: {t.error}")
+                test.compare()
+        if test.error:
+            print(f"{RED}FAIL{RESET}: {test.error}")
             success = False
         else:
-            print(f" {GREEN}SUCCESS{RESET}")
+            print(f"{GREEN}SUCCESS{RESET}")
 
         # in any case, clean the output folder to avoid filling out disk space
         clean_output(args.output)
