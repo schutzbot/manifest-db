@@ -278,7 +278,38 @@ class TestCase:
         return True
 
     def compare(self):
-        if self.built_image_info != self.desired_image_info:
+        def filter_fn(imi):
+            """
+            Filter specific fields in the image-info that can't be compared
+            together.
+            """
+            def lvm2(imi):
+                """
+                LVM2 partitions have a UUID that is not fixed. Replace the value
+                upon comparison time
+                """
+                partitions = imi.get("partitions")
+                if partitions:
+                    for partition in partitions:
+                        if partition.get("fstype") == "LVM2_member":
+                            partition["uuid"] = "2022-07-01-fixed-uuid"
+                return imi
+
+            def iso(imi):
+                """
+                For isos, the partition UUID is the date of the build. Replace
+                that with a fixed one for the comparison.
+                """
+                if "image-format" in imi and "type" in imi["image-format"] and imi["image-format"]["type"] == "raw":
+                    if "partitions" in imi:
+                        for partition in imi["partitions"]:
+                            if "fstype" in partition:
+                                if partition["fstype"] == "iso9660":
+                                    partition["uuid"] = "2022-07-01-fixed-uuid"
+                return imi
+            return iso(lvm2(imi))
+
+        if filter_fn(self.built_image_info) != filter_fn(self.desired_image_info):
             self.error = "image-info mismatch"
             return False
         return True
