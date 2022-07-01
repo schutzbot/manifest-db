@@ -12,3 +12,20 @@ jobs:
         with:
           ignore_words_list: msdos, pullrequest
           skip: ./.git
+
+  mypy:
+    name: "Mypy check"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+        with:
+          path: manifest-db
+
+      - name: Check files with mypy
+        run: |
+          sudo apt install python3-pip -y
+          sudo pip install mypy
+          sudo pip install types-PyYAML
+          for i in manifest-db/tools/*; do mypy --ignore-missing-imports "${i}"; done
+          for i in manifest-db/test/cases/*; do mypy --ignore-missing-imports "${i}"; done

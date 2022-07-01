@@ -22,6 +22,7 @@ import yaml
 
 from collections import OrderedDict
 from typing import Dict
+from typing import Iterator
 
 from osbuild import loop
 
@@ -2447,7 +2448,7 @@ def ensure_device_file(path: str, major: int, minor: int):
 
 
 @contextlib.contextmanager
-def discover_lvm(dev) -> Dict:
+def discover_lvm(dev) -> Iterator[Dict]:
     # find the volume group name for the device file
     vg_name = volume_group_for_device(dev)
 
@@ -2494,13 +2495,11 @@ def discover_lvm(dev) -> Dict:
             volumes[name] = info
             if name.startswith("root"):
                 volumes.move_to_end(name, last=False)
-        res = {
+        yield {
             "lvm": True,
             "lvm.vg": vg_name,
             "lvm.volumes": volumes
         }
-
-        yield res
 
     finally:
         r = subprocess.run(["vgchange", "-an", vg_name],

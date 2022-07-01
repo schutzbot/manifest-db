@@ -14,7 +14,7 @@ import traceback
 import shutil
 
 from collections import defaultdict
-from typing import Iterator, List, Optional
+from typing import Iterator, List, Optional, Dict
 
 import osbuild
 import osbuild.meta
@@ -39,18 +39,18 @@ class OSBuild:
         self.checkpoints = []
         self.verbosity = 2 if verbose else 1
 
-    def compile(self, manifest: dict, exports: List, checkpoints=None):
+    def compile(self, manifest: Dict, exports: List, checkpoints=None):
         res = self._run([],
-                       manifest=manifest,
-                       exports=exports,
-                       checkpoints=checkpoints)
+                        manifest=manifest,
+                        exports=exports,
+                        checkpoints=checkpoints)
         return res
 
     def _run(self,
-            args: Optional[List[str]] = None,
-            manifest: Optional[dict] = None,
-            exports: Optional[List] = None,
-            checkpoints: Optional[List] = None):
+             args: Optional[List[str]] = None,
+             manifest: Optional[dict] = None,
+             exports: Optional[List] = None,
+             checkpoints: Optional[List] = None):
 
         cmd = [
             self.path,
@@ -92,12 +92,12 @@ class OSBuild:
             stdout = r.stdout.decode("utf-8").strip()
 
             try:
-                data = json.loads(stdout)
+                r_data = json.loads(stdout)
             except json.JSONDecodeError:
                 msg = r.stderr.decode("utf-8").strip()
                 msg += r.stdout.decode("utf-8").strip()
             else:
-                msg = data.get("title")
+                msg = r_data.get("title")
 
             msg = r.stderr.decode("utf-8").strip()
             msg += r.stdout.decode("utf-8").strip()
@@ -148,7 +148,7 @@ class TestCase:
     can dump the built image-info to disk
     """
 
-    def __init__(self, path, data: dict, osb: OSBuild, imi: ImageInfo) -> None:
+    def __init__(self, path, data: Dict, osb: OSBuild, imi: ImageInfo) -> None:
         self.path = path
         self.osb = osb
         self.imi = imi
@@ -158,7 +158,7 @@ class TestCase:
         self.desired_image_info = data.get("image-info")
 
         self.manifest: Optional[osbuild.Manifest] = None
-        self.result: Optional[dict] = None
+        self.result: Optional[Dict] = None
         self.error: Optional[str] = None
         self.built_image_info = None
 
@@ -222,6 +222,8 @@ class TestCase:
         return True
 
     def _detect_exports(self) -> List[str]:
+        if not self.manifest:
+            return []
         pipelines = self.manifest.pipelines
         if not pipelines:
             return []
@@ -229,14 +231,15 @@ class TestCase:
         return [next(reversed(pipelines))]
 
     def _detect_checkpoints(self) -> List[str]:
-        checkpoints = []
-        manifest = self.manifest
+        if not self.manifest:
+            return []
 
-        build = manifest.get("build")
+        checkpoints = []
+        build = self.manifest.get("build")
         if build:
             checkpoints += [build.name]
 
-        commit = manifest.get("ostree-commit")
+        commit = self.manifest.get("ostree-commit")
         if commit:
             checkpoints += [commit.name]
 
@@ -247,6 +250,8 @@ class TestCase:
         Build the manifest in the test case and compile the image-info out of it.
         Upon error, store the reason in test.error and return False.
         """
+        if not self.manifest:
+            return False
         try:
             # Build the image using OSBuild
             self.result = self.osb.compile(
@@ -321,9 +326,9 @@ class TestCases:
 
     @staticmethod
     def _print_stats(tests: List[TestCase]) -> None:
-        distros = defaultdict(int)
-        archs = defaultdict(int)
-        types = defaultdict(int)
+        distros: Dict[str, int] = defaultdict(int)
+        archs: Dict[str, int] = defaultdict(int)
+        types: Dict[str, int] = defaultdict(int)
 
         for test in tests:
             print(test)
