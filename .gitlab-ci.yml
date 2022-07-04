@@ -35,6 +35,22 @@ init:
     - schutzbot/update_github_status.sh start
   interruptible: true
 
+Regression:
+  stage: test
+  extends: .terraform
+  script:
+    - schutzbot/deploy.sh
+    - sudo schutzbot/selinux-context.sh
+    - sudo test/cases/regression_tests
+  artifacts:
+    when: always
+    paths:
+      - generated-image-infos/
+  parallel:
+    matrix:
+      - RUNNER:
+          - aws/fedora-35-x86_64
+
 Manifests:
   stage: test
   extends: .terraform
