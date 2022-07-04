@@ -349,7 +349,7 @@ class TestCases:
             print(f"\t{image_type}: {count}")
 
     @staticmethod
-    def load(arch, distro, name, verbose, libdir, osb: OSBuild, imi: ImageInfo, db="manifest-db") -> List[TestCase]:
+    def load(arch, distro, name, verbose, libdir, osb: OSBuild, imi: ImageInfo, db) -> List[TestCase]:
         index = osbuild.meta.Index(libdir)
         tests = list(TestCases._load_tests(db, osb, imi))
         tests = list(filter(TestCases._make_filter(arch, distro, name), tests))
@@ -461,6 +461,12 @@ def main():
         help="Disengage comparison of the built images to their reference in the"
         " DB, turns the program into an image-info generator"
     )
+    parser.add_argument(
+        "--db-path",
+        type=os.path.abspath,
+        default="manifest-db",
+        help="path to the database folder"
+    )
 
     args = parser.parse_args()
 
@@ -473,7 +479,8 @@ def main():
         args.verbose,
         args.libdir,
         OSBuild(args.osbuild, args.store, args.output, args.verbose),
-        ImageInfo(args.image_info, args.verbose))
+        ImageInfo(args.image_info, args.verbose),
+        args.db_path)
 
     success = True
     if not tests:
