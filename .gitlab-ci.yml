@@ -42,6 +42,8 @@ Regression:
     - schutzbot/deploy.sh
     - sudo schutzbot/selinux-context.sh
     - sudo test/cases/regression_tests
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "trigger"'
   artifacts:
     when: always
     paths:
@@ -58,6 +60,8 @@ Manifests:
     - schutzbot/deploy.sh
     - sudo schutzbot/selinux-context.sh
     - sudo test/cases/manifest_tests
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
   artifacts:
     when: always
     paths:
@@ -80,8 +84,23 @@ Manifests:
           - aws/rhel-9.0-ga-aarch64
         INTERNAL_NETWORK: "true"
 
+push-image-info:
+  stage: finish
+  extends: .terraform
+  script:
+    - schutzbot/deploy.sh
+    - schutzbot/include_image_info.sh
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
+  parallel:
+    matrix:
+      - RUNNER:
+          - aws/fedora-35-x86_64
+
 finish:
   stage: finish
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "trigger"'
   dependencies: []
   tags:
     - shell
