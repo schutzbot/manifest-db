@@ -46,7 +46,7 @@ jobs:
           if [ ! -z "$PR" ]; then
             git checkout -b PR-$PR
           else
-            git checkout ${{ github.event.workflow_run.head_branch }}
+            git checkout ${{ github.event.workflow_run.head_branch }} --
           fi
 
       - name: Push to gitlab
