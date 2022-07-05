@@ -63,9 +63,16 @@ def load_test(name, fullpath) -> dict:
     return test
 
 
-def export_test(test, target):
+def export_test(test, target, manifest_only):
     name = test["id"]
     fullpath = os.path.join(target, name + ".json")
+    if  manifest_only and os.path.exists(fullpath):
+        # load existing
+        with open(fullpath, "r", encoding="utf-8") as f:
+            base = json.load(f)
+        # only replace the manifest in the base
+        base["manifest"] = test["manifest"]
+        test = base
     with open(fullpath, "w", encoding="utf-8") as f:
         json.dump(test, f, indent=2)
 
@@ -109,6 +116,12 @@ def main():
         default=False,
         help="do not export test cases"
     )
+    parser.add_argument(
+        "--manifest-only",
+        action="store_true",
+        default=False,
+        help="Only import the manifests from composer"
+    )
     group = parser.add_mutually_exclusive_group()
     group.add_argument(
         "--verbose",
@@ -134,7 +147,7 @@ def main():
             if args.dry_run:
                 continue
 
-            export_test(test, args.TARGET)
+            export_test(test, args.TARGET, args.manifest_only)
         except ValueError as e:
             report_failure(name, str(e), args.verbosity)
             failures.append(name)
