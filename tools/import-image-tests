@@ -135,13 +135,26 @@ def main():
         const=0,
         dest="verbosity",
         help="suppress output")
+    parser.add_argument(
+        "--db-ignore",
+        type=os.path.abspath,
+        default=None,
+        help="A file containing one per line file names not to import")
 
     args = parser.parse_args()
+
+    db_ignore = []
+    if args.db_ignore:
+        with open(args.db_ignore, "r", encoding="utf-8") as f:
+            db_ignore = f.read().splitlines()
 
     idx = 0
     failures = []
     for idx, (name, path) in enumerate(list_tests(args.SOURCE)):
         try:
+            if name in db_ignore:
+                continue
+
             test = load_test(name, path)
 
             if args.dry_run:
