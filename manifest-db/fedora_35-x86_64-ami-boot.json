@@ -148,22 +148,6 @@
                     }
                   },
                   {
-                    "id": "sha256:e40c9d60943ad38157a3b49dead686edff41e14644c75d73ad2dbc0ac54fdffe",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:b6bd98d2c8e9477651052f738d741abe2c6220eee0ecbda9a39b971eddbeae7f",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:3c333cd6f38ecba5c443cb736371b377574c82906d4c7bf3af510e2ee517d77c",
                     "options": {
                       "metadata": {
@@ -181,22 +165,6 @@
                   },
                   {
                     "id": "sha256:52598fdd27be8d3ca7587b81ce86f03d1f17c66c0c8fd81ca3274cb7712a400e",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:bdd8ac8d916149edaaa5790d444e9b18f9679854e06add58f3693e5500adbb56",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:a206d0ea77ae99368f6230f0337ffa0b5f4e4549f0d362f55abbae3aaf7e3adc",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -292,14 +260,6 @@
                     }
                   },
                   {
-                    "id": "sha256:b1a8269b312e852d333a5e60a82435e6b9615bcebcdc5bb2687472601a0bbd98",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:d3b8c4e20ea36a5f86e861924424802269e9e920cdedd52648228965ac27c390",
                     "options": {
                       "metadata": {
@@ -365,14 +325,6 @@
                   },
                   {
                     "id": "sha256:cbdcf7c925da2e9a6eda1ec4ca4d478afa7fb6ef45bc852b2b822e09e12ea242",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:3080cbabcb524774e1382b0f9a9c9c77ee0ef596548e9c84106b3d2427edfb83",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -460,14 +412,6 @@
                     }
                   },
                   {
-                    "id": "sha256:517ac8786e4b1391aa3b529320a340e248e4ccd8b3fa9c85a1467811c93b965d",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:f18f95bb02e8c23e1d2bf16b377c44171f46d0418501ad07d90d0457a2090655",
                     "options": {
                       "metadata": {
@@ -477,14 +421,6 @@
                   },
                   {
                     "id": "sha256:b80753249f4c81f711718327fd19e01daa84ff6455ddabcc5d5465a2b2976b67",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:16209f762462b8e819d804b0468aa66377b49d654917c13cb0808b2ef390e9d5",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -532,14 +468,6 @@
                     }
                   },
                   {
-                    "id": "sha256:29b6829bf0aca7f8e618c4273f31b997ad9a5adfda37e51fe1db979c78f2e73e",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:63fe7aeec28feb0411fc2b0bc6ebb791ea5a372b96974a7fdb75b95666993eab",
                     "options": {
                       "metadata": {
@@ -548,23 +476,7 @@
                     }
                   },
                   {
-                    "id": "sha256:372cb9bd8cb4a5de6fdc25022131b273be0596898bde8c2a3f52b14709705b76",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:ee010fd337ef64907285c3cefb87df50b8bd092e3be6006327b4fa232b9a8fea",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:d289cbd74ec66e80b23058ab4adb60349371eea2645f5194e1f27f11f61e6a8e",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -613,22 +525,6 @@
                   },
                   {
                     "id": "sha256:b7d994e1ff59c38ffd752f2c2f1797516a6e14823f12609f30f3e9b87a3bdc1c",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:29ce976a2b18cf4096e711201429e826b38fb69cbfbc7f7fd7f2e1addc2f7c2e",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:f858519a1c1fd8f02ef9ac631d3f5096f996f71a6315fbf48a4124ca01de001e",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -692,30 +588,6 @@
                     }
                   },
                   {
-                    "id": "sha256:7cc688bb23318667c1821bedd610365ebef74b284a8001e99dac2b975a337f88",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:da65eca5dd6b39c10bcf9d4acc13b0ad756784f70aa9ac98a62a059194a24442",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:4cdcad858cccbe01f29b72ec05693c83bfb84d03dcc5e37ca9ac7b886324ef82",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:fa55c5201f7a2b52dd34ee0558da6c90ed880efed4f01f44561479fa6d157ab6",
                     "options": {
                       "metadata": {
@@ -725,14 +597,6 @@
                   },
                   {
                     "id": "sha256:798d8b7c767daaf09b1c0f3c4b84957296cb25efa0ffc8ec2c59c6efb6e30c0c",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:6ed74e42fbcfbf516467251fd4601f1a98e1456a14eb801610fb08655aa844dd",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -788,22 +652,6 @@
                     }
                   },
                   {
-                    "id": "sha256:0a0aa2929bf66793baeb068197ca7c35559f5a6a9c1d50ca8400457fd46b916e",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:056633ce04b2279728684ac4b3f2864cd840468aee9aaa045cc80bea5f86cfc7",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:b3c606cd7ef5ba1eda01fea558d6609ad29de2586a85f1f70f5f5491c39ad81b",
                     "options": {
                       "metadata": {
@@ -844,14 +692,6 @@
                     }
                   },
                   {
-                    "id": "sha256:00a735aedc6b4f94eddef995c4727050da4d9a5d706d89bd0036b23d19c0aeab",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:9c73ef53f05d371b472e5cc9bfd3b8d63e21518eeca90efb023cde4849e7c68b",
                     "options": {
                       "metadata": {
@@ -869,14 +709,6 @@
                   },
                   {
                     "id": "sha256:75c38e7b22434dcf427a6c7a59d5267f6fffb932fa1a3bd3f105f686b41a3831",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:20c027a4afeeed3ecac4bdb86cedf3b1ce4a9cdf437fe46f5b0edeb426ce4264",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -917,14 +749,6 @@
                   },
                   {
                     "id": "sha256:8849213eb94969242c84dcfe8cd600af2ecd13e67b5fef845fd0d71ae13ccde1",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:1d0c451d75a505cc71974ac284d3a8150e27c34465af403cb79346f27f15777d",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -1020,22 +844,6 @@
                     }
                   },
                   {
-                    "id": "sha256:1aff2fb69c2dceebf708b457f21081f5f48051895bedde21065f45d989d7e0a8",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:46d0eabb124f4043ac302fe1d5991310b329dd34b5db62404c1db97f045660bb",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:61b674e2fcd99782e099468f27c865a2dbc392ace441fd0b91aba038b5b107ad",
                     "options": {
                       "metadata": {
@@ -1045,14 +853,6 @@
                   },
                   {
                     "id": "sha256:214174bf4c5caec9cd5c8124ba52d4d55c401b074db45c13dd64c82c9fc743c5",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:684422fd89017ffbdb69c7cefeda903cb5567106006f620644107dd77e14b80c",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -1076,54 +876,6 @@
                     }
                   },
                   {
-                    "id": "sha256:d207f252bfd8bbf06f88ac3287cdde494f781781ad4f5c13d40443b8ab2e445e",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:75c4318d15bc07b7c66984865713ff99d2426b5e08f1d6cfe92cff958cdb63d9",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:abd430aad90a47860d0167465bd8a97210c02cdfa29bddb41ae55c612722d826",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:4c2ec5153e0be05d8e3516beab0f881b526b0316de1e6e71b964ab75b9e37569",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:cda4157dd8bb07f64eeb39cc7c8cde10318c6d62a3e9300901945666e8980480",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:3ff491b0cd8e4fb503688e39ed9b3103823cbfda0b5b82642cbb27f74975d8bf",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:3195565a4fecafe311e48adfaeaf1ee6bdf7bc91a8da498fda046c07b38e544c",
                     "options": {
                       "metadata": {
@@ -1140,14 +892,6 @@
                     }
                   },
                   {
-                    "id": "sha256:bffa951cb3c45d63a55795ac263cbf79fab0562eb2b808c5d240a6d71c62e750",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:e37c7c50eb8ae0517a9fce31733d96dc5312616741cb2290e79d8557e6f45193",
                     "options": {
                       "metadata": {
@@ -1157,22 +901,6 @@
                   },
                   {
                     "id": "sha256:df40da25b77246474d39f71f32a6ab9bf4126153fc684d865788a91ca0e310ea",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:276994197e5bc295a609c2a58ea1ea407f9a967a65d83bbb43c7407cec1b9163",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:a5776e77b969a3e7cbdec5ee6b30cec3b254090a0ae7c4ecdaf571c2a1a2a901",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -1204,22 +932,6 @@
                     }
                   },
                   {
-                    "id": "sha256:c8198e9e1cd98faa1ffcd01a9bcd4c779faf3baee0edfe7e95f98c20851f8665",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:6777217f13c1297e07f62e61fc6d50d21f27f624218981a6e726128448cb67fc",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:3c8630885fbe4fd0c1b3f379cb892f01e16ea06ec7baf91b0105f3730d4f8507",
                     "options": {
                       "metadata": {
@@ -1229,14 +941,6 @@
                   },
                   {
                     "id": "sha256:3c3297e3edc67aab06079d9103c67ef9e56548a1811e4539ea73501718bef7d1",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:b569c18714661deb7a92c9633da4750a9a14399b26fd9332ffc48155b06e5340",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -1293,14 +997,6 @@
                   },
                   {
                     "id": "sha256:d9f563387670da48f64508eda2120911d6d10498e38042119362de45a0652e67",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:47936f70dbe657f574d02f176694082de5265bfb2174970a7c6ac83b52977f4c",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -1412,14 +1108,6 @@
                     }
                   },
                   {
-                    "id": "sha256:3527a0a6349dd42551b08da5574c4dd993f593b1f2ad8253240aa82834004680",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:e198f1dfa9ee2ae2b20246895a664f985d1526778500e5ef75c4214dd1654b89",
                     "options": {
                       "metadata": {
@@ -1445,30 +1133,6 @@
                   },
                   {
                     "id": "sha256:496e4eb656ef9ebaa4542f37ab915caaa7ef7a3d996c6e7d608fea5562eb1227",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:168398746c0c3d7a4f0f4d9245de29a768f5a45274cbbfb228e5e6f2c1e9941f",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:49e4d2c8e792d490d72b964e8e714b5df4e70e0ba999b4536ab87ff43f219b1b",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:6919acf046586a84549edd7b1ec131b2b814529d96a4f1f65301dfe2d8c17dce",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -1525,14 +1189,6 @@
                   },
                   {
                     "id": "sha256:e6b865487f450e66373e267e924cb2b73680423e2d420246e275a65d6d5f4dd6",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:6686a1f8fafbb1f7cf8abdb1a2b7a49e4278798b3d0bff8e648a53280e28ed1b",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -1652,47 +1308,7 @@
                     }
                   },
                   {
-                    "id": "sha256:98c178ddb6699205772df4854952a881357f6d6fbc0dcd1df802474fb4d45e05",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:2d68d8a6653bd0ab6bc191a60a3ba435240d27681f91a974a4b964a2c6e36176",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:4f4e8dda6475f9a0c4dfd519e9354c7e3ed3aae58193d3488fe2323b5564e5d8",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:c9d850b025ea8327eebbb35a5ce850851faf0ec6c9597e56c4f49ed3c6cdc090",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:d5ca9fda5b1b8061be4e83429fe2344c5cc88f8dac5664e16899f4ae2d93cbe9",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:d18f3db063991e9de1c63c6680bab248757906b008b0bdfcfc0b07624bb8867a",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -1724,23 +1340,7 @@
                     }
                   },
                   {
-                    "id": "sha256:a4caee0b42af8314f60d8e9a52c5fc1d315dc5a5bd4c23491ae5c2f331d456e2",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:d9b157ac7acc9749a3f1aa084ef90a37d914b1360ecaba7f7f976fe326400513",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
-                    "id": "sha256:a1d2ecdc7bd086875f4feb25723963b58b4712a42e37cfa4ab05f50ef7ed5d39",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -2126,6 +1726,14 @@
                   },
                   {
                     "id": "sha256:a206d0ea77ae99368f6230f0337ffa0b5f4e4549f0d362f55abbae3aaf7e3adc",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ecd02f2a2fb547997c394c73642da7322670d4b64f51156f5e31661d61ed16a9",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -4830,15 +4438,15 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
-                  "vfs_type": "ext4",
-                  "path": "/boot",
-                  "options": "defaults"
-                },
-                {
                   "uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75",
                   "vfs_type": "ext4",
                   "path": "/",
+                  "options": "defaults"
+                },
+                {
+                  "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
+                  "vfs_type": "ext4",
+                  "path": "/boot",
                   "options": "defaults"
                 },
                 {
@@ -5114,9 +4722,6 @@
           },
           "sha256:08956925cf2e579c63c9d551129fdbc819b908ce79f344b3fc42cb067503daa9": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-updates-released-20220113/Packages/p/python3-jsonpatch-1.21-18.fc35.noarch.rpm"
-          },
-          "sha256:0a0aa2929bf66793baeb068197ca7c35559f5a6a9c1d50ca8400457fd46b916e": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-fedora-20220106/Packages/l/liburing-2.0-2.fc35.x86_64.rpm"
           },
           "sha256:0ad1ee7e95ed96eafc8b96a40a978ccc9f6da099e39293297676a2a9c154e2bb": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-updates-released-20220113/Packages/e/elfutils-debuginfod-client-0.186-1.fc35.x86_64.rpm"
@@ -5466,9 +5071,6 @@
           "sha256:50d4a29b455607e31575beb7d6606964253f249c6567d382e03d9876cebbd694": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-fedora-20220106/Packages/c/coreutils-common-8.32-31.fc35.x86_64.rpm"
           },
-          "sha256:517ac8786e4b1391aa3b529320a340e248e4ccd8b3fa9c85a1467811c93b965d": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-fedora-20220106/Packages/l/libaio-0.3.111-12.fc35.x86_64.rpm"
-          },
           "sha256:52040f71864e67b462d278d040cdae3caba482526fe9b609a70ef4d0af2b7fd0": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-fedora-20220106/Packages/f/fedora-gpg-keys-35-1.noarch.rpm"
           },
@@ -5775,9 +5377,6 @@
           "sha256:9ffcca99e2ca01870a82cda02fa484c7ff85d054b277e02910df05ab292cda83": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-fedora-20220106/Packages/l/libndp-1.8-2.fc35.x86_64.rpm"
           },
-          "sha256:a1d2ecdc7bd086875f4feb25723963b58b4712a42e37cfa4ab05f50ef7ed5d39": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-updates-released-20220113/Packages/q/qemu-img-6.1.0-10.fc35.x86_64.rpm"
-          },
           "sha256:a206d0ea77ae99368f6230f0337ffa0b5f4e4549f0d362f55abbae3aaf7e3adc": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-fedora-20220106/Packages/d/dnf-data-4.9.0-1.fc35.noarch.rpm"
           },
@@ -5837,9 +5436,6 @@
           },
           "sha256:b1914e9500f619aa12834d3018d5c53556b15f8fa801948850ad38f8ec9b223d": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-updates-released-20220113/Packages/l/libmaxminddb-1.6.0-1.fc35.x86_64.rpm"
-          },
-          "sha256:b1a8269b312e852d333a5e60a82435e6b9615bcebcdc5bb2687472601a0bbd98": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-fedora-20220106/Packages/f/fuse3-libs-3.10.5-1.fc35.x86_64.rpm"
           },
           "sha256:b2183e767697a67ab691494ca54896435beabbd6efcdb9a116fde1cc3d882853": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-fedora-20220106/Packages/p/p11-kit-trust-0.23.22-4.fc35.x86_64.rpm"
@@ -5942,9 +5538,6 @@
           },
           "sha256:c7a8e2099976b010721de5dd351c881f108748fb43c3e63bf188fb5049f45baa": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-updates-released-20220113/Packages/p/python-unversioned-command-3.10.1-2.fc35.noarch.rpm"
-          },
-          "sha256:c8198e9e1cd98faa1ffcd01a9bcd4c779faf3baee0edfe7e95f98c20851f8665": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-fedora-20220106/Packages/t/tar-1.34-2.fc35.x86_64.rpm"
           },
           "sha256:c8a4fc5b29a5f55805fd9b0d51817ab39ca26a5a12b25e7fd2a1b670a33048c4": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/f35/f35-x86_64-updates-released-20220113/Packages/o/openssh-8.7p1-3.fc35.x86_64.rpm"
@@ -6530,6 +6123,7 @@
       "dnf-4.9.0-1.fc35.noarch",
       "dnf-data-4.9.0-1.fc35.noarch",
       "dnf-plugins-core-4.0.24-1.fc35.noarch",
+      "dosfstools-4.2-2.fc35.x86_64",
       "dracut-055-6.fc35.x86_64",
       "dracut-config-generic-055-6.fc35.x86_64",
       "e2fsprogs-1.46.3-1.fc35.x86_64",
