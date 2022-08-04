@@ -10,7 +10,7 @@
     "pipelines": [
       {
         "name": "build",
-        "runner": "org.osbuild.rhel86",
+        "runner": "org.osbuild.rhel85",
         "stages": [
           {
             "type": "org.osbuild.rpm",
@@ -2310,6 +2310,9 @@
                     "id": "sha256:43a4f1c39b2a8b212d50af73d0d510adfdc4ac61be8ecdc6bd718f6cab0e5afc"
                   },
                   {
+                    "id": "sha256:f72fbc39bd861fd5a0f6d38b0c2d3f2f12e07dd91f70b5288ca03c30ff77a431"
+                  },
+                  {
                     "id": "sha256:a842bbdfe4e3f24ef55acd0ed6930639ccaa5980a2774235bc4c6c2a95ab421c"
                   },
                   {
@@ -2730,6 +2733,8 @@
             "options": {
               "enabled_services": [
                 "firewalld",
+                "nm-cloud-setup.service",
+                "nm-cloud-setup.timer",
                 "sshd",
                 "systemd-resolved",
                 "waagent"
@@ -2803,6 +2808,42 @@
           {
             "type": "org.osbuild.modprobe",
             "options": {
+              "filename": "blacklist-amdgpu.conf",
+              "commands": [
+                {
+                  "command": "blacklist",
+                  "modulename": "amdgpu"
+                }
+              ]
+            }
+          },
+          {
+            "type": "org.osbuild.modprobe",
+            "options": {
+              "filename": "blacklist-intel-cstate.conf",
+              "commands": [
+                {
+                  "command": "blacklist",
+                  "modulename": "intel_cstate"
+                }
+              ]
+            }
+          },
+          {
+            "type": "org.osbuild.modprobe",
+            "options": {
+              "filename": "blacklist-floppy.conf",
+              "commands": [
+                {
+                  "command": "blacklist",
+                  "modulename": "floppy"
+                }
+              ]
+            }
+          },
+          {
+            "type": "org.osbuild.modprobe",
+            "options": {
               "filename": "blacklist-nouveau.conf",
               "commands": [
                 {
@@ -2819,13 +2860,25 @@
           {
             "type": "org.osbuild.modprobe",
             "options": {
-              "filename": "blacklist-floppy.conf",
+              "filename": "blacklist-skylake-edac.conf",
               "commands": [
                 {
                   "command": "blacklist",
-                  "modulename": "floppy"
+                  "modulename": "skx_edac"
                 }
               ]
+            }
+          },
+          {
+            "type": "org.osbuild.systemd.unit",
+            "options": {
+              "unit": "nm-cloud-setup.service",
+              "dropin": "10-rh-enable-for-azure.conf",
+              "config": {
+                "Service": {
+                  "Environment": "NM_CLOUD_SETUP_AZURE=yes"
+                }
+              }
             }
           },
           {
@@ -2903,9 +2956,9 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "f83b8e88-3bbf-457a-ab99-c5b252c7429c",
+                  "uuid": "fb180daf-48a7-4ee0-b10d-394651850fd4",
                   "vfs_type": "xfs",
-                  "path": "/var",
+                  "path": "/",
                   "options": "defaults"
                 },
                 {
@@ -2921,12 +2974,6 @@
                   "options": "defaults"
                 },
                 {
-                  "uuid": "fb180daf-48a7-4ee0-b10d-394651850fd4",
-                  "vfs_type": "xfs",
-                  "path": "/",
-                  "options": "defaults"
-                },
-                {
                   "uuid": "a178892e-e285-4ce1-9114-55780875d64e",
                   "vfs_type": "xfs",
                   "path": "/tmp",
@@ -2936,6 +2983,12 @@
                   "uuid": "e2d3d0d0-de6b-48f9-b44c-e85ff044c6b1",
                   "vfs_type": "xfs",
                   "path": "/usr",
+                  "options": "defaults"
+                },
+                {
+                  "uuid": "f83b8e88-3bbf-457a-ab99-c5b252c7429c",
+                  "vfs_type": "xfs",
+                  "path": "/var",
                   "options": "defaults"
                 },
                 {
@@ -3552,7 +3605,7 @@
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/gobject-introspection-1.56.1-1.el8.x86_64.rpm"
           },
           "sha256:10e429e047cea577ade1d52422a39af6349b4427b6aba8865dc4eba169c142ce": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rhui-azure-20220227/rhui-azure-rhel8-2.2-198.noarch.rpm"
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rhui-azure-20220504/rhui-azure-rhel8-2.2-198.noarch.rpm"
           },
           "sha256:1136323a37c5940055c3891a260b26782b75ea986fb5fe02ad80364f60527450": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/grub2-common-2.02-106.el8.noarch.rpm"
@@ -5293,6 +5346,9 @@
           },
           "sha256:f72118d72067987ac1eeded4b04e95e709b263c27877f3eb1112859db33cb403": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/dracut-049-191.git20210920.el8.x86_64.rpm"
+          },
+          "sha256:f72fbc39bd861fd5a0f6d38b0c2d3f2f12e07dd91f70b5288ca03c30ff77a431": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-appstream-r8.5-20220504/Packages/NetworkManager-cloud-setup-1.32.10-4.el8.x86_64.rpm"
           },
           "sha256:f753d133921c84b44694d63869ff20e35e47cd09db7d190eda15f2cca953033f": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/libkcapi-1.2.0-2.el8.x86_64.rpm"
