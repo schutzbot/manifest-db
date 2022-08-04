@@ -1959,9 +1959,6 @@
                     "id": "sha256:3ded289944ae1be6daded7105456bcb8508f155cc7fd2807e546b2fe32f9b002"
                   },
                   {
-                    "id": "sha256:6cc76375b292cee17b3eb60c638a9b978a898e0cd57f7042bb19b954a0c095a8"
-                  },
-                  {
                     "id": "sha256:dc874028a25d78374ffa470d7cba5f0eb89d543a486a645f51cde3aafb6efc93"
                   },
                   {
@@ -1974,7 +1971,7 @@
                     "id": "sha256:340b3c65becfca3d39f2afeed9659505a33ee870270c4d115d9fefe8929ff806"
                   },
                   {
-                    "id": "sha256:673dcb6ee08297c2602ad144481a53baa7c17d6e2cf75e23152ca38e3b03add7"
+                    "id": "sha256:050325fa0a3b18f9155243a812668c429d5464fcbc3bbad0b39d388e849fa68f"
                   }
                 ]
               }
@@ -2047,17 +2044,6 @@
             }
           },
           {
-            "type": "org.osbuild.systemd-logind",
-            "options": {
-              "filename": "00-getty-fixes.conf",
-              "config": {
-                "Login": {
-                  "NAutoVTs": 0
-                }
-              }
-            }
-          },
-          {
             "type": "org.osbuild.sysconfig",
             "options": {
               "kernel": {
@@ -2079,6 +2065,30 @@
                     "type": "Ethernet",
                     "userctl": true
                   }
+                }
+              }
+            }
+          },
+          {
+            "type": "org.osbuild.rhsm",
+            "options": {
+              "subscription-manager": {
+                "rhsm": {
+                  "manage_repos": false
+                },
+                "rhsmcertd": {
+                  "auto_registration": true
+                }
+              }
+            }
+          },
+          {
+            "type": "org.osbuild.systemd-logind",
+            "options": {
+              "filename": "00-getty-fixes.conf",
+              "config": {
+                "Login": {
+                  "NAutoVTs": 0
                 }
               }
             }
@@ -2120,6 +2130,18 @@
             }
           },
           {
+            "type": "org.osbuild.dracut.conf",
+            "options": {
+              "filename": "ec2.conf",
+              "config": {
+                "add_drivers": [
+                  "nvme",
+                  "xen-blkfront"
+                ]
+              }
+            }
+          },
+          {
             "type": "org.osbuild.systemd.unit",
             "options": {
               "unit": "nm-cloud-setup.service",
@@ -2138,35 +2160,10 @@
             }
           },
           {
-            "type": "org.osbuild.rhsm",
-            "options": {
-              "subscription-manager": {
-                "rhsm": {
-                  "manage_repos": false
-                },
-                "rhsmcertd": {
-                  "auto_registration": true
-                }
-              }
-            }
-          },
-          {
             "type": "org.osbuild.sshd.config",
             "options": {
               "config": {
                 "PasswordAuthentication": false
-              }
-            }
-          },
-          {
-            "type": "org.osbuild.dracut.conf",
-            "options": {
-              "filename": "ec2.conf",
-              "config": {
-                "add_drivers": [
-                  "nvme",
-                  "xen-blkfront"
-                ]
               }
             }
           },
@@ -2190,7 +2187,9 @@
               "kernel_opts": "console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=auto",
               "legacy": "i386-pc",
               "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-348.el8.x86_64",
-              "config": {}
+              "config": {
+                "default": "saved"
+              }
             }
           },
           {
@@ -2226,7 +2225,7 @@
                   "uuid": "FAC7F1FB-3E8D-4137-A512-961DE09A5549"
                 },
                 {
-                  "size": 20967324,
+                  "size": 20967391,
                   "start": 4096,
                   "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
                   "uuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562"
@@ -2255,7 +2254,7 @@
                 "options": {
                   "filename": "image.raw",
                   "start": 4096,
-                  "size": 20967324,
+                  "size": 20967391,
                   "lock": true
                 }
               }
@@ -2286,7 +2285,7 @@
                 "options": {
                   "filename": "image.raw",
                   "start": 4096,
-                  "size": 20967324
+                  "size": 20967391
                 }
               }
             },
@@ -2364,6 +2363,9 @@
           },
           "sha256:0391105afa53c9503b59591615bd7c98e2f7a4cd94ff4fd1451c4234522f3880": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/libedit-3.1-23.20170329cvs.el8.x86_64.rpm"
+          },
+          "sha256:050325fa0a3b18f9155243a812668c429d5464fcbc3bbad0b39d388e849fa68f": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rhui-3-20220504/Packages/rh-amazon-rhui-client-4.0.3-1.el8.noarch.rpm"
           },
           "sha256:0605f54945738b6f42f6fe0d79d64181ff4193ffb2589a3d9d40ef773001e61b": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/libgomp-8.5.0-3.el8.x86_64.rpm"
@@ -2857,9 +2859,6 @@
           "sha256:671852e4f32de6278dd384d35d1dc799ab5d3e8ef718e89e516452cbcba068f0": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/sg3_utils-libs-1.44-5.el8.x86_64.rpm"
           },
-          "sha256:673dcb6ee08297c2602ad144481a53baa7c17d6e2cf75e23152ca38e3b03add7": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rhui-3-20210730/Packages/rh-amazon-rhui-client-3.0.40-1.el8.noarch.rpm"
-          },
           "sha256:68362500ad574eb2df43a3d260ab8d0f3ce1ae5f34e66d71f2478fef8e17cb4a": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/less-530-1.el8.x86_64.rpm"
           },
@@ -2880,9 +2879,6 @@
           },
           "sha256:6bde078378d758ca574298032ecbcbb98f80bc68df25273f98705bda74793ebf": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/selinux-policy-3.14.3-80.el8.noarch.rpm"
-          },
-          "sha256:6cc76375b292cee17b3eb60c638a9b978a898e0cd57f7042bb19b954a0c095a8": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-appstream-r8.5-20220504/Packages/qemu-guest-agent-4.2.0-59.module+el8.5.0+12817+cb650d43.x86_64.rpm"
           },
           "sha256:6d136acc39e088ca8c8a51833fa0fc340cb4a5741fdce9b57a6ef3814b7bef89": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/python3-subscription-manager-rhsm-1.28.21-3.el8.x86_64.rpm"

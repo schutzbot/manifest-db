@@ -63,9 +63,16 @@ def load_test(name, fullpath) -> dict:
     return test
 
 
-def export_test(test, target):
+def export_test(test, target, manifest_only):
     name = test["id"]
     fullpath = os.path.join(target, name + ".json")
+    if  manifest_only and os.path.exists(fullpath):
+        # load existing
+        with open(fullpath, "r", encoding="utf-8") as f:
+            base = json.load(f)
+        # only replace the manifest in the base
+        base["manifest"] = test["manifest"]
+        test = base
     with open(fullpath, "w", encoding="utf-8") as f:
         json.dump(test, f, indent=2)
 
@@ -109,6 +116,12 @@ def main():
         default=False,
         help="do not export test cases"
     )
+    parser.add_argument(
+        "--manifest-only",
+        action="store_true",
+        default=False,
+        help="Only import the manifests from composer"
+    )
     group = parser.add_mutually_exclusive_group()
     group.add_argument(
         "--verbose",
@@ -122,19 +135,34 @@ def main():
         const=0,
         dest="verbosity",
         help="suppress output")
+    parser.add_argument(
+        "--db-ignore",
+        type=os.path.abspath,
+        default=None,
+        help="A file containing one per ligne files name to not import")
 
     args = parser.parse_args()
+
+    db_ignore = []
+    if args.db_ignore:
+        with open(args.db_ignore, "r", encoding="utf-8") as f:
+            db_ignore = f.readlines()
+        db_ignore = [s.replace("\n", "") for s in db_ignore]
+
 
     idx = 0
     failures = []
     for idx, (name, path) in enumerate(list_tests(args.SOURCE)):
         try:
+            if name in db_ignore:
+                continue
+
             test = load_test(name, path)
 
             if args.dry_run:
                 continue
 
-            export_test(test, args.TARGET)
+            export_test(test, args.TARGET, args.manifest_only)
         except ValueError as e:
             report_failure(name, str(e), args.verbosity)
             failures.append(name)

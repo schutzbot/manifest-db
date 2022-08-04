@@ -2022,13 +2022,13 @@
                     "id": "sha256:340b3c65becfca3d39f2afeed9659505a33ee870270c4d115d9fefe8929ff806"
                   },
                   {
-                    "id": "sha256:f657f911f530ca4192f3b5ada87982e224420123adf282c1e8e935f7071a0af7"
+                    "id": "sha256:880fffad0be46e1edf5132d56d6100abe4619ffd8b05eea543bb2dea89dfa21d"
                   },
                   {
-                    "id": "sha256:fe13a5b27b37142cffb4a44641d39863e3e024772fd639d711740c7f1a88d160"
+                    "id": "sha256:81dd8f65866e8ca4ff304396fcedb1736702d1aea33e44518d4efe4961bb73b0"
                   },
                   {
-                    "id": "sha256:bebc3bc34e4b966c2b5866e5c5d0b708b86f7ed0263e95c0b801568f8bc77cb8"
+                    "id": "sha256:972bb38a34b331763d6bf501cc2695784f6b1ab976715621db735367bc2ff0fc"
                   },
                   {
                     "id": "sha256:53fe9e840422a547a237537c74f6b65a61a6a048b598b007fd6f4662e0cf8073"
@@ -2598,7 +2598,7 @@
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/libpng-1.6.34-5.el8.x86_64.rpm"
           },
           "sha256:53fe9e840422a547a237537c74f6b65a61a6a048b598b007fd6f4662e0cf8073": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rt-n8.5-20210730.2/Packages/rt-setup-2.1-2.el8.x86_64.rpm"
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rt-r8.5-20220504/Packages/rt-setup-2.1-2.el8.x86_64.rpm"
           },
           "sha256:559bbc35fcdfdd8234c400264443e0b4f6c749097d94153ba88b2377e578eb94": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/openldap-2.4.46-18.el8.x86_64.rpm"
@@ -2694,7 +2694,7 @@
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/less-530-1.el8.x86_64.rpm"
           },
           "sha256:6a0d8e83e24239dd7592253068fa4a0b917ed35b525fd374e12d30ddcf86999f": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rt-n8.5-20210730.2/Packages/tuned-profiles-realtime-2.16.0-1.el8.noarch.rpm"
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rt-r8.5-20220504/Packages/tuned-profiles-realtime-2.16.0-1.el8.noarch.rpm"
           },
           "sha256:6aab23e22ca99314106df2068464bec8a2d78cf59cb1335ae9b63b3a06e808f8": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/openssl-1.1.1k-4.el8.x86_64.rpm"
@@ -2819,6 +2819,9 @@
           "sha256:8098b0c9f809b7485a59d6c459e78f0d0da08e60d3af5dbcb998ff52f84ce513": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/platform-python-3.6.8-41.el8.x86_64.rpm"
           },
+          "sha256:81dd8f65866e8ca4ff304396fcedb1736702d1aea33e44518d4efe4961bb73b0": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rt-r8.5-20220504/Packages/kernel-rt-core-4.18.0-348.rt7.130.el8.x86_64.rpm"
+          },
           "sha256:85f6b6a7dc29dbb801ea8a1359895719a37f4bb3753db50464fc508022f92777": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-appstream-r8.5-20220504/Packages/dnsmasq-2.79-19.el8.x86_64.rpm"
           },
@@ -2830,6 +2833,9 @@
           },
           "sha256:876a401451123153602105832e8f711af4931985a86ad3bae0817f9584496cf2": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/traceroute-2.1.0-6.el8.x86_64.rpm"
+          },
+          "sha256:880fffad0be46e1edf5132d56d6100abe4619ffd8b05eea543bb2dea89dfa21d": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rt-r8.5-20220504/Packages/kernel-rt-4.18.0-348.rt7.130.el8.x86_64.rpm"
           },
           "sha256:88590efc37e205ae9b2048fcfea719157c5a3c7a9b7a650d0b7afb131e479a8b": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/libsemanage-2.9-6.el8.x86_64.rpm"
@@ -2917,6 +2923,9 @@
           },
           "sha256:96fadfed6a8225a89b331e7b62ed8ee74b393cea1520fa0d89f6f0dc1a458fb3": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/libpkgconf-1.4.2-1.el8.x86_64.rpm"
+          },
+          "sha256:972bb38a34b331763d6bf501cc2695784f6b1ab976715621db735367bc2ff0fc": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rt-r8.5-20220504/Packages/kernel-rt-modules-4.18.0-348.rt7.130.el8.x86_64.rpm"
           },
           "sha256:97de5ad2e5533143dc7f17032e60a067fb03e3b224c2504c409a48e9227392dd": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/iwl105-firmware-18.168.6.1-103.el8.1.noarch.rpm"
@@ -3121,9 +3130,6 @@
           },
           "sha256:bd9271820c03337924ca655f164e34a158a4d3b88fb03c18eb822cb6a66a083f": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/pigz-2.4-4.el8.x86_64.rpm"
-          },
-          "sha256:bebc3bc34e4b966c2b5866e5c5d0b708b86f7ed0263e95c0b801568f8bc77cb8": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rt-n8.5-20210730.2/Packages/kernel-rt-modules-4.18.0-323.rt7.104.el8.x86_64.rpm"
           },
           "sha256:c0309fbbf048d250de039aca136cc055bfa33faf2056803e18c48a3eba498c2f": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-appstream-r8.5-20220504/Packages/libblockdev-2.24-7.el8.x86_64.rpm"
@@ -3422,9 +3428,6 @@
           "sha256:f5361f959d87ceb9c6fa101c443a20b28c769d5adcd0a0b6fd2bce871204183e": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/selinux-policy-targeted-3.14.3-80.el8.noarch.rpm"
           },
-          "sha256:f657f911f530ca4192f3b5ada87982e224420123adf282c1e8e935f7071a0af7": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rt-n8.5-20210730.2/Packages/kernel-rt-4.18.0-323.rt7.104.el8.x86_64.rpm"
-          },
           "sha256:f6f157776ee3fe21dd7af7a5af8dc55e25420cda37d01051d0e9746c68e508c0": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/kexec-tools-2.0.20-57.el8.x86_64.rpm"
           },
@@ -3493,9 +3496,6 @@
           },
           "sha256:fdfeea10ca40addd7015adbd378c294ea907a0f6c602d96a7f6775569829c952": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/linux-firmware-20210702-103.gitd79c2677.el8.noarch.rpm"
-          },
-          "sha256:fe13a5b27b37142cffb4a44641d39863e3e024772fd639d711740c7f1a88d160": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rt-n8.5-20210730.2/Packages/kernel-rt-core-4.18.0-323.rt7.104.el8.x86_64.rpm"
           },
           "sha256:fec32d37b2f34c891a64a8c5e2faf3d08de25d144289b6f2b7f5fafdd5eec4d2": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-r8.5-20220504/Packages/parted-3.2-39.el8.x86_64.rpm"
