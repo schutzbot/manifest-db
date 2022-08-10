@@ -6,7 +6,7 @@ sudo dnf install gh -y pip python3-gitlab
 echo "${SCHUTZBOT_GH_TOKEN}" | gh auth login --with-token
 
 # import the image info from the current build
-./tools/ci_import --pipeline-id "$CI_PIPELINE_ID" --token "${GITLAB_TOKEN}" --verbose
+./tools/ci_import --pipeline-id "$CI_PIPELINE_ID" --token "${GITLAB_TOKEN}"
 
 #remove ci-details-before-run
 mv ci-details-before-run /tmp
