@@ -6,5 +6,9 @@ rhel_85-x86_64-image_installer-boot
 rhel_85-x86_64-image_installer_with_users-boot
 rhel_86-x86_64-image_installer-boot
 rhel_86-x86_64-image_installer_with_users-boot
+rhel_87-x86_64-image_installer-boot
+rhel_87-x86_64-image_installer_with_users-boot
 rhel_90-x86_64-image_installer-boot
 rhel_90-x86_64-image_installer_with_users-boot
+rhel_91-x86_64-image_installer-boot
+rhel_91-x86_64-image_installer_with_users-boot
