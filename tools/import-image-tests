@@ -70,8 +70,12 @@ def export_test(test, target, manifest_only):
         # load existing
         with open(fullpath, "r", encoding="utf-8") as f:
             base = json.load(f)
-        # only replace the manifest in the base
+        # import the manifest in the base and cleanup the image-info in the DB.
+        # the cleanup has to be performed for consistency, as if no runner run
+        # for a specified architecture we can endup in a situation where a given
+        # manifests will compare to an outdated image-info.
         base["manifest"] = test["manifest"]
+        base["image-info"] = {}
         test = base
     with open(fullpath, "w", encoding="utf-8") as f:
         json.dump(test, f, indent=2)
