@@ -2022,9 +2022,6 @@
                     "id": "sha256:8fc269f9b18e428f12c9afe7231e67edea41404ad47c7e87f104ec47312ee3fd"
                   },
                   {
-                    "id": "sha256:310c51e65da1036e1d07571b8f44a02aa9962c79743b20a834dbd1349ac41893"
-                  },
-                  {
                     "id": "sha256:9de450d086f494ac3776444a8c325dd313eb63c2140cbe73d9d99e00dee46399"
                   },
                   {
@@ -2118,17 +2115,6 @@
             }
           },
           {
-            "type": "org.osbuild.systemd-logind",
-            "options": {
-              "filename": "00-getty-fixes.conf",
-              "config": {
-                "Login": {
-                  "NAutoVTs": 0
-                }
-              }
-            }
-          },
-          {
             "type": "org.osbuild.sysconfig",
             "options": {
               "kernel": {
@@ -2150,6 +2136,30 @@
                     "type": "Ethernet",
                     "userctl": true
                   }
+                }
+              }
+            }
+          },
+          {
+            "type": "org.osbuild.rhsm",
+            "options": {
+              "subscription-manager": {
+                "rhsm": {
+                  "manage_repos": false
+                },
+                "rhsmcertd": {
+                  "auto_registration": true
+                }
+              }
+            }
+          },
+          {
+            "type": "org.osbuild.systemd-logind",
+            "options": {
+              "filename": "00-getty-fixes.conf",
+              "config": {
+                "Login": {
+                  "NAutoVTs": 0
                 }
               }
             }
@@ -2209,19 +2219,6 @@
             }
           },
           {
-            "type": "org.osbuild.rhsm",
-            "options": {
-              "subscription-manager": {
-                "rhsm": {
-                  "manage_repos": false
-                },
-                "rhsmcertd": {
-                  "auto_registration": true
-                }
-              }
-            }
-          },
-          {
             "type": "org.osbuild.sshd.config",
             "options": {
               "config": {
@@ -2234,15 +2231,15 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
-                  "vfs_type": "xfs",
-                  "path": "/boot",
-                  "options": "defaults"
-                },
-                {
                   "uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75",
                   "vfs_type": "xfs",
                   "path": "/",
+                  "options": "defaults"
+                },
+                {
+                  "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
+                  "vfs_type": "xfs",
+                  "path": "/boot",
                   "options": "defaults"
                 },
                 {
@@ -2265,7 +2262,9 @@
                 "vendor": "redhat"
               },
               "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-348.el8.aarch64",
-              "config": {}
+              "config": {
+                "default": "saved"
+              }
             }
           },
           {
@@ -2306,7 +2305,7 @@
                   "uuid": "CB07C243-BC44-4717-853E-28852021225B"
                 },
                 {
-                  "size": 19511196,
+                  "size": 19511263,
                   "start": 1460224,
                   "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
                   "uuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562"
@@ -2369,7 +2368,7 @@
                 "options": {
                   "filename": "image.raw",
                   "start": 1460224,
-                  "size": 19511196,
+                  "size": 19511263,
                   "lock": true
                 }
               }
@@ -2416,7 +2415,7 @@
                 "options": {
                   "filename": "image.raw",
                   "start": 1460224,
-                  "size": 19511196
+                  "size": 19511263
                 }
               }
             },
@@ -2694,9 +2693,6 @@
           },
           "sha256:31043a7324411dad6b84f6504a9e9cb7ece9f576acf091be522e484c8b82f469": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-aarch64-baseos-r8.5-20220504/Packages/python3-gobject-base-3.28.3-2.el8.aarch64.rpm"
-          },
-          "sha256:310c51e65da1036e1d07571b8f44a02aa9962c79743b20a834dbd1349ac41893": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-aarch64-appstream-r8.5-20220504/Packages/qemu-guest-agent-4.2.0-59.module+el8.5.0+12817+cb650d43.aarch64.rpm"
           },
           "sha256:310d69dea3d9bb92e6e783f0458f8924431cb5703120a4730b0dcfaac4ecaaa6": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-aarch64-baseos-r8.5-20220504/Packages/libdnf-0.63.0-3.el8.aarch64.rpm"
@@ -3806,5 +3802,5 @@
       }
     }
   },
-  "image-info": null
+  "image-info": {}
 }
