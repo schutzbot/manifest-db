@@ -6,6 +6,7 @@ Import Composer image tests
 import argparse
 import json
 import os
+import yaml
 
 from typing import Iterator, Tuple
 
@@ -37,7 +38,7 @@ def list_tests(source) -> Iterator[Tuple[str, str]]:
         yield name, fullpath
 
 
-def load_test(name, fullpath) -> dict:
+def load_test(name, fullpath, filters) -> dict:
     with open(fullpath, "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -48,6 +49,10 @@ def load_test(name, fullpath) -> dict:
     req = data.get("compose-request")
     if not req:
         raise ValueError("no compose-request")
+
+    distros, archs = list(map(list, zip(*filters)))
+    if req["distro"] not in distros or req["arch"] not in archs:
+        return None
 
     test = {
         "id": name,
@@ -70,7 +75,6 @@ def export_test(test, target, manifest_only):
         # load existing
         with open(fullpath, "r", encoding="utf-8") as f:
             base = json.load(f)
-        # only replace the manifest in the base
         base["manifest"] = test["manifest"]
         test = base
     with open(fullpath, "w", encoding="utf-8") as f:
@@ -122,6 +126,12 @@ def main():
         default=False,
         help="Only import the manifests from composer"
     )
+    parser.add_argument(
+        "--filter-with-ci-distros",
+        type=os.path.abspath,
+        default=None,
+        help="filter the importations from composer based on the distros coming from CI yml file"
+    )
     group = parser.add_mutually_exclusive_group()
     group.add_argument(
         "--verbose",
@@ -147,15 +157,43 @@ def main():
     if args.db_ignore:
         with open(args.db_ignore, "r", encoding="utf-8") as f:
             db_ignore = f.read().splitlines()
+        print("Filtering manifests, ignoring:")
+        for dbi in db_ignore:
+            print(f"    - {dbi}")
+
+    filters = []
+    if args.filter_with_ci_distros:
+        print("Filtering distros, importing only:")
+        with open(args.filter_with_ci_distros, "r", encoding="utf-8") as f:
+            data = yaml.load(f, Loader=yaml.Loader)
+            runners = data["Manifests"]["parallel"]["matrix"]
+            for runner in runners:
+                for machine_id in runner["RUNNER"]:
+                    flavor = machine_id.split("/")[-1]
+                    arch = flavor.split("-")[-1]
+                    distro = ""
+                    if "fedora" in flavor:
+                        distro = f"fedora-{flavor.split('-')[1]}"
+                    elif "centos" in flavor:
+                        distro = f"centos-{flavor.split('-')[2]}"
+                    elif "rhel" in flavor:
+                        distro = f"rhel-{flavor.split('-')[1].replace('.', '')}"
+                    print(f"    - {distro} {arch}")
+                    filters.append((distro,arch))
 
     idx = 0
     failures = []
+
+    print("Running import:")
     for idx, (name, path) in enumerate(list_tests(args.SOURCE)):
         try:
             if name in db_ignore:
                 continue
 
-            test = load_test(name, path)
+            test = load_test(name, path, filters)
+
+            if not test:
+                continue
 
             if args.dry_run:
                 continue
