@@ -24,7 +24,7 @@ jobs:
 
       - name: Update DB
         run: |
-          ./manifest-db/tools/import-image-tests composer/test/data/manifests/ manifest-db/manifest-db --manifest-only --db-ignore=manifest-db/db-ignore --verbose
+          ./manifest-db/tools/import-image-tests composer/test/data/manifests/ manifest-db/manifest-db --manifest-only --db-ignore=manifest-db/db-ignore --filter-with-ci-distros=manifest-db/.gitlab-ci.yml --verbose
 
       - name: Send to CI
         run: |
