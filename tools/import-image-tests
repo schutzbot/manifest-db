@@ -6,14 +6,16 @@ Import Composer image tests
 import argparse
 import json
 import os
+from typing import Iterator, Tuple, Dict, List, Any
 
-from typing import Iterator, Tuple
+import yaml
 
 
 RESET = "\033[0m"
 GREEN = "\033[32m"
 BOLD = "\033[1m"
 RED = "\033[31m"
+YELLOW = "\033[33m"
 
 
 def parse_name(name: str):
@@ -37,7 +39,7 @@ def list_tests(source) -> Iterator[Tuple[str, str]]:
         yield name, fullpath
 
 
-def load_test(name, fullpath) -> dict:
+def load_test(name, fullpath, filters:Dict[str, List[str]]) -> Dict[str, Any]:
     with open(fullpath, "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -48,6 +50,9 @@ def load_test(name, fullpath) -> dict:
     req = data.get("compose-request")
     if not req:
         raise ValueError("no compose-request")
+
+    if req["distro"] not in filters or req["arch"] not in filters[req["distro"]]:
+        return {}
 
     test = {
         "id": name,
@@ -77,14 +82,23 @@ def export_test(test, target, manifest_only):
         json.dump(test, f, indent=2)
 
 
-def report_import(test, verbosity=1):
+def report_ignoring(name:str, reason:str, verbosity:int=1):
     if verbosity < 1:
         return
 
     if verbosity == 1:
         print(".", end="", flush=True)
     else:
-        print(f"{GREEN} OK  {RESET} {test['id']}", flush=True)
+        print(f"{YELLOW} SKIP  {reason} {RESET}{name}", flush=True)
+
+def report_import(test:Dict, verbosity:int=1):
+    if verbosity < 1:
+        return
+
+    if verbosity == 1:
+        print(".", end="", flush=True)
+    else:
+        print(f"{GREEN} OK   {RESET} {test['id']}", flush=True)
 
 
 def report_failure(name, reason, verbosity=1):
@@ -94,7 +108,32 @@ def report_failure(name, reason, verbosity=1):
     if verbosity == 1:
         print(f"{RED}F{RESET}", end="", flush=True)
     else:
-        print(f"{RED}FAIL{RESET} {name}: {reason}")
+        print(f"{RED}FAIL {RESET} {name}: {reason}")
+
+def parse_distro(ci_file) -> str:
+    filters = {}
+    if ci_file:
+        with open(ci_file, "r", encoding="utf-8") as f:
+            data = yaml.load(f, Loader=yaml.Loader)
+            runners = data["Manifests"]["parallel"]["matrix"]
+            for runner in runners:
+                for machine_id in runner["RUNNER"]:
+                    flavor = machine_id.split("/")[-1]
+                    arch = flavor.split("-")[-1]
+                    distro = ""
+                    if "fedora" in flavor:
+                        distro = f"fedora-{flavor.split('-')[1]}"
+                    elif "centos" in flavor:
+                        distro = f"centos-{flavor.split('-')[2]}"
+                    elif "rhel" in flavor:
+                        distro = f"rhel-{flavor.split('-')[1].replace('.', '')}"
+                    else:
+                        raise ValueError(f"unknown distribution {flavor}")
+                    if distro in filters:
+                        filters[distro].append(arch)
+                    else:
+                        filters[distro] = [arch]
+    return filters
 
 
 def main():
@@ -122,6 +161,12 @@ def main():
         default=False,
         help="Only import the manifests from composer"
     )
+    parser.add_argument(
+        "--filter-with-ci-distros",
+        type=os.path.abspath,
+        default=None,
+        help="filter the importations from composer based on the distros coming from CI yml file"
+    )
     group = parser.add_mutually_exclusive_group()
     group.add_argument(
         "--verbose",
@@ -148,14 +193,25 @@ def main():
         with open(args.db_ignore, "r", encoding="utf-8") as f:
             db_ignore = f.read().splitlines()
 
+    filters = parse_distro(args.filter_with_ci_distros)
+
     idx = 0
     failures = []
+    ignored = []
+
     for idx, (name, path) in enumerate(list_tests(args.SOURCE)):
         try:
             if name in db_ignore:
+                report_ignoring(name, "db-ignore", args.verbosity)
+                ignored.append(name)
                 continue
 
-            test = load_test(name, path)
+            test = load_test(name, path, filters)
+
+            if not test:
+                report_ignoring(name, "gitlab-ci", args.verbosity)
+                ignored.append(name)
+                continue
 
             if args.dry_run:
                 continue
@@ -167,7 +223,9 @@ def main():
         else:
             report_import(test, args.verbosity)
 
-    print(f"\n{GREEN}{idx + 1 - len(failures) }{RESET} tests imported")
+    print(f"\n{GREEN}{idx + 1 - len(failures) - len(ignored) }{RESET} tests imported")
+    if ignored:
+        print(f"{YELLOW}{len(ignored)}{RESET} ignored")
     if failures:
         print(f"{RED}{len(failures)}{RESET} failed")
 
