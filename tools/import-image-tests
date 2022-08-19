@@ -128,6 +128,9 @@ def parse_distro(ci_file: Union[str, pathlib.Path]) -> Dict[str, List[str]]:
                         filters[distro] = [arch]
     return filters
 
+def parse_db_ignore(db_ignore_file: Union[str, pathlib.Path]) -> List[str]:
+    with open(db_ignore_file, "r", encoding="utf-8") as f:
+        return f.read().splitlines()
 
 def main():
     parser = argparse.ArgumentParser(description="osbuild image tests")
@@ -181,10 +184,7 @@ def main():
 
     args = parser.parse_args()
 
-    db_ignore = []
-    if args.db_ignore:
-        with open(args.db_ignore, "r", encoding="utf-8") as f:
-            db_ignore = f.read().splitlines()
+    db_ignore = parse_db_ignore(args.db_ignore)
 
     filters = parse_distro(args.filter_with_ci_distros)
 
