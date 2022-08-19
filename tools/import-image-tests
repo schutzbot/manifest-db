@@ -7,7 +7,7 @@ import argparse
 import json
 import os
 import pathlib
-from typing import Iterator, Tuple, Dict, List, Any, Union, Optional
+from typing import Iterator, Tuple, Dict, List, Any, Union
 
 import yaml
 
@@ -17,15 +17,6 @@ GREEN = "\033[32m"
 BOLD = "\033[1m"
 RED = "\033[31m"
 YELLOW = "\033[33m"
-
-
-def parse_name(name: str) -> Tuple[str, str, str, Optional[str]]:
-    comps = name.split("-")
-    distro = comps[0]
-    arch = comps[1]
-    name = comps[2]
-    extra = comps[3] if len(comps) > 3 else None
-    return distro, arch, name, extra
 
 
 def list_tests(source: Union[str, pathlib.Path]) -> Iterator[Tuple[str, str]]:
