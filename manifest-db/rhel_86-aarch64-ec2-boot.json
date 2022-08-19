@@ -2025,9 +2025,6 @@
                     "id": "sha256:8fc269f9b18e428f12c9afe7231e67edea41404ad47c7e87f104ec47312ee3fd"
                   },
                   {
-                    "id": "sha256:a992c740ae37f436e6abaf3c2f721d2a5de06a44297b5ad09a653fcf8a976d85"
-                  },
-                  {
                     "id": "sha256:5f8a723a2d2eed7a553d9efa794e362811bf04b413c30054887bd2d56cef24e8"
                   },
                   {
@@ -2237,15 +2234,15 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
-                  "vfs_type": "xfs",
-                  "path": "/boot",
-                  "options": "defaults"
-                },
-                {
                   "uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75",
                   "vfs_type": "xfs",
                   "path": "/",
+                  "options": "defaults"
+                },
+                {
+                  "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
+                  "vfs_type": "xfs",
+                  "path": "/boot",
                   "options": "defaults"
                 },
                 {
@@ -3329,9 +3326,6 @@
           },
           "sha256:a93b90699f26009debf0ac7b6759daf23afa9f3c851ccd7c98e35d9a89824dcb": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-aarch64-baseos-n8.6-20220201/Packages/sg3_utils-libs-1.44-5.el8.aarch64.rpm"
-          },
-          "sha256:a992c740ae37f436e6abaf3c2f721d2a5de06a44297b5ad09a653fcf8a976d85": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-aarch64-appstream-n8.6-20220201/Packages/qemu-guest-agent-6.2.0-5.module+el8.6.0+14025+ca131e0a.aarch64.rpm"
           },
           "sha256:aa4b8463be8bceddb296424e76ddecc80b72ffc8543b6746eadfc4972131b6e2": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-aarch64-baseos-n8.6-20220201/Packages/setup-2.12.2-6.el8.noarch.rpm"
@@ -4495,7 +4489,6 @@
       "python3-syspurpose-1.28.25-1.el8.aarch64",
       "python3-unbound-1.7.3-17.el8.aarch64",
       "python3-urllib3-1.24.2-5.el8.noarch",
-      "qemu-guest-agent-6.2.0-5.module+el8.6.0+14025+ca131e0a.aarch64",
       "readline-7.0-10.el8.aarch64",
       "redhat-release-8.6-0.0.el8.aarch64",
       "redhat-release-eula-8.6-0.0.el8.aarch64",
@@ -4766,7 +4759,6 @@
       "nis-domainname.service",
       "nm-cloud-setup.service",
       "nm-cloud-setup.timer",
-      "qemu-guest-agent.service",
       "reboot.target",
       "remote-fs.target",
       "rhsmcertd.service",
