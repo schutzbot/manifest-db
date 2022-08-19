@@ -6,7 +6,8 @@ Import Composer image tests
 import argparse
 import json
 import os
-from typing import Iterator, Tuple, Dict, List, Any
+import pathlib
+from typing import Iterator, Tuple, Dict, List, Any, Union, Optional
 
 import yaml
 
@@ -18,7 +19,7 @@ RED = "\033[31m"
 YELLOW = "\033[33m"
 
 
-def parse_name(name: str):
+def parse_name(name: str) -> Tuple[str, str, str, Optional[str]]:
     comps = name.split("-")
     distro = comps[0]
     arch = comps[1]
@@ -27,7 +28,7 @@ def parse_name(name: str):
     return distro, arch, name, extra
 
 
-def list_tests(source) -> Iterator[Tuple[str, str]]:
+def list_tests(source: Union[str, pathlib.Path]) -> Iterator[Tuple[str, str]]:
     for entry in os.scandir(source):
         if not entry.is_file():
             continue
@@ -39,7 +40,7 @@ def list_tests(source) -> Iterator[Tuple[str, str]]:
         yield name, fullpath
 
 
-def load_test(name, fullpath, filters:Dict[str, List[str]]) -> Dict[str, Any]:
+def load_test(name: str, fullpath: Union[str, pathlib.Path], filters: Dict[str, List[str]]) -> Dict[str, Any]:
     with open(fullpath, "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -68,21 +69,20 @@ def load_test(name, fullpath, filters:Dict[str, List[str]]) -> Dict[str, Any]:
     return test
 
 
-def export_test(test, target, manifest_only):
+def export_test(test: Dict, target: Union[str, pathlib.Path], manifest_only: bool) -> None:
     name = test["id"]
     fullpath = os.path.join(target, name + ".json")
     if manifest_only and os.path.exists(fullpath):
         # load existing
         with open(fullpath, "r", encoding="utf-8") as f:
             base = json.load(f)
-        # only replace the manifest in the base
         base["manifest"] = test["manifest"]
         test = base
     with open(fullpath, "w", encoding="utf-8") as f:
         json.dump(test, f, indent=2)
 
 
-def report_ignoring(name:str, reason:str, verbosity:int=1):
+def report_ignoring(name: str, reason: str, verbosity: int = 1) -> None:
     if verbosity < 1:
         return
 
@@ -91,7 +91,8 @@ def report_ignoring(name:str, reason:str, verbosity:int=1):
     else:
         print(f"{YELLOW} SKIP  {reason} {RESET}{name}", flush=True)
 
-def report_import(test:Dict, verbosity:int=1):
+
+def report_import(test: Dict, verbosity: int = 1) -> None:
     if verbosity < 1:
         return
 
@@ -101,7 +102,7 @@ def report_import(test:Dict, verbosity:int=1):
         print(f"{GREEN} OK   {RESET} {test['id']}", flush=True)
 
 
-def report_failure(name, reason, verbosity=1):
+def report_failure(name: str, reason: str, verbosity: int = 1) -> None:
     if verbosity < 1:
         return
 
@@ -110,8 +111,9 @@ def report_failure(name, reason, verbosity=1):
     else:
         print(f"{RED}FAIL {RESET} {name}: {reason}")
 
-def parse_distro(ci_file) -> str:
-    filters = {}
+
+def parse_distro(ci_file: Union[str, pathlib.Path]) -> Dict[str, List[str]]:
+    filters: Dict[str, List[str]] = {}
     if ci_file:
         with open(ci_file, "r", encoding="utf-8") as f:
             data = yaml.load(f, Loader=yaml.Loader)
