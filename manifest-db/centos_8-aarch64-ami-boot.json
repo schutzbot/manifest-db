@@ -5157,14 +5157,6 @@
                     }
                   },
                   {
-                    "id": "sha256:b590e504fdbdf084fc31afad64e5619932fe324b71b0f2591068d08d30717d23",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:08b3506e03f120f39bd5e7f81c04898229c6682d90d55bc703ae71c5d6cf9958",
                     "options": {
                       "metadata": {
@@ -5379,15 +5371,15 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
-                  "vfs_type": "xfs",
-                  "path": "/boot",
-                  "options": "defaults"
-                },
-                {
                   "uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75",
                   "vfs_type": "xfs",
                   "path": "/",
+                  "options": "defaults"
+                },
+                {
+                  "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
+                  "vfs_type": "xfs",
+                  "path": "/boot",
                   "options": "defaults"
                 },
                 {
@@ -6518,9 +6510,6 @@
           "sha256:b560a8a185100a7c80e6c32f69ba65ce17004156f7218cf183249b15c13295cc": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/el8/cs8-aarch64-baseos-20220208/Packages/libzstd-1.4.4-1.el8.aarch64.rpm"
           },
-          "sha256:b590e504fdbdf084fc31afad64e5619932fe324b71b0f2591068d08d30717d23": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/public/el8/cs8-aarch64-appstream-20220208/Packages/qemu-guest-agent-6.1.0-5.module_el8.6.0+1040+0ae94936.aarch64.rpm"
-          },
           "sha256:b62589101a60a365ef34447cae78f62e6dba560d403dc56c87036709ea00ad88": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/el8/cs8-aarch64-baseos-20220208/Packages/libidn2-2.2.0-1.el8.aarch64.rpm"
           },
@@ -7548,7 +7537,6 @@
       "python3-syspurpose-1.28.25-1.el8.aarch64",
       "python3-unbound-1.7.3-17.el8.aarch64",
       "python3-urllib3-1.24.2-5.el8.noarch",
-      "qemu-guest-agent-6.1.0-5.module_el8.6.0+1040+0ae94936.aarch64",
       "readline-7.0-10.el8.aarch64",
       "rootfiles-8.1-22.el8.noarch",
       "rpm-4.14.3-21.el8.aarch64",
@@ -7755,7 +7743,6 @@
       "nis-domainname.service",
       "nm-cloud-setup.service",
       "nm-cloud-setup.timer",
-      "qemu-guest-agent.service",
       "reboot.target",
       "remote-fs.target",
       "rsyslog.service",
