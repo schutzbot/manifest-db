@@ -1,10 +1,12 @@
 {
-  "fedora-35": {
+  "global": {
     "dependencies": {
       "osbuild": {
-        "commit": "07d36053854ac2d678a6f2a7424338d082913e46"
+        "commit": "b87eaf603284681335704910636123778dd57895"
       }
-    },
+    }
+  },
+  "fedora-35": {
     "repos": [
       {
         "file": "/etc/yum.repos.d/fedora.repo",
@@ -77,11 +79,6 @@
     ]
   },
   "fedora-36": {
-    "dependencies": {
-      "osbuild": {
-        "commit": "07d36053854ac2d678a6f2a7424338d082913e46"
-      }
-    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/fedora.repo",
@@ -154,11 +151,6 @@
     ]
   },
   "rhel-8.6": {
-    "dependencies": {
-      "osbuild": {
-        "commit": "07d36053854ac2d678a6f2a7424338d082913e46"
-      }
-    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/rhel8internal.repo",
@@ -200,11 +192,6 @@
     ]
   },
   "rhel-8.7": {
-    "dependencies": {
-      "osbuild": {
-        "commit": "07d36053854ac2d678a6f2a7424338d082913e46"
-      }
-    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/rhel8internal.repo",
@@ -246,11 +233,6 @@
     ]
   },
   "rhel-9.0": {
-    "dependencies": {
-      "osbuild": {
-        "commit": "07d36053854ac2d678a6f2a7424338d082913e46"
-      }
-    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/rhel9internal.repo",
@@ -292,11 +274,6 @@
     ]
   },
   "rhel-9.1": {
-    "dependencies": {
-      "osbuild": {
-        "commit": "07d36053854ac2d678a6f2a7424338d082913e46"
-      }
-    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/rhel9internal.repo",
@@ -338,11 +315,6 @@
     ]
   },
   "centos-stream-9": {
-    "dependencies": {
-      "osbuild": {
-        "commit": "07d36053854ac2d678a6f2a7424338d082913e46"
-      }
-    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/centos.repo",
@@ -384,11 +356,6 @@
     ]
   },
   "centos-stream-8": {
-      "dependencies": {
-        "osbuild": {
-          "commit": "07d36053854ac2d678a6f2a7424338d082913e46"
-        }
-      },
     "repos": [
       {
         "file": "/etc/yum.repos.d/CentOS-Stream-BaseOS.repo",

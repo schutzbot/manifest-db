@@ -35,7 +35,6 @@ EOF
 source /etc/os-release
 ARCH=$(uname -m)
 DISTRO_CODE="${DISTRO_CODE:-${ID}-${VERSION_ID//./}}"
-OSBUILD_GIT_COMMIT=$(cat Schutzfile | jq -r '.["'"${ID}-${VERSION_ID}"'"].dependencies.osbuild.commit')
 
 if [[ $ID == "rhel" && ${VERSION_ID%.*} == "9" ]]; then
   # There's a bug in RHEL 9 that causes /tmp to be mounted on tmpfs.
@@ -68,14 +67,12 @@ fi
 greenprint "Enabling fastestmirror to speed up dnf 🏎️"
 echo -e "fastestmirror=1" | sudo tee -a /etc/dnf/dnf.conf
 
-OSBUILD_GIT_COMMIT=$(cat Schutzfile | jq -r '.["'"${ID}-${VERSION_ID}"'"].dependencies.osbuild.commit')
+OSBUILD_GIT_COMMIT=$(cat Schutzfile | jq -r '.global.dependencies.osbuild.commit')
 if [[ "${OSBUILD_GIT_COMMIT}" != "null" ]]; then
   setup_repo osbuild "${OSBUILD_GIT_COMMIT}" 10
 fi
 
-sudo dnf install -y osbuild*
-
-sudo dnf install -y python3-pip
+sudo dnf install -y osbuild* python3-pip container-selinux
 pip3 show osbuild
 
 greenprint "OSBuild installed"
