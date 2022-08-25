@@ -40,8 +40,8 @@ Regression:
   extends: .terraform
   script:
     - schutzbot/deploy.sh
-    - sudo schutzbot/selinux-context.sh
-    - sudo test/cases/regression_tests
+    - schutzbot/selinux-context.sh
+    - test/cases/regression_tests
   rules:
     - if: '$CI_PIPELINE_SOURCE != "trigger"'
   artifacts:
@@ -58,7 +58,7 @@ Manifests:
   extends: .terraform
   script:
     - schutzbot/deploy.sh
-    - sudo schutzbot/selinux-context.sh
+    - schutzbot/selinux-context.sh
     - sudo test/cases/manifest_tests
   rules:
     - if: '$CI_PIPELINE_SOURCE == "trigger"'

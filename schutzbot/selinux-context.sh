@@ -1,3 +1,3 @@
-OSBUILD_LABEL=$(matchpathcon -n $(which osbuild))
+set -euxo pipefail
+OSBUILD_LABEL=$(matchpathcon -n /usr/bin/osbuild)
 chcon $OSBUILD_LABEL tools/image-info
-chcon $OSBUILD_LABEL tools/osbuild-image-test
