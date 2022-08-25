@@ -4573,14 +4573,6 @@
                     }
                   },
                   {
-                    "id": "sha256:ce7f8f58e8e40f59b659f0ba36670cba570d9527e4330299399d8adaf6d19edf",
-                    "options": {
-                      "metadata": {
-                        "rpm.check_gpg": true
-                      }
-                    }
-                  },
-                  {
                     "id": "sha256:8caf70f76bc314ccb0cfd75377f561f12289a8e5ffcf537df1fab1c0e9bb8575",
                     "options": {
                       "metadata": {
@@ -9429,7 +9421,6 @@
                 "multipath",
                 "nfs",
                 "nvdimm",
-                "nvmf",
                 "rdma",
                 "rngd"
               ],
@@ -9580,7 +9571,12 @@
               "filename": "installer.iso",
               "volid": "RHEL-9-1-0-BaseOS-x86_64",
               "sysid": "LINUX",
+              "boot": {
+                "image": "isolinux/isolinux.bin",
+                "catalog": "isolinux/boot.cat"
+              },
               "efi": "images/efiboot.img",
+              "isohybridmbr": "/usr/share/syslinux/isohdpfx.bin",
               "isolevel": 3
             }
           },
@@ -11920,9 +11916,6 @@
           },
           "sha256:ce6dcb35f56a067393e94e5d49299a9ab256ad4949e6f86ac27e6b58516b18a7": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.1-20220324/Packages/kmod-libs-28-7.el9.x86_64.rpm"
-          },
-          "sha256:ce7f8f58e8e40f59b659f0ba36670cba570d9527e4330299399d8adaf6d19edf": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.1-20220324/Packages/nvme-cli-1.16-3.el9.x86_64.rpm"
           },
           "sha256:cee202f1330ee17cfc3d5db3cd841594896cfda34b275da9bed1f5e6ccfaf644": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.1-20220324/Packages/libwayland-client-1.19.0-4.el9.x86_64.rpm"
