@@ -7826,38 +7826,6 @@
       }
     },
     "selinux": {
-      "context-mismatch": [
-        {
-          "actual": "system_u:object_r:unlabeled_t:s0",
-          "expected": "system_u:object_r:conmon_exec_t:s0",
-          "filename": "/usr/bin/conmon"
-        },
-        {
-          "actual": "system_u:object_r:unlabeled_t:s0",
-          "expected": "system_u:object_r:container_runtime_exec_t:s0",
-          "filename": "/usr/bin/crun"
-        },
-        {
-          "actual": "system_u:object_r:unlabeled_t:s0",
-          "expected": "system_u:object_r:container_runtime_exec_t:s0",
-          "filename": "/usr/bin/podman"
-        },
-        {
-          "actual": "system_u:object_r:unlabeled_t:s0",
-          "expected": "system_u:object_r:container_runtime_exec_t:s0",
-          "filename": "/usr/bin/runc"
-        },
-        {
-          "actual": "system_u:object_r:unlabeled_t:s0",
-          "expected": "system_u:object_r:container_var_lib_t:s0",
-          "filename": "/var/lib/containers"
-        },
-        {
-          "actual": "system_u:object_r:unlabeled_t:s0",
-          "expected": "system_u:object_r:container_var_lib_t:s0",
-          "filename": "/var/lib/containers/sigstore"
-        }
-      ],
       "policy": {
         "SELINUX": "permissive",
         "SELINUXTYPE": "targeted"
