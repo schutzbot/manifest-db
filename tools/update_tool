@@ -1,0 +1,439 @@
+#!/usr/bin/env python3
+
+import argparse
+import json
+import os
+import sys
+import tempfile
+import subprocess
+from abc import ABC, abstractmethod
+import columnify
+
+RESET = "\033[0m"
+GREEN = "\033[32m"
+BOLD = "\033[1m"
+RED = "\033[31m"
+YELLOW = "\033[33m"
+STRIKE = "\033[9m"
+
+
+class Report(ABC):
+
+    def __init__(self):
+        self.header()
+
+    @abstractmethod
+    def header(self):
+        pass
+
+    @abstractmethod
+    def row(self, name, mstatus, istatus):
+        pass
+
+
+class CliReport(Report):
+
+    status_map = {"added": f"{BOLD}{GREEN}",
+                  "updated": f"{GREEN}",
+                  "removed": f"{STRIKE}{RED}",
+                  "unchanged": f"{YELLOW}"}
+
+    def __init__(self):
+        self.terminal_width = os.get_terminal_size().columns
+        section1 = 0.7
+        section2 = 0.15
+        section3 = 0.15
+        self.nwidth = int(self.terminal_width*section1)-5
+        self.mwidth = int(self.terminal_width*section2)-2
+        self.iwidth = int(self.terminal_width*section3)-1
+        super().__init__()
+
+    @classmethod
+    def truncate(cls, s, l):
+        if len(s) > l:
+            s = f"{s[0:l-3]}..."
+        return s
+
+    @classmethod
+    def adjust(cls, s, l):
+        return cls.truncate(s, l).ljust(l)
+
+    def header(self):
+        print("| ", "DB entry".ljust(self.nwidth), end="| ")
+        print(self.adjust("manifest", self.mwidth), end="| ")
+        print(self.adjust("image-info", self.iwidth), end="|\n")
+
+        print(f"|-{'-'*(self.nwidth+1)}", end="|-")
+        print(f"{'-'*self.mwidth}", end="|-")
+        print(f"{'-'*self.iwidth}", end="|\n")
+
+    def row(self, name, mstatus, istatus):
+        name = self.truncate(name, self.nwidth)
+        ms = CliReport.status_map[mstatus]
+        ims = CliReport.status_map[istatus]
+        print("| ", f"{name}".ljust(self.nwidth), end="| ")
+        print(f"{ms}{self.adjust(mstatus,self.mwidth)}{RESET}", end="| ")
+        print(f"{ims}{self.adjust(istatus,self.iwidth)}{RESET}", end="|\n")
+
+        print(f"|-{'-'*(self.nwidth+1)}", end="|-")
+        print(f"{'-'*self.mwidth}", end="|-")
+        print(f"{'-'*self.iwidth}", end="|\n")
+
+
+class GHReport(Report):
+
+    status_map = {"added": "🆕",
+                  "updated": "🔁",
+                  "removed": "🗑️",
+                  "unchanged": "💾"}
+
+    def header(self):
+        print("Please review each DB entry")
+
+    def row(self, name, mstatus, istatus):
+        print(name, end=": ")
+        print(f"manifest: {GHReport.status_map[mstatus]}{mstatus}", end=", ")
+        print(f"image-info:{GHReport.status_map[istatus]}{istatus}.")
+
+
+def compare(obj1, obj2):
+    """
+    Compare two json objects and return as a string the conclusion of the diff.
+    Obj1 is the version of Obj2 back in time. So when obj2 is not and obj1 is,
+    we can say that something was removed and vice versa.
+    """
+    if obj1 and not obj2:
+        return "removed"
+    if not obj1 and obj2:
+        return "added"
+    if obj1 != obj2:
+        return "updated"
+    return "unchanged"
+
+
+def list_changed_files():
+    """
+    Go through the diff between this commit and the last one and list all the
+    files in there. An update is only valid if it contains only the DB part that
+    is updates anyway.
+    """
+    try:
+        command = subprocess.run(
+            ["git", "diff-tree",  "--no-commit-id", "--name-only", "HEAD", "-r"],
+            capture_output=True,
+            check=True)
+        return command.stdout.decode("utf-8").split("\n")
+    except subprocess.CalledProcessError:
+        return None
+
+
+def get_db_entry_at_previous_version(file):
+    """
+    Retrieves a version of a DB file from the previous commit state.
+    """
+    if not file:
+        return None
+    try:
+        command = subprocess.run(
+            ["git", "show", f"HEAD^:{file}"],
+            capture_output=True,
+            check=True)
+        return json.loads(command.stdout)
+    except subprocess.CalledProcessError:
+        return None
+    return None
+
+
+def get_db_entry_at_current_version(file):
+    """
+    Retrieves a version of a DB file at the current state of the DB
+    """
+    if not file:
+        return None
+    with open(file, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def filter_fn(imi):
+    """
+    Filter specific fields in the image-info that can't be compared
+    together.
+    """
+    def lvm2(imi):
+        """
+        LVM2 partitions have a UUID that is not fixed. Replace the value
+        upon comparison time
+        """
+        partitions = imi.get("partitions")
+        if partitions:
+            for partition in partitions:
+                if partition.get("fstype") == "LVM2_member":
+                    partition["uuid"] = "2022-07-01-fixed-uuid"
+        return imi
+
+    def iso(imi):
+        """
+        For isos, the partition UUID is the date of the build. Replace
+        that with a fixed one for the comparison.
+        """
+        if "image-format" in imi and "type" in imi["image-format"] and imi["image-format"]["type"] == "raw":
+            if "partitions" in imi:
+                for partition in imi["partitions"]:
+                    if "fstype" in partition:
+                        if partition["fstype"] == "iso9660":
+                            partition["uuid"] = "2022-07-01-fixed-uuid"
+        return imi
+    return iso(lvm2(imi))
+
+
+def diff(what, json1, json2, tool="vimdiff"):
+    """
+    Starts a diff between two json objects with a specific tool to do so. Writes
+    each json to disk in a temporary directory and then invokes the difftool on
+    these two files.
+    """
+    with tempfile.TemporaryDirectory() as tempdir:
+        a = os.path.join(tempdir, "1")
+        b = os.path.join(tempdir, "2")
+        with open(a, encoding="utf-8", mode="w") as f:
+            json.dump(json1, f, indent=4)
+        with open(b, encoding="utf-8", mode="w") as f:
+            json.dump(json2, f, indent=4)
+        opendiff = input(f"-   diff {what}? [Y, n]")
+        if opendiff in ("y", "Y", "", None):
+            subprocess.call([tool,  a, b])
+
+
+def extract(db_entry, do_filter=True):
+    """
+    Returns two json objects from a db entry. One manifest and one image info.
+    Can apply (and will by default) filters to the image-info to get rid of some
+    volatile UUIds that aren't important.
+    """
+    manifest = None
+    imi = None
+    if not db_entry:
+        return None, None
+    if db_entry["image-info"]:
+        if do_filter:
+            imi = filter_fn(db_entry["image-info"])
+        else:
+            imi = db_entry["image-info"]
+    if db_entry["manifest"]:
+        manifest = db_entry["manifest"]
+    return manifest, imi
+
+
+def get_symbol(label):
+    """
+    Get an icon to sum up what changed
+    """
+    if label == "added":
+        return "🆕"
+    if label == "updated":
+        return "🔁"
+    if label == "removed":
+        return "🗑️"
+    if label == "unchanged":
+        return "💾"
+    return None
+
+
+def progress(count, total, prefix=''):
+    """
+    Prints a nice progress bar that takes up to the all width of the terminal
+    """
+    bar_len = os.get_terminal_size().columns - 10 - len(prefix)
+    filled_len = int(round(bar_len * count / float(total)))
+
+    percents = round(100.0 * count / float(total), 1)
+    barr = '-' * (filled_len-1) + ">" + ' ' * (bar_len - filled_len)
+
+    sys.stdout.write(f'{prefix}{percents}%[{barr}]\r')
+    sys.stdout.flush()
+
+
+def erase_bar():
+    """
+    Erases the progress bar
+    """
+    sys.stdout.write(f'{" "*os.get_terminal_size().columns}\r')
+    sys.stdout.flush()
+
+
+def ls_command(args):
+    """
+    Lists all the changed files between this and the previous commit and puts
+    some icons for the user to know what changed and what not
+    """
+    files = []
+    lst = list_changed_files()
+    for i, file in enumerate(lst):
+        filename = os.path.splitext(os.path.basename(file))[0]
+        prev = get_db_entry_at_previous_version(file)
+        curr = get_db_entry_at_current_version(file)
+
+        if not (prev or curr):
+            continue
+
+        prev_manifest, prev_imi = extract(prev, do_filter=not args.no_filter)
+        curr_manifest, curr_imi = extract(curr, do_filter=not args.no_filter)
+
+        manifest_status = compare(prev_manifest, curr_manifest)
+        image_info_status = compare(prev_imi, curr_imi)
+
+        if manifest_status != "unchanged" or image_info_status != "unchanged":
+            ms = GHReport.status_map[manifest_status]
+            ims = GHReport.status_map[image_info_status]
+            files.append(f"{ms}{ims} {filename}")
+        progress(i+1, len(lst), "listing changed files: ")
+    erase_bar()
+    print("(manifest)(image-info) file:")
+    print("🆕: added 🔁: updated 🗑️: removed 💾: unchanged\n")
+
+    if args.l:
+        for f in files:
+            print(f)
+    else:
+        print(columnify.columnify(
+            items=files,
+            line_width=os.get_terminal_size().columns))
+
+
+def diff_command(args):
+    """
+    Diffs either some files or all the files with the difftool provided by the
+    user.
+    """
+    for file in list_changed_files():
+        filename = os.path.splitext(os.path.basename(file))[0]
+
+        if args.file[0] and filename not in args.file[0]:
+            continue
+
+        prev = get_db_entry_at_previous_version(file)
+        curr = get_db_entry_at_current_version(file)
+
+        if not (prev or curr):
+            continue
+
+        prev_manifest, prev_imi = extract(prev, do_filter=not args.no_filter)
+        curr_manifest, curr_imi = extract(curr, do_filter=not args.no_filter)
+
+        manifest_status = compare(prev_manifest, curr_manifest)
+        image_info_status = compare(prev_imi, curr_imi)
+
+        # Since changes are filtered because we encounter UUID volatility on
+        # some entries, do not print the ones that after this filtering have in
+        # fact no changes at all.
+        if manifest_status == "unchanged" and image_info_status == "unchanged":
+            continue
+
+        print(f"{BOLD}{filename}{RESET}:")
+
+        if manifest_status != "unchanged":
+            diff("manifest", prev_manifest, curr_manifest, tool=args.manifest_diff_tool)
+
+        if image_info_status != "unchanged":
+            diff("image-info", prev_imi, curr_imi, tool=args.image_info_diff_tool)
+
+
+def report_command(args):
+    """
+    Prints a summary of the DB update as an ascii table. Or create a github TODO
+    list to be included in the update PR
+    """
+    reporter = None
+    if args.github_markdown:
+        reporter = GHReport()
+    else:
+        reporter = CliReport()
+    for file in list_changed_files():
+        filename = os.path.splitext(os.path.basename(file))[0]
+
+        prev = get_db_entry_at_previous_version(file)
+        curr = get_db_entry_at_current_version(file)
+
+        if not (prev or curr):
+            continue
+
+        prev_manifest, prev_imi = extract(prev, do_filter=not args.no_filter)
+        curr_manifest, curr_imi = extract(curr, do_filter=not args.no_filter)
+
+        manifest_status = compare(prev_manifest, curr_manifest)
+        image_info_status = compare(prev_imi, curr_imi)
+
+        # Since changes are filtered because we encounter UUID volatility on
+        # some entries, do not print the ones that after this filtering have in
+        # fact no changes at all.
+        if manifest_status == "unchanged" and image_info_status == "unchanged":
+            continue
+
+        reporter.row(filename, manifest_status, image_info_status)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="""A tool to explore a DB
+    update commit.""")
+
+    parser.add_argument(
+        "--no-filter",
+        action="store_true",
+        default=False,
+        help="Disable UUID masking"
+    )
+    subparsers = parser.add_subparsers(
+        title="command",
+        required=True,
+        dest='command',
+        help='Command to execute')
+
+    # Report command
+    parser_report = subparsers.add_parser('report', help="Generate a report in CLI or github format")
+    parser_report.add_argument(
+        "--github-markdown",
+        action="store_true",
+        default=False,
+        help="Create a TODO list for github to ask a reviewer to check everything"
+    )
+
+    # Diff command
+    parser_diff = subparsers.add_parser('diff', help="Diff all or a"
+                                        "select set of distributions to their previous state in the DB")
+    parser_diff.add_argument(
+        "--manifest-diff-tool",
+        default="vimdiff",
+        help="tool to diff the manifests"
+    )
+    parser_diff.add_argument(
+        "--image-info-diff-tool",
+        default="vimdiff",
+        help="tool to diff the image info"
+    )
+    parser_diff.add_argument(
+        dest="file",
+        action='append',
+        nargs="*",
+        help="file(s) to diff, use several time to specify several files"
+    )
+
+    # Ls command
+    parser_ls = subparsers.add_parser('ls', help="List the changes since previous version")
+    parser_ls.add_argument(
+        "-l",
+        action="store_true",
+        default=False,
+    )
+
+    args = parser.parse_args()
+
+    if args.command == "report":
+        report_command(args)
+    if args.command == "diff":
+        diff_command(args)
+    if args.command == "ls":
+        ls_command(args)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
