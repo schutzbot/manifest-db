@@ -1,6 +1,8 @@
 stages:
   - init
+  - gen
   - test
+  - build
   - finish
 
 .base:
@@ -53,12 +55,30 @@ Regression:
       - RUNNER:
           - aws/fedora-35-x86_64
 
-Manifests:
-  stage: test
+Manifest-gen:
+  stage: gen
+  extends: .terraform
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
+  artifacts:
+    when: always
+    paths:
+      - manifests
+  script:
+    - schutzbot/gen_manifests.sh
+  parallel:
+    matrix:
+      - RUNNER:
+          - aws/rhel-9.0-ga-x86_64
+        INTERNAL_NETWORK: "true"
+
+Image-info-build:
+  stage: build
   extends: .terraform
   script:
     - schutzbot/deploy.sh
     - schutzbot/selinux-context.sh
+    - tools/import-image-tests manifests manifest-db --manifest-only --db-ignore=db-ignore --filter-with-ci-distros=.gitlab-ci.yml --verbose
     - sudo test/cases/manifest_tests
   rules:
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
@@ -66,6 +86,8 @@ Manifests:
     when: always
     paths:
       - generated-image-infos/
+  dependencies:
+    - Manifest-gen
   parallel:
     matrix:
       - RUNNER:
@@ -92,8 +114,11 @@ push-image-info:
   stage: finish
   extends: .terraform
   script:
-    - schutzbot/deploy.sh
+    - tools/import-image-tests manifests manifest-db --manifest-only --db-ignore=db-ignore --filter-with-ci-distros=.gitlab-ci.yml --verbose
+    - rm -r manifests
     - schutzbot/include_image_info.sh
+  dependencies:
+    - Manifest-gen
   rules:
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
   parallel:

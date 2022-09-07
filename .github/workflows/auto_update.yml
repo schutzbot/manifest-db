@@ -10,23 +10,13 @@ jobs:
       IMAGEBUILDER_BOT_GITLAB_SSH_KEY: ${{ secrets.IMAGEBUILDER_BOT_GITLAB_SSH_KEY }}
       TRIGGER_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
     steps:
-      - name: Clone composer
-        uses: actions/checkout@v3
-        with:
-          repository: osbuild/osbuild-composer
-          path: composer
-
       - name: Checkout manifest-db
         uses: actions/checkout@v3
         with:
           path: manifest-db
           fetch-depth: 0
 
-      - name: Update DB
-        run: |
-          ./manifest-db/tools/import-image-tests composer/test/data/manifests/ manifest-db/manifest-db --manifest-only --db-ignore=manifest-db/db-ignore --filter-with-ci-distros=manifest-db/.gitlab-ci.yml --verbose
-
-      - name: Send to CI
+      - name: trigger CI
         run: |
           cd manifest-db
           git config --local user.name "SchutzBot"
@@ -35,8 +25,6 @@ jobs:
           now=$(date '+%Y-%m-%d-%H%M%S')
           BRANCH_NAME="db-update-$now"
           git checkout -b "$BRANCH_NAME"
-          git add -A
-          git commit -m "db: automatic update of manifests."
 
           mkdir -p ~/.ssh
           echo "${IMAGEBUILDER_BOT_GITLAB_SSH_KEY}" > ~/.ssh/id_rsa

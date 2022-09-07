@@ -1,0 +1,84 @@
+#!/usr/bin/python3
+
+import argparse
+import os
+import sys
+import zipfile
+
+import gitlab
+
+MANIFESTS_DIRECTORY = "manifests"
+MANIFEST_DB_PROJECT_ID = 36844106
+
+
+def list_jobs(pipeline, token):
+    """
+    Connects to the gitlab API and retrives the list of the jobs contained in a
+    given pipeline.
+    """
+    gl = gitlab.Gitlab("https://gitlab.com", oauth_token=token)
+    project = gl.projects.get(MANIFEST_DB_PROJECT_ID)
+    pipeline = project.pipelines.get(pipeline)
+    return pipeline.jobs.list(all=True), project
+
+
+def download_artifacts(directory, project, job):
+    """
+    Download an artificact.zip if available for a given job and extract it.
+    Can raise an exception if no artifacts are available.
+    """
+    filename = os.path.join(directory, "artifact.zip")
+    with open(filename, "wb") as f:
+        project.jobs.get(job.get_id()).artifacts(streamed=True, action=f.write)
+    z = zipfile.ZipFile(filename)
+    z.extractall(directory)
+    print(f"    extracting artifact.zip to {directory} for job {job.get_id()}")
+
+
+def download(job_dir, project, job):
+    try:
+        download_artifacts(job_dir, project, job)
+    except gitlab.exceptions.GitlabGetError as e:
+        print(f"    {e} ⚠️")
+        return []
+    manifests_dir = os.path.join(job_dir, MANIFESTS_DIRECTORY)
+    try:
+        return os.listdir(manifests_dir)
+    except FileNotFoundError:
+        print(f"    no manifests directory in job {job.get_id()}'s artifact.zip")
+        return []
+
+
+def download_manifests(tempdir, pipeline, token):
+    """
+    Downloads the manifests from a pipeline onto the disk
+    """
+    jobs, project = list_jobs(pipeline, token)
+    for job in jobs:
+        # Loop over the jobs until a download is successful
+        print(f"Job {job.get_id()}:")
+        if download(tempdir, project, job):
+            print("    manifests downloaded")
+            return True
+    return False
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Download manifests from ci jobs")
+    parser.add_argument(
+        "--pipeline-id",
+        required=True,
+        help="Id of the pipeline on gitlab"
+    )
+    parser.add_argument(
+        "--token",
+        required=True,
+        help="gitlab token"
+    )
+
+    args = parser.parse_args()
+    return 0 if download_manifests("/tmp", args.pipeline_id, args.token) else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
