@@ -21,7 +21,7 @@ git config --local user.email "imagebuilder-bots+schutzbot@redhat.com"
 git remote add upstream https://schutzbot:"$SCHUTZBOT_GH_TOKEN"@github.com/schutzbot/manifest-db.git
 
 git add -A && \
-    git commit --amend -m "db: update
+    git commit -m "db: update
 
 Automatic update:
 - manifests from latest composer
