@@ -108,7 +108,7 @@ def parse_distro(ci_file: Union[str, pathlib.Path]) -> Dict[str, List[str]]:
     if ci_file:
         with open(ci_file, "r", encoding="utf-8") as f:
             data = yaml.load(f, Loader=yaml.Loader)
-            runners = data["Manifests"]["parallel"]["matrix"]
+            runners = data["Image-info-build"]["parallel"]["matrix"]
             for runner in runners:
                 for machine_id in runner["RUNNER"]:
                     flavor = machine_id.split("/")[-1]
