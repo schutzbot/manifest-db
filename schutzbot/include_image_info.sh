@@ -20,6 +20,8 @@ git config --local user.email "imagebuilder-bots+schutzbot@redhat.com"
 
 git remote add upstream https://schutzbot:"$SCHUTZBOT_GH_TOKEN"@github.com/schutzbot/manifest-db.git
 
+pip install columnify
+
 git add -A && \
     git commit -m "db: update
 
@@ -28,8 +30,8 @@ Automatic update:
 - image-info from pipeline $CI_PIPELINE_ID" && \
     git push --set-upstream upstream "$CI_COMMIT_BRANCH" && \
     gh pr create \
-        --title "db update" \
-        --body "automated db update" \
+        --title "db: automated update" \
+        --body "$(tools/update_tool report --github-markdown)" \
         --repo "osbuild/manifest-db" \
         -r lavocatt
 
