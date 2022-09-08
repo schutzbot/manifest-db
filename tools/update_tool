@@ -91,7 +91,7 @@ class GHReport(Report):
         print("Please review each DB entry")
 
     def row(self, name, mstatus, istatus):
-        print(name, end=": ")
+        print(f"- [ ] {name}", end=": ")
         print(f"manifest: {GHReport.status_map[mstatus]}{mstatus}", end=", ")
         print(f"image-info:{GHReport.status_map[istatus]}{istatus}.")
 
