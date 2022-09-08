@@ -29,7 +29,7 @@ Automatic update:
     git push --set-upstream upstream "$CI_COMMIT_BRANCH" && \
     gh pr create \
         --title "db update" \
-        --body "automated db update" \
+        --body "automated db update $(tools/update_tool report --github-markdown)" \
         --repo "osbuild/manifest-db" \
         -r lavocatt
 
