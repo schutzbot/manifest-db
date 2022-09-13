@@ -7,31 +7,8 @@ jobs:
     name: "Update DB"
     runs-on: ubuntu-latest
     env:
-      IMAGEBUILDER_BOT_GITLAB_SSH_KEY: ${{ secrets.IMAGEBUILDER_BOT_GITLAB_SSH_KEY }}
       TRIGGER_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
     steps:
-      - name: Checkout manifest-db
-        uses: actions/checkout@v3
-        with:
-          path: manifest-db
-          fetch-depth: 0
-
-      - name: trigger CI
+      - name: Trigger CI
         run: |
-          cd manifest-db
-          git config --local user.name "SchutzBot"
-          git config --local user.email "imagebuilder-bots+schutzbot@redhat.com"
-
-          now=$(date '+%Y-%m-%d-%H%M%S')
-          BRANCH_NAME="db-update-$now"
-          git checkout -b "$BRANCH_NAME"
-
-          mkdir -p ~/.ssh
-          echo "${IMAGEBUILDER_BOT_GITLAB_SSH_KEY}" > ~/.ssh/id_rsa
-          chmod 400 ~/.ssh/id_rsa
-          touch ~/.ssh/known_hosts
-          ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
-          git remote add ci git@gitlab.com:redhat/services/products/image-builder/ci/manifest-db.git
-          git push -f ci -o ci.skip
-
-          curl --request POST --form token=$TRIGGER_TOKEN --form ref=$BRANCH_NAME https://gitlab.com/api/v4/projects/36844106/trigger/pipeline
+          curl --request POST --form token=$TRIGGER_TOKEN --form ref=main https://gitlab.com/api/v4/projects/36844106/trigger/pipeline

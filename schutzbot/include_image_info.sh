@@ -12,9 +12,6 @@ echo "${SCHUTZBOT_GH_TOKEN}" | gh auth login --with-token
 mv ci-details-before-run /tmp
 rm -rf generated-image-infos
 
-# Amend the commit containing the db update
-git checkout "$CI_COMMIT_BRANCH"
-
 git config --local user.name "SchutzBot"
 git config --local user.email "imagebuilder-bots+schutzbot@redhat.com"
 
@@ -22,13 +19,17 @@ git remote add upstream https://schutzbot:"$SCHUTZBOT_GH_TOKEN"@github.com/schut
 
 pip install columnify
 
+now=$(date '+%Y-%m-%d-%H%M%S')
+BRANCH_NAME="db-update-$now"
+
 git add -A && \
     git commit -m "db: update
+
 
 Automatic update:
 - manifests from latest composer
 - image-info from pipeline $CI_PIPELINE_ID" && \
-    git push --set-upstream upstream "$CI_COMMIT_BRANCH" && \
+    git push upstream "$BRANCH_NAME:$BRANCH_NAME" && \
     gh pr create \
         --title "db: automated update" \
         --body "$(tools/update_tool report --github-markdown)" \
