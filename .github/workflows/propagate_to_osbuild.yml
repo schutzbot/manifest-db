@@ -1,0 +1,70 @@
+name: Propagate update to OSBuild
+
+on: workflow_dispatch
+
+jobs:
+  propagate:
+    runs-on: ubuntu-latest
+    env:
+      SCHUTZBOT_GH: ${{ secrets.SCHUTZBOT_GH }}
+    steps:
+      - name: Checkout manifest-db
+        uses: actions/checkout@v3
+        with:
+          path: manifest-db
+          fetch-depth: 0
+
+      - name: Update OSBuild
+        run: |
+          # Get the manifest-db HEAD
+          MANIFEST_DB_HEAD="${{ github.sha }}"
+          echo "manifest-db head: $MANIFEST_DB_HEAD"
+
+          # get the old ref from the OSBuild's Schutzfile
+          git clone https://github.com/osbuild/osbuild.git
+          cd osbuild
+          OLD_REF=$(jq -r '.global.dependencies."manifest-db".commit' Schutzfile)
+          echo "manifest-db version in OSBuild: $MANIFEST_DB_HEAD"
+
+          # update only if the DB was updated since the version OSBuild is
+          # using
+          cd ../manifest-db
+          if git diff --quiet $MANIFEST_DB_HEAD $OLD_REF manifest-db; then
+            echo "The DB was not updated since $OLD_REF, ignoring"
+            exit 0
+          fi
+
+          # Generate the commit list to integrate in the PR
+          COMMIT_LIST=$(git log --oneline $OLD_REF..$MANIFEST_DB_HEAD | sed 's/.*/- https:\/\/github.com\/osbuild\/manifest-db\/commit\/&/')
+
+          # login as schutzbot
+          cd ../osbuild
+          echo "${SCHUTZBOT_GH}" | gh auth login --with-token
+          git config --local user.name "SchutzBot"
+          git config --local user.email "imagebuilder-bots+schutzbot@redhat.com"
+
+          # Create a branch for the PR
+          now=$(date '+%Y-%m-%d-%H%M%S')
+          BRANCH_NAME="manifest-db-update-$now"
+          git checkout -b $BRANCH_NAME
+
+          # change the value for the commit head in the schutzfile
+          jq --arg variable "$MANIFEST_DB_HEAD" '.global.dependencies."manifest-db".commit=$variable' Schutzfile > Schutzfile.tmp && mv Schutzfile.tmp Schutzfile
+
+          # create the PR
+          PR_BODY="$(cat <<-END
+          This PR updates the manifest-db ref dependency for OSBuild. Between the
+          last time it was updated, and this new reference commit, these are the changes:
+
+          $COMMIT_LIST
+          END
+          )"
+          git remote add upstream https://schutzbot:"$SCHUTZBOT_GH"@github.com/schutzbot/osbuild.git
+          git add -A && \
+              git commit -m "schutzfile: update manifest-db ref $(date '+%Y-%m-%d')" && \
+              git push upstream "$BRANCH_NAME:$BRANCH_NAME" && \
+              gh pr create \
+                  --title "schutzfile: update manifest-db ref $(date '+%Y-%m-%d')" \
+                  --body "$PR_BODY" \
+                  --repo "osbuild/osbuild" \
+                  -r lavocatt
