@@ -39,7 +39,7 @@ list is generated with the command `tool/update_tool report --github-markdown`.
 #### Resuming in a diagram
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Gitlab
         GH0[(Repo)]
         GH01[Pipeline]
@@ -48,11 +48,11 @@ flowchart LR
         GH2 -.- GH0
         GH3 -.- GH0
         GH1{3. Generate manifests}
-        GH01 --> GH2{4. Build image-infos}
-        GH01 --> GH3{5. Create $BRANCH\n create update commit\npush $BRANH}
+        GH01 --> GH2{4. Build all image-info}
+        GH01 --> GH3{5. Create $BRANCH\n create update commit\npush $BRANCH}
     end
     subgraph Github/Manifest-db
-        RS0[ 2. Action\n\nTrigger\npeline\non main ]
+        RS0[ 2. Action\n\nTrigger pipeline\non branch main ]
         RSO1[ 7. Action\n\n Propagate main's\nSHA on OSBuild]
         GH4[(Repo)]
     end
@@ -60,12 +60,13 @@ flowchart LR
         OS0[(Repo)]
     end
     RS0 --> GH01    
-    Maintainer -- 1. start github action--> RS0
-    GH3 == open PR ==> GH4
-    Maintainer --6. review to\nmerge/discard\nPR --> GH4
-    Maintainer --8. review to\nmerge/discard\nPR --> OS0
+    i((Scheduler)) -- 1. start github action--> RS0
+    GH3 == open PR ===> GH4
+    j{{Maintainer}} -.6. review to\nmerge/discard\nPR .-> GH4
+    j -..8. review to\nmerge/discard\nPR ..-> OS0
+
     RSO1 == open PR ==> OS0
-    GH4 -. upon\nupdate\non main .-> RSO1
+    GH4 ---|upon\nupdate\non main| RSO1
 ```
 
 

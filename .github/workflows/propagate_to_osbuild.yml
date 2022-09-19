@@ -1,6 +1,8 @@
 name: Propagate update to OSBuild
 
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: '0 0 5,20 * *' # 5th and 20th of every month
 
 jobs:
   propagate:
