@@ -5,6 +5,20 @@ Set of generic utility functions
 import re
 
 
+def parse_unit_files(s, expected_state):
+    r = []
+    for line in s.split("\n")[1:]:
+        try:
+            unit, state, *_ = line.split()
+        except ValueError:
+            pass
+        if state != expected_state:
+            continue
+        r.append(unit)
+
+    return r
+
+
 def parse_environment_vars(vrs):
     """
     Return all the env variables
