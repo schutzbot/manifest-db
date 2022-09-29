@@ -72,11 +72,11 @@ def sanitize_name(name):
     The json keys in the image-info have a specific formating except a few of
     them. Apply the necessary transformations here.
     """
-    if name not in (
+    if name in (
             "rpm_not_installed_docs",
-            "yum_repos"
+            "yum_repos",
             "sshd_config",
             "ssh_config",
     ):
-        return snake_case_to_json(camel_case_to_snake_case(name))
-    return name
+        return name
+    return snake_case_to_json(camel_case_to_snake_case(name))
