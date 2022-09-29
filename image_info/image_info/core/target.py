@@ -22,6 +22,7 @@ from image_info.utils.loop import loop_open
 from image_info.utils.mount import mount_at
 from image_info.report.report import Report
 from image_info.report.ostree import Type, Ostree
+from image_info.common.boot import Bootmenu, BootEnvironment
 
 from image_info.report.image import ImageFormat, PartitionTable, Bootloader
 
@@ -88,7 +89,8 @@ class Target(ABC):
                 if common_o:
                     self.report.add_element(common_o)
         elif len(glob.glob(f"{tree}/vmlinuz-*")) > 0:
-            pass
+            self.report.add_element(BootEnvironment)
+            self.report.add_element(Bootmenu)
         else:
             print("EFI partition", file=sys.stderr)
 
