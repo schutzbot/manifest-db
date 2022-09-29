@@ -74,6 +74,7 @@ def sanitize_name(name):
     """
     if name not in (
             "rpm_not_installed_docs",
+            "yum_repos"
             "sshd_config",
             "ssh_config",
     ):
