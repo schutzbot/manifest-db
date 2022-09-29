@@ -1149,3 +1149,182 @@ class SSHDConfig(Common):
         if ssh:
             return cls(ssh)
         return None
+
+
+@define(slots=False)
+class Sysconfig(Common):
+    """
+    SSHConfig
+    """
+    flatten = True
+    sysconfig: dict
+
+    @classmethod
+    def explore(cls, tree, _is_ostree=False):
+        """
+        Read selected configuration files from /etc/sysconfig.
+
+        Currently supported sysconfig files are:
+        - 'kernel' - /etc/sysconfig/kernel
+        - 'network' - /etc/sysconfig/network
+        - 'network-scripts' - /etc/sysconfig/network-scripts/ifcfg-*
+
+        Returns: dictionary with the keys being the supported types of sysconfig
+        configurations read by the function. Values of 'kernel' and 'network' keys
+        are a dictionaries containing key/values read from the respective
+        configuration files. Value of 'network-scripts' key is a dictionary with
+        the keys corresponding to the suffix of each 'ifcfg-*' configuration file
+        and their values holding dictionaries with all key/values read from the
+        configuration file.
+        The returned dictionary may be empty.
+
+        An example return value:
+        {
+            "kernel": {
+                "DEFAULTKERNEL": "kernel",
+                "UPDATEDEFAULT": "yes"
+            },
+            "network": {
+                "NETWORKING": "yes",
+                "NOZEROCONF": "yes"
+            },
+            "network-scripts": {
+                "ens3": {
+                    "BOOTPROTO": "dhcp",
+                    "BROWSER_ONLY": "no",
+                    "DEFROUTE": "yes",
+                    "DEVICE": "ens3",
+                    "IPV4_FAILURE_FATAL": "no",
+                    "IPV6INIT": "yes",
+                    "IPV6_AUTOCONF": "yes",
+                    "IPV6_DEFROUTE": "yes",
+                    "IPV6_FAILURE_FATAL": "no",
+                    "NAME": "ens3",
+                    "ONBOOT": "yes",
+                    "PROXY_METHOD": "none",
+                    "TYPE": "Ethernet",
+                    "UUID": "106f1b31-7093-41d6-ae47-1201710d0447"
+                },
+                "eth0": {
+                    "BOOTPROTO": "dhcp",
+                    "DEVICE": "eth0",
+                    "IPV6INIT": "no",
+                    "ONBOOT": "yes",
+                    "PEERDNS": "yes",
+                    "TYPE": "Ethernet",
+                    "USERCTL": "yes"
+                }
+            }
+        }
+        """
+        result = {}
+        sysconfig_paths = {
+            "kernel": f"{tree}/etc/sysconfig/kernel",
+            "network": f"{tree}/etc/sysconfig/network"
+        }
+        # iterate through supported configs
+        for name, path in sysconfig_paths.items():
+            with contextlib.suppress(FileNotFoundError):
+                with open(path) as f:
+                    # if file exists start with empty array of values
+                    result[name] = parse_environment_vars(f.read())
+
+        # iterate through all files in /etc/sysconfig/network-scripts
+        network_scripts = {}
+        files = glob.glob(f"{tree}/etc/sysconfig/network-scripts/ifcfg-*")
+        for file in files:
+            ifname = os.path.basename(file).lstrip("ifcfg-")
+            with open(file) as f:
+                network_scripts[ifname] = parse_environment_vars(f.read())
+
+        if network_scripts:
+            result["network-scripts"] = network_scripts
+
+        if result:
+            return cls(result)
+        return None
+
+    @classmethod
+    def from_json(cls, json_o):
+        config = json_o.get("sysconfig")
+        if config:
+            return cls(config)
+        return None
+
+
+@define(slots=False)
+class SysctlDConfig(Common):
+    """
+    SysctlDConfig
+    """
+    flatten = True
+    sysctl__d: dict
+
+    @staticmethod
+    def read_sysctld_config(config_path):
+        """
+        Read sysctl configuration file.
+
+        Returns: list of strings representing uncommented lines read from the
+        configuration file.
+
+        An example return value:
+        [
+            "kernel.pid_max = 4194304",
+            "vm.max_map_count = 2147483647"
+        ]
+        """
+        values = []
+
+        with open(config_path) as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                # skip comments
+                if line[0] in ["#", ";"]:
+                    continue
+                values.append(line)
+
+        return values
+
+    @classmethod
+    def explore(cls, tree, _is_ostree=False):
+        """
+        Read all sysctl.d *.conf files from a predefined list of paths and parse
+        them.
+
+        The searched paths are:
+        - "/etc/sysctl.d/*.conf",
+        - "/usr/lib/sysctl.d/*.conf"
+
+        Returns: dictionary as returned by '_read_glob_paths_with_parser()' with
+        configuration representation as returned by 'read_sysctld_config()'.
+
+        An example return value:
+        {
+            "/etc/sysctl.d": {
+                "sap.conf": [
+                    "kernel.pid_max = 4194304",
+                    "vm.max_map_count = 2147483647"
+                ]
+            }
+        }
+        """
+        checked_globs = [
+            "/etc/sysctl.d/*.conf",
+            "/usr/lib/sysctl.d/*.conf"
+        ]
+
+        result = _read_glob_paths_with_parser(
+            tree, checked_globs, SysctlDConfig.read_sysctld_config)
+        if result:
+            return cls(result)
+        return None
+
+    @classmethod
+    def from_json(cls, json_o):
+        config = json_o.get("sysctl.d")
+        if config:
+            return cls(config)
+        return None
