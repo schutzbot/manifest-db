@@ -50,6 +50,11 @@ def loads():
         default=[],
         nargs='+',
         help="Filter what is dumped from this image info file")
+    parser.add_argument(
+        "--indent",
+        type=int,
+        default=4,
+        help="The indentation for the JSON result")
 
     args = parser.parse_args()
     filenames = [args.file]
@@ -70,4 +75,4 @@ def loads():
                 else:
                     if len(filenames) > 1:
                         print(f"{file}:")
-                    target.report.dump(args.filter_dump)
+                    target.report.dump(args.filter_dump, args.indent)

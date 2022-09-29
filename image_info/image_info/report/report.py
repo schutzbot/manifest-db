@@ -65,12 +65,12 @@ class Report:
                 report[sanitize_name(type(element).__name__)] = asdict(element)
         return report
 
-    def dump(self, filters):
+    def dump(self, filters, indent=4):
         """
         Prints out a raw report
         """
         json.dump(self.produce_report(filters),
-                  sys.stdout, sort_keys=True, indent=4)
+                  sys.stdout, sort_keys=True, indent=indent)
         print()
 
     def list_dumpable(self):
