@@ -1,6 +1,7 @@
 """
 Configuration files
 """
+import configparser
 import os
 import glob
 import contextlib
@@ -55,6 +56,49 @@ def _read_glob_paths_with_parser(tree, glob_paths, parser_func):
         if glob_path_result:
             checked_path = os.path.dirname(glob_path)
             result[checked_path] = glob_path_result
+
+    return result
+
+
+def _read_inifile_to_dict(config_path):
+    """
+    Read INI file from the provided path
+
+    Returns: a dictionary representing the provided INI file content.
+
+    An example return value:
+    {
+        "google-cloud-sdk": {
+            "baseurl": "https://packages.cloud.google.com/yum/repos/cloud-sdk-el8-x86_64",
+            "enabled": "1",
+            "gpgcheck": "1",
+            "gpgkey": "https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg",
+            "name": "Google Cloud SDK",
+            "repo_gpgcheck": "0"
+        },
+        "google-compute-engine": {
+            "baseurl": "https://packages.cloud.google.com/yum/repos/google-compute-engine-el8-x86_64-stable",
+            "enabled": "1",
+            "gpgcheck": "1",
+            "gpgkey": "https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg",
+            "name": "Google Compute Engine",
+            "repo_gpgcheck": "0"
+        }
+    }
+    """
+    result = {}
+
+    with contextlib.suppress(FileNotFoundError):
+        with open(config_path) as f:
+            parser = configparser.RawConfigParser()
+            # prevent conversion of the opion name to lowercase
+            parser.optionxform = lambda option: option
+            parser.readfp(f)
+
+            for section in parser.sections():
+                section_config = dict(parser.items(section))
+                if section_config:
+                    result[section] = section_config
 
     return result
 
@@ -293,4 +337,114 @@ class CloudInit(Common):
         cloud_init = json_o.get("cloud-init")
         if cloud_init:
             return cls(cloud_init)
+        return None
+
+
+@define(slots=False)
+class Dnf(Common):
+    """
+    Dnf
+    """
+    flatten = True
+    dnf: dict
+
+    @classmethod
+    def explore(cls, tree, _is_ostree=False):
+        """
+        Read DNF configuration and defined variable files.
+
+        Returns: dictionary with at most two keys 'dnf.conf' and 'vars'.
+        'dnf.conf' value is a dictionary representing the DNF configuration
+        file content.
+        'vars' value is a dictionary which keys represent names of files from
+        /etc/dnf/vars/ and values are strings representing the file content.
+
+        An example return value:
+        {
+            "dnf.conf": {
+                "main": {
+                    "installonly_limit": "3"
+                }
+            },
+            "vars": {
+                "releasever": "8.4"
+            }
+        }
+        """
+        result = {}
+
+        dnf_config = _read_inifile_to_dict(f"{tree}/etc/dnf/dnf.conf")
+        if dnf_config:
+            result["dnf.conf"] = dnf_config
+
+        dnf_vars = {}
+        for file in glob.glob(f"{tree}/etc/dnf/vars/*"):
+            with open(file) as f:
+                dnf_vars[os.path.basename(file)] = f.read().strip()
+        if dnf_vars:
+            result["vars"] = dnf_vars
+
+        if result:
+            return cls(result)
+        return None
+
+    @classmethod
+    def from_json(cls, json_o):
+        dnf = json_o.get("dnf")
+        if dnf:
+            return cls(dnf)
+        return None
+
+
+@define(slots=False)
+class AutomaticDnf(Common):
+    """
+    AutomaticDnf
+    """
+    flatten = True
+    _l_etc_l_dnf_l_automatic__conf: dict
+
+    @classmethod
+    def explore(cls, tree, _is_ostree=False):
+        """
+        Read DNF Automatic configuation.
+
+        Returns: dictionary as returned by '_read_inifile_to_dict()'.
+
+        An example return value:
+        {
+            "base": {
+                "debuglevel": "1"
+            },
+            "command_email": {
+                "email_from": "root@example.com",
+                "email_to": "root"
+            },
+            "commands": {
+                "apply_updates": "yes",
+                "download_updates": "yes",
+                "network_online_timeout": "60",
+                "random_sleep": "0",
+                "upgrade_type": "security"
+            },
+            "email": {
+                "email_from": "root@example.com",
+                "email_host": "localhost",
+                "email_to": "root"
+            },
+            "emitters": {
+                "emit_via": "stdio"
+            }
+        }
+        """
+        result = _read_inifile_to_dict(f"{tree}/etc/dnf/automatic.conf")
+        if result:
+            return cls(result)
+        return None
+
+    @classmethod
+    def from_json(cls, json_o):
+        conf = json_o.get("/etc/dnf/automatic.conf")
+        if conf:
+            return cls(conf)
         return None

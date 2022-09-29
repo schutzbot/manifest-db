@@ -45,9 +45,10 @@ def camel_case_to_snake_case(string):
 
 def snake_case_to_json(string):
     """
-    transforms snake_case to snake-case and snake__case to snake.case
+    transforms snake_case to snake-case, snake__case to snake.case, and
+    snake_l_case to snake/case
     """
-    return string.replace("__", ".").replace("_", "-")
+    return string.replace("_l_", "/").replace("__", ".").replace("_", "-")
 
 
 def json_to_camel_case(string):
@@ -61,8 +62,9 @@ def json_to_snake_case(string):
     """
     Transforms a json-key style string to a snake_case style.
     And json.key to json__key
+    And json/key to json_l_key
     """
-    return string.replace("-", "_").replace(".", "__")
+    return string.replace("-", "_").replace(".", "__").replace("/", "_l_")
 
 
 def sanitize_name(name):
