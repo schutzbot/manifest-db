@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name="image-info",
+    name="image_info",
     version="0.0.1",
     description="A info extracting tool for OS images",
     packages=[

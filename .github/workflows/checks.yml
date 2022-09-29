@@ -13,8 +13,8 @@ jobs:
           ignore_words_list: msdos, pullrequest
           skip: ./.git
 
-  mypy:
-    name: "Mypy check"
+  checks:
+    name: "Python check"
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository

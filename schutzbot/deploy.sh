@@ -60,3 +60,11 @@ sudo mkdir -p /etc/osbuild-composer/repositories
 
 # Temp fix until composer gains these dependencies
 sudo dnf -y install osbuild-luks2 osbuild-lvm2
+
+
+# install image-info
+sudo dnf -y install pip
+cd image_info
+sudo pip install .
+sudo pip install pytest
+cd ..

@@ -37,6 +37,24 @@ init:
     - schutzbot/update_github_status.sh start
   interruptible: true
 
+Pytest:
+  stage: test
+  extends: .terraform
+  script:
+    - schutzbot/deploy.sh
+    - schutzbot/selinux-context.sh
+    - pytest image_info/tests/*
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "trigger"'
+  artifacts:
+    when: always
+    paths:
+      - generated-image-infos/
+  parallel:
+    matrix:
+      - RUNNER:
+          - aws/fedora-35-x86_64
+
 Regression:
   stage: test
   extends: .terraform
