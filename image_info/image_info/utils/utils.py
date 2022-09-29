@@ -77,6 +77,8 @@ def sanitize_name(name):
             "yum_repos",
             "sshd_config",
             "ssh_config",
+            "active_profile",
+            "profile_mode",
     ):
         return name
     return snake_case_to_json(camel_case_to_snake_case(name))
