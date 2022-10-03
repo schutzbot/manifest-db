@@ -22,6 +22,7 @@ class Target(ABC):
 
     def __init__(self, target):
         self.target = target
+        self.report = Report()
         import_plugins()
 
     @classmethod
@@ -52,13 +53,12 @@ class Target(ABC):
         """
         Adds all the common elements to the report
         """
-        report = Report()
         if os.path.exists(f"{tree}/etc/os-release"):
             commons = find_commons()
             for common in commons:
                 common_o = common.explore(tree, is_ostree)
                 if common_o:
-                    report.add_element(common_o)
+                    self.report.add_element(common_o)
         elif len(glob.glob(f"{tree}/vmlinuz-*")) > 0:
             pass
         else:
@@ -68,7 +68,6 @@ class Target(ABC):
         """
         Loads all the common elements from the input JSON
         """
-        report = Report()
         commons = find_commons()
         for common in commons:
             c_json_name = sanitize_name(common.__name__)
@@ -80,6 +79,6 @@ class Target(ABC):
             if json_data:
                 common_o = common.from_json(json_data)
                 if common_o:
-                    report.add_element(common_o)
+                    self.report.add_element(common_o)
             else:
                 print(f"no json data for {c_json_name}")

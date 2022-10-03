@@ -19,8 +19,10 @@ def inspect():
                         type=os.path.abspath)
 
     args = parser.parse_args()
+    target = Target.get(args.target)
+    target.inspect()
     json.dump(
-        Target.get(args.target).inspect(),
+        target.json_report(),
         sys.stdout,
         sort_keys=True,
         indent=2)
