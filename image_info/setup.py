@@ -7,8 +7,9 @@ setuptools.setup(
     packages=[
         "image_info",
         "image_info.core",
-        "image_info.utils"
-        "image_info.report"
+        "image_info.utils",
+        "image_info.report",
+        "image_info.common",
     ],
     license='Apache-2.0',
     install_requires=[
