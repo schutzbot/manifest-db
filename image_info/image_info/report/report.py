@@ -14,7 +14,7 @@ from attr import define, fields
 
 from image_info.utils.utils import sanitize_name
 
-#pylint: disable=too-few-public-methods
+# pylint: disable=too-few-public-methods
 
 
 @define(slots=False)
@@ -51,26 +51,36 @@ class Report:
         """
         self._elements.append(element)
 
-    def produce_report(self):
+    def produce_report(self, filters=None):
         """
         Loop through all the report elements and get them as JSON
         """
         report = {}
         for element in self._elements:
+            if filters and type(element).__name__ not in filters:
+                continue
             if element.flatten:
                 report.update(asdict(element))
             else:
                 report[sanitize_name(type(element).__name__)] = asdict(element)
         return report
 
-    def dump(self):
+    def dump(self, filters):
         """
         Prints out a raw report
         """
-        json.dump(self.produce_report(), sys.stdout, sort_keys=True, indent=4)
+        json.dump(self.produce_report(filters),
+                  sys.stdout, sort_keys=True, indent=4)
         print()
 
-#pylint: disable=[too-many-arguments, invalid-name]
+    def list_dumpable(self):
+        """
+        Show all the things that can be dumped
+        """
+        print("Dumpable elements:\n")
+        print(" ".join([type(element).__name__ for element in self._elements]))
+
+# pylint: disable=[too-many-arguments, invalid-name]
 
 
 def asdict(

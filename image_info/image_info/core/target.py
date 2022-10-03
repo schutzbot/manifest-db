@@ -107,11 +107,10 @@ class Target(ABC):
             else:
                 json_data = json_o.get(c_json_name)
             if json_data:
-                common_o = common.from_json(json_data)
-                if common_o:
-                    self.report.add_element(common_o)
-            else:
-                print(f"no json data for {c_json_name}")
+                with contextlib.suppress(KeyError):
+                    common_o = common.from_json(json_data)
+                    if common_o:
+                        self.report.add_element(common_o)
 
 
 class TarballTarget(Target):

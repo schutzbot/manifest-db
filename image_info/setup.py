@@ -18,7 +18,8 @@ setuptools.setup(
     ],
     entry_points={
         "console_scripts": [
-            "image-info = image_info.main_cli:inspect"
+            "image-info = image_info.main_cli:inspect",
+            "image-info-dump = image_info.main_cli:loads"
         ]
     }
 )
