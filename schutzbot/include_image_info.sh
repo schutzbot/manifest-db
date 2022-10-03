@@ -5,6 +5,10 @@ sudo dnf install gh -y pip python3-gitlab
 # Login to GH
 echo "${SCHUTZBOT_GH_TOKEN}" | gh auth login --with-token
 
+now=$(date '+%Y-%m-%d-%H%M%S')
+BRANCH_NAME="db-update-$now"
+git checkout -b "$BRANCH_NAME"
+
 # import the image info from the current build
 ./tools/ci_import --pipeline-id "$CI_PIPELINE_ID" --token "${GITLAB_TOKEN}"
 
@@ -19,12 +23,8 @@ git remote add upstream https://schutzbot:"$SCHUTZBOT_GH_TOKEN"@github.com/schut
 
 pip install columnify
 
-now=$(date '+%Y-%m-%d-%H%M%S')
-BRANCH_NAME="db-update-$now"
-
 git add -A && \
     git commit -m "db: update
-
 
 Automatic update:
 - manifests from latest composer
