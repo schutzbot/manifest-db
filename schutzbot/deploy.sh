@@ -63,8 +63,6 @@ sudo dnf -y install osbuild-luks2 osbuild-lvm2
 
 
 # install image-info
-sudo dnf -y install pip
+sudo dnf -y install python3-attrs python3-osbuild python3-pytest python3-setuptools
 cd image_info
-sudo pip install .
-sudo pip install pytest
-cd ..
+sudo python3 setup.py install
