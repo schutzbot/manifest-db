@@ -21,6 +21,7 @@ from image_info.utils.utils import sanitize_name
 from image_info.utils.loop import loop_open
 from image_info.utils.mount import mount_at
 from image_info.report.report import Report
+from image_info.report.ostree import Type, Ostree
 
 from image_info.report.image import ImageFormat, PartitionTable, Bootloader
 
@@ -54,6 +55,8 @@ class Target(ABC):
         returns a specialized instance depending on the type of items archive we
         are dealing with.
         """
+        if OSTreeTarget.match(target):
+            return OSTreeTarget(target)
         if DirTarget.match(target):
             return DirTarget(target)
         if CompressedTarget.match(target):
@@ -62,6 +65,12 @@ class Target(ABC):
 
     @classmethod
     def from_json(cls, json_o):
+        """
+        Loads the proper target depending on the JSON content and returns a
+        fully instantiated target.
+        """
+        if json_o.get("type") and "ostree" in json_o.get("type"):
+            return OSTreeTarget.from_json(json_o)
         if json_o.get("image-format"):
             return ImageTarget.from_json(json_o)
         return DirTarget.from_json(json_o)
@@ -168,6 +177,43 @@ class DirTarget(Target):
         dtt = cls(None)
         dtt.commons_from_json(json_o)
         return dtt
+
+
+class OSTreeTarget(Target):
+    """
+    Handles an OSTree folder.
+    """
+
+    @classmethod
+    def match(cls, target):
+        return (os.path.isdir(os.path.join(target, 'refs')) or
+                os.path.exists(os.path.join(target, 'compose.json')))
+
+    def inspect(self):
+        self.report.add_element(Type.from_device(self.target))
+        target = os.path.join(self.target, "repo")
+        ostree = Ostree.from_device(target)
+        self.report.add_element(ostree)
+
+        with ostree.mount(target) as tree:
+            with tempfile.TemporaryDirectory(dir="/var/tmp") as tmpdir:
+                tree_ro = os.path.join(tmpdir, "root_ro")
+                os.makedirs(tree_ro)
+                # Make sure that the tools which analyse the directory in-place
+                # can not modify its content (e.g. create additional files).
+                # mount_at() always mounts the source as read-only!
+                with mount_at(tree, tree_ro, ["bind"]) as _:
+                    os.makedirs(f"{tree}/etc", exist_ok=True)
+                    with mount_at(f"{tree}/usr/etc", f"{tree}/etc", extra=["--bind"]):
+                        self.inspect_commons(tree_ro, is_ostree=True)
+
+    @classmethod
+    def from_json(cls, json_o):
+        ott = cls(None)
+        ott.report.add_element(Type.from_json(json_o))
+        ott.report.add_element(Ostree.from_json(json_o["ostree"]))
+        ott.commons_from_json(json_o)
+        return ott
 
 
 class ImageTarget(Target):
