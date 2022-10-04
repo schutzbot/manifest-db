@@ -4,7 +4,7 @@ setuptools.setup(
     name="image-info",
     version="0.0.1",
     description="A info extracting tool for OS images",
-    packages=["image_info", "image_info.core"],
+    packages=["image_info", "image_info.core", "image_info.utils"],
     license='Apache-2.0',
     install_requires=[
         "osbuild",
