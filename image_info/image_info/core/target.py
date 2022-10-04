@@ -59,6 +59,8 @@ class Target(ABC):
             return OSTreeTarget(target)
         if DirTarget.match(target):
             return DirTarget(target)
+        if TarballTarget.match(target):
+            return TarballTarget(target)
         if CompressedTarget.match(target):
             return CompressedTarget(target)
         return ImageTarget(target)
@@ -108,6 +110,45 @@ class Target(ABC):
                     self.report.add_element(common_o)
             else:
                 print(f"no json data for {c_json_name}")
+
+
+class TarballTarget(Target):
+    """
+    A tarball image can containe either a Tree or a raw image. The former must
+    be handled as an DirTarget target and the later as an ImageTarget
+    """
+
+    @classmethod
+    def match(cls, target):
+        mtype, _ = mimetypes.guess_type(target)
+        return mtype == "application/x-tar"
+
+    def inspect(self):
+        with tempfile.TemporaryDirectory(dir="/var/tmp") as tmpdir:
+            tree = os.path.join(tmpdir, "root")
+            os.makedirs(tree)
+            command = [
+                "tar",
+                "--selinux",
+                "--xattrs",
+                "--acls",
+                "-x",
+                "--auto-compress",
+                "-f", self.target,
+                "-C", tree
+            ]
+            subprocess.run(command,
+                           stdout=sys.stderr,
+                           check=True)
+            target = None
+            if os.path.isfile(f"{tree}/disk.raw"):
+                # gce image type contains virtual raw disk inside a tarball
+                target = Target.get(f"{tree}/disk.raw")
+                target.inspect()
+            else:
+                target = Target.get(tree)
+                target.inspect()
+            self.report = target.report
 
 
 class CompressedTarget(Target):
