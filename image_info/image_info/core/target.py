@@ -19,6 +19,7 @@ from osbuild import loop
 from image_info.report.common import import_plugins, find_commons
 from image_info.utils.utils import sanitize_name
 from image_info.utils.loop import loop_open
+from image_info.utils.mount import mount_at
 from image_info.report.report import Report
 
 from image_info.report.image import ImageFormat, PartitionTable, Bootloader
@@ -53,6 +54,8 @@ class Target(ABC):
         returns a specialized instance depending on the type of items archive we
         are dealing with.
         """
+        if DirTarget.match(target):
+            return DirTarget(target)
         if CompressedTarget.match(target):
             return CompressedTarget(target)
         return ImageTarget(target)
@@ -61,7 +64,7 @@ class Target(ABC):
     def from_json(cls, json_o):
         if json_o.get("image-format"):
             return ImageTarget.from_json(json_o)
-        return None
+        return DirTarget.from_json(json_o)
 
     def inspect_commons(self, tree, is_ostree=False):
         """
@@ -138,6 +141,33 @@ class CompressedTarget(Target):
             target = ImageTarget(os.path.join(tmpdir, files[0]))
             target.inspect()
             self.report = target.report
+
+
+class DirTarget(Target):
+    """
+    Handles a directory. A directory can be either an ostree commit, and ostree
+    repo or a simple directory.
+    """
+
+    @classmethod
+    def match(cls, target):
+        return os.path.isdir(target)
+
+    def inspect(self):
+        with tempfile.TemporaryDirectory(dir="/var/tmp") as tmpdir:
+            tree_ro = os.path.join(tmpdir, "root_ro")
+            os.makedirs(tree_ro)
+            # Make sure that the tools which analyse the directory in-place
+            # can not modify its content (e.g. create additional files).
+            # mount_at() always mounts the source as read-only!
+            with mount_at(self.target, tree_ro, ["bind"]) as _mountpoint:
+                self.inspect_commons(tree_ro)
+
+    @classmethod
+    def from_json(cls, json_o):
+        dtt = cls(None)
+        dtt.commons_from_json(json_o)
+        return dtt
 
 
 class ImageTarget(Target):
