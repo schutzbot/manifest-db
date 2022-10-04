@@ -4,6 +4,7 @@ A Target represent a kind of "image" to analyse. That could be a tarball, a
 compressed target, a Directory, an Ostree repo or commit and finally and Image.
 Each one has a specific way of being loaded and are defined here.
 """
+import mimetypes
 from abc import ABC, abstractmethod
 import glob
 import os
@@ -52,6 +53,8 @@ class Target(ABC):
         returns a specialized instance depending on the type of items archive we
         are dealing with.
         """
+        if CompressedTarget.match(target):
+            return CompressedTarget(target)
         return ImageTarget(target)
 
     @classmethod
@@ -93,6 +96,48 @@ class Target(ABC):
                     self.report.add_element(common_o)
             else:
                 print(f"no json data for {c_json_name}")
+
+
+class CompressedTarget(Target):
+    """
+    A compressed target contains an image that needs first to be decompressed.
+    """
+
+    def __init__(self, target):
+        super().__init__(target)
+        self.target = target
+        _, encoding = mimetypes.guess_type(self.target)
+        if encoding == "xz":
+            self.command = ["unxz", "--force"]
+        elif encoding == "gzip":
+            self.command = ["gunzip", "--force"]
+        elif encoding == "bzip2":
+            self.command = ["bunzip2", "--force"]
+        else:
+            raise ValueError(f"Unsupported compression: {encoding}")
+
+    @classmethod
+    def match(cls, target):
+        _, encoding = mimetypes.guess_type(target)
+        return encoding in ["xz", "gzip", "bzip2"]
+
+    def inspect(self):
+        with tempfile.TemporaryDirectory(dir="/var/tmp") as tmpdir:
+            subprocess.run(
+                ["cp", "--reflink=auto", "-a",
+                 self.target,
+                 tmpdir],
+                check=True)
+
+            files = os.listdir(tmpdir)
+            archive = os.path.join(tmpdir, files[0])
+            subprocess.run(self.command + [archive], check=True)
+
+            files = os.listdir(tmpdir)
+            assert len(files) == 1
+            target = ImageTarget(os.path.join(tmpdir, files[0]))
+            target.inspect()
+            self.report = target.report
 
 
 class ImageTarget(Target):
