@@ -8,13 +8,19 @@ from abc import ABC, abstractmethod
 import glob
 import os
 import sys
+import tempfile
+import subprocess
+import platform
+import contextlib
 
 from osbuild import loop
 
 from image_info.report.common import import_plugins, find_commons
 from image_info.utils.utils import sanitize_name
+from image_info.utils.loop import loop_open
 from image_info.report.report import Report
-from image_info.report.image import ImageFormat
+
+from image_info.report.image import ImageFormat, PartitionTable
 
 
 class Target(ABC):
@@ -97,11 +103,22 @@ class ImageTarget(Target):
     def inspect(self):
         loctl = loop.LoopControl()
         image_format = ImageFormat.from_device(self.target)
+        with self.open_target(loctl, image_format) as device:
+            with contextlib.ExitStack() as context:
+                ptable = PartitionTable.from_device(device, loctl, context)
+                with ptable.mount(device, context) as tree:
+                    self.report.add_element(image_format)
+                    self.report.add_element(ptable)
+                    self.inspect_commons(tree)
 
     @classmethod
     def from_json(cls, json_o):
         imt = cls(None)
         imt.report.add_element(ImageFormat.from_json(json_o))
+        part_table = PartitionTable.from_json(json_o)
+        imt.report.add_element(part_table)
+        if part_table.partition_table_id:
+            imt.commons_from_json(json_o)
         return imt
 
     @ contextlib.contextmanager
