@@ -6,11 +6,15 @@ This modules defines the different kind of partitions:
         - LvmVolume
 """
 import subprocess
+import contextlib
+from collections import OrderedDict
+from typing import Iterator
 from attr import field, define
 
 from image_info.report.report import ReportElement
 from image_info.utils.loop import loop_open
 from image_info.utils.utils import parse_environment_vars
+from image_info.utils.lvm import ensure_device_file, volume_group_for_device
 from image_info.core.filesystem import FileSystem, FileSystemFactory
 
 
@@ -92,11 +96,16 @@ class ImagePartition(GenericPartition, FileSystemFactory):
         Explore the partition:
             - mount the device at the spot the partition is on
             - read the information found there
+            - if the partition is an lvm one:
+                - transform the partition as a LvmPartition
         """
         # open the partition and read info
         dev = self.open(loctl, device, context)
         # update the partition information from the mounted device
         self.read_generics(dev)
+        # detect if the partition is an lvm partition, transform it if it is
+        if self.is_lvm():
+            return self.to_lvm_partition(dev, context)
         # pylint: disable=attribute-defined-outside-init
         self.device = dev
         return self
@@ -112,6 +121,20 @@ class ImagePartition(GenericPartition, FileSystemFactory):
                 offset=self.start,
                 size=self.size))
 
+    def is_lvm(self) -> bool:
+        """
+        Returns true if the partition is an LVM partition
+        """
+        return self.type.upper() in ["E6D6D379-F507-44C2-A23C-238F2A3DF928",
+                                     "8E"]
+
+    def to_lvm_partition(self, dev, context_manager):
+        """
+        Transform a simple image partition into an lvm one
+        """
+        return context_manager.enter_context(LvmPartition.discover_lvm(dev,
+                                                                       self))
+
     def fsystems(self):
         """
         Return a list of FileSystem objects, one for each partition contained in
@@ -120,3 +143,135 @@ class ImagePartition(GenericPartition, FileSystemFactory):
         if self.uuid and self.fstype:
             return [FileSystem(self.uuid.upper(), self.device, None)]
         return []
+
+
+@ define(slots=False)
+class LvmVolume(GenericPartition):
+    """
+    Inheriting from GenericPartition a LvmVolume just keeps track of the
+    information gathered by reading the device. The class brings the ability to
+    obtain a FileSystem object out of the partition with the fs method in order
+    to be mounted with special care.
+    """
+
+    def file_system(self):
+        """
+        return a FileSystem object having special mounting options
+        """
+        if self.fstype:
+            mntopts = []
+            # we cannot recover since the underlying loopback
+            # device is mounted read-only but since we are using
+            # the it through the device mapper the fact might
+            # not be communicated and the kernel attempt a to a
+            # recovery of the filesystem, which will lead to a
+            # kernel panic
+            if self.fstype in ("ext4", "ext3", "xfs"):
+                mntopts = ["norecovery"]
+            # the device attribute is set outside of the attrs context in order
+            # to keep the value out of the generated dict by asdict()
+            # pylint: disable=no-member
+            return FileSystem(self.uuid.upper(), self.device, mntopts)
+        return None
+
+
+@ define(slots=False)
+class LvmPartition(ImagePartition):
+    """
+    An lvm partition contains subvolumes that are stored as a list.
+    """
+    lvm: bool
+    lvm__vg: str
+    lvm__volumes: dict[str, LvmVolume]
+
+    @ classmethod
+    def from_json(cls, json_o):
+        volumes = {}
+        for k, val in json_o["lvm.volumes"].items():
+            volumes[k] = LvmVolume.from_json(val)
+
+        obj = cls(json_o["bootable"], json_o["partuuid"],
+                  json_o["start"], json_o["size"], json_o["type"],
+                  json_o["lvm"], json_o["lvm.vg"], volumes)
+        obj.update_generics(json_o)
+        return obj
+
+    @ classmethod
+    @ contextlib.contextmanager
+    def discover_lvm(cls, dev, partition) -> Iterator:
+        """
+        discover all the volumes under the current partition
+        """
+        # find the volume group name for the device file
+        vg_name = volume_group_for_device(dev)
+
+        # activate it
+        res = subprocess.run(["vgchange", "-ay", vg_name],
+                             stdout=subprocess.DEVNULL,
+                             stderr=subprocess.PIPE,
+                             check=False)
+        if res.returncode != 0:
+            raise RuntimeError(res.stderr.strip())
+
+        try:
+            # Find all logical volumes in the volume group
+            cmd = [
+                "lvdisplay", "-C", "--noheadings",
+                "-o", "lv_name,path,lv_kernel_major,lv_kernel_minor",
+                "--separator", ";",
+                vg_name
+            ]
+
+            res = subprocess.run(cmd,
+                                 check=False,
+                                 stdout=subprocess.PIPE,
+                                 stderr=subprocess.PIPE,
+                                 encoding="UTF-8")
+
+            if res.returncode != 0:
+                raise RuntimeError(res.stderr.strip())
+
+            data = res.stdout.strip()
+            parsed = list(map(lambda l: l.split(";"), data.split("\n")))
+            volumes = OrderedDict()
+
+            for vol in parsed:
+                vol = list(map(lambda v: v.strip(), vol))
+                assert len(vol) == 4
+                name, voldev, major, minor = vol
+                ensure_device_file(voldev, int(major), int(minor))
+
+                volumes[name] = LvmVolume()
+                volumes[name].read_generics(voldev)
+                if name.startswith("root"):
+                    volumes.move_to_end(name, last=False)
+                # setting this attribute outside of attrs makes the library
+                # blind to it, so it will not show in the asdict() result, but
+                # we still can use it
+                # pylint: disable=attribute-defined-outside-init
+                volumes[name].device = voldev
+            yield cls(
+                partition.bootable,
+                partition.partuuid,
+                partition.start,
+                partition.size,
+                partition.type,
+                True,
+                vg_name,
+                volumes)
+
+        finally:
+            res = subprocess.run(["vgchange", "-an", vg_name],
+                                 stdout=subprocess.DEVNULL,
+                                 stderr=subprocess.PIPE,
+                                 check=False)
+            if res.returncode != 0:
+                raise RuntimeError(res.stderr.strip())
+
+    def fsystems(self):
+        fsystems = []
+        for _, volume in self.lvm__volumes.items():
+            file_system = volume.file_system()
+            if file_system:
+                fsystems.append(file_system)
+        return fsystems

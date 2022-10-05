@@ -15,7 +15,8 @@ from image_info.utils.process import subprocess_check_output
 from image_info.report.report import ReportElement
 from image_info.report.partition import (
     GenericPartition,
-    ImagePartition)
+    ImagePartition,
+    LvmPartition)
 from image_info.core.filesystem import FileSystemMounter
 
 
@@ -79,7 +80,10 @@ class PartitionTable(ReportElement):
             if partition_table is None:
                 partitions.append(GenericPartition.from_json(partition))
             else:
-                partitions.append(ImagePartition.from_json(partition))
+                if partition.get("lvm"):
+                    partitions.append(LvmPartition.from_json(partition))
+                else:
+                    partitions.append(ImagePartition.from_json(partition))
         return cls(partition_table, partition_table_id, partitions)
 
     @ classmethod
