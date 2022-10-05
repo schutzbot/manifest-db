@@ -20,7 +20,7 @@ from image_info.utils.utils import sanitize_name
 from image_info.utils.loop import loop_open
 from image_info.report.report import Report
 
-from image_info.report.image import ImageFormat, PartitionTable
+from image_info.report.image import ImageFormat, PartitionTable, Bootloader
 
 
 class Target(ABC):
@@ -108,6 +108,7 @@ class ImageTarget(Target):
                 ptable = PartitionTable.from_device(device, loctl, context)
                 with ptable.mount(device, context) as tree:
                     self.report.add_element(image_format)
+                    self.report.add_element(Bootloader.from_device(device))
                     self.report.add_element(ptable)
                     self.inspect_commons(tree)
 
@@ -115,6 +116,7 @@ class ImageTarget(Target):
     def from_json(cls, json_o):
         imt = cls(None)
         imt.report.add_element(ImageFormat.from_json(json_o))
+        imt.report.add_element(Bootloader.from_json(json_o))
         part_table = PartitionTable.from_json(json_o)
         imt.report.add_element(part_table)
         if part_table.partition_table_id:

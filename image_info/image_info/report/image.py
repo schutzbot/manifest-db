@@ -54,6 +54,38 @@ class ImageFormat(ReportElement):
         return cls({"type": ftype})
 
 
+@define(slots=False)
+class Bootloader(ReportElement):
+    """
+    Returns: string representing the found bootloader. Function can return two
+    values:
+    - 'grub'
+    - 'unknown'
+    """
+    flatten = True  # the resulting json will be merged with the parent object
+    bootloader: str
+
+    def asdict(self):
+        """
+        overridden from super class
+        """
+        return self.bootloader
+
+    @classmethod
+    def from_json(cls, json_o):
+        return cls(json_o["bootloader"])
+
+    @classmethod
+    def from_device(cls, device):
+        """
+        Read bootloader type from the provided device.
+        """
+        with open(device, "rb") as file:
+            if b"GRUB" in file.read(512):
+                return cls("grub")
+            return cls("unknown")
+
+
 @ define(slots=False)
 class PartitionTable(ReportElement):
     """
