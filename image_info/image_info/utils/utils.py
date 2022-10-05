@@ -49,3 +49,17 @@ def json_to_snake_case(string):
     And json.key to json__key
     """
     return string.replace("-", "_").replace(".", "__")
+
+
+def sanitize_name(name):
+    """
+    The json keys in the image-info have a specific formating except a few of
+    them. Apply the necessary transformations here.
+    """
+    if name not in (
+            "rpm_not_installed_docs",
+            "sshd_config",
+            "ssh_config",
+    ):
+        return snake_case_to_json(camel_case_to_snake_case(name))
+    return name
