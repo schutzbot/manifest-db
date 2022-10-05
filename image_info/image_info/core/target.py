@@ -9,9 +9,12 @@ import glob
 import os
 import sys
 
+from osbuild import loop
+
 from image_info.report.common import import_plugins, find_commons
 from image_info.utils.utils import sanitize_name
 from image_info.report.report import Report
+from image_info.report.image import ImageFormat
 
 
 class Target(ABC):
@@ -43,11 +46,13 @@ class Target(ABC):
         returns a specialized instance depending on the type of items archive we
         are dealing with.
         """
-        raise NotImplemented("TODO")
+        return ImageTarget(target)
 
     @classmethod
     def from_json(cls, json_o):
-        raise NotImplemented("TODO")
+        if json_o.get("image-format"):
+            return ImageTarget.from_json(json_o)
+        return None
 
     def inspect_commons(self, tree, is_ostree=False):
         """
@@ -82,3 +87,52 @@ class Target(ABC):
                     self.report.add_element(common_o)
             else:
                 print(f"no json data for {c_json_name}")
+
+
+class ImageTarget(Target):
+    """
+    Handles an image.
+    """
+
+    def inspect(self):
+        loctl = loop.LoopControl()
+        image_format = ImageFormat.from_device(self.target)
+
+    @classmethod
+    def from_json(cls, json_o):
+        imt = cls(None)
+        imt.report.add_element(ImageFormat.from_json(json_o))
+        return imt
+
+    @ contextlib.contextmanager
+    def open_target(self, ctl, image_format):
+        """
+        Opens the image in a loopback device. Apply qemu convertion if necessary
+        """
+        with tempfile.TemporaryDirectory(dir="/var/tmp") as tmp:
+            if image_format.image_format["type"] != "raw":
+                target = os.path.join(tmp, "image.raw")
+                # a bug exists in qemu that causes the conversion to raw to fail
+                # on aarch64 systems with a lot of cpus. A workaround is to use
+                # a single coroutine to do the conversion. It doesn't slow down
+                # the conversion by much, but it hangs about half the time
+                # without the limit set. 😢
+                # bug: https://bugs.launchpad.net/qemu/+bug/1805256
+                if platform.machine() == 'aarch64':
+                    subprocess.run(
+                        ["qemu-img", "convert", "-m", "1", "-O", "raw",
+                            self.target,
+                            target], check=True
+                    )
+                else:
+                    subprocess.run(
+                        ["qemu-img", "convert", "-O", "raw", self.target,
+                            target], check=True
+                    )
+            else:
+                target = self.target
+
+            size = os.stat(target).st_size
+
+            with loop_open(ctl, target, offset=0, size=size) as dev:
+                yield dev
