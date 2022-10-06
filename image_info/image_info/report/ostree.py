@@ -6,8 +6,12 @@ import functools
 import os
 import tempfile
 import contextlib
-from attr import define
 from typing import List, Dict
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
 
 
 from image_info.report.report import ReportElement
@@ -20,7 +24,7 @@ class Type(ReportElement):
     Ostree type
     """
     flatten = True
-    type: str
+    type: str = field()
 
     @classmethod
     def from_device(cls, device):
@@ -40,8 +44,8 @@ class Ostree(ReportElement):
     """
     Ostree element
     """
-    repo: Dict
-    refs: List
+    repo: Dict = field()
+    refs: List = field()
 
     @classmethod
     def from_device(cls, device):

@@ -1,9 +1,13 @@
 """
 Users
 """
-from attr import define
-from image_info.report.common import Common
 from typing import List
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
+from image_info.report.common import Common
 
 
 @define(slots=False)
@@ -12,7 +16,7 @@ class Passwd(Common):
     Passwd
     """
     flatten = True
-    passwd: List[str]
+    passwd: List[str] = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -30,7 +34,7 @@ class Groups(Common):
     Groups
     """
     flatten = True
-    groups: List[str]
+    groups: List[str] = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -48,7 +52,7 @@ class PasswdSystem(Common):
     Passwd
     """
     flatten = True
-    passwd_system: List[str]
+    passwd_system: List[str] = field()
 
     @classmethod
     def explore(cls, tree, is_ostree=False):
@@ -71,7 +75,7 @@ class GroupsSystem(Common):
     Groups
     """
     flatten = True
-    groups_system: List[str]
+    groups_system: List[str] = field()
 
     @classmethod
     def explore(cls, tree, is_ostree=True):

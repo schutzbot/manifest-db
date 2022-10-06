@@ -4,8 +4,12 @@ Network config
 
 import xml.etree.ElementTree
 import contextlib
-from attr import define
 from typing import List, Dict
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
 from image_info.report.common import Common
 from image_info.utils.utils import parse_environment_vars
 
@@ -16,7 +20,7 @@ class FirewallDefaultZone(Common):
     FirewallDefaultZone
     """
     flatten = True
-    firewall_default_zone: str
+    firewall_default_zone: str = field()
 
     @staticmethod
     def default_zone(tree):
@@ -58,7 +62,7 @@ class FirewallEnabled(Common):
     FirewalEnabled
     """
     flatten = True
-    firewall_enabled: Dict
+    firewall_enabled: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -108,7 +112,7 @@ class Hosts(Common):
     Hosts
     """
     flatten = True
-    hosts: List[str]
+    hosts: List[str] = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -150,7 +154,7 @@ class MachineId(Common):
     MachineId
     """
     flatten = True
-    machine_id: str
+    machine_id: str = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -184,7 +188,7 @@ class ResolvConf(Common):
     ResolvConf
     """
     flatten = True
-    _l_etc_l_resolv__conf: str
+    _l_etc_l_resolv__conf: str = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):

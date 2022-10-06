@@ -4,8 +4,12 @@ Holds the necessary classes and function to load and mount a file system.
 import os
 import contextlib
 from abc import ABC, abstractmethod
-from attr import define
 from typing import List
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
 
 from image_info.utils.mount import mount, mount_at
 
@@ -17,10 +21,10 @@ class FstabEntry:
     """
     Contain an extracted line of an fstab. Can be used to mount the file system.
     """
-    uuid: str
-    mountpoint: str
-    fstype: str
-    options: str
+    uuid: str = field()
+    mountpoint: str = field()
+    fstype: str = field()
+    options: str = field()
 
     @classmethod
     def read_fstab(cls, tree):
@@ -58,9 +62,9 @@ class FileSystem:
     - be mounted to search for an fstab
     - be mounted to a fstab location (provided the fstab_entry to refer to)
     """
-    uuid: str
-    device: str
-    mntops: list
+    uuid: str = field()
+    device: str = field()
+    mntops: list = field()
 
     def fstab(self) -> List[FstabEntry]:
         """

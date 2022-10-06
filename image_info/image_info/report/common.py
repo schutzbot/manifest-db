@@ -6,7 +6,12 @@ import sys
 import os
 from os import walk
 from abc import abstractmethod
-from attr import define
+
+try:
+    from attr import define
+except ImportError:
+    from attr import s as define
+
 from image_info.report.report import ReportElement
 
 already_imported = False

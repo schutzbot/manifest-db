@@ -8,8 +8,12 @@ This module defines the elements composing an Image:
 import json
 import subprocess
 import contextlib
-from attr import define
 from typing import List, Dict
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
 
 from image_info.utils.mount import mount
 from image_info.utils.process import subprocess_check_output
@@ -30,7 +34,7 @@ class ImageFormat(ReportElement):
     compatibility version of the 'qcow2' image.
     """
     flatten = True
-    image_format: Dict
+    image_format: Dict = field()
 
     @classmethod
     def from_json(cls, json_o):
@@ -64,7 +68,7 @@ class Bootloader(ReportElement):
     - 'unknown'
     """
     flatten = True  # the resulting json will be merged with the parent object
-    bootloader: str
+    bootloader: str = field()
 
     def asdict(self):
         """
@@ -100,9 +104,9 @@ class PartitionTable(ReportElement):
           partitions.
     """
     flatten = True  # the resulting json will be merged with the parent object
-    partition_table: str
-    partition_table_id: str
-    partitions: List[GenericPartition]
+    partition_table: str = field()
+    partition_table_id: str = field()
+    partitions: List[GenericPartition] = field()
 
     @ classmethod
     def from_json(cls, json_o):

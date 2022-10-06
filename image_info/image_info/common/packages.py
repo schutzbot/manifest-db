@@ -3,8 +3,13 @@ Packages
 """
 import os
 import subprocess
-from attr import define
 from typing import List, Dict
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
+
 from image_info.report.common import Common
 from image_info.utils.process import subprocess_check_output
 
@@ -15,7 +20,7 @@ class Packages(Common):
     Lists the packages of the distribution
     """
     flatten = True
-    packages: List[str]
+    packages: List[str] = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -43,8 +48,8 @@ class RpmVerify(Common):
     """
     Read the output of 'rpm --verify'.
     """
-    changed: Dict
-    missing: List
+    changed: Dict = field()
+    missing: List = field()
 
     @classmethod
     def explore(cls, tree, is_ostree=False):
@@ -91,7 +96,7 @@ class RpmNotInstalledDocs(Common):
     Read the output of 'rpm --verify'.
     """
     flatten = True
-    rpm_not_installed_docs: List
+    rpm_not_installed_docs: List = field()
 
     @classmethod
     def explore(cls, tree, is_ostree=False):

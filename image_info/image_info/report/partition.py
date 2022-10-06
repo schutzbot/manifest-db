@@ -9,8 +9,12 @@ import subprocess
 import contextlib
 from collections import OrderedDict
 from typing import Iterator
-from attr import field, define
 from typing import Iterator, Dict
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
 
 from image_info.report.report import ReportElement
 from image_info.utils.loop import loop_open
@@ -87,11 +91,11 @@ class ImagePartition(GenericPartition, FileSystemFactory):
         "type": "21686148-6449-6E6F-744E-656564454649",
     }
     """
-    bootable: bool
-    partuuid: str
-    start: int
-    size: int
-    type: str
+    bootable: bool = field()
+    partuuid: str = field()
+    start: int = field()
+    size: int = field()
+    type: str = field()
 
     @ classmethod
     def from_json(cls, json_o):
@@ -189,9 +193,9 @@ class LvmPartition(ImagePartition):
     """
     An lvm partition contains subvolumes that are stored as a list.
     """
-    lvm: bool
-    lvm__vg: str
-    lvm__volumes: Dict[str, LvmVolume]
+    lvm: bool = field()
+    lvm__vg: str = field()
+    lvm__volumes: Dict[str, LvmVolume] = field()
 
     @ classmethod
     def from_json(cls, json_o):

@@ -2,8 +2,12 @@
 Services
 """
 import os
-from attr import define
 from typing import List
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
 from image_info.report.common import Common
 from image_info.utils.process import subprocess_check_output
 from image_info.utils.utils import parse_unit_files
@@ -100,7 +104,7 @@ class ServicesEnabled(Common):
     Lists the packages of the distribution
     """
     flatten = True
-    services_enabled: List[str]
+    services_enabled: List[str] = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -117,7 +121,7 @@ class ServicesDisabled(Common):
     Lists the packages of the distribution
     """
     flatten = True
-    services_disabled: List[str]
+    services_disabled: List[str] = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):

@@ -8,7 +8,11 @@ import glob
 import contextlib
 from typing import List, Dict
 import yaml
-from attr import define
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
 from image_info.report.common import Common
 from image_info.utils.utils import parse_environment_vars
 
@@ -139,8 +143,8 @@ class Authselect(Common):
     """
     AuthSelect
     """
-    enabled_features: List
-    profile_id: str
+    enabled_features: List = field()
+    profile_id: str = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -184,7 +188,7 @@ class Chrony(Common):
     Chrony
     """
     flatten = True
-    chrony: Dict
+    chrony: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -237,7 +241,7 @@ class CloudInit(Common):
     CloudInit
     """
     flatten = True
-    cloud_init: Dict
+    cloud_init: Dict = field()
 
     @staticmethod
     def read_cloud_init_config(config_path):
@@ -377,7 +381,7 @@ class Dnf(Common):
     Dnf
     """
     flatten = True
-    dnf: Dict
+    dnf: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -433,7 +437,7 @@ class AutomaticDnf(Common):
     AutomaticDnf
     """
     flatten = True
-    _l_etc_l_dnf_l_automatic__conf: Dict
+    _l_etc_l_dnf_l_automatic__conf: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -487,7 +491,7 @@ class YumRepos(Common):
     YumRepos
     """
     flatten = True
-    yum_repos: Dict
+    yum_repos: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -548,7 +552,7 @@ class Dracut(Common):
     Dracut
     """
     flatten = True
-    dracut: Dict
+    dracut: Dict = field()
 
     @staticmethod
     def read_dracut_config(config_path):
@@ -633,7 +637,7 @@ class Keyboard(Common):
     Keyboard
     """
     flatten = True
-    keyboard: Dict
+    keyboard: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -709,7 +713,7 @@ class SecurityLimits(Common):
     SecurityLimits
     """
     flatten = True
-    security_limits: Dict
+    security_limits: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -769,7 +773,7 @@ class SystemdLogind(Common):
     SystemdLogind
     """
     flatten = True
-    systemd_logind: Dict
+    systemd_logind: Dict = field()
 
     @staticmethod
     def read_logind_config(config_path):
@@ -843,7 +847,7 @@ class Modprobe(Common):
     Modprobe
     """
     flatten = True
-    modprobe: Dict
+    modprobe: Dict = field()
 
     @staticmethod
     def read_modprobe_config(config_path):
@@ -946,7 +950,7 @@ class Tmpfilesd(Common):
     Tmpfilesd
     """
     flatten = True
-    tmpfiles__d: Dict
+    tmpfiles__d: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -997,7 +1001,7 @@ class SSHConfig(Common):
     SSHConfig
     """
     flatten = True
-    ssh_config: Dict
+    ssh_config: Dict = field()
 
     @staticmethod
     def read_ssh_config(config_path):
@@ -1091,7 +1095,7 @@ class SSHDConfig(Common):
     SSHConfig
     """
     flatten = True
-    sshd_config: Dict
+    sshd_config: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -1158,7 +1162,7 @@ class Sysconfig(Common):
     SSHConfig
     """
     flatten = True
-    sysconfig: Dict
+    sysconfig: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -1259,7 +1263,7 @@ class SysctlDConfig(Common):
     SysctlDConfig
     """
     flatten = True
-    sysctl__d: Dict
+    sysctl__d: Dict = field()
 
     @staticmethod
     def read_sysctld_config(config_path):
@@ -1337,7 +1341,7 @@ class SystemdServiceDropins(Common):
     SystemdServiceDropins
     """
     flatten = True
-    systemd_service_dropins: Dict
+    systemd_service_dropins: Dict = field()
 
     @staticmethod
     def read_systemd_service_dropin(dropin_dir_path):
@@ -1415,7 +1419,7 @@ class SystemdServiceDropins(Common):
 @define(slots=False)
 class Udev(Common):
     flatten = True
-    _l_etc_l_udev_l_rules__d: Dict
+    _l_etc_l_udev_l_rules__d: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):

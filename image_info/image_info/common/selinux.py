@@ -5,8 +5,12 @@ import glob
 import re
 import contextlib
 import subprocess
-from attr import define
 from typing import Dict
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
 from image_info.utils.process import subprocess_check_output
 from image_info.utils.utils import parse_environment_vars
 from image_info.report.common import Common
@@ -116,7 +120,7 @@ class Selinux(Common):
     Selinux
     """
     flatten = True
-    selinux: Dict
+    selinux: Dict = field()
 
     @classmethod
     def explore(cls, tree, is_ostree=False):

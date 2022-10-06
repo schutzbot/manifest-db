@@ -3,8 +3,12 @@ Subscription manager
 """
 import configparser
 import contextlib
-from attr import define
 from typing import Dict
+try:
+    from attr import define, field
+except ImportError:
+    from attr import s as define
+    from attr import ib as field
 from image_info.report.common import Common
 
 
@@ -14,7 +18,7 @@ class Rhsm(Common):
     Rhsm
     """
     flatten = True
-    rhsm: Dict
+    rhsm: Dict = field()
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
