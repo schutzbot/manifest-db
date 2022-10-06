@@ -10,6 +10,7 @@ import contextlib
 from collections import OrderedDict
 from typing import Iterator
 from attr import field, define
+from typing import Iterator, Dict
 
 from image_info.report.report import ReportElement
 from image_info.utils.loop import loop_open
@@ -190,7 +191,7 @@ class LvmPartition(ImagePartition):
     """
     lvm: bool
     lvm__vg: str
-    lvm__volumes: dict[str, LvmVolume]
+    lvm__volumes: Dict[str, LvmVolume]
 
     @ classmethod
     def from_json(cls, json_o):

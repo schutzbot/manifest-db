@@ -7,6 +7,7 @@ import os
 import tempfile
 import contextlib
 from attr import define
+from typing import List, Dict
 
 
 from image_info.report.report import ReportElement
@@ -39,8 +40,8 @@ class Ostree(ReportElement):
     """
     Ostree element
     """
-    repo: dict
-    refs: list
+    repo: Dict
+    refs: List
 
     @classmethod
     def from_device(cls, device):
@@ -58,7 +59,8 @@ class Ostree(ReportElement):
     @contextlib.contextmanager
     def mount(self, device):
         ostree = functools.partial(run_ostree, repo=device)
-        resolved = {r: ostree("rev-parse", r).stdout.strip() for r in self.refs}
+        resolved = {r: ostree("rev-parse", r).stdout.strip()
+                    for r in self.refs}
         commit = resolved[self.refs[0]]
 
         with tempfile.TemporaryDirectory(dir="/var/tmp") as tmpdir:

@@ -3,6 +3,7 @@ Users
 """
 from attr import define
 from image_info.report.common import Common
+from typing import List
 
 
 @define(slots=False)
@@ -11,7 +12,7 @@ class Passwd(Common):
     Passwd
     """
     flatten = True
-    passwd: list[str]
+    passwd: List[str]
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -29,7 +30,7 @@ class Groups(Common):
     Groups
     """
     flatten = True
-    groups: list[str]
+    groups: List[str]
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -47,7 +48,7 @@ class PasswdSystem(Common):
     Passwd
     """
     flatten = True
-    passwd_system: list[str]
+    passwd_system: List[str]
 
     @classmethod
     def explore(cls, tree, is_ostree=False):
@@ -70,7 +71,7 @@ class GroupsSystem(Common):
     Groups
     """
     flatten = True
-    groups_system: list[str]
+    groups_system: List[str]
 
     @classmethod
     def explore(cls, tree, is_ostree=True):

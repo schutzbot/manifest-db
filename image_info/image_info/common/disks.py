@@ -3,6 +3,7 @@ Disks
 """
 import contextlib
 from attr import define
+from typing import List
 from image_info.report.common import Common
 
 
@@ -12,7 +13,7 @@ class Fstab(Common):
     Lists the packages of the distribution
     """
     flatten = True
-    fstab: list[str]
+    fstab: List[str]
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):

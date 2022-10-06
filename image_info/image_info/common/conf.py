@@ -6,6 +6,7 @@ import re
 import os
 import glob
 import contextlib
+from typing import List, Dict
 import yaml
 from attr import define
 from image_info.report.common import Common
@@ -138,7 +139,7 @@ class Authselect(Common):
     """
     AuthSelect
     """
-    enabled_features: list
+    enabled_features: List
     profile_id: str
 
     @classmethod
@@ -183,7 +184,7 @@ class Chrony(Common):
     Chrony
     """
     flatten = True
-    chrony: dict
+    chrony: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -236,7 +237,7 @@ class CloudInit(Common):
     CloudInit
     """
     flatten = True
-    cloud_init: dict
+    cloud_init: Dict
 
     @staticmethod
     def read_cloud_init_config(config_path):
@@ -376,7 +377,7 @@ class Dnf(Common):
     Dnf
     """
     flatten = True
-    dnf: dict
+    dnf: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -432,7 +433,7 @@ class AutomaticDnf(Common):
     AutomaticDnf
     """
     flatten = True
-    _l_etc_l_dnf_l_automatic__conf: dict
+    _l_etc_l_dnf_l_automatic__conf: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -486,7 +487,7 @@ class YumRepos(Common):
     YumRepos
     """
     flatten = True
-    yum_repos: dict
+    yum_repos: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -547,7 +548,7 @@ class Dracut(Common):
     Dracut
     """
     flatten = True
-    dracut: dict
+    dracut: Dict
 
     @staticmethod
     def read_dracut_config(config_path):
@@ -632,7 +633,7 @@ class Keyboard(Common):
     Keyboard
     """
     flatten = True
-    keyboard: dict
+    keyboard: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -708,7 +709,7 @@ class SecurityLimits(Common):
     SecurityLimits
     """
     flatten = True
-    security_limits: dict
+    security_limits: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -768,7 +769,7 @@ class SystemdLogind(Common):
     SystemdLogind
     """
     flatten = True
-    systemd_logind: dict
+    systemd_logind: Dict
 
     @staticmethod
     def read_logind_config(config_path):
@@ -842,7 +843,7 @@ class Modprobe(Common):
     Modprobe
     """
     flatten = True
-    modprobe: dict
+    modprobe: Dict
 
     @staticmethod
     def read_modprobe_config(config_path):
@@ -945,7 +946,7 @@ class Tmpfilesd(Common):
     Tmpfilesd
     """
     flatten = True
-    tmpfiles__d: dict
+    tmpfiles__d: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -996,7 +997,7 @@ class SSHConfig(Common):
     SSHConfig
     """
     flatten = True
-    ssh_config: dict
+    ssh_config: Dict
 
     @staticmethod
     def read_ssh_config(config_path):
@@ -1090,7 +1091,7 @@ class SSHDConfig(Common):
     SSHConfig
     """
     flatten = True
-    sshd_config: dict
+    sshd_config: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -1157,7 +1158,7 @@ class Sysconfig(Common):
     SSHConfig
     """
     flatten = True
-    sysconfig: dict
+    sysconfig: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -1258,7 +1259,7 @@ class SysctlDConfig(Common):
     SysctlDConfig
     """
     flatten = True
-    sysctl__d: dict
+    sysctl__d: Dict
 
     @staticmethod
     def read_sysctld_config(config_path):
@@ -1336,7 +1337,7 @@ class SystemdServiceDropins(Common):
     SystemdServiceDropins
     """
     flatten = True
-    systemd_service_dropins: dict
+    systemd_service_dropins: Dict
 
     @staticmethod
     def read_systemd_service_dropin(dropin_dir_path):
@@ -1414,7 +1415,7 @@ class SystemdServiceDropins(Common):
 @define(slots=False)
 class Udev(Common):
     flatten = True
-    _l_etc_l_udev_l_rules__d: dict
+    _l_etc_l_udev_l_rules__d: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):

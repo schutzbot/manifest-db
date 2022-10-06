@@ -9,6 +9,7 @@ import json
 import subprocess
 import contextlib
 from attr import define
+from typing import List, Dict
 
 from image_info.utils.mount import mount
 from image_info.utils.process import subprocess_check_output
@@ -29,7 +30,7 @@ class ImageFormat(ReportElement):
     compatibility version of the 'qcow2' image.
     """
     flatten = True
-    image_format: dict
+    image_format: Dict
 
     @classmethod
     def from_json(cls, json_o):
@@ -101,7 +102,7 @@ class PartitionTable(ReportElement):
     flatten = True  # the resulting json will be merged with the parent object
     partition_table: str
     partition_table_id: str
-    partitions: list[GenericPartition]
+    partitions: List[GenericPartition]
 
     @ classmethod
     def from_json(cls, json_o):

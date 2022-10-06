@@ -4,6 +4,7 @@ Packages
 import os
 import subprocess
 from attr import define
+from typing import List, Dict
 from image_info.report.common import Common
 from image_info.utils.process import subprocess_check_output
 
@@ -14,7 +15,7 @@ class Packages(Common):
     Lists the packages of the distribution
     """
     flatten = True
-    packages: list[str]
+    packages: List[str]
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -42,8 +43,8 @@ class RpmVerify(Common):
     """
     Read the output of 'rpm --verify'.
     """
-    changed: dict
-    missing: list
+    changed: Dict
+    missing: List
 
     @classmethod
     def explore(cls, tree, is_ostree=False):
@@ -90,7 +91,7 @@ class RpmNotInstalledDocs(Common):
     Read the output of 'rpm --verify'.
     """
     flatten = True
-    rpm_not_installed_docs: list
+    rpm_not_installed_docs: List
 
     @classmethod
     def explore(cls, tree, is_ostree=False):

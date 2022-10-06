@@ -4,6 +4,7 @@ Subscription manager
 import configparser
 import contextlib
 from attr import define
+from typing import Dict
 from image_info.report.common import Common
 
 
@@ -13,7 +14,7 @@ class Rhsm(Common):
     Rhsm
     """
     flatten = True
-    rhsm: dict
+    rhsm: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):

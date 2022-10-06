@@ -5,6 +5,7 @@ import os
 import contextlib
 from abc import ABC, abstractmethod
 from attr import define
+from typing import List
 
 from image_info.utils.mount import mount, mount_at
 
@@ -61,7 +62,7 @@ class FileSystem:
     device: str
     mntops: list
 
-    def fstab(self) -> list[FstabEntry]:
+    def fstab(self) -> List[FstabEntry]:
         """
         Returns the fstab from the FileSystem if it exists.
         """
@@ -98,7 +99,7 @@ class FileSystemFactory(ABC):
     """
 
     @abstractmethod
-    def fsystems(self) -> list[FileSystem]:
+    def fsystems(self) -> List[FileSystem]:
         """
         Returns a list of FileSystem objects corresponding to the volume or
         subvolumes of a partition
@@ -110,12 +111,12 @@ class FileSystemMounter:
     A FileSystem object can mount the entire FS if it contains a FStab.
     """
 
-    def __init__(self, partitions: list[FileSystemFactory]):
+    def __init__(self, partitions: List[FileSystemFactory]):
         """
         device: some partitions use the global device, others have already
         another one.
         """
-        self.fss: list[FileSystem] = []
+        self.fss: List[FileSystem] = []
         # generate the fs mount values for each partition and volumes
         for partition in partitions:
             self.fss.extend(partition.fsystems())

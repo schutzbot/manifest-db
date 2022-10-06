@@ -11,7 +11,7 @@ import sys
 import json
 from abc import ABC, abstractmethod
 from attr import define, fields
-
+from typing import List
 from image_info.utils.utils import sanitize_name
 
 # pylint: disable=too-few-public-methods
@@ -43,7 +43,7 @@ class Report:
     """
 
     def __init__(self):
-        self._elements: list[ReportElement] = []
+        self._elements: List[ReportElement] = []
 
     def add_element(self, element):
         """

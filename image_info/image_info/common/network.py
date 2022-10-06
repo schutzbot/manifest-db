@@ -5,6 +5,7 @@ Network config
 import xml.etree.ElementTree
 import contextlib
 from attr import define
+from typing import List, Dict
 from image_info.report.common import Common
 from image_info.utils.utils import parse_environment_vars
 
@@ -57,7 +58,7 @@ class FirewallEnabled(Common):
     FirewalEnabled
     """
     flatten = True
-    firewall_enabled: dict
+    firewall_enabled: Dict
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
@@ -107,7 +108,7 @@ class Hosts(Common):
     Hosts
     """
     flatten = True
-    hosts: list[str]
+    hosts: List[str]
 
     @classmethod
     def explore(cls, tree, _is_ostree=False):
