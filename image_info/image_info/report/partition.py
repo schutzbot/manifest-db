@@ -66,6 +66,14 @@ class GenericPartition(ReportElement):
             self.uuid = blkid.get("UUID")
             self.fstype = blkid.get("TYPE")
 
+    def copy_from(self, other):
+        """
+        Copy the fields from another GenericPartition
+        """
+        self.label = other.label
+        self.uuid = other.uuid
+        self.fstype = other.fstype
+
 
 @ define(slots=False)
 class ImagePartition(GenericPartition, FileSystemFactory):
@@ -250,7 +258,7 @@ class LvmPartition(ImagePartition):
                 # we still can use it
                 # pylint: disable=attribute-defined-outside-init
                 volumes[name].device = voldev
-            yield cls(
+            lvm_partition = cls(
                 partition.bootable,
                 partition.partuuid,
                 partition.start,
@@ -259,6 +267,8 @@ class LvmPartition(ImagePartition):
                 True,
                 vg_name,
                 volumes)
+            lvm_partition.copy_from(partition)
+            yield lvm_partition
 
         finally:
             res = subprocess.run(["vgchange", "-an", vg_name],
