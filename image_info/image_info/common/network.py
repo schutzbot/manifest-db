@@ -64,8 +64,8 @@ class FirewallEnabled(Common):
     flatten = True
     firewall_enabled: Dict = field()
 
-    @classmethod
-    def explore(cls, tree, _is_ostree=False):
+    @staticmethod
+    def read_firewall_zone(tree):
         """
         Read enabled services from the configuration of the default firewall zone.
 
@@ -79,24 +79,29 @@ class FirewallEnabled(Common):
             "cockpit"
         ]
         """
+
         default = FirewallDefaultZone.default_zone(tree)
         if default == "":
             default = "public"
 
         r = []
+        try:
+            root = xml.etree.ElementTree.parse(
+                f"{tree}/etc/firewalld/zones/{default}.xml").getroot()
+        except FileNotFoundError:
+            root = xml.etree.ElementTree.parse(
+                f"{tree}/usr/lib/firewalld/zones/{default}.xml").getroot()
+
+        for element in root.findall("service"):
+            r.append(element.get("name"))
+
+        return r
+
+    @classmethod
+    def explore(cls, tree, _is_ostree=False):
         with contextlib.suppress(FileNotFoundError):
-            try:
-                root = xml.etree.ElementTree.parse(
-                    f"{tree}/etc/firewalld/zones/{default}.xml").getroot()
-            except FileNotFoundError:
-                root = xml.etree.ElementTree.parse(
-                    f"{tree}/usr/lib/firewalld/zones/{default}.xml").getroot()
-
-            for element in root.findall("service"):
-                r.append(element.get("name"))
-
-        if r:
-            return cls(r)
+            return cls(FirewallEnabled.read_firewall_zone(tree))
+        return None
 
     @classmethod
     def from_json(cls, json_o):
