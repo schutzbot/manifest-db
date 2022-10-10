@@ -27,6 +27,7 @@ try:
     subprocess.run(["tools/osbuild-image-test",
                     f"--arch={platform.machine()}",
                     f"--distro={distro}",
+                    "--image-info-path=/usr/local/bin/image-info",
                     "--generator-mode"],
                     check=True)
 except CalledProcessError:
