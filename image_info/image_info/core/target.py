@@ -103,13 +103,13 @@ class ImageTarget(Target):
     def inspect(self):
         loctl = loop.LoopControl()
         image_format = ImageFormat.from_device(self.target)
+        self.report.add_element(image_format)
         with self.open_target(loctl, image_format) as device:
+            self.report.add_element(Bootloader.from_device(device))
             with contextlib.ExitStack() as context:
                 ptable = PartitionTable.from_device(device, loctl, context)
+                self.report.add_element(ptable)
                 with ptable.mount(device, context) as tree:
-                    self.report.add_element(image_format)
-                    self.report.add_element(Bootloader.from_device(device))
-                    self.report.add_element(ptable)
                     self.inspect_commons(tree)
 
     @classmethod

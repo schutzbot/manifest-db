@@ -160,13 +160,6 @@ class PartitionTable(ReportElement):
         partitions.sort(key=lambda x: x.partuuid)
         return cls(ptable["label"], ptable["id"], partitions)
 
-    def has_partition_table(self):
-        """
-        Returns true if the partition table is actually containing one. False
-        would mean that it only contains a single partition in self.partitions.
-        """
-        return self.partition_table is not None
-
     @contextlib.contextmanager
     def mount(self, device, context):
         """
@@ -179,7 +172,7 @@ class PartitionTable(ReportElement):
             - Mount the device as the tree
         Yield the mounted tree as a result
         """
-        if self.has_partition_table():
+        if self.partition_table:
             yield FileSystemMounter(self.partitions).mount_all(context)
         else:
             with mount(device) as tree:
