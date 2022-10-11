@@ -111,7 +111,7 @@ def compare(obj1, obj2):
     return "unchanged"
 
 
-def list_changed_files():
+def list_changed_files(sha1="HEAD", sha2="HEAD~1", db_dir="manifest-db"):
     """
     Go through the diff between this commit and the last one and list all the
     files in there. An update is only valid if it contains only the DB part that
@@ -119,7 +119,8 @@ def list_changed_files():
     """
     try:
         command = subprocess.run(
-            ["git", "diff-tree",  "--no-commit-id", "--name-only", "HEAD", "-r"],
+            ["git", "diff-tree",  "--no-commit-id", "--name-only", sha1, sha2,
+                "-r", db_dir],
             capture_output=True,
             check=True)
         return command.stdout.decode("utf-8").split("\n")
@@ -127,7 +128,7 @@ def list_changed_files():
         return None
 
 
-def get_db_entry_at_previous_version(file):
+def get_db_entry_at_previous_version(file, ref="HEAD^"):
     """
     Retrieves a version of a DB file from the previous commit state.
     """
@@ -135,7 +136,7 @@ def get_db_entry_at_previous_version(file):
         return None
     try:
         command = subprocess.run(
-            ["git", "show", f"HEAD^:{file}"],
+            ["git", "show", f"{ref}:{file}"],
             capture_output=True,
             check=True)
         return json.loads(command.stdout)
@@ -252,10 +253,10 @@ def ls_command(args):
     some icons for the user to know what changed and what not
     """
     files = []
-    lst = list_changed_files()
+    lst = list_changed_files(sha2=args.compare_to, db_dir=args.db_path)
     for i, file in enumerate(lst):
         filename = os.path.splitext(os.path.basename(file))[0]
-        prev = get_db_entry_at_previous_version(file)
+        prev = get_db_entry_at_previous_version(file, ref=args.compare_to)
         curr = get_db_entry_at_current_version(file)
 
         if not (prev or curr):
@@ -290,13 +291,13 @@ def diff_command(args):
     Diffs either some files or all the files with the difftool provided by the
     user.
     """
-    for file in list_changed_files():
+    for file in list_changed_files(sha2=args.compare_to, db_dir=args.db_path):
         filename = os.path.splitext(os.path.basename(file))[0]
 
         if args.file[0] and filename not in args.file[0]:
             continue
 
-        prev = get_db_entry_at_previous_version(file)
+        prev = get_db_entry_at_previous_version(file, ref=args.compare_to)
         curr = get_db_entry_at_current_version(file)
 
         if not (prev or curr):
@@ -333,10 +334,10 @@ def report_command(args):
         reporter = GHReport()
     else:
         reporter = CliReport()
-    for file in list_changed_files():
+    for file in list_changed_files(sha2=args.compare_to, db_dir=args.db_path):
         filename = os.path.splitext(os.path.basename(file))[0]
 
-        prev = get_db_entry_at_previous_version(file)
+        prev = get_db_entry_at_previous_version(file, ref=args.compare_to)
         curr = get_db_entry_at_current_version(file)
 
         if not (prev or curr):
@@ -367,6 +368,14 @@ def main():
         default=False,
         help="Disable UUID masking"
     )
+    parser.add_argument(
+        "--compare-to",
+        default="HEAD~1",
+        help='git ref to compare to, default to previous commit')
+    parser.add_argument(
+        "--db-path",
+        default="manifest-db",
+        help='the path to the DB directory')
     subparsers = parser.add_subparsers(
         title="command",
         required=True,
