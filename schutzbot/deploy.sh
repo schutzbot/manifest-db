@@ -7,8 +7,8 @@ sudo dnf install -y jq
 DNF_REPO_BASEURL=http://osbuild-composer-repos.s3.amazonaws.com
 
 # The osbuild-composer commit to run reverse-dependency test against.
-# Currently: CI: temporarily switch RHOS-01 to non-ssd instances
-OSBUILD_COMPOSER_COMMIT=de72b36dddfc703d76d79479dde7b92f0a78e924
+# Currently: rpmbuild: build rpms on RHEL 8.8 and 9.2
+OSBUILD_COMPOSER_COMMIT=caac5fc7af0ec59df7bcb590de233f82cdcef4e8
 OSBUILD_COMMIT=$(jq -r '.global.dependencies.osbuild.commit' Schutzfile)
 
 # Get OS details.
