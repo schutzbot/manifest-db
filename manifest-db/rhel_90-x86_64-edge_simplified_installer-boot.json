@@ -969,7 +969,7 @@
               "repo": "/ostree/repo",
               "config": {
                 "sysroot": {
-                  "readonly": true,
+                  "readonly": false,
                   "bootloader": "none"
                 }
               }
@@ -1186,6 +1186,35 @@
             }
           },
           {
+            "type": "org.osbuild.lvm2.create",
+            "options": {
+              "volumes": [
+                {
+                  "name": "rootlv",
+                  "size": "9663676416B"
+                }
+              ]
+            },
+            "devices": {
+              "device": {
+                "type": "org.osbuild.luks2",
+                "parent": "luks-6e4f",
+                "options": {
+                  "passphrase": "osbuild"
+                }
+              },
+              "luks-6e4f": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "image.raw",
+                  "start": 1050624,
+                  "size": 19920863,
+                  "lock": true
+                }
+              }
+            }
+          },
+          {
             "type": "org.osbuild.mkfs.fat",
             "options": {
               "volid": "7B7795E7"
@@ -1228,10 +1257,10 @@
             },
             "devices": {
               "device": {
-                "type": "org.osbuild.luks2",
-                "parent": "luks-6e4f",
+                "type": "org.osbuild.lvm2.lv",
+                "parent": "rootvgvg",
                 "options": {
-                  "passphrase": "osbuild"
+                  "volume": "rootlv"
                 }
               },
               "luks-6e4f": {
@@ -1241,6 +1270,13 @@
                   "start": 1050624,
                   "size": 19920863,
                   "lock": true
+                }
+              },
+              "rootvgvg": {
+                "type": "org.osbuild.luks2",
+                "parent": "luks-6e4f",
+                "options": {
+                  "passphrase": "osbuild"
                 }
               }
             }
@@ -1290,6 +1326,13 @@
                 }
               },
               "root": {
+                "type": "org.osbuild.lvm2.lv",
+                "parent": "rootvgvg",
+                "options": {
+                  "volume": "rootlv"
+                }
+              },
+              "rootvgvg": {
                 "type": "org.osbuild.luks2",
                 "parent": "luks-6e4f",
                 "options": {
@@ -1317,6 +1360,30 @@
                 "target": "/boot/efi"
               }
             ]
+          },
+          {
+            "type": "org.osbuild.lvm2.metadata",
+            "options": {
+              "vg_name": "rootvg"
+            },
+            "devices": {
+              "device": {
+                "type": "org.osbuild.luks2",
+                "parent": "luks-6e4f",
+                "options": {
+                  "passphrase": "osbuild"
+                }
+              },
+              "luks-6e4f": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "image.raw",
+                  "start": 1050624,
+                  "size": 19920863,
+                  "lock": true
+                }
+              }
+            }
           },
           {
             "type": "org.osbuild.luks2.remove-key",

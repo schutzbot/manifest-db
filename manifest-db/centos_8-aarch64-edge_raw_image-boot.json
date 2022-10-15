@@ -2446,7 +2446,7 @@
               "repo": "/ostree/repo",
               "config": {
                 "sysroot": {
-                  "readonly": true,
+                  "readonly": false,
                   "bootloader": "none"
                 }
               }
