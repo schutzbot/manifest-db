@@ -3,7 +3,6 @@
 import argparse
 import configparser
 import contextlib
-import errno
 import functools
 import glob
 import mimetypes
@@ -21,9 +20,12 @@ import xml.etree.ElementTree
 import yaml
 
 from collections import OrderedDict
-from typing import Dict, Any, Generator
+from typing import Dict, Any
 
-from osbuild import loop
+from osbuild import devices, host, mounts, meta, monitor
+
+index = meta.Index("/usr/lib/osbuild/")
+SECTOR_SIZE = 512
 
 
 def run_ostree(*args, _input=None, _check=True, **kwargs):
@@ -38,36 +40,20 @@ def run_ostree(*args, _input=None, _check=True, **kwargs):
 
 
 @contextlib.contextmanager
-def loop_create_device(ctl, fd, offset=None, sizelimit=None):
-    while True:
-        lo = loop.Loop(ctl.get_unbound())
-        try:
-            lo.set_fd(fd)
-        except OSError as e:
-            lo.close()
-            if e.errno == errno.EBUSY:
-                continue
-            raise e
-        try:
-            lo.set_status(offset=offset, sizelimit=sizelimit, autoclear=True)
-        except BlockingIOError:
-            lo.clear_fd()
-            lo.close()
-            continue
-        break
-    try:
-        yield lo
-    finally:
-        lo.close()
-
-
-@contextlib.contextmanager
-def loop_open(ctl, image, *, offset=None, size=None):
-    with open(image, "rb") as f:
-        fd = f.fileno()
-        with loop_create_device(ctl, fd, offset=offset, sizelimit=size) as lo:
-            yield os.path.join("/dev", lo.devname)
-
+def loop_open(devpath:str, devmgr:devices.DeviceManager, name:str, image, size, offset=0):
+    info = index.get_module_info("Device", "org.osbuild.loopback")
+    fname = os.path.basename(image)
+    options = {
+        "filename": fname,
+        "start": offset // SECTOR_SIZE,
+        "size": size // SECTOR_SIZE
+    }
+    dev = devices.Device(name, info, None, options)
+    reply = devmgr.open(dev)
+    yield {
+        "dev": dev,
+        "path": os.path.join(devpath, reply["path"])
+    }
 
 @contextlib.contextmanager
 def convert_image(image, fmt):
@@ -237,7 +223,7 @@ def read_partition(device, partition):
     else:
         blkid = {}
 
-    partition["label"] = blkid.get("LABEL") # doesn't exist for mbr
+    partition["label"] = blkid.get("LABEL")  # doesn't exist for mbr
     partition["uuid"] = blkid.get("UUID")
     partition["fstype"] = blkid.get("TYPE")
     return partition
@@ -291,7 +277,7 @@ def read_partition_table(device):
     ptable = sfdisk["partitiontable"]
     assert ptable["unit"] == "sectors"
     is_dos = ptable["label"] == "dos"
-    ssize = ptable.get("sectorsize", 512)
+    ssize = ptable.get("sectorsize", SECTOR_SIZE)
 
     for i, p in enumerate(ptable["partitions"]):
 
@@ -329,7 +315,7 @@ def read_bootloader_type(device) -> str:
     - 'unknown'
     """
     with open(device, "rb") as f:
-        if b"GRUB" in f.read(512):
+        if b"GRUB" in f.read(SECTOR_SIZE):
             return "grub"
         else:
             return "unknown"
@@ -414,7 +400,7 @@ def rpm_verify(tree):
     # verify user and group ownership:
     #   https://github.com/rpm-software-management/rpm/issues/882
     rpm = subprocess.Popen(["chroot", tree, "rpm", "--verify", "--all"],
-            stdout=subprocess.PIPE, encoding="utf-8")
+                           stdout=subprocess.PIPE, encoding="utf-8")
 
     changed = {}
     missing = []
@@ -533,7 +519,8 @@ def read_services(tree, state):
         "chrony-wait.service"
     ]
     """
-    services_state = subprocess_check_output(["systemctl", f"--root={tree}", "list-unit-files"], (lambda s: parse_unit_files(s, state)))
+    services_state = subprocess_check_output(
+        ["systemctl", f"--root={tree}", "list-unit-files"], (lambda s: parse_unit_files(s, state)))
 
     # Since systemd v246, some services previously reported as "enabled" /
     # "disabled" are now reported as "alias". There is no systemd command, that
@@ -543,7 +530,8 @@ def read_services(tree, state):
     # pre/post v246 systemd versions, check all "alias" units and append them
     # to the list, if their target is also listed in 'services_state'.
     if state != "alias":
-        services_alias = subprocess_check_output(["systemctl", f"--root={tree}", "list-unit-files"], (lambda s: parse_unit_files(s, "alias")))
+        services_alias = subprocess_check_output(
+            ["systemctl", f"--root={tree}", "list-unit-files"], (lambda s: parse_unit_files(s, "alias")))
 
         for alias in services_alias:
             # The service may be in one of the following places (output of
@@ -2466,13 +2454,13 @@ def volume_group_for_device(device: str) -> str:
 
         if res.returncode == 5:
             if count == 10:
-                raise RuntimeError("Could not find parent device")
+                raise RuntimeError("Could not find parent device {res.stderr}")
             time.sleep(1*count)
             count += 1
             continue
 
         if res.returncode != 0:
-             raise RuntimeError(res.stderr.strip())
+            raise RuntimeError(res.stderr.strip())
 
         vg_name = res.stdout.strip()
         if vg_name:
@@ -2488,161 +2476,208 @@ def ensure_device_file(path: str, major: int, minor: int):
         os.mknod(path, 0o600 | stat.S_IFBLK, os.makedev(major, minor))
 
 
-@contextlib.contextmanager
-def discover_lvm(dev) -> Generator[Dict[str, Any], None, None]:
+def discover_lvm(devpath:str, parent, devmgr:devices.DeviceManager):
     # find the volume group name for the device file
-    vg_name = volume_group_for_device(dev)
+    vg_name = volume_group_for_device(devpath)
 
-    # activate it
-    r = subprocess.run(["vgchange", "-ay", vg_name],
-                       stdout=subprocess.DEVNULL,
-                       stderr=subprocess.PIPE,
-                       check=False)
-    if r.returncode != 0:
-        raise RuntimeError(r.stderr.strip())
+    # Find all logical volumes in the volume group
+    cmd = [
+        "lvdisplay", "-C", "--noheadings",
+        "-o", "lv_name,path,lv_kernel_major,lv_kernel_minor",
+        "--separator", ";",
+        vg_name
+    ]
 
-    try:
-        # Find all logical volumes in the volume group
-        cmd = [
-            "lvdisplay", "-C", "--noheadings",
-            "-o", "lv_name,path,lv_kernel_major,lv_kernel_minor",
-            "--separator", ";",
-            vg_name
-        ]
+    res = subprocess.run(cmd,
+                         check=False,
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE,
+                         encoding="UTF-8")
 
-        res = subprocess.run(cmd,
-                             check=False,
-                             stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE,
-                             encoding="UTF-8")
+    if res.returncode != 0:
+        raise RuntimeError(f"lvdisplay failed {res.returncode}: {res.stderr.strip()}")
 
-        if res.returncode != 0:
-            raise RuntimeError(res.stderr.strip())
+    data = res.stdout.strip()
+    parsed = list(map(lambda l: l.split(";"), data.split("\n")))
+    volumes = OrderedDict()
 
-        data = res.stdout.strip()
-        parsed = list(map(lambda l: l.split(";"), data.split("\n")))
-        volumes = OrderedDict()
+    devices_map = {}
+    for vol in parsed:
+        vol = list(map(lambda v: v.strip(), vol))
+        assert len(vol) == 4
+        name, _, _, _ = vol
 
-        for vol in parsed:
-            vol = list(map(lambda v: v.strip(), vol))
-            assert len(vol) == 4
-            name, voldev, major, minor = vol
-            info = {
-                "device": voldev
-            }
-            ensure_device_file(voldev, int(major), int(minor))
-
-            read_partition(voldev, info)
-            volumes[name] = info
-            if name.startswith("root"):
-                volumes.move_to_end(name, last=False)
-        yield {
-            "lvm": True,
-            "lvm.vg": vg_name,
-            "lvm.volumes": volumes
+        options = {
+            "volume": name,
         }
+        dev = devices.Device(
+                    name,
+                    index.get_module_info("Device", "org.osbuild.lvm2.lv"),
+                    parent,
+                    options)
+        reply = devmgr.open(dev)
+        voldev = reply["path"]
+        minor = reply["node"]["minor"]
+        major = reply["node"]["major"]
 
-    finally:
-        r = subprocess.run(["vgchange", "-an", vg_name],
-                            stdout=subprocess.DEVNULL,
-                            stderr=subprocess.PIPE,
-                            check=False)
-        if r.returncode != 0:
-            raise RuntimeError(r.stderr.strip())
+
+        info = {
+            "device": voldev
+        }
+        devices_map[voldev] = dev
+        ensure_device_file(voldev, int(major), int(minor))
+
+        read_partition(voldev, info)
+        volumes[name] = info
+        if name.startswith("root"):
+            volumes.move_to_end(name, last=False)
+    return devices_map, {
+        "lvm": True,
+        "lvm.vg": vg_name,
+        "lvm.volumes": volumes
+    }
+
 
 
 def partition_is_lvm(part: Dict) -> bool:
     return part["type"].upper() in ["E6D6D379-F507-44C2-A23C-238F2A3DF928", "8E"]
 
 
-def append_partitions(report, image, loctl):
+def append_partitions(report, image, devpath:str, cm: contextlib.ExitStack, mgr:host.ServiceManager):
     partitions = report["partitions"]
 
-    with contextlib.ExitStack() as cm:
-        # open each partition as a loop device
-        filesystems = {}
-        for part in partitions:
-            start, size = part["start"], part["size"]
-            dev = cm.enter_context(loop_open(loctl, image, offset=start, size=size))
-            read_partition(dev, part)
-            if partition_is_lvm(part):
-                lvm = cm.enter_context(discover_lvm(dev))
-                for vol in lvm["lvm.volumes"].values():
-                    if vol["fstype"]:
-                        mntopts = []
-                        # we cannot recover since the underlying loopback device is mounted
-                        # read-only but since we are using the it through the device mapper
-                        # the fact might not be communicated and the kernel attempt a to
-                        # a recovery of the filesystem, which will lead to a kernel panic
-                        if vol["fstype"] in ("ext4", "ext3", "xfs"):
-                            mntopts = ["norecovery"]
-                        filesystems[vol["uuid"].upper()] = {
-                            "device": vol["device"],
-                            "mntops": mntopts
-                        }
-                    del vol["device"]
-                part.update(lvm)
-            elif part["uuid"] and part["fstype"]:
-                filesystems[part["uuid"].upper()] = {
-                    "device": dev
-                }
+    devmgr = devices.DeviceManager(mgr, devpath, os.path.dirname(image))
+    devices_map = {}
+    filesystems = {}
+    # open each partition as a loop device
+    for part in partitions:
+        start, size = part["start"], part["size"]
+        ret = cm.enter_context(
+            loop_open(
+                devpath,
+                devmgr,
+                part["partuuid"],
+                image,
+                size,
+                offset=start)
+        )
+        devices_map[ret["path"]] = ret["dev"]
+        read_partition(ret["path"], part)
+        if partition_is_lvm(part):
+            # Temporary hack:
+            # It seems that for some distros pvdisplay doesn't manage to open
+            # the device when we're working under with /dev in the temporary
+            # directory.
+            tst = f"/dev{ret['path'].split('dev')[1]}"
+            dmap, lvm = discover_lvm(tst, ret["dev"], devmgr)
+            devices_map.update(dmap)
 
-        # find partition with fstab and read it
-        fstab = []
-        for fs in filesystems.values():
-            dev, opts = fs["device"], fs.get("mntops")
-            with mount(dev, opts) as tree:
-                if os.path.exists(f"{tree}/etc/fstab"):
-                    fstab.extend(read_fstab(tree))
-                    break
-        # sort the fstab entries by the mountpoint
-        fstab = sorted(fstab, key=operator.itemgetter(1))
+            for vol in lvm["lvm.volumes"].values():
+                if vol["fstype"]:
+                    mntopts = []
+                    # we cannot recover since the underlying loopback device is mounted
+                    # read-only but since we are using the it through the device mapper
+                    # the fact might not be communicated and the kernel attempt a to
+                    # a recovery of the filesystem, which will lead to a kernel panic
+                    if vol["fstype"] in ("ext4", "ext3", "xfs"):
+                        mntopts = ["norecovery"]
+                    filesystems[vol["uuid"].upper()] = {
+                        "device": vol["device"],
+                        "mntops": mntopts
+                    }
+                del vol["device"]
+            part.update(lvm)
+        elif part["uuid"] and part["fstype"]:
+            filesystems[part["uuid"].upper()] = {
+                "device": ret["path"]
+            }
 
-        # mount all partitions to ther respective mount points
-        root_tree = ""
-        for n, fstab_entry in enumerate(fstab):
-            part_uuid = fstab_entry[0].split("=")[1].upper()
-            part_device = filesystems[part_uuid]["device"]
-            part_mountpoint = fstab_entry[1]
-            part_fstype = fstab_entry[2]
-            part_options = fstab_entry[3].split(",")
-            part_options += filesystems[part_uuid].get("mntops", [])
+    # find partition with fstab and read it
+    fstab = []
+    for fs in filesystems.values():
+        dev, opts = fs["device"], fs.get("mntops")
+        with mount(dev, opts) as tree:
+            if os.path.exists(f"{tree}/etc/fstab"):
+                fstab.extend(read_fstab(tree))
+                break
+    # sort the fstab entries by the mountpoint
+    fstab = sorted(fstab, key=operator.itemgetter(1))
 
-            # the first mount point should be root
-            if n == 0:
-                if part_mountpoint != "/":
-                    raise RuntimeError("The first mountpoint in sorted fstab entries is not '/'")
-                root_tree = cm.enter_context(mount(part_device, part_options))
-                continue
+    # mount all partitions to ther respective mount points
+    root_tree = ""
+    mountpoint = cm.enter_context(tempfile.TemporaryDirectory())
+    mmgr = mounts.MountManager(devmgr, mountpoint)
+    for n, fstab_entry in enumerate(fstab):
+        part_uuid = fstab_entry[0].split("=")[1].upper()
+        part_device = filesystems[part_uuid]["device"]
+        part_mountpoint = fstab_entry[1]
+        part_fstype = fstab_entry[2]
+        part_options = fstab_entry[3].split(",")
+        part_options += filesystems[part_uuid].get("mntops", [])
 
-            cm.enter_context(mount_at(part_device, f"{root_tree}{part_mountpoint}", options=part_options, extra=["-t", part_fstype]))
+        if "ext4" in part_fstype:
+            info = index.get_module_info("Mount", "org.osbuild.ext4")
+        elif "vfat" in part_fstype:
+            info = index.get_module_info("Mount", "org.osbuild.fat")
+        elif "btrfs" in part_fstype:
+            info = index.get_module_info("Mount", "org.osbuild.btrfs")
+        elif "xfs" in part_fstype:
+            info = index.get_module_info("Mount", "org.osbuild.xfs")
+        else:
+            raise RuntimeError("Unknown file system")
+        options = { "readonly":True }
 
-        if not root_tree:
-            raise RuntimeError("The root filesystem tree is not mounted")
 
-        append_filesystem(report, root_tree)
+        # the first mount point should be root
+        if n == 0:
+            if part_mountpoint != "/":
+                raise RuntimeError("The first mountpoint in sorted fstab entries is not '/'")
+            root_tree = mountpoint
+        mmgr.mount(mounts.Mount(
+            part_device,
+            info,
+            devices_map[part_device],
+            part_mountpoint,
+            options))
+
+    if not root_tree:
+        raise RuntimeError("The root filesystem tree is not mounted")
+
+    append_filesystem(report, root_tree)
 
 
 def analyse_image(image) -> Dict[str, Any]:
-    loctl = loop.LoopControl()
-
     imgfmt = read_image_format(image)
     report: Dict[str, Any] = {"image-format": imgfmt}
 
-    with convert_image(image, imgfmt) as target:
-        size = os.stat(target).st_size
-        with loop_open(loctl, target, offset=0, size=size) as device:
-            report["bootloader"] = read_bootloader_type(device)
-            report.update(read_partition_table(device))
-            if not report["partition-table"]:
-                # no partition table: mount device and treat it as a partition
-                with mount(device) as tree:
-                    append_filesystem(report, tree)
-                return report
+    with tempfile.TemporaryDirectory() as tmpdir:
+        with make_dev_tmpfs(tmpdir) as devpath:
+            with convert_image(image, imgfmt) as target:
+                size = os.stat(target).st_size
+                with contextlib.ExitStack() as cm:
+                    with host.ServiceManager(monitor=monitor.NullMonitor(1)) as mgr:
+                        devmgr = devices.DeviceManager(mgr,
+                                                       devpath,
+                                                       os.path.dirname(target))
+                        with loop_open(
+                                devpath,
+                                devmgr,
+                                os.path.basename(target),
+                                target,
+                                size,
+                                offset=0) as ret:
+                            device = ret["path"]
+                            report["bootloader"] = read_bootloader_type(device)
+                            report.update(read_partition_table(device))
+                            if not report["partition-table"]:
+                                # no partition table: mount device and treat it as a partition
+                                with mount(device) as tree:
+                                    append_filesystem(report, tree)
+                                return report
 
-        # close loop device and descend into partitions on image file
-        append_partitions(report, target, loctl)
-        return report
+                        # close loop device and descend into partitions on image file
+                        append_partitions(report, target, devpath, cm, mgr)
+    return report
 
 
 def append_directory(report, tree):
@@ -2760,6 +2795,16 @@ def analyse_compressed(path):
         image = os.path.join(tmpdir, files[0])
         return analyse_image(image)
 
+@contextlib.contextmanager
+def make_dev_tmpfs(tmpdir):
+    dev_path = os.path.join(tmpdir, "dev")
+    os.makedirs(dev_path)
+    subprocess.run(["mount", "-t", "tmpfs", "-o", "nosuid", "none", dev_path], check=True)
+    try:
+        yield dev_path
+    finally:
+        subprocess.run(["umount", "--lazy", dev_path], check=True)
+        os.rmdir(dev_path)
 
 def main():
     parser = argparse.ArgumentParser(description="Inspect an image")
@@ -2784,4 +2829,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
