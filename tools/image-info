@@ -2815,14 +2815,23 @@ def main():
     args = parser.parse_args()
     target = args.target
 
-    if os.path.isdir(target):
-        report = analyse_directory(target)
-    elif is_tarball(target):
-        report = analyse_tarball(target)
-    elif is_compressed(target):
-        report = analyse_compressed(target)
-    else:
-        report = analyse_image(target)
+    attempts = 0
+    while True:
+        attempts += 1
+        try:
+            if os.path.isdir(target):
+                report = analyse_directory(target)
+            elif is_tarball(target):
+                report = analyse_tarball(target)
+            elif is_compressed(target):
+                report = analyse_compressed(target)
+            else:
+                report = analyse_image(target)
+            break
+        except Exception as e:
+            print(f"failed attempt 1 {e}", file=sys.stderr)
+            if attempts == 10:
+                raise(e)
 
     json.dump(report, sys.stdout, sort_keys=True, indent=2)
 
