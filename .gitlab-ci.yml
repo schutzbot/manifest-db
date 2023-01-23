@@ -56,7 +56,7 @@ Regression:
   parallel:
     matrix:
       - RUNNER:
-          - aws/fedora-35-x86_64
+          - aws/fedora-36-x86_64
 
 Manifest-gen:
   stage: gen
@@ -94,10 +94,10 @@ Image-info-build:
   parallel:
     matrix:
       - RUNNER:
-          - aws/fedora-35-x86_64
-          - aws/fedora-35-aarch64
           - aws/fedora-36-x86_64
           - aws/fedora-36-aarch64
+          - aws/fedora-37-x86_64
+          - aws/fedora-37-aarch64
           - aws/centos-stream-8-x86_64
           - aws/centos-stream-8-aarch64
           - aws/centos-stream-9-x86_64
@@ -105,12 +105,16 @@ Image-info-build:
       - RUNNER:
           - aws/rhel-8.6-ga-x86_64
           - aws/rhel-8.6-ga-aarch64
-          - aws/rhel-8.7-nightly-x86_64
-          - aws/rhel-8.7-nightly-aarch64
+          - aws/rhel-8.7-ga-x86_64
+          - aws/rhel-8.7-ga-aarch64
+          - aws/rhel-8.8-nightly-x86_64
+          - aws/rhel-8.8-nightly-aarch64
           - aws/rhel-9.0-ga-x86_64
           - aws/rhel-9.0-ga-aarch64
-          - aws/rhel-9.1-nightly-x86_64
-          - aws/rhel-9.1-nightly-aarch64
+          - aws/rhel-9.1-ga-x86_64
+          - aws/rhel-9.1-ga-aarch64
+          - aws/rhel-9.2-nightly-x86_64
+          - aws/rhel-9.2-nightly-aarch64
         INTERNAL_NETWORK: "true"
 
 push-image-info:
@@ -127,7 +131,7 @@ push-image-info:
   parallel:
     matrix:
       - RUNNER:
-          - aws/fedora-35-x86_64
+          - aws/fedora-36-x86_64
 
 finish:
   stage: finish
