@@ -18,6 +18,7 @@ import time
 import tempfile
 import xml.etree.ElementTree
 import yaml
+import pathlib
 
 from collections import OrderedDict
 from typing import Dict, Any
@@ -2795,6 +2796,22 @@ def analyse_compressed(path):
         image = os.path.join(tmpdir, files[0])
         return analyse_image(image)
 
+def is_iso(path):
+    return "iso" in pathlib.Path(path).suffix
+
+
+def analyse_iso(path):
+    with tempfile.TemporaryDirectory(dir="/var/tmp") as tmp:
+        report = None
+        subprocess.run(["mount", "-o", "loop", path, tmp], check=True)
+        try:
+            report = analyse_tarball(os.path.join(tmp, "liveimg.tar.gz"))
+        except Exception as e:
+            print(f"{e}", file=sys.stderr)
+        subprocess.run(["umount", tmp], check=True)
+        return report
+
+
 @contextlib.contextmanager
 def make_dev_tmpfs(tmpdir):
     dev_path = os.path.join(tmpdir, "dev")
@@ -2825,6 +2842,8 @@ def main():
                 report = analyse_tarball(target)
             elif is_compressed(target):
                 report = analyse_compressed(target)
+            elif is_iso(target):
+                report = analyse_iso(target)
             else:
                 report = analyse_image(target)
             break
