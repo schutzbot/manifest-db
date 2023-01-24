@@ -2676,7 +2676,9 @@ def analyse_image(image) -> Dict[str, Any]:
                                     append_filesystem(report, tree)
                                 return report
 
-                        # close loop device and descend into partitions on image file
+                # close loop device and descend into partitions on image file
+                with contextlib.ExitStack() as cm:
+                    with host.ServiceManager(monitor=monitor.NullMonitor(1)) as mgr:
                         append_partitions(report, target, devpath, cm, mgr)
     return report
 
