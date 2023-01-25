@@ -6429,7 +6429,7 @@
         "size": 67667738112,
         "start": 1051721728,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "27EdZQ-sSd4-Dh2W-njQa-rMQM-9sDh-dahfOC"
+        "uuid": "wzXGcg-2kZh-OEfL-jHrT-Qs3b-CVvf-XjP4QG"
       },
       {
         "bootable": false,
@@ -6548,12 +6548,16 @@
     },
     "rpm-verify": {
       "changed": {
-        "/boot/efi/EFI/BOOT/BOOTX64.EFI": ".......T.",
-        "/boot/efi/EFI/BOOT/fbx64.efi": ".......T.",
-        "/boot/efi/EFI/redhat/BOOTX64.CSV": ".......T.",
-        "/boot/efi/EFI/redhat/mmx64.efi": ".......T.",
-        "/boot/efi/EFI/redhat/shimx64-redhat.efi": ".......T.",
-        "/boot/efi/EFI/redhat/shimx64.efi": ".......T.",
+        "/boot/efi/EFI/BOOT/BOOTX64.EFI": ".M.....T.",
+        "/boot/efi/EFI/BOOT/fbx64.efi": ".M.....T.",
+        "/boot/efi/EFI/redhat": ".M.......",
+        "/boot/efi/EFI/redhat/BOOTX64.CSV": ".M.....T.",
+        "/boot/efi/EFI/redhat/fonts": ".M.......",
+        "/boot/efi/EFI/redhat/grub.cfg": ".M.......",
+        "/boot/efi/EFI/redhat/grubx64.efi": ".M.......",
+        "/boot/efi/EFI/redhat/mmx64.efi": ".M.....T.",
+        "/boot/efi/EFI/redhat/shimx64-redhat.efi": ".M.....T.",
+        "/boot/efi/EFI/redhat/shimx64.efi": ".M.....T.",
         "/etc/dnf/plugins/subscription-manager.conf": "S.5....T.",
         "/etc/machine-id": ".M.......",
         "/etc/rhsm/rhsm.conf": "..5....T.",

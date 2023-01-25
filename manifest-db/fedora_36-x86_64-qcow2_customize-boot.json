@@ -5249,8 +5249,10 @@
           {
             "type": "org.osbuild.chrony",
             "options": {
-              "timeservers": [
-                "time.example.com"
+              "servers": [
+                {
+                  "hostname": "time.example.com"
+                }
               ]
             }
           },
@@ -7891,7 +7893,7 @@
         "size": 4297047552,
         "start": 736100352,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "KM3H39-xCdr-937n-kf0o-F5n3-gd2Z-sLqGut"
+        "uuid": "kFFuBw-hQxg-JpEs-jUey-FhW0-LOSw-Tghp52"
       },
       {
         "bootable": false,
@@ -7954,19 +7956,23 @@
     ],
     "rpm-verify": {
       "changed": {
-        "/boot/efi/EFI": ".M.......",
-        "/boot/efi/EFI/BOOT/BOOTIA32.EFI": ".......T.",
-        "/boot/efi/EFI/BOOT/BOOTX64.EFI": ".......T.",
-        "/boot/efi/EFI/BOOT/fbia32.efi": ".......T.",
-        "/boot/efi/EFI/BOOT/fbx64.efi": ".......T.",
-        "/boot/efi/EFI/fedora/BOOTIA32.CSV": ".......T.",
-        "/boot/efi/EFI/fedora/BOOTX64.CSV": ".......T.",
-        "/boot/efi/EFI/fedora/grubx64.efi": ".......T.",
-        "/boot/efi/EFI/fedora/mmia32.efi": ".......T.",
-        "/boot/efi/EFI/fedora/mmx64.efi": ".......T.",
-        "/boot/efi/EFI/fedora/shim.efi": ".......T.",
-        "/boot/efi/EFI/fedora/shimia32.efi": ".......T.",
-        "/boot/efi/EFI/fedora/shimx64.efi": ".......T.",
+        "/boot/efi": ".M.......",
+        "/boot/efi/EFI/BOOT": ".M.......",
+        "/boot/efi/EFI/BOOT/BOOTIA32.EFI": ".M.....T.",
+        "/boot/efi/EFI/BOOT/BOOTX64.EFI": ".M.....T.",
+        "/boot/efi/EFI/BOOT/fbia32.efi": ".M.....T.",
+        "/boot/efi/EFI/BOOT/fbx64.efi": ".M.....T.",
+        "/boot/efi/EFI/fedora": ".M.......",
+        "/boot/efi/EFI/fedora/BOOTIA32.CSV": ".M.....T.",
+        "/boot/efi/EFI/fedora/BOOTX64.CSV": ".M.....T.",
+        "/boot/efi/EFI/fedora/grub.cfg": ".M.......",
+        "/boot/efi/EFI/fedora/grubia32.efi": ".M.......",
+        "/boot/efi/EFI/fedora/grubx64.efi": ".M.....T.",
+        "/boot/efi/EFI/fedora/mmia32.efi": ".M.....T.",
+        "/boot/efi/EFI/fedora/mmx64.efi": ".M.....T.",
+        "/boot/efi/EFI/fedora/shim.efi": ".M.....T.",
+        "/boot/efi/EFI/fedora/shimia32.efi": ".M.....T.",
+        "/boot/efi/EFI/fedora/shimx64.efi": ".M.....T.",
         "/boot/grub2/fonts/unicode.pf2": ".M.......",
         "/boot/grub2/grub.cfg": ".M.......",
         "/etc/chrony.conf": "S.5....T.",

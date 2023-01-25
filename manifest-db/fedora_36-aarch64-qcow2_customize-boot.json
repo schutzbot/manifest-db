@@ -5105,8 +5105,10 @@
           {
             "type": "org.osbuild.chrony",
             "options": {
-              "timeservers": [
-                "time.example.com"
+              "servers": [
+                {
+                  "hostname": "time.example.com"
+                }
               ]
             }
           },
@@ -7665,7 +7667,7 @@
         "size": 4297047552,
         "start": 735051776,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "Z1XDpu-q3uR-J6NU-wM1E-dKmA-5c0n-fAfd7o"
+        "uuid": "NbfaBv-HHPO-K2g8-18Io-e402-bTkV-zpcah8"
       },
       {
         "bootable": false,
@@ -7718,14 +7720,17 @@
     ],
     "rpm-verify": {
       "changed": {
-        "/boot/efi/EFI": ".M.......",
-        "/boot/efi/EFI/BOOT/BOOTAA64.EFI": ".......T.",
-        "/boot/efi/EFI/BOOT/fbaa64.efi": ".......T.",
-        "/boot/efi/EFI/fedora/BOOTAA64.CSV": ".......T.",
-        "/boot/efi/EFI/fedora/grubaa64.efi": ".......T.",
-        "/boot/efi/EFI/fedora/mmaa64.efi": ".......T.",
-        "/boot/efi/EFI/fedora/shim.efi": ".......T.",
-        "/boot/efi/EFI/fedora/shimaa64.efi": ".......T.",
+        "/boot/efi": ".M.......",
+        "/boot/efi/EFI/BOOT": ".M.......",
+        "/boot/efi/EFI/BOOT/BOOTAA64.EFI": ".M.....T.",
+        "/boot/efi/EFI/BOOT/fbaa64.efi": ".M.....T.",
+        "/boot/efi/EFI/fedora": ".M.......",
+        "/boot/efi/EFI/fedora/BOOTAA64.CSV": ".M.....T.",
+        "/boot/efi/EFI/fedora/grub.cfg": ".M.......",
+        "/boot/efi/EFI/fedora/grubaa64.efi": ".M.....T.",
+        "/boot/efi/EFI/fedora/mmaa64.efi": ".M.....T.",
+        "/boot/efi/EFI/fedora/shim.efi": ".M.....T.",
+        "/boot/efi/EFI/fedora/shimaa64.efi": ".M.....T.",
         "/boot/grub2/grub.cfg": ".M.......",
         "/etc/chrony.conf": "S.5....T.",
         "/etc/machine-id": ".M.......",

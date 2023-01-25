@@ -7602,6 +7602,16 @@
     },
     "rpm-verify": {
       "changed": {
+        "/boot/efi/EFI/BOOT/BOOTAA64.EFI": ".M.......",
+        "/boot/efi/EFI/BOOT/fbaa64.efi": ".M.......",
+        "/boot/efi/EFI/redhat": ".M.......",
+        "/boot/efi/EFI/redhat/BOOTAA64.CSV": ".M.......",
+        "/boot/efi/EFI/redhat/grub.cfg": ".M.......",
+        "/boot/efi/EFI/redhat/grubaa64.efi": ".M.......",
+        "/boot/efi/EFI/redhat/mmaa64.efi": ".M.......",
+        "/boot/efi/EFI/redhat/shim.efi": ".M.......",
+        "/boot/efi/EFI/redhat/shimaa64-redhat.efi": ".M.......",
+        "/boot/efi/EFI/redhat/shimaa64.efi": ".M.......",
         "/boot/grub2/grub.cfg": ".M.......",
         "/etc/udev/hwdb.bin": ".M.......",
         "/proc": ".M.......",

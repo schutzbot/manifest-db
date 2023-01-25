@@ -77,43 +77,19 @@
                     "id": "sha256:9dc719992c6b385ce2c5d3ef35ecb5a0b5aae29ea99fa164f97aa2acb4346a02"
                   },
                   {
-                    "id": "sha256:d07d38957b3cc41160a80dc704ac0102d2e061b81e4b594a154bde0afbba0ec2"
-                  },
-                  {
                     "id": "sha256:ada47830190c9c63f8963870b180eca19f00fe3d570eedecd530e48716f5c160"
-                  },
-                  {
-                    "id": "sha256:84a88ef32206f0562cc7692039281416dae6884ad5009a39638cd3c7b583477d"
-                  },
-                  {
-                    "id": "sha256:29cfcb0061f1d7ae6fabfbfc4357fec18e6320b78229d4f08b4794d68c7136ff"
                   },
                   {
                     "id": "sha256:0f97ae871b19c01313979bfc246d1d9aa6cc6bd9a8d3c9f496e6427a3ff50796"
                   },
                   {
-                    "id": "sha256:ee21707fd626731a95029fd87a97f3d254283b072491246e951a4e2724e2bd21"
-                  },
-                  {
                     "id": "sha256:2d4c4fdfc10215af3c957c24995b79a26e27e6d76de4ed1f5198d25bf7ef9671"
-                  },
-                  {
-                    "id": "sha256:f1f333c1504961280da664d7cf50428d477aaf1c93aa5178c3919f8cda26799b"
-                  },
-                  {
-                    "id": "sha256:f6ed0807c49ed75d33a3e24df58bb6e8509c8846580359379ddb1e9bbd219269"
                   },
                   {
                     "id": "sha256:7228697855b1acaa00f8b5ab46d2f6ce9b0c4ce06ec5f25b771622498832596b"
                   },
                   {
                     "id": "sha256:5196f5f7d2387e9dcdf504c8534e3109cc84f7545240b6fbd18866217653b4fe"
-                  },
-                  {
-                    "id": "sha256:cf756251450efcb49efd925527a3843217f9076ea8392f2f22b63bba56eba2d1"
-                  },
-                  {
-                    "id": "sha256:07a6ff3d4ef4f04c7dc7f006a68795e030057745d10ea2a251e724e1d726e49b"
                   },
                   {
                     "id": "sha256:7493224a1482e44507df3a479b7664a8776b9506a288b6f53a3713bf4298f1b2"
@@ -155,9 +131,6 @@
                     "id": "sha256:e683c47baf67ed18dd3e2a767c4aacc0c4176c682a7067180c9949099b706d7a"
                   },
                   {
-                    "id": "sha256:643ac3feddb5d1ca0f997d1690d25bffd6bb62b1484260063f329ae5c8db3cec"
-                  },
-                  {
                     "id": "sha256:c4b06431383dac8f07fe1f1475195c6d1a1b8e2ead3c166d59e6434460061121"
                   },
                   {
@@ -171,15 +144,6 @@
                   },
                   {
                     "id": "sha256:0c8f8e301f75c77a24821cc9170596a799edb33c1bf58b6490aa97c8ed7d5996"
-                  },
-                  {
-                    "id": "sha256:cc11264a7593fc73d2b32b41c69eb69a0e50636cdc4a6d82dc5187f780d4548b"
-                  },
-                  {
-                    "id": "sha256:f3c7c69522dab05ee4a5e77eb6552d18185442aacaaf0562d8bea2fd7fffb9a0"
-                  },
-                  {
-                    "id": "sha256:f6f2c0a8cf1d3e5920c26edc2215e585de5e2261f19d24018de3495729153002"
                   },
                   {
                     "id": "sha256:5556895ff1817066ca71b50785615e944b0fcc7e1c94c983087c7c691819623d"
@@ -203,16 +167,10 @@
                     "id": "sha256:3b5593d79840c14b316383d150d58e25175249553e4e3be7dfbabb0fc56ac5a0"
                   },
                   {
-                    "id": "sha256:23bad0b0fa4770f108c763810ad4dcd7663c058da4da0aca868f7fe56a2b7544"
-                  },
-                  {
                     "id": "sha256:968d8adf218c8b01d13b28fc6e6c7856f5eba5d91f47c69c3180b956777e9181"
                   },
                   {
                     "id": "sha256:b9bde4162250023103d95908fbca44fff6636a46176f92cf1761c1c3a4580a2f"
-                  },
-                  {
-                    "id": "sha256:9f640485eb1df3b8d8759b3051bb1651b264fd0ca139b90c85ad919e365b0f22"
                   },
                   {
                     "id": "sha256:c491f49444112b0ceaaeac310a646a85a78e041cbf110c7cb465bd5783274160"
@@ -239,13 +197,7 @@
                     "id": "sha256:ff20c1890d9d5eb5135f21acf2b55f27fddac48934285b5b0fa72b591480edbb"
                   },
                   {
-                    "id": "sha256:20a5a375bd1a12950ba6ca5e4ca9f6af11020214da304317070803be37afd27c"
-                  },
-                  {
                     "id": "sha256:b10b0a214cf3eaf58537de9fa83c88ccc90287dde118e53bc1e9f9aed9eb6d18"
-                  },
-                  {
-                    "id": "sha256:9ba40981a8ea3d51a689a41c2d404bc8d127c6788bc3ae84cefcd5bd3e49cf66"
                   },
                   {
                     "id": "sha256:6519f028915fbd7ee0474f0bf4e98e35f04b5d0cf7be9f66c0cb9eafac0b8c5a"
@@ -266,16 +218,10 @@
                     "id": "sha256:e2fbd5786c552a45be3ef9b4062bea3b9695622bd2971caf2c5e9928f650e2b1"
                   },
                   {
-                    "id": "sha256:89c2c46e83f100481ecc279ee886ab0f38a4b4668adff7d779089037f4b19d4f"
-                  },
-                  {
                     "id": "sha256:b261ae0b9f219792473feeccecc515794e3602c8298f81cb8f492944b7aade03"
                   },
                   {
                     "id": "sha256:af6155b09837d119ad1ec4ac48234eec92724c31ccbafa3f330ddc5ae4699627"
-                  },
-                  {
-                    "id": "sha256:3c61e1641524aa7e00dbce211fa66b11260c282e7b98f961771e298900e8e39f"
                   },
                   {
                     "id": "sha256:435c54623ddcbb6d38d20e22b7964ad6bb627a88a2762120feeb98bbbadba1d0"
@@ -311,12 +257,6 @@
                     "id": "sha256:0749719fbba8f338d58158c0b705c9e00d157ce3ccd3b235c0a67d41d81fa461"
                   },
                   {
-                    "id": "sha256:7a9f8a5107e8f7a6132dce9c6a23b5a0c8c4ca41fab4e130c466b632e19f862c"
-                  },
-                  {
-                    "id": "sha256:cbfc39242893840be2cb4233c446094149700fe35b14b97779318ed007d4aeff"
-                  },
-                  {
                     "id": "sha256:97f8da04c24a08ca2700d8119d2b3cfdad207697e3c397d25db2b9470f3466e1"
                   },
                   {
@@ -327,15 +267,6 @@
                   },
                   {
                     "id": "sha256:14b7ff2f7fdaf8ebec90261f4619ea7f7c3564c4de8483666de7ed4b1f49b66f"
-                  },
-                  {
-                    "id": "sha256:776d77fe1d2f1789b123e0ad220bed3ff9b22c84971d768405caf2fca651e9eb"
-                  },
-                  {
-                    "id": "sha256:7bebc8a5fc0f4be20a1dce94deccd2495196c34027e18a3a732a0f97b40c86bb"
-                  },
-                  {
-                    "id": "sha256:dcf86efacb2a5ef040a399b57f8ec30027b2ed0e1a9d0e78e6e901d3957562e8"
                   },
                   {
                     "id": "sha256:e2015f60dbe784330d5df43f3f05c68c307694600a636a1706bf86527cc82e82"
@@ -357,12 +288,6 @@
                   },
                   {
                     "id": "sha256:d9f2166d5f2f5ecad7c49fc2f6bf49d6014b0df0a266b3ee6522959eeb13ed3f"
-                  },
-                  {
-                    "id": "sha256:f1afff374ac49b11d0d48bfee8e8ec59a329aba00a19630b09e4dc078e06859c"
-                  },
-                  {
-                    "id": "sha256:ef69385a6f77c4beea6b895edf4bb39cb70485967e30ac7655593e100e90768d"
                   },
                   {
                     "id": "sha256:2b7f7e08ee453638eb1f19acfd85477c4c7265f6cacf9a174946131bdbca455d"
@@ -404,34 +329,16 @@
                     "id": "sha256:3ec90a458c2a92a76b7d70b8e360011a597c1637bf76aae6ebbd23971094f2ee"
                   },
                   {
-                    "id": "sha256:95f517c1c1130d2fb8b562cbff77a69f5845f5f8fa75b4e18642a8c299fcc065"
-                  },
-                  {
-                    "id": "sha256:b7d9597aa6a247344ffdb19d0805124e718156a87cf0cb259c108ea79d1a43b2"
-                  },
-                  {
                     "id": "sha256:9658da838021711f687cf283368664984bfb1c8b9176897d7d477a724a11a731"
                   },
                   {
-                    "id": "sha256:2703054410f61e3a0cc8bf082800a75170644141e4f98aea3f483765ae372d3f"
-                  },
-                  {
                     "id": "sha256:cf60adcc7a5f0cb469e6f066a1bdc62ae9af7c06305c76c15884b59df7f93274"
-                  },
-                  {
-                    "id": "sha256:23a0ba949236e480769a3121d79e272411aefff0652f083a8f2a60bac8ffba29"
                   },
                   {
                     "id": "sha256:45cb0635b63c6adb54e252c0fb42eb6312d96c057e7eb770651539a787917b02"
                   },
                   {
                     "id": "sha256:d579161275a7d3d93a6420279331503c8b1a597cc3a9b611d615450bf42fb69f"
-                  },
-                  {
-                    "id": "sha256:44d73e10c58816ff1a215c6b5cefa4a24237892ec4bcd47e2d7d5bb84fa16619"
-                  },
-                  {
-                    "id": "sha256:3e044d8534970034063e6445a142780bbe9d37f5e75b98f8788ade5470a32ab6"
                   },
                   {
                     "id": "sha256:8caf70f76bc314ccb0cfd75377f561f12289a8e5ffcf537df1fab1c0e9bb8575"
@@ -458,9 +365,6 @@
                     "id": "sha256:36b604e6766356a69cbec08b800db5ac6f14d3b0e2297309a823eefd55295fa5"
                   },
                   {
-                    "id": "sha256:67d24d8ec5984645dfa9ff35a359693b2ed4079030d2f776702912684b6847da"
-                  },
-                  {
                     "id": "sha256:81cc717aa85cfeb5eb0a33b792903f66d9c353b0a48f44a7ccaf92e25f19d340"
                   },
                   {
@@ -479,40 +383,13 @@
                     "id": "sha256:3f7735e54e86a9c69317cf11fcc2adce3d2d4691e3178f89e0e8175794fb83af"
                   },
                   {
-                    "id": "sha256:30ad5408417c7f06fb945dc321bef3ce31f813f25389707dd1efa7c1d337b806"
-                  },
-                  {
                     "id": "sha256:f34e04bf6d0abc48c0704bb64ca71fb7c9a219fbeaa69480ea7ff5fade97da53"
                   },
                   {
                     "id": "sha256:c746c3e534fa6616b62525a89cc8ab1014e5acfac31b1012823b5f1e9031181c"
                   },
                   {
-                    "id": "sha256:05904e53c832795f1d3e01cac91e3ca30984b91fa47f10873a1b325d5436c297"
-                  },
-                  {
-                    "id": "sha256:4f6741962c5b9346e5daf41795407976e8f22c42d64066c239e482556abba9cf"
-                  },
-                  {
-                    "id": "sha256:cf9c271c85d461922948f52a3e89b53448d924d33e94b13daf5d9324f0342dd7"
-                  },
-                  {
-                    "id": "sha256:2891b96562f179ca2f2ad5e7fbe21d197e99eb3c9eb54cd401660563f9399155"
-                  },
-                  {
-                    "id": "sha256:9caa68479e669c5e0e2149352fb748114e528a12408319de0a6f452bad52902b"
-                  },
-                  {
                     "id": "sha256:2d963fbff4044e88673c52fb03cc11d9395dcc2a0c27a26844477bf6eb1e8160"
-                  },
-                  {
-                    "id": "sha256:39d6fe73373ae5692e510b7c6219ad1ffadad0f1bc59cb7095faf6e095811768"
-                  },
-                  {
-                    "id": "sha256:004e7c0e5cb9e300f39884c24dfdb7ddb686c84a2350691b24fa07b05102e325"
-                  },
-                  {
-                    "id": "sha256:ff8d06130b2dd5e4f2715ad521d07435f68bab8b99e1a443f0b87767e9a5af77"
                   },
                   {
                     "id": "sha256:e9efb4a947b2a178c85aa20bc5283d11f0dc85404fe527c25153d2389085eb71"
@@ -521,28 +398,13 @@
                     "id": "sha256:688bacfd60f31d9e7b1d295d8929d7f953ec789b86c475ef828c0b74d35d5ae4"
                   },
                   {
-                    "id": "sha256:86d1533dd9531354f266b8c434e5ceadc94b9c3d249f3e43d16813acabff39e4"
-                  },
-                  {
                     "id": "sha256:01de25f463fc6423b7770ba03bdc8370f14e7651ac34a313ccddadd6096036a3"
-                  },
-                  {
-                    "id": "sha256:144f40b60300da8dabf918a94fe915e10fbb7a87123968a5dfc10873a9014a03"
-                  },
-                  {
-                    "id": "sha256:a69d00ba5c26d5840f62a59ad8d63ee7eae3a3123169877532b4130f743b0d80"
-                  },
-                  {
-                    "id": "sha256:5b12804c6d28b5c368618f671d2e654c7587b3cc76d162b0c0b08f3b30528fee"
                   },
                   {
                     "id": "sha256:e4ab6f11d394cb13a23494da17a8432ad248c4e4f16df79d1aff439d77202298"
                   },
                   {
                     "id": "sha256:17127ca6f27ec841e7b0cd6520bb0ae3d0e523b03ca8709d808b045b44992c34"
-                  },
-                  {
-                    "id": "sha256:0f7eb2eddf9c8d10c554a67a68df0bca3bcd47186697d6c98d780b1d8d8cab00"
                   },
                   {
                     "id": "sha256:01bf315b3bc44c28515c4d33d49173b23d7979d2a09b7b15f749d434b60851e6"
@@ -557,16 +419,10 @@
                     "id": "sha256:1eccf723e9479d332fb0c2ca94e895822191fe308facac257ffb1ed6f61eb471"
                   },
                   {
-                    "id": "sha256:1c1970de125888d6e9bb0ecaee31a2ac07e9aa679c026b69393536bc7dbe8702"
-                  },
-                  {
                     "id": "sha256:c086660b8641ce83d38d70c098fc15e84b60ab95215829977b8af69dbad00a7b"
                   },
                   {
                     "id": "sha256:dd88e7ff24522405ac17d3eeba67e573b2645fef7090cce0dca44a984be6eadc"
-                  },
-                  {
-                    "id": "sha256:588411c7135c1b78c55f17328e1ff29bbcc9f64dc2dbedac656b0f9ca6788d66"
                   },
                   {
                     "id": "sha256:bf3baf444e49eba4189e57d562a7522ab714132d2960db87ef9b99f1b46a3cc4"
@@ -587,15 +443,6 @@
                     "id": "sha256:372a5cfa95d2edb67435b0386029501ff5254bca91430b6d6e8e446582ba258a"
                   },
                   {
-                    "id": "sha256:82d9a46ca7b2ddcf4cb9e096864c5a93a038d3f3b3ae887a9e742781c3a40aec"
-                  },
-                  {
-                    "id": "sha256:ae266b252fd4ab221affcfab0fe0d2857eb706a79d04bdc57b07233429a8ac9d"
-                  },
-                  {
-                    "id": "sha256:5c13de80c046533f130eb3a503e69f25d6a146b439173d7115569d10cfed8361"
-                  },
-                  {
                     "id": "sha256:746988d3ce76d009c66d2df693641b9085e5971bc1e09d6efeb03c6279b41f1a"
                   },
                   {
@@ -609,12 +456,6 @@
                   },
                   {
                     "id": "sha256:6d05af91bf2bfbf5f3bafaaaf6370d69457aa0297f336e4819735bb4e7ad071c"
-                  },
-                  {
-                    "id": "sha256:708a8596ce2ca9351087b2915eb8d69d268b67dded1c0b8c3ebd8ea6da90ab43"
-                  },
-                  {
-                    "id": "sha256:3e4a2f0b788239992a909fb42d877027558c917f9027043c30c7c9e0a26e1602"
                   },
                   {
                     "id": "sha256:df9b0d96477ad46504c896d7994731ab6b1dc1cd9cc091493ea83e29b4d1bda5"
@@ -647,67 +488,16 @@
                     "id": "sha256:34384ca5d51125d92a02a1f20e8a68aa8e17314eb0ecf4dec64594ac61e4fee7"
                   },
                   {
-                    "id": "sha256:e5f1cfbdca0b5731107573eb057260815cecef2dcf8e7f75aeff55d546fe0b30"
-                  },
-                  {
-                    "id": "sha256:74417e98b8255feae8c68355c1bc97ddf369be11c3f7e430827eff2c36a2ca66"
-                  },
-                  {
-                    "id": "sha256:b786c929717b1319ccc399cca2c3b3eb8fcf88b469c2f381cbed804074da16c0"
-                  },
-                  {
-                    "id": "sha256:544a21926b873ff59ad9c053c9385def305bb21c4b9ebe9bddc1fdc289f1d067"
-                  },
-                  {
                     "id": "sha256:2bd6c288e1970a001d3a1ae69166c0d926d9c87ce892edcb2110f4e142c12a7a"
                   },
                   {
-                    "id": "sha256:047b37c6c0d33b7ff4970d95514b006d00b4b1d870bf0e4e649042d41dcd598f"
-                  },
-                  {
-                    "id": "sha256:69aa3b94160d858239bc09d1bfc8168746b8291f58029ccbd638d98100533f3f"
-                  },
-                  {
-                    "id": "sha256:8eb6cbb3e7ae18e864db682ce5ee6039ac18e3b53eef0131cbfcc667ffa5edb9"
-                  },
-                  {
                     "id": "sha256:9b003e9aea7c1c6ea17ae1309da24cd3fbfe15b0a75512e0e90dbb1e660fa20e"
-                  },
-                  {
-                    "id": "sha256:083feb8f422304ee96d0578c061c7158054133d18c1d538bb6dedb39f8f12d79"
                   },
                   {
                     "id": "sha256:5ce0b29210f80ae4f1e44f0ca9ef44b806f1268ce3309c43a5f1fcda005c3344"
                   },
                   {
                     "id": "sha256:266b865a39f7a256d48151f38e5871d55d9d2f49bfa4d666e4e16430a499c201"
-                  },
-                  {
-                    "id": "sha256:eb412729844495d81f36b1bdaa24736070d197d0b7f2fe38736b6022cc84013d"
-                  },
-                  {
-                    "id": "sha256:1289b71edf0faa3874c651c1b8ffc760017c6749748bbd6037e6aefbf6029cd8"
-                  },
-                  {
-                    "id": "sha256:a8c24a370a95d0d97023d9718d55adf7e89fbf3ac4444d5aa535709fec6208c1"
-                  },
-                  {
-                    "id": "sha256:7a6305278faf25731f723d72b74140e408163a51b5b201f76cfbc3fff8c34331"
-                  },
-                  {
-                    "id": "sha256:d71686086de04a168e8caf1044aadf24c37a7e2c2541a5ed1155fcc0c06ac01e"
-                  },
-                  {
-                    "id": "sha256:c627d74bcac3706c2b5b42166feab996d966613fe39d669f40badb9d9771a728"
-                  },
-                  {
-                    "id": "sha256:ad52ab3b4ddbc85a3f2e5535e5e111009f8b04f975bf4cb2c55d27c54d0d75cc"
-                  },
-                  {
-                    "id": "sha256:401f4784fd1703286c337c2ad74be613cddf0e2037a833acd92612429ceb38b2"
-                  },
-                  {
-                    "id": "sha256:fe65351b850c4520e5c22ddfc15515dcab0b547119cd7d3c2e0181cda988d1e7"
                   }
                 ]
               }
@@ -726,8 +516,7 @@
             "options": {
               "file_contexts": "etc/selinux/targeted/contexts/files/file_contexts",
               "labels": {
-                "/usr/bin/cp": "system_u:object_r:install_exec_t:s0",
-                "/usr/bin/tar": "system_u:object_r:install_exec_t:s0"
+                "/usr/bin/cp": "system_u:object_r:install_exec_t:s0"
               }
             }
           }
@@ -912,6 +701,9 @@
                   },
                   {
                     "id": "sha256:fb0fb2767a1c2826d6450117af42a714403ead9dad5345b02590aa8e2d5ba77f"
+                  },
+                  {
+                    "id": "sha256:7228697855b1acaa00f8b5ab46d2f6ce9b0c4ce06ec5f25b771622498832596b"
                   },
                   {
                     "id": "sha256:5196f5f7d2387e9dcdf504c8534e3109cc84f7545240b6fbd18866217653b4fe"
@@ -2538,19 +2330,6 @@
             }
           },
           {
-            "type": "org.osbuild.rhsm",
-            "options": {
-              "subscription-manager": {
-                "rhsm": {
-                  "manage_repos": false
-                },
-                "rhsmcertd": {
-                  "auto_registration": true
-                }
-              }
-            }
-          },
-          {
             "type": "org.osbuild.systemd-logind",
             "options": {
               "filename": "00-getty-fixes.conf",
@@ -2582,6 +2361,18 @@
                 {
                   "command": "blacklist",
                   "modulename": "nouveau"
+                }
+              ]
+            }
+          },
+          {
+            "type": "org.osbuild.modprobe",
+            "options": {
+              "filename": "blacklist-amdgpu.conf",
+              "commands": [
+                {
+                  "command": "blacklist",
+                  "modulename": "amdgpu"
                 }
               ]
             }
@@ -2636,6 +2427,19 @@
             }
           },
           {
+            "type": "org.osbuild.rhsm",
+            "options": {
+              "subscription-manager": {
+                "rhsm": {
+                  "manage_repos": false
+                },
+                "rhsmcertd": {
+                  "auto_registration": true
+                }
+              }
+            }
+          },
+          {
             "type": "org.osbuild.fstab",
             "options": {
               "filesystems": [
@@ -2675,6 +2479,14 @@
             }
           },
           {
+            "type": "org.osbuild.rhsm.facts",
+            "options": {
+              "facts": {
+                "image-builder.osbuild-composer.api-type": "test-manifest"
+              }
+            }
+          },
+          {
             "type": "org.osbuild.selinux",
             "options": {
               "file_contexts": "etc/selinux/targeted/contexts/files/file_contexts"
@@ -2689,7 +2501,7 @@
           {
             "type": "org.osbuild.truncate",
             "options": {
-              "filename": "image.raw",
+              "filename": "disk.img",
               "size": "10737418240"
             }
           },
@@ -2730,7 +2542,7 @@
               "device": {
                 "type": "org.osbuild.loopback",
                 "options": {
-                  "filename": "image.raw",
+                  "filename": "disk.img",
                   "lock": true
                 }
               }
@@ -2745,7 +2557,7 @@
               "device": {
                 "type": "org.osbuild.loopback",
                 "options": {
-                  "filename": "image.raw",
+                  "filename": "disk.img",
                   "start": 4096,
                   "size": 409600,
                   "lock": true
@@ -2763,7 +2575,7 @@
               "device": {
                 "type": "org.osbuild.loopback",
                 "options": {
-                  "filename": "image.raw",
+                  "filename": "disk.img",
                   "start": 413696,
                   "size": 1024000,
                   "lock": true
@@ -2781,7 +2593,7 @@
               "device": {
                 "type": "org.osbuild.loopback",
                 "options": {
-                  "filename": "image.raw",
+                  "filename": "disk.img",
                   "start": 1437696,
                   "size": 19533791,
                   "lock": true
@@ -2812,7 +2624,7 @@
               "boot": {
                 "type": "org.osbuild.loopback",
                 "options": {
-                  "filename": "image.raw",
+                  "filename": "disk.img",
                   "start": 413696,
                   "size": 1024000
                 }
@@ -2820,7 +2632,7 @@
               "boot.efi": {
                 "type": "org.osbuild.loopback",
                 "options": {
-                  "filename": "image.raw",
+                  "filename": "disk.img",
                   "start": 4096,
                   "size": 409600
                 }
@@ -2828,7 +2640,7 @@
               "root": {
                 "type": "org.osbuild.loopback",
                 "options": {
-                  "filename": "image.raw",
+                  "filename": "disk.img",
                   "start": 1437696,
                   "size": 19533791
                 }
@@ -2858,7 +2670,7 @@
           {
             "type": "org.osbuild.grub2.inst",
             "options": {
-              "filename": "image.raw",
+              "filename": "disk.img",
               "platform": "i386-pc",
               "location": 2048,
               "core": {
@@ -2877,7 +2689,7 @@
         ]
       },
       {
-        "name": "archive",
+        "name": "xz",
         "build": "name:build",
         "stages": [
           {
@@ -2888,7 +2700,7 @@
                 "origin": "org.osbuild.pipeline",
                 "references": {
                   "name:image": {
-                    "file": "image.raw"
+                    "file": "disk.img"
                   }
                 }
               }
@@ -2933,9 +2745,6 @@
           "sha256:0401f715522a14b53956bccb60954025ad18a73802f7144ab0160d8504951a98": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/perl-podlators-4.14-460.el9.noarch.rpm"
           },
-          "sha256:047b37c6c0d33b7ff4970d95514b006d00b4b1d870bf0e4e649042d41dcd598f": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/lorax-34.9.11-1.el9.x86_64.rpm"
-          },
           "sha256:04b2a2c24b1cf2425cc21b47f0a2d5ef347e9aee43cce9d1cbd7de0c2c9a58d3": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/which-2.21-27.el9.x86_64.rpm"
           },
@@ -2962,9 +2771,6 @@
           },
           "sha256:07a6ff3d4ef4f04c7dc7f006a68795e030057745d10ea2a251e724e1d726e49b": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/e2fsprogs-libs-1.46.5-2.el9.x86_64.rpm"
-          },
-          "sha256:083feb8f422304ee96d0578c061c7158054133d18c1d538bb6dedb39f8f12d79": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/pbzip2-1.1.13-6.el9.x86_64.rpm"
           },
           "sha256:08b851dfc5d320e6b5e77a336dbefabe8562abb48b96d370512dbf3ee86f91d0": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/rubygem-psych-3.3.0-155.el9.x86_64.rpm"
@@ -3118,9 +2924,6 @@
           },
           "sha256:238cdf56790e60d5dd71d8991fb76cdec4a9d60ec3b597504fd4b0a4bef2737d": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/libfdisk-2.37.2-1.el9.x86_64.rpm"
-          },
-          "sha256:23a0ba949236e480769a3121d79e272411aefff0652f083a8f2a60bac8ffba29": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/mtools-4.0.26-3.el9.x86_64.rpm"
           },
           "sha256:23bad0b0fa4770f108c763810ad4dcd7663c058da4da0aca868f7fe56a2b7544": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/ima-evm-utils-1.4-4.el9.x86_64.rpm"
@@ -3329,9 +3132,6 @@
           "sha256:3fb5cc91fcf95918a63104620057dac8b8df6ea0c7f085d011d576a9247c0722": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-ha-n9.0-20220208/Packages/fence-agents-hpblade-4.10.0-16.el9.noarch.rpm"
           },
-          "sha256:401f4784fd1703286c337c2ad74be613cddf0e2037a833acd92612429ceb38b2": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/xorriso-1.5.4-3.el9.x86_64.rpm"
-          },
           "sha256:409beeb1faf626a882e95763ec4892d514077289e6074d3b61bef1b90739ad66": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/libyaml-0.2.5-7.el9.x86_64.rpm"
           },
@@ -3470,9 +3270,6 @@
           "sha256:5370109ff91d1c93d3bd04aeec55a87d16c5c981bb8c8bfeb08b548a2fda4b24": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/linux-firmware-whence-20211216-124.el9.noarch.rpm"
           },
-          "sha256:544a21926b873ff59ad9c053c9385def305bb21c4b9ebe9bddc1fdc289f1d067": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/libisofs-1.5.4-3.el9.x86_64.rpm"
-          },
           "sha256:548978c62b24b7adda4ebcc5db878e22b18f50248bc45aa4a209b86eddd86948": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/polkit-pkla-compat-0.1-21.el9.x86_64.rpm"
           },
@@ -3523,9 +3320,6 @@
           },
           "sha256:5c06d2a85bec668b8a9ba52b9d237770e37a2e4db014e7e8dc0cebaaf692af1e": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/python3-policycoreutils-3.3-2.el9.noarch.rpm"
-          },
-          "sha256:5c13de80c046533f130eb3a503e69f25d6a146b439173d7115569d10cfed8361": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/syslinux-nonlinux-6.04-0.19.el9.noarch.rpm"
           },
           "sha256:5cb39cff63d0ed8be7e16e4f1d5009df47236bcee77f761b1dae6dd129c821e9": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-ha-n9.0-20220208/Packages/fence-agents-intelmodular-4.10.0-16.el9.noarch.rpm"
@@ -3611,9 +3405,6 @@
           "sha256:6980df0d41e259c18763abc4e0c7a8f4b76c205d3ac119369b81d197dc97aa7c": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-ha-n9.0-20220208/Packages/corosynclib-3.1.5-3.el9.x86_64.rpm"
           },
-          "sha256:69aa3b94160d858239bc09d1bfc8168746b8291f58029ccbd638d98100533f3f": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/lorax-templates-generic-34.9.11-1.el9.x86_64.rpm"
-          },
           "sha256:6c1cfe8c3a9f5cb43b285d8a78e5eb75ac5609fc021eb94e03b68f0f0d89697d": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-ha-n9.0-20220208/Packages/pacemaker-cli-2.1.2-4.el9.x86_64.rpm"
           },
@@ -3694,9 +3485,6 @@
           },
           "sha256:73f108442e63d22895b169eedacb091c2e9c99bd9c5d6b3dc93d685f3939d7b9": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/nss-3.71.0-6.el9.x86_64.rpm"
-          },
-          "sha256:74417e98b8255feae8c68355c1bc97ddf369be11c3f7e430827eff2c36a2ca66": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/libburn-1.5.4-3.el9.x86_64.rpm"
           },
           "sha256:746988d3ce76d009c66d2df693641b9085e5971bc1e09d6efeb03c6279b41f1a": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/systemd-249-9.el9.x86_64.rpm"
@@ -3865,9 +3653,6 @@
           },
           "sha256:8d8bd0daace1317130e5e7e80a0197c096716b9e0701c2fa769daeb0d0b8bbca": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/python3-dmidecode-3.12.2-27.el9.x86_64.rpm"
-          },
-          "sha256:8eb6cbb3e7ae18e864db682ce5ee6039ac18e3b53eef0131cbfcc667ffa5edb9": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/lorax-templates-rhel-9.0-32.el9.noarch.rpm"
           },
           "sha256:8ec2dc9f04bc54f5546ca7edb5cef76e4248e58dd9b5dcc77e94cd0e98c332b1": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/checkpolicy-3.3-1.el9.x86_64.rpm"
@@ -4040,9 +3825,6 @@
           "sha256:a891d5fb2fcfab640f66d16eb802eebf8ea9dcc5f14048937c52e3fb812032b3": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/libfastjson-0.99.9-3.el9.x86_64.rpm"
           },
-          "sha256:a8c24a370a95d0d97023d9718d55adf7e89fbf3ac4444d5aa535709fec6208c1": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/python3-mako-1.1.4-5.el9.noarch.rpm"
-          },
           "sha256:a8fe1ece448e36c6a908c0f22d220831770608f52f2ce18d11f62c3f1ad35831": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-ha-n9.0-20220208/Packages/fence-agents-emerson-4.10.0-16.el9.noarch.rpm"
           },
@@ -4097,9 +3879,6 @@
           "sha256:adf8aafd3b5a7c590e2350c52e172e4b373158d76925c89db59ad201ec68bd27": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/python3-dbus-1.2.18-2.el9.x86_64.rpm"
           },
-          "sha256:ae266b252fd4ab221affcfab0fe0d2857eb706a79d04bdc57b07233429a8ac9d": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/syslinux-6.04-0.19.el9.x86_64.rpm"
-          },
           "sha256:aeef28091240a4e14bb388c3a1ce56ce34d9eac259c4a608e8aa176be56a52c5": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/perl-Class-Struct-0.66-479.el9.noarch.rpm"
           },
@@ -4135,9 +3914,6 @@
           },
           "sha256:b584cded28ef42ffc789a63f71575aa57f4cd69d69adb6f7d1e34e041ce8dca0": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/libsss_certmap-2.6.2-2.el9.x86_64.rpm"
-          },
-          "sha256:b786c929717b1319ccc399cca2c3b3eb8fcf88b469c2f381cbed804074da16c0": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/libisoburn-1.5.4-3.el9.x86_64.rpm"
           },
           "sha256:b7d9597aa6a247344ffdb19d0805124e718156a87cf0cb259c108ea79d1a43b2": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/lvm2-libs-2.03.14-3.el9.x86_64.rpm"
@@ -4231,9 +4007,6 @@
           },
           "sha256:c51470a55b1dce42f944bdea06a10469f5a42d55be898a33c2fed3a99843fbb2": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/perl-Carp-1.50-460.el9.noarch.rpm"
-          },
-          "sha256:c627d74bcac3706c2b5b42166feab996d966613fe39d669f40badb9d9771a728": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/qemu-img-6.2.0-5.el9.x86_64.rpm"
           },
           "sha256:c6da74c761688297d4eee2d6f7e3a84b2295791bf953ee3edf05168cc561fc23": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/audit-3.0.7-100.el9.x86_64.rpm"
@@ -4349,9 +4122,6 @@
           "sha256:d6a263811f4752dfaeb28c7e0f37f8300ed2355e66c5ad994f7ae2a4a4ac6fdd": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/libicu-67.1-9.el9.x86_64.rpm"
           },
-          "sha256:d71686086de04a168e8caf1044aadf24c37a7e2c2541a5ed1155fcc0c06ac01e": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/python3-pycdlib-1.11.0-5.el9.noarch.rpm"
-          },
           "sha256:d763e4d9e98fd3aac3db1828ed0de1f4b5ff46c939a207597db05fe60af52832": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/cloud-utils-growpart-0.31-10.el9.x86_64.rpm"
           },
@@ -4451,9 +4221,6 @@
           "sha256:e5d8869dbc34672bb6bc94e00045f659b7d2415172cd27ee9f949e1769f71bb8": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/passwd-0.80-12.el9.x86_64.rpm"
           },
-          "sha256:e5f1cfbdca0b5731107573eb057260815cecef2dcf8e7f75aeff55d546fe0b30": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/isomd5sum-1.2.3-14.el9.x86_64.rpm"
-          },
           "sha256:e683c47baf67ed18dd3e2a767c4aacc0c4176c682a7067180c9949099b706d7a": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/gettext-libs-0.21-7.el9.x86_64.rpm"
           },
@@ -4483,9 +4250,6 @@
           },
           "sha256:e9efb4a947b2a178c85aa20bc5283d11f0dc85404fe527c25153d2389085eb71": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.0-20220208/Packages/python3-libs-3.9.10-1.el9.x86_64.rpm"
-          },
-          "sha256:eb412729844495d81f36b1bdaa24736070d197d0b7f2fe38736b6022cc84013d": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/python3-kickstart-3.32.2-2.el9.noarch.rpm"
           },
           "sha256:eb8973df11266ce57f1db004883df3f14690c17646992c2d977f81cd6ba560f7": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/gdisk-1.0.7-5.el9.x86_64.rpm"
@@ -4624,9 +4388,6 @@
           },
           "sha256:fdb31fb83e8af2ddd28224ea4977b7913c53a5182bacf43ff6086ae67e582f6c": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-ha-n9.0-20220208/Packages/pacemaker-2.1.2-4.el9.x86_64.rpm"
-          },
-          "sha256:fe65351b850c4520e5c22ddfc15515dcab0b547119cd7d3c2e0181cda988d1e7": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/xz-lzma-compat-5.2.5-7.el9.x86_64.rpm"
           },
           "sha256:fed835e5c0ee24a232c5db813312569e1a65b2d74c277322d372ef7ccb92691c": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.0-20220208/Packages/libwsman1-2.6.8-22.el9.x86_64.rpm"
@@ -4957,6 +4718,11 @@
     "machine-id": "",
     "modprobe": {
       "/usr/lib/modprobe.d": {
+        "blacklist-amdgpu.conf": {
+          "blacklist": [
+            "amdgpu"
+          ]
+        },
         "blacklist-nouveau.conf": {
           "blacklist": [
             "nouveau"
@@ -5050,6 +4816,7 @@
       "dnf-4.10.0-3.el9.noarch",
       "dnf-data-4.10.0-3.el9.noarch",
       "dnf-plugins-core-4.0.24-2.el9.noarch",
+      "dosfstools-4.2-3.el9.x86_64",
       "dracut-055-10.git20210824.el9.x86_64",
       "dracut-config-generic-055-10.git20210824.el9.x86_64",
       "dracut-network-055-10.git20210824.el9.x86_64",
@@ -5678,6 +5445,7 @@
     },
     "rpm-verify": {
       "changed": {
+        "/boot/efi/EFI/redhat": ".M.......",
         "/etc/chrony.conf": "S.5....T.",
         "/etc/nsswitch.conf": "....L....",
         "/etc/pam.d/fingerprint-auth": "....L....",

@@ -8075,7 +8075,7 @@
         "size": 10002349568,
         "start": 735051776,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "mTnXaU-FfKE-puaD-jEvc-NL5N-b2iP-nwjz1i"
+        "uuid": "sSzqYa-bcdm-zStY-1V9z-4sXH-s845-d5eGGh"
       },
       {
         "bootable": false,
@@ -8183,6 +8183,16 @@
     },
     "rpm-verify": {
       "changed": {
+        "/boot/efi/EFI/BOOT/BOOTAA64.EFI": ".M.......",
+        "/boot/efi/EFI/BOOT/fbaa64.efi": ".M.......",
+        "/boot/efi/EFI/redhat": ".M.......",
+        "/boot/efi/EFI/redhat/BOOTAA64.CSV": ".M.......",
+        "/boot/efi/EFI/redhat/grub.cfg": ".M.......",
+        "/boot/efi/EFI/redhat/grubaa64.efi": ".M.......",
+        "/boot/efi/EFI/redhat/mmaa64.efi": ".M.......",
+        "/boot/efi/EFI/redhat/shim.efi": ".M.......",
+        "/boot/efi/EFI/redhat/shimaa64-redhat.efi": ".M.......",
+        "/boot/efi/EFI/redhat/shimaa64.efi": ".M.......",
         "/boot/grub2/grub.cfg": ".M.......",
         "/etc/chrony.conf": "S.5....T.",
         "/etc/dnf/plugins/product-id.conf": "..5....T.",

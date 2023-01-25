@@ -4066,13 +4066,6 @@
       "missing": []
     },
     "selinux": {
-      "context-mismatch": [
-        {
-          "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:systemd_network_generator_exec_t:s0",
-          "filename": "/usr/lib/systemd/systemd-network-generator"
-        }
-      ],
       "policy": {
         "SELINUX": "enforcing",
         "SELINUXTYPE": "targeted"

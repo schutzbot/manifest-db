@@ -9597,6 +9597,7 @@
     },
     "rpm-verify": {
       "changed": {
+        "/boot/efi/EFI/redhat": ".M.......",
         "/boot/grub2/grub.cfg": ".M.......",
         "/etc/chrony.conf": "S.5....T.",
         "/etc/nsswitch.conf": "....L....",
