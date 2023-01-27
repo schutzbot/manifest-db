@@ -260,9 +260,14 @@ class TestCase:
                 self._detect_checkpoints())
 
             # construct the image path
-            # assume if there's no filename in the last stage that image.raw will work
-            pipeline = self.manifest.pipelines[self._detect_exports()[0]]
-            filename = pipeline.stages[-1].options.get("filename", "image.raw")
+            filename = self.info.get("filename")
+            if not filename:
+                # for retro compatibility: if the filename is not in the DB, try
+                # build it from what's inside the manifest. This legacy method
+                # will assume that if no filename is found, "image.raw" will be
+                # used instead.
+                pipeline = self.manifest.pipelines[self._detect_exports()[0]]
+                filename = pipeline.stages[-1].options.get("filename", "image.raw")
             image_path = os.path.join(self.osb.outdir, self._detect_exports()[0], filename)
 
             # check if the image exists

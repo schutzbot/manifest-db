@@ -52,6 +52,7 @@ def load_test(name: str, fullpath: Union[str, pathlib.Path], filters: Dict[str, 
             "distro": req["distro"],
             "arch": req["arch"],
             "image-type": req["image-type"],
+            "filename": req["filename"]
         },
         "manifest": data["manifest"],
         "image-info": data.get("image-info"),
