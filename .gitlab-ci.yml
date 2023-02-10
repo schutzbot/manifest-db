@@ -46,7 +46,7 @@ Regression:
   script:
     - schutzbot/deploy.sh
     - schutzbot/selinux-context.sh
-    - sudo test/cases/regression_tests
+    - sudo test/cases/manifest_tests
   rules:
     - if: '$CI_PIPELINE_SOURCE != "trigger"'
   artifacts:
@@ -57,6 +57,27 @@ Regression:
     matrix:
       - RUNNER:
           - aws/fedora-36-x86_64
+          - aws/fedora-36-aarch64
+          - aws/fedora-37-x86_64
+          - aws/fedora-37-aarch64
+          - aws/centos-stream-8-x86_64
+          - aws/centos-stream-8-aarch64
+          - aws/centos-stream-9-x86_64
+          - aws/centos-stream-9-aarch64
+      - RUNNER:
+          - aws/rhel-8.6-ga-x86_64
+          - aws/rhel-8.6-ga-aarch64
+          - aws/rhel-8.7-ga-x86_64
+          - aws/rhel-8.7-ga-aarch64
+          - aws/rhel-8.8-nightly-x86_64
+          - aws/rhel-8.8-nightly-aarch64
+          - aws/rhel-9.0-ga-x86_64
+          - aws/rhel-9.0-ga-aarch64
+          - aws/rhel-9.1-ga-x86_64
+          - aws/rhel-9.1-ga-aarch64
+          - aws/rhel-9.2-nightly-x86_64
+          - aws/rhel-9.2-nightly-aarch64
+        INTERNAL_NETWORK: "true"
 
 Manifest-gen:
   stage: gen
@@ -82,7 +103,7 @@ Image-info-build:
     - schutzbot/deploy.sh
     - schutzbot/selinux-context.sh
     - tools/import-image-tests manifests manifest-db --manifest-only --db-ignore=db-ignore --filter-with-ci-distros=.gitlab-ci.yml --verbose
-    - sudo test/cases/manifest_tests
+    - sudo test/cases/gen_db
   rules:
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
   artifacts:

@@ -26,7 +26,8 @@ print(f"Running the osbuild-image-test for arch {platform.machine()} and "
 try:
     subprocess.run(["tools/osbuild-image-test",
                     f"--arch={platform.machine()}",
-                    f"--distro={distro}"],
+                    f"--distro={distro}",
+                    "--generator-mode"],
                     check=True)
 except CalledProcessError:
     sys.exit(1)
