@@ -8096,5 +8096,6 @@
         }
       }
     }
-  }
+  },
+  "unwanted_tmpfiles_d":["rpm-ostree-1-autovar.conf"]
 }

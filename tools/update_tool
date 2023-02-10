@@ -9,6 +9,8 @@ import subprocess
 from abc import ABC, abstractmethod
 import columnify
 
+from filterdiff import FilterImageInfo
+
 RESET = "\033[0m"
 GREEN = "\033[32m"
 BOLD = "\033[1m"
@@ -155,38 +157,6 @@ def get_db_entry_at_current_version(file):
         return json.load(f)
 
 
-def filter_fn(imi):
-    """
-    Filter specific fields in the image-info that can't be compared
-    together.
-    """
-    def lvm2(imi):
-        """
-        LVM2 partitions have a UUID that is not fixed. Replace the value
-        upon comparison time
-        """
-        partitions = imi.get("partitions")
-        if partitions:
-            for partition in partitions:
-                if partition.get("fstype") == "LVM2_member":
-                    partition["uuid"] = "2022-07-01-fixed-uuid"
-        return imi
-
-    def iso(imi):
-        """
-        For isos, the partition UUID is the date of the build. Replace
-        that with a fixed one for the comparison.
-        """
-        if "image-format" in imi and "type" in imi["image-format"] and imi["image-format"]["type"] == "raw":
-            if "partitions" in imi:
-                for partition in imi["partitions"]:
-                    if "fstype" in partition:
-                        if partition["fstype"] == "iso9660":
-                            partition["uuid"] = "2022-07-01-fixed-uuid"
-        return imi
-    return iso(lvm2(imi))
-
-
 def diff(what, json1, json2, tool="vimdiff"):
     """
     Starts a diff between two json objects with a specific tool to do so. Writes
@@ -217,7 +187,10 @@ def extract(db_entry, do_filter=True):
         return None, None
     if db_entry["image-info"]:
         if do_filter:
-            imi = filter_fn(db_entry["image-info"])
+            imi = FilterImageInfo(
+                db_entry["image-info"],
+                set(db_entry.get("unwanted_tmpfiles_d", []))
+            ).apply()
         else:
             imi = db_entry["image-info"]
     if db_entry["manifest"]:

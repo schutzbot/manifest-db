@@ -16,6 +16,8 @@ import shutil
 from collections import defaultdict
 from typing import Iterator, List, Optional, Dict
 
+from filterdiff import FilterImageInfo
+
 import osbuild
 import osbuild.meta
 
@@ -155,12 +157,13 @@ class TestCase:
         self.id = data["id"]
         self.info = data["desc"]
         self.desc = data["manifest"]
-        self.desired_image_info = data.get("image-info")
+        self.desired_image_info: Optional[Dict] = data.get("image-info")
+        self.unwanted_tmpfiles_d = set(data.get("unwanted_tmpfiles_d", []))
 
         self.manifest: Optional[osbuild.Manifest] = None
         self.result: Optional[Dict] = None
         self.error: Optional[str] = None
-        self.built_image_info = None
+        self.built_image_info: Optional[Dict] = None
 
     def __str__(self):
         res = str(self.id)
@@ -283,38 +286,14 @@ class TestCase:
         return True
 
     def compare(self):
-        def filter_fn(imi):
-            """
-            Filter specific fields in the image-info that can't be compared
-            together.
-            """
-            def lvm2(imi):
-                """
-                LVM2 partitions have a UUID that is not fixed. Replace the value
-                upon comparison time
-                """
-                partitions = imi.get("partitions")
-                if partitions:
-                    for partition in partitions:
-                        if partition.get("fstype") == "LVM2_member":
-                            partition["uuid"] = "2022-07-01-fixed-uuid"
-                return imi
-
-            def iso(imi):
-                """
-                For isos, the partition UUID is the date of the build. Replace
-                that with a fixed one for the comparison.
-                """
-                if "image-format" in imi and "type" in imi["image-format"] and imi["image-format"]["type"] == "raw":
-                    if "partitions" in imi:
-                        for partition in imi["partitions"]:
-                            if "fstype" in partition:
-                                if partition["fstype"] == "iso9660":
-                                    partition["uuid"] = "2022-07-01-fixed-uuid"
-                return imi
-            return iso(lvm2(imi))
-
-        if filter_fn(self.built_image_info) != filter_fn(self.desired_image_info):
+        if (
+                FilterImageInfo(
+                    self.built_image_info,
+                    self.unwanted_tmpfiles_d).apply() !=
+                FilterImageInfo(
+                    self.desired_image_info,
+                    self.unwanted_tmpfiles_d).apply()
+            ):
             self.error = "image-info mismatch"
             return False
         return True
@@ -412,7 +391,72 @@ def clean_output(folder):
             shutil.rmtree(os.path.join(root, d))
 
 
-#pylint: disable=too-many-branches
+def run_tests_cases(args):
+    print(f"Running in {os.path.realpath(os.curdir)}")
+
+    tests = TestCases.load(
+        args.arch,
+        args.distro,
+        args.name,
+        args.verbose,
+        args.libdir,
+        OSBuild(args.osbuild, args.store, args.output, args.verbose),
+        ImageInfo(args.image_info, args.verbose),
+        args.db_path)
+
+    success = True
+    if not tests:
+        print(f"{RED}FAIL{RESET}: no tests to run")
+        success = False
+
+    for test in tests:
+        print(f"{test.id}", end=" ", flush=True)
+        # Skip for dry run
+        if args.dry_run:
+            print(f"Dry run: {GREEN}SUCCESS{RESET}")
+            continue
+        # Skip test cases that have failed validation of their manifest
+        if test.error:
+            print(f"{YELLOW}Warning (ignoring){RESET}: {test.error}")
+            continue
+
+        # If the generator_mode flag is set, the program behaves as an
+        # image-info generator and skip the validation step. Which means that it
+        # won't error out if the comparison fails. Also it will trigger the
+        # build for every image regardless of the presence of an image-info in
+        # the corresponding test case to validate against.
+        if args.generator_mode:
+            print("Building only:", end=" ", flush=True)
+        else:
+            print("Building & Comparing:", end=" ", flush=True)
+            # If the program is configured to build & compare, then if the
+            # test case haven't an image-info to compare to, it's useless to
+            # build it. Because in this mode we are only interested in comparing
+            # with what's in the DB.
+            if not test.desired_image_info:
+                print(f"{YELLOW}Warning (ignoring){RESET}: No image info to compare to")
+                continue
+
+        if test.build():
+            # Every generated image-info needs to be written to disk regardless
+            # of the program running in generated mode or not. So that by
+            # running the program on a CI, one can download an image-info that
+            # failed comparison.
+            test.dump(args.image_info_output)
+            if not args.generator_mode:
+                test.compare()
+        if test.error:
+            print(f"{RED}FAIL{RESET}: {test.error}")
+            success = False
+        else:
+            print(f"{GREEN}SUCCESS{RESET}")
+
+        # in any case, clean the output folder to avoid filling out disk space
+        clean_output(args.output)
+
+    return 1 if not success else 0
+
+
 def main():
     parser = argparse.ArgumentParser(description="osbuild image tests")
     parser.add_argument("--osbuild-path",
@@ -505,70 +549,7 @@ def main():
     )
 
     args = parser.parse_args()
-
-    print(f"Running in {os.path.realpath(os.curdir)}")
-
-    tests = TestCases.load(
-        args.arch,
-        args.distro,
-        args.name,
-        args.verbose,
-        args.libdir,
-        OSBuild(args.osbuild, args.store, args.output, args.verbose),
-        ImageInfo(args.image_info, args.verbose),
-        args.db_path)
-
-    success = True
-    if not tests:
-        print(f"{RED}FAIL{RESET}: no tests to run")
-        success = False
-
-    for test in tests:
-        print(f"{test.id}", end=" ", flush=True)
-        # Skip for dry run
-        if args.dry_run:
-            print(f"Dry run: {GREEN}SUCCESS{RESET}")
-            continue
-        # Skip test cases that have failed validation of their manifest
-        if test.error:
-            print(f"{YELLOW}Warning (ignoring){RESET}: {test.error}")
-            continue
-
-        # If the generator_mode flag is set, the program behaves as an
-        # image-info generator and skip the validation step. Which means that it
-        # won't error out if the comparison fails. Also it will trigger the
-        # build for every image regardless of the presence of an image-info in
-        # the corresponding test case to validate against.
-        if args.generator_mode:
-            print("Building only:", end=" ", flush=True)
-        else:
-            print("Building & Comparing:", end=" ", flush=True)
-            # If the program is configured to build & compare, then if the
-            # test case haven't an image-info to compare to, it's useless to
-            # build it. Because in this mode we are only interested in comparing
-            # with what's in the DB.
-            if not test.desired_image_info:
-                print(f"{YELLOW}Warning (ignoring){RESET}: No image info to compare to")
-                continue
-
-        if test.build():
-            # Every generated image-info needs to be written to disk regardless
-            # of the program running in generated mode or not. So that by
-            # running the program on a CI, one can download an image-info that
-            # failed comparison.
-            test.dump(args.image_info_output)
-            if not args.generator_mode:
-                test.compare()
-        if test.error:
-            print(f"{RED}FAIL{RESET}: {test.error}")
-            success = False
-        else:
-            print(f"{GREEN}SUCCESS{RESET}")
-
-        # in any case, clean the output folder to avoid filling out disk space
-        clean_output(args.output)
-
-    return 1 if not success else 0
+    return run_tests_cases(args)
 
 
 if __name__ == "__main__":
