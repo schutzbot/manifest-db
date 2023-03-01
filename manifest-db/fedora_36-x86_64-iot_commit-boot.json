@@ -5467,6 +5467,17 @@
             }
           },
           {
+            "type": "org.osbuild.systemd-journald",
+            "options": {
+              "filename": "10-persistent.conf",
+              "config": {
+                "Journal": {
+                  "Storage": "persistent"
+                }
+              }
+            }
+          },
+          {
             "type": "org.osbuild.systemd",
             "options": {
               "enabled_services": [
@@ -5487,17 +5498,6 @@
                 "parsec",
                 "dbus-parsec"
               ]
-            }
-          },
-          {
-            "type": "org.osbuild.systemd-journald",
-            "options": {
-              "filename": "10-persistent.conf",
-              "config": {
-                "Journal": {
-                  "Storage": "persistent"
-                }
-              }
             }
           },
           {

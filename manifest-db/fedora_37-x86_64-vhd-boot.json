@@ -4800,20 +4800,6 @@
             }
           },
           {
-            "type": "org.osbuild.systemd",
-            "options": {
-              "enabled_services": [
-                "sshd",
-                "waagent"
-              ],
-              "disabled_services": [
-                "proc-sys-fs-binfmt_misc.mount",
-                "loadmodules.service"
-              ],
-              "default_target": "multi-user.target"
-            }
-          },
-          {
             "type": "org.osbuild.fstab",
             "options": {
               "filesystems": [
@@ -4854,6 +4840,20 @@
               "config": {
                 "default": "saved"
               }
+            }
+          },
+          {
+            "type": "org.osbuild.systemd",
+            "options": {
+              "enabled_services": [
+                "sshd",
+                "waagent"
+              ],
+              "disabled_services": [
+                "proc-sys-fs-binfmt_misc.mount",
+                "loadmodules.service"
+              ],
+              "default_target": "multi-user.target"
             }
           },
           {

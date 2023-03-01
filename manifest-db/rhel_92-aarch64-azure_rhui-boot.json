@@ -6044,19 +6044,6 @@
             }
           },
           {
-            "type": "org.osbuild.systemd",
-            "options": {
-              "enabled_services": [
-                "firewalld",
-                "nm-cloud-setup.service",
-                "nm-cloud-setup.timer",
-                "sshd",
-                "waagent"
-              ],
-              "default_target": "multi-user.target"
-            }
-          },
-          {
             "type": "org.osbuild.sysconfig",
             "options": {
               "kernel": {
@@ -6323,6 +6310,19 @@
               "facts": {
                 "image-builder.osbuild-composer.api-type": "test-manifest"
               }
+            }
+          },
+          {
+            "type": "org.osbuild.systemd",
+            "options": {
+              "enabled_services": [
+                "firewalld",
+                "nm-cloud-setup.service",
+                "nm-cloud-setup.timer",
+                "sshd",
+                "waagent"
+              ],
+              "default_target": "multi-user.target"
             }
           },
           {
@@ -9653,7 +9653,7 @@
         "size": 67669835264,
         "start": 1049624576,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "L6qapB-JfS2-6zfB-fOQ6-mQjw-PafF-8LK1V3"
+        "uuid": "y4fCq6-BNW9-tfqF-TqU9-6OgQ-WvdO-0yzA7V"
       },
       {
         "bootable": false,
