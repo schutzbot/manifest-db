@@ -454,7 +454,7 @@ def run_tests_cases(args):
         # in any case, clean the output folder to avoid filling out disk space
         clean_output(args.output)
 
-    return 1 if not success else 0
+    return 0 if success else 1
 
 
 def main():
