@@ -5,7 +5,7 @@ import argparse
 import tempfile
 import json
 import subprocess
-from typing import Dict, Optional, Set, Tuple
+from typing import Dict, Optional, Set
 
 
 class FilterImageInfo:
@@ -61,50 +61,95 @@ class FilterImageInfo:
         return self.imi
 
 
-def load(path) -> Tuple[Dict, Set]:
-    """
-    Returns the image-info bits from the input path. If it exit an
-    unwanted_tmpfiles_d in the file, return it also=.
-    """
-    c = None
-    with open(path, "r") as f:
-        c = json.load(f)
-    # Supports raw image-info or DB entry
-    unwanted_tmpfiles_d = set(c.get("unwanted_tmpfiles_d", []))
-    if "image-info" in c:
-        c = c["image-info"]
-    return c, unwanted_tmpfiles_d
+class ImageInfo:
+
+    imi: Dict
+    unwanted_tmpfiles_d: Set
+
+    def __init__(self, imi: Dict, unwanted_tmpfiles_d: Set, do_filter=True) -> None:
+        """
+        parameters:
+        -----------
+        imi:                    the image-info json as a Dict
+        unwanted_tmpfiles_d:    Set of files to filter out at comparison time
+        """
+        self.unwanted_tmpfiles_d = unwanted_tmpfiles_d
+        self.imi = imi
+        self.do_filter = do_filter
+
+    @classmethod
+    def from_file(cls, path):
+        """
+        Loads an ImageInfo object from a file on disk. Supports raw image-info
+        json files and DB entries from the manifest-db repository.
+        """
+        with open(path, "r") as f:
+            c = json.load(f)
+        if "image-info" in c:
+            # In the case the file is a DB entry, it can contain an image-info
+            # and also a list of unwanted tmpfiles_d to filter out on comparison
+            # time.
+            return cls(c["image-info"], set(c.get("unwanted_tmpfiles_d", [])))
+        # In the case of a raw image-info, just init it with an empty
+        # unwanted_tmpfiles_d set.
+        return cls(c, set())
+
+    def diff(self, other, unwanted_tmpfiles_d: Set, verbose=False) -> bool:
+        """
+        Do perform a diff between this object and an other of the same type.
 
 
-def diff(first, second, unwanted_tmpfiles_d: Set, visual):
-    c1, unwanted_tmpfiles_d1 = load(first)
-    c2, unwanted_tmpfiles_d2 = load(second)
-    unwanted_tmpfiles_d.union(unwanted_tmpfiles_d1, unwanted_tmpfiles_d2)
-    c1 = FilterImageInfo(c1, unwanted_tmpfiles_d).apply()
-    c2 = FilterImageInfo(c2, unwanted_tmpfiles_d).apply()
-    if not c1 or not c2:
-        raise RuntimeError("empty image-info to diff")
-    with tempfile.TemporaryDirectory() as d:
-        f1 = os.path.join(d, "item1")
-        f2 = os.path.join(d, "item2")
-        try:
-            with open(f1, 'w') as ff1:
-                json.dump(c1, ff1, indent=4)
+        parameters:
+        -----------
+        other:                  the other ImageInfo object to diff against
+        unwanted_tmpfiles_d:    A list of tmpfiles_d to ignore
+                                All the unwanted_tmpfiles_d found in the
+                                ImageInfo to compare are unioned with the
+                                unwanted_tmpfiles_d given as parameters.
+        verbose:                True to get the diff command output on stdout
+        """
+        unwanted_tmpfiles_d = self.unwanted_tmpfiles_d.union(
+            unwanted_tmpfiles_d,
+            other.unwanted_tmpfiles_d)
+        s = self.imi
+        o = other.imi
+        if self.do_filter:
+            s = FilterImageInfo(self.imi, unwanted_tmpfiles_d).apply()
+        if other.do_filter:
+            o = FilterImageInfo(other.imi, unwanted_tmpfiles_d).apply()
+        if ImageInfo.exec_diff(s, o, verbose):
+            return True
+        return False
 
-            with open(f2, 'w') as ff2:
-                json.dump(c2, ff2, indent=4)
+    @staticmethod
+    def exec_diff(imi1: Dict, imi2: Dict, visual: bool) -> int:
+        """
+        Write up the two dictionaries to temporary files and invoke `diff` as a
+        subprocess command. Visual set to True to get the result of the diff
+        command on stdout.
+        """
+        with tempfile.TemporaryDirectory() as d:
+            f1 = os.path.join(d, "item1")
+            f2 = os.path.join(d, "item2")
+            try:
+                with open(f1, 'w') as ff1:
+                    json.dump(imi1, ff1, indent=4)
 
-            p = subprocess.run(["diff", f1, f2],
-                               check=False,
-                               capture_output=True)
-            if visual:
-                out = p.stdout.decode("utf-8")
-                for l in out.split("\n"):
-                    print(l)
-            return p.returncode
-        finally:
-            os.remove(f1)
-            os.remove(f2)
+                with open(f2, 'w') as ff2:
+                    json.dump(imi2, ff2, indent=4)
+
+                p = subprocess.run(["diff", f1, f2],
+                                   check=False,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE)
+                if visual:
+                    out = p.stdout.decode("utf-8")
+                    for l in out.split("\n"):
+                        print(l)
+                return p.returncode
+            finally:
+                os.remove(f1)
+                os.remove(f2)
 
 
 def main():
@@ -123,10 +168,11 @@ def main():
         help="set to see the diff result"
     )
     args = parser.parse_args()
-    return diff(args.files[0],
-                args.files[1],
-                set(args.unwanted_tmpfiles_d),
-                args.visual_diff)
+
+    imi1 = ImageInfo.from_file(args.files[0])
+    imi2 = ImageInfo.from_file(args.files[1])
+
+    return imi1.diff(imi2, set(args.unwanted_tmpfiles_d), args.visual_diff)
 
 
 if __name__ == "__main__":

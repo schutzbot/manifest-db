@@ -16,7 +16,7 @@ import shutil
 from collections import defaultdict
 from typing import Iterator, List, Optional, Dict
 
-from filterdiff import FilterImageInfo
+from filterdiff import ImageInfo
 
 import osbuild
 import osbuild.meta
@@ -108,7 +108,7 @@ class OSBuild:
         return json.loads(r.stdout.decode("utf-8"))
 
 
-class ImageInfo:
+class ImageInfoExec:
     """
     Invokes the image-info executable
     """
@@ -150,20 +150,23 @@ class TestCase:
     can dump the built image-info to disk
     """
 
-    def __init__(self, path, data: Dict, osb: OSBuild, imi: ImageInfo) -> None:
+
+    def __init__(self, path, data: Dict, osb: OSBuild, imi: ImageInfoExec) -> None:
         self.path = path
         self.osb = osb
         self.imi = imi
         self.id = data["id"]
         self.info = data["desc"]
         self.desc = data["manifest"]
-        self.desired_image_info: Optional[Dict] = data.get("image-info")
-        self.unwanted_tmpfiles_d = set(data.get("unwanted_tmpfiles_d", []))
+        self.desired_image_info: ImageInfo = ImageInfo(
+            data.get("image-info", {}),
+            set(data.get("unwanted_tmpfiles_d", []))
+        )
+        self.built_image_info: ImageInfo = ImageInfo({}, set())
 
         self.manifest: Optional[osbuild.Manifest] = None
         self.result: Optional[Dict] = None
         self.error: Optional[str] = None
-        self.built_image_info: Optional[Dict] = None
 
     def __str__(self):
         res = str(self.id)
@@ -178,7 +181,7 @@ class TestCase:
         return res
 
     @classmethod
-    def load(cls, path: str, osb: OSBuild, imi: ImageInfo) -> "TestCase":
+    def load(cls, path: str, osb: OSBuild, imi: ImageInfoExec) -> "TestCase":
         with open(path, "r", encoding='utf8') as f:
             data = json.load(f)
 
@@ -279,29 +282,19 @@ class TestCase:
                 return False
 
             # compile the image-info
-            self.built_image_info = self.imi.run(image_path)
+            self.built_image_info = ImageInfo(self.imi.run(image_path), set())
         except RuntimeError as e:
             self.error = str(e)
             return False
         return True
 
     def compare(self):
-        if (
-                FilterImageInfo(
-                    self.built_image_info,
-                    self.unwanted_tmpfiles_d).apply() !=
-                FilterImageInfo(
-                    self.desired_image_info,
-                    self.unwanted_tmpfiles_d).apply()
-            ):
-            self.error = "image-info mismatch"
-            return False
-        return True
+        return self.built_image_info.diff(self.desired_image_info, set())
 
     def dump(self, folder):
         os.makedirs(folder, exist_ok=True)
         with open(os.path.join(folder, f"{self.id}.json"), "w", encoding="utf-8") as f:
-            json.dump(self.built_image_info, f)
+            json.dump(self.built_image_info.imi, f)
 
 
 class TestCases:
@@ -310,7 +303,7 @@ class TestCases:
     """
 
     @staticmethod
-    def _load_tests(path, osb: OSBuild, imi: ImageInfo) -> Iterator[TestCase]:
+    def _load_tests(path, osb: OSBuild, imi: ImageInfoExec) -> Iterator[TestCase]:
         files = os.scandir(path)
 
         for entry in files:
@@ -364,7 +357,7 @@ class TestCases:
             print(f"\t{image_type}: {count}")
 
     @staticmethod
-    def load(arch, distro, name, verbose, libdir, osb: OSBuild, imi: ImageInfo, db) -> List[TestCase]:
+    def load(arch, distro, name, verbose, libdir, osb: OSBuild, imi: ImageInfoExec, db) -> List[TestCase]:
         index = osbuild.meta.Index(libdir)
         tests = list(TestCases._load_tests(db, osb, imi))
         tests = list(filter(TestCases._make_filter(arch, distro, name), tests))
@@ -401,7 +394,7 @@ def run_tests_cases(args):
         args.verbose,
         args.libdir,
         OSBuild(args.osbuild, args.store, args.output, args.verbose),
-        ImageInfo(args.image_info, args.verbose),
+        ImageInfoExec(args.image_info, args.verbose),
         args.db_path)
 
     success = True

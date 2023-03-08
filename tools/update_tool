@@ -8,8 +8,9 @@ import tempfile
 import subprocess
 from abc import ABC, abstractmethod
 import columnify
+from typing import Dict, Optional, Tuple
 
-from filterdiff import FilterImageInfo
+from filterdiff import ImageInfo
 
 RESET = "\033[0m"
 GREEN = "\033[32m"
@@ -98,7 +99,7 @@ class GHReport(Report):
         print(f"image-info:{GHReport.status_map[istatus]}{istatus}.")
 
 
-def compare(obj1, obj2):
+def compare_manifest(obj1, obj2):
     """
     Compare two json objects and return as a string the conclusion of the diff.
     Obj1 is the version of Obj2 back in time. So when obj2 is not and obj1 is,
@@ -109,6 +110,20 @@ def compare(obj1, obj2):
     if not obj1 and obj2:
         return "added"
     if obj1 != obj2:
+        return "updated"
+    return "unchanged"
+
+def compare_imi(obj1: ImageInfo, obj2: ImageInfo):
+    """
+    Compare two ImageInfo objects and return as a string the conclusion of the
+    diff. Obj1 is the version of Obj2 back in time. When Obj1 is and Obj2 is
+    not, we can say that something was removed and vice versa.
+    """
+    if obj1.imi and not obj2.imi:
+        return "removed"
+    if not obj1.imi and obj2.imi:
+        return "added"
+    if obj1.diff(obj2, set(), verbose=False):
         return "updated"
     return "unchanged"
 
@@ -175,27 +190,14 @@ def diff(what, json1, json2, tool="vimdiff"):
             subprocess.call([tool,  a, b])
 
 
-def extract(db_entry, do_filter=True):
-    """
-    Returns two json objects from a db entry. One manifest and one image info.
-    Can apply (and will by default) filters to the image-info to get rid of some
-    volatile UUIds that aren't important.
-    """
-    manifest = None
-    imi = None
+def extract(db_entry, do_filter=True) -> Tuple[Optional[Dict], ImageInfo]:
     if not db_entry:
-        return None, None
-    if db_entry["image-info"]:
-        if do_filter:
-            imi = FilterImageInfo(
-                db_entry["image-info"],
-                set(db_entry.get("unwanted_tmpfiles_d", []))
-            ).apply()
-        else:
-            imi = db_entry["image-info"]
-    if db_entry["manifest"]:
-        manifest = db_entry["manifest"]
-    return manifest, imi
+        return None, ImageInfo({}, set())
+    return db_entry.get("manifest"), ImageInfo(
+        db_entry.get("image_info", {}),
+        set(db_entry.get("unwanted_tmpfiles_d", [])),
+        do_filter=do_filter
+    )
 
 
 def progress(count, total, prefix=''):
@@ -238,8 +240,8 @@ def ls_command(args):
         prev_manifest, prev_imi = extract(prev, do_filter=not args.no_filter)
         curr_manifest, curr_imi = extract(curr, do_filter=not args.no_filter)
 
-        manifest_status = compare(prev_manifest, curr_manifest)
-        image_info_status = compare(prev_imi, curr_imi)
+        manifest_status = compare_manifest(prev_manifest, curr_manifest)
+        image_info_status = compare_imi(prev_imi, curr_imi)
 
         if manifest_status != "unchanged" or image_info_status != "unchanged":
             ms = GHReport.status_map[manifest_status]
@@ -279,8 +281,8 @@ def diff_command(args):
         prev_manifest, prev_imi = extract(prev, do_filter=not args.no_filter)
         curr_manifest, curr_imi = extract(curr, do_filter=not args.no_filter)
 
-        manifest_status = compare(prev_manifest, curr_manifest)
-        image_info_status = compare(prev_imi, curr_imi)
+        manifest_status = compare_manifest(prev_manifest, curr_manifest)
+        image_info_status = compare_imi(prev_imi, curr_imi)
 
         # Since changes are filtered because we encounter UUID volatility on
         # some entries, do not print the ones that after this filtering have in
@@ -319,8 +321,8 @@ def report_command(args):
         prev_manifest, prev_imi = extract(prev, do_filter=not args.no_filter)
         curr_manifest, curr_imi = extract(curr, do_filter=not args.no_filter)
 
-        manifest_status = compare(prev_manifest, curr_manifest)
-        image_info_status = compare(prev_imi, curr_imi)
+        manifest_status = compare_manifest(prev_manifest, curr_manifest)
+        image_info_status = compare_imi(prev_imi, curr_imi)
 
         # Since changes are filtered because we encounter UUID volatility on
         # some entries, do not print the ones that after this filtering have in
