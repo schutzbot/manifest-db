@@ -1553,17 +1553,10 @@ def read_systemd_service_dropin(dropin_dir_path):
     """
     # read all unit drop-in configurations
     config_files = glob.glob(f"{dropin_dir_path}/*.conf")
-    parser = configparser.RawConfigParser()
-    # prevent conversion of the opion name to lowercase
-    parser.optionxform = lambda option: option
-    parser.read(config_files)
 
     dropin_config = {}
-    for section in parser.sections():
-        section_config = {}
-        section_config.update(parser[section])
-        if section_config:
-            dropin_config[section] = section_config
+    for file in config_files:
+        dropin_config[os.path.basename(file)] = read_config_file_no_comment(file)
 
     return dropin_config
 
@@ -1599,9 +1592,9 @@ def read_systemd_service_dropins(tree):
     return _read_glob_paths_with_parser(tree, checked_globs, read_systemd_service_dropin)
 
 
-def read_tmpfilesd_config(config_path):
+def read_config_file_no_comment(config_path):
     """
-    Read tmpfiles.d configuration files.
+    Read configuration files.
 
     Returns: list of strings representing uncommented lines read from the
     configuration file.
@@ -1637,7 +1630,7 @@ def read_tmpfilesd_configs(tree):
     - "/usr/lib/tmpfiles.d/*.conf"
 
     Returns: dictionary as returned by '_read_glob_paths_with_parser()' with
-    configuration representation as returned by 'read_tmpfilesd_config()'.
+    configuration representation as returned by 'read_config_file_no_comment()'.
 
     An example return value:
     {
@@ -1655,7 +1648,7 @@ def read_tmpfilesd_configs(tree):
         "/usr/lib/tmpfiles.d/*.conf"
     ]
 
-    return _read_glob_paths_with_parser(tree, checked_globs, read_tmpfilesd_config)
+    return _read_glob_paths_with_parser(tree, checked_globs, read_config_file_no_comment)
 
 
 def read_tuned_profile(tree):
@@ -1827,7 +1820,7 @@ def read_security_limits_configs(tree):
         "/etc/security/limits.d/*.conf"
     ]
 
-    return _read_glob_paths_with_parser(tree, checked_globs, read_tmpfilesd_config)
+    return _read_glob_paths_with_parser(tree, checked_globs, read_config_file_no_comment)
 
 
 def read_ssh_config(config_path):
