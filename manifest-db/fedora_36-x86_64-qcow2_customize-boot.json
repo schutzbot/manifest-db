@@ -5328,6 +5328,7 @@
             "options": {
               "root_fs_uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75",
               "boot_fs_uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
+              "kernel_opts": "ro no_timer_check console=ttyS0,115200n8 biosdevname=0 net.ifnames=0 debug",
               "legacy": "i386-pc",
               "uefi": {
                 "vendor": "fedora",
@@ -8039,7 +8040,7 @@
         "size": 4297047552,
         "start": 736100352,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "HHJYAo-DK1I-pB1l-LhO7-SSHr-YG0D-mCwC2f"
+        "uuid": "3tmKxz-OVpB-CgHn-ywKx-EHoh-ciNa-JJcePp"
       },
       {
         "bootable": false,
@@ -8198,6 +8199,7 @@
       "cloud-init-local.service",
       "cloud-init.service",
       "ctrl-alt-del.target",
+      "custom.service",
       "dbus-broker.service",
       "dbus-org.fedoraproject.FirewallD1.service",
       "dbus-org.freedesktop.nm-dispatcher.service",
@@ -8332,32 +8334,46 @@
       }
     },
     "systemd-service-dropins": {
+      "/etc/systemd/system": {
+        "custom.service.d": {
+          "override.conf": [
+            "[Service]",
+            "ExecStart=",
+            "ExecStart=/usr/bin/cat /etc/custom_file.txt"
+          ]
+        }
+      },
       "/usr/lib/systemd/system": {
         "sshd-keygen@.service.d": {
-          "Unit": {
-            "ConditionPathExists": "!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
-          }
+          "disable-sshd-keygen-if-cloud-init-active.conf": [
+            "[Unit]",
+            "ConditionPathExists=!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
+          ]
         },
         "systemd-hostnamed.service.d": {
-          "Service": {
-            "PrivateDevices": "no"
-          }
+          "disable-privatedevices.conf": [
+            "[Service]",
+            "PrivateDevices=no"
+          ]
         },
         "systemd-logind.service.d": {
-          "Service": {
-            "Environment": "SYSTEMD_REBOOT_TO_BOOT_LOADER_MENU=true"
-          }
+          "10-grub2-logind-service.conf": [
+            "[Service]",
+            "Environment=SYSTEMD_REBOOT_TO_BOOT_LOADER_MENU=true"
+          ]
         },
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         },
         "user@.service.d": {
-          "Service": {
-            "ManagedOOMMemoryPressure": "kill",
-            "ManagedOOMMemoryPressureLimit": "50%"
-          }
+          "10-oomd-user-service-defaults.conf": [
+            "[Service]",
+            "ManagedOOMMemoryPressure=kill",
+            "ManagedOOMMemoryPressureLimit=50%"
+          ]
         }
       }
     },

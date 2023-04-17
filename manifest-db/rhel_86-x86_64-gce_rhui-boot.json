@@ -4733,9 +4733,10 @@
     "systemd-service-dropins": {
       "/usr/lib/systemd/system": {
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },

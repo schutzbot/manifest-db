@@ -5054,6 +5054,7 @@
             "options": {
               "root_fs_uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75",
               "boot_fs_uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
+              "kernel_opts": "ro no_timer_check console=ttyS0,115200n8 biosdevname=0 net.ifnames=0",
               "uefi": {
                 "vendor": "fedora",
                 "unified": true
@@ -7659,19 +7660,22 @@
     "systemd-service-dropins": {
       "/usr/lib/systemd/system": {
         "sshd-keygen@.service.d": {
-          "Unit": {
-            "ConditionPathExists": "!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
-          }
+          "disable-sshd-keygen-if-cloud-init-active.conf": [
+            "[Unit]",
+            "ConditionPathExists=!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
+          ]
         },
         "systemd-logind.service.d": {
-          "Service": {
-            "Environment": "SYSTEMD_REBOOT_TO_BOOT_LOADER_MENU=true"
-          }
+          "10-grub2-logind-service.conf": [
+            "[Service]",
+            "Environment=SYSTEMD_REBOOT_TO_BOOT_LOADER_MENU=true"
+          ]
         },
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },

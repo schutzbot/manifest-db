@@ -7107,15 +7107,17 @@
     "systemd-service-dropins": {
       "/usr/lib/systemd/system": {
         "greenboot-healthcheck.service.d": {
-          "Unit": {
-            "After": "network-online.target",
-            "Wants": "network-online.target"
-          }
+          "10-network-online.conf": [
+            "[Unit]",
+            "After=network-online.target",
+            "Wants=network-online.target"
+          ]
         },
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },

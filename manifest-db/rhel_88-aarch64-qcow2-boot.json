@@ -4630,16 +4630,18 @@
     "systemd-service-dropins": {
       "/etc/systemd/system": {
         "sshd-keygen@.service.d": {
-          "Unit": {
-            "ConditionPathExists": "!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
-          }
+          "disable-sshd-keygen-if-cloud-init-active.conf": [
+            "[Unit]",
+            "ConditionPathExists=!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
+          ]
         }
       },
       "/usr/lib/systemd/system": {
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },
