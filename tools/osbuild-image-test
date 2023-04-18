@@ -12,6 +12,7 @@ import subprocess
 import sys
 import traceback
 import shutil
+import math
 
 from collections import defaultdict
 from typing import Iterator, List, Optional, Dict
@@ -149,7 +150,6 @@ class TestCase:
     can compare the produced image-info from the reference one
     can dump the built image-info to disk
     """
-
 
     def __init__(self, path, data: Dict, osb: OSBuild, imi: ImageInfoExec) -> None:
         self.path = path
@@ -402,7 +402,21 @@ def run_tests_cases(args):
         print(f"{RED}FAIL{RESET}: no tests to run")
         success = False
 
-    for test in tests:
+    # compute the bucket of tests this instance is gonna run.
+    # by default, the bucket size is the entire test set and the bucket number
+    # is 0.
+    #
+    # If the user specified that more than one instances are sharing the tests
+    # set, then figure out which tests to execute based on the instance number
+    # over the total number of instances.
+    bucket_number: int = args.instance_number - 1
+    bucket_size: int = math.ceil(len(tests) / args.total_number_of_instances)
+
+    start_index: int = bucket_number * bucket_size
+    end_index: int = (bucket_number + 1) * bucket_size
+    end_index = min(end_index, len(tests))
+
+    for test in tests[start_index:end_index]:
         print(f"{test.id}", end=" ", flush=True)
         # Skip for dry run
         if args.dry_run:
@@ -539,6 +553,19 @@ def main():
         type=os.path.abspath,
         default="manifest-db",
         help="path to the database folder"
+    )
+    parser.add_argument(
+        "--instance-number",
+        type=int,
+        default=1,
+        help="if several identical instances are running, specify its number"
+        "here, numbering starts at 1"
+    )
+    parser.add_argument(
+        "--total-number-of-instances",
+        type=int,
+        default=1,
+        help="total number of identical instances working on the same input data"
     )
 
     args = parser.parse_args()
