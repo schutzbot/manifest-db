@@ -46,7 +46,7 @@ Regression:
   script:
     - schutzbot/deploy.sh
     - schutzbot/selinux-context.sh
-    - sudo test/cases/manifest_tests
+    - sudo test/cases/manifest_tests ${PARALLEL_EXEC}
   rules:
     - if: '$CI_PIPELINE_SOURCE != "trigger"'
   artifacts:
@@ -55,7 +55,8 @@ Regression:
       - generated-image-infos/
   parallel:
     matrix:
-      - RUNNER:
+      - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
+        RUNNER:
           - aws/fedora-36-x86_64
           - aws/fedora-36-aarch64
           - aws/fedora-37-x86_64
@@ -64,7 +65,8 @@ Regression:
           - aws/centos-stream-8-aarch64
           - aws/centos-stream-9-x86_64
           - aws/centos-stream-9-aarch64
-      - RUNNER:
+      - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
+        RUNNER:
           - aws/rhel-8.6-ga-x86_64
           - aws/rhel-8.6-ga-aarch64
           - aws/rhel-8.7-ga-x86_64
@@ -103,7 +105,7 @@ Image-info-build:
     - schutzbot/deploy.sh
     - schutzbot/selinux-context.sh
     - tools/import-image-tests manifests manifest-db --manifest-only --db-ignore=db-ignore --filter-with-ci-distros=.gitlab-ci.yml --verbose
-    - sudo test/cases/gen_db
+    - sudo test/cases/gen_db ${PARALLEL_EXEC}
   rules:
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
   artifacts:
@@ -114,7 +116,8 @@ Image-info-build:
     - Manifest-gen
   parallel:
     matrix:
-      - RUNNER:
+      - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
+        RUNNER:
           - aws/fedora-36-x86_64
           - aws/fedora-36-aarch64
           - aws/fedora-37-x86_64
@@ -123,7 +126,8 @@ Image-info-build:
           - aws/centos-stream-8-aarch64
           - aws/centos-stream-9-x86_64
           - aws/centos-stream-9-aarch64
-      - RUNNER:
+      - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
+        RUNNER:
           - aws/rhel-8.6-ga-x86_64
           - aws/rhel-8.6-ga-aarch64
           - aws/rhel-8.7-ga-x86_64

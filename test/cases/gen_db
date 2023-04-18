@@ -21,14 +21,23 @@ distro = distro.replace('"', '')
 distro = distro.replace('.', '')
 
 print(f"Running the osbuild-image-test for arch {platform.machine()} and "
-        f"distribution {distro}")
+      f"distribution {distro}")
 
+command = ["tools/osbuild-image-test",
+           f"--arch={platform.machine()}",
+           f"--distro={distro}",
+           "--generator-mode"]
+
+pa_exec = sys.argv[1] if len(sys.argv) > 1 else None
+if pa_exec:
+    total = int(pa_exec.split("/")[1])
+    part = int(pa_exec.split("/")[0])
+    command.append(f"--instance-number={part}")
+    command.append(f"--total-number-of-instances={total}")
+
+print(" ".join(command), flush=True)
 try:
-    subprocess.run(["tools/osbuild-image-test",
-                    f"--arch={platform.machine()}",
-                    f"--distro={distro}",
-                    "--generator-mode"],
-                    check=True)
+    subprocess.run(command, check=True)
 except CalledProcessError as e:
     print(e, file=sys.stderr)
     sys.exit(1)
