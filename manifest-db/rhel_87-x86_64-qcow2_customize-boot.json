@@ -5093,7 +5093,7 @@
         "size": 10093575680,
         "start": 643825664,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "87djLg-tfvP-VGeQ-JZAs-hkfG-bJAo-ChwLcS"
+        "uuid": "vZsDkN-XsKK-fj1z-J0V9-gqBR-v0Sv-3r4AxI"
       },
       {
         "bootable": false,
@@ -5296,6 +5296,7 @@
       "cloud-init.service",
       "crond.service",
       "ctrl-alt-del.target",
+      "custom.service",
       "dbus-org.fedoraproject.FirewallD1.service",
       "dbus-org.freedesktop.nm-dispatcher.service",
       "dbus-org.freedesktop.timedate1.service",
@@ -5432,17 +5433,26 @@
     },
     "systemd-service-dropins": {
       "/etc/systemd/system": {
+        "custom.service.d": {
+          "override.conf": [
+            "[Service]",
+            "ExecStart=",
+            "ExecStart=/usr/bin/cat /etc/custom_file.txt"
+          ]
+        },
         "sshd-keygen@.service.d": {
-          "Unit": {
-            "ConditionPathExists": "!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
-          }
+          "disable-sshd-keygen-if-cloud-init-active.conf": [
+            "[Unit]",
+            "ConditionPathExists=!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
+          ]
         }
       },
       "/usr/lib/systemd/system": {
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },

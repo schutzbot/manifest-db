@@ -6269,7 +6269,7 @@
         "size": 67667738112,
         "start": 1051721728,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "VX4J7Q-tce5-2V6Z-9TK4-WawL-P3NI-ccP3l8"
+        "uuid": "yxpShk-iEgO-9vBk-12OK-FDk0-Tmjd-0ohdXp"
       },
       {
         "bootable": false,
@@ -6626,21 +6626,24 @@
     "systemd-service-dropins": {
       "/etc/systemd/system": {
         "sshd-keygen@.service.d": {
-          "Unit": {
-            "ConditionPathExists": "!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
-          }
+          "disable-sshd-keygen-if-cloud-init-active.conf": [
+            "[Unit]",
+            "ConditionPathExists=!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
+          ]
         }
       },
       "/usr/lib/systemd/system": {
         "nm-cloud-setup.service.d": {
-          "Service": {
-            "Environment": "NM_CLOUD_SETUP_AZURE=yes"
-          }
+          "10-rh-enable-for-azure.conf": [
+            "[Service]",
+            "Environment=NM_CLOUD_SETUP_AZURE=yes"
+          ]
         },
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },

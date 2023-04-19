@@ -5075,7 +5075,7 @@
         "size": 10093575680,
         "start": 643825664,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "4ED9TB-mX9D-Yp4f-rHD6-NUF2-UNyX-z08kO9"
+        "uuid": "fse9BZ-FFgi-Naf0-9FAa-7O58-xQ9S-xMcnsQ"
       },
       {
         "bootable": false,
@@ -5284,6 +5284,7 @@
       "cloud-init.service",
       "crond.service",
       "ctrl-alt-del.target",
+      "custom.service",
       "dbus-org.fedoraproject.FirewallD1.service",
       "dbus-org.freedesktop.nm-dispatcher.service",
       "dbus-org.freedesktop.timedate1.service",
@@ -5419,11 +5420,21 @@
       }
     },
     "systemd-service-dropins": {
+      "/etc/systemd/system": {
+        "custom.service.d": {
+          "override.conf": [
+            "[Service]",
+            "ExecStart=",
+            "ExecStart=/usr/bin/cat /etc/custom_file.txt"
+          ]
+        }
+      },
       "/usr/lib/systemd/system": {
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },

@@ -6265,7 +6265,7 @@
         "size": 67667738112,
         "start": 1051721728,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "ThSvcG-i0Ud-fZJa-4mQY-mFJh-whIs-NiejIa"
+        "uuid": "LI5det-nla3-QE71-2WhG-w3UV-rkpL-sE8Qqf"
       },
       {
         "bootable": false,
@@ -6630,14 +6630,16 @@
     "systemd-service-dropins": {
       "/usr/lib/systemd/system": {
         "nm-cloud-setup.service.d": {
-          "Service": {
-            "Environment": "NM_CLOUD_SETUP_AZURE=yes"
-          }
+          "10-rh-enable-for-azure.conf": [
+            "[Service]",
+            "Environment=NM_CLOUD_SETUP_AZURE=yes"
+          ]
         },
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },

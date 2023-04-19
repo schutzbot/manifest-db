@@ -2019,7 +2019,7 @@
         ]
       },
       {
-        "name": "image-tree",
+        "name": "ostree-deployment",
         "build": "name:build",
         "stages": [
           {
@@ -2238,7 +2238,7 @@
             "options": {
               "root_fs_uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75",
               "boot_fs_uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
-              "kernel_opts": "modprobe.blacklist=vc4,rw",
+              "kernel_opts": "modprobe.blacklist=vc4 rw",
               "uefi": {
                 "vendor": "fedora",
                 "install": true,
@@ -2287,7 +2287,7 @@
             "type": "org.osbuild.truncate",
             "options": {
               "filename": "disk.img",
-              "size": "10737418240"
+              "size": "4294967296"
             }
           },
           {
@@ -2309,7 +2309,7 @@
                   "uuid": "CB07C243-BC44-4717-853E-28852021225B"
                 },
                 {
-                  "size": 17846239,
+                  "size": 5263327,
                   "start": 3125248,
                   "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
                   "uuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562"
@@ -2373,7 +2373,7 @@
                 "options": {
                   "filename": "disk.img",
                   "start": 3125248,
-                  "size": 17846239,
+                  "size": 5263327,
                   "lock": true
                 }
               }
@@ -2386,7 +2386,7 @@
                 "type": "org.osbuild.tree",
                 "origin": "org.osbuild.pipeline",
                 "references": [
-                  "name:image-tree"
+                  "name:ostree-deployment"
                 ]
               }
             },
@@ -2420,7 +2420,7 @@
                 "options": {
                   "filename": "disk.img",
                   "start": 3125248,
-                  "size": 17846239
+                  "size": 5263327
                 }
               }
             },
