@@ -4549,6 +4549,7 @@
             "options": {
               "root_fs_uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75",
               "boot_fs_uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
+              "kernel_opts": "console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295",
               "legacy": "i386-pc",
               "saved_entry": "ffffffffffffffffffffffffffffffff-5.14.0-226.el9.x86_64",
               "write_cmdline": false,
@@ -7060,36 +7061,45 @@
     "systemd-service-dropins": {
       "/etc/systemd/system": {
         "sshd-keygen@.service.d": {
-          "Unit": {
-            "ConditionPathExists": "!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
-          }
+          "disable-sshd-keygen-if-cloud-init-active.conf": [
+            "[Unit]",
+            "ConditionPathExists=!/run/systemd/generator.early/multi-user.target.wants/cloud-init.target"
+          ]
         }
       },
       "/usr/lib/systemd/system": {
         "nm-cloud-setup.service.d": {
-          "Service": {
-            "Environment": "NM_CLOUD_SETUP_EC2=yes"
-          }
+          "10-rh-enable-for-ec2.conf": [
+            "[Service]",
+            "Environment=NM_CLOUD_SETUP_EC2=yes"
+          ]
         },
         "systemd-hostnamed.service.d": {
-          "Service": {
-            "PrivateDevices": "no"
-          }
+          "disable-privatedevices.conf": [
+            "[Service]",
+            "PrivateDevices=no"
+          ]
         },
         "systemd-logind.service.d": {
-          "Service": {
-            "Environment": "SYSTEMD_REBOOT_TO_BOOT_LOADER_MENU=true"
-          }
+          "10-grub2-logind-service.conf": [
+            "[Service]",
+            "Environment=SYSTEMD_REBOOT_TO_BOOT_LOADER_MENU=true"
+          ]
         },
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         },
         "user@.service.d": {
-          "Unit": {
-            "After": "systemd-user-sessions.service"
-          }
+          "10-login-barrier.conf": [
+            "[Unit]",
+            "After=systemd-user-sessions.service"
+          ]
+        },
+        "user@0.service.d": {
+          "10-login-barrier.conf": []
         }
       }
     },

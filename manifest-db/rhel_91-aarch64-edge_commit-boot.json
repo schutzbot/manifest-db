@@ -6525,25 +6525,29 @@
     "systemd-service-dropins": {
       "/usr/lib/systemd/system": {
         "greenboot-healthcheck.service.d": {
-          "Unit": {
-            "After": "network-online.target",
-            "Wants": "network-online.target"
-          }
+          "10-network-online.conf": [
+            "[Unit]",
+            "After=network-online.target",
+            "Wants=network-online.target"
+          ]
         },
         "systemd-hostnamed.service.d": {
-          "Service": {
-            "PrivateDevices": "no"
-          }
+          "disable-privatedevices.conf": [
+            "[Service]",
+            "PrivateDevices=no"
+          ]
         },
         "systemd-logind.service.d": {
-          "Service": {
-            "Environment": "SYSTEMD_REBOOT_TO_BOOT_LOADER_MENU=true"
-          }
+          "10-grub2-logind-service.conf": [
+            "[Service]",
+            "Environment=SYSTEMD_REBOOT_TO_BOOT_LOADER_MENU=true"
+          ]
         },
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },
