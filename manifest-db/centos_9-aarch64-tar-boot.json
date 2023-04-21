@@ -2652,14 +2652,19 @@
     "systemd-service-dropins": {
       "/usr/lib/systemd/system": {
         "systemd-hostnamed.service.d": {
-          "Service": {
-            "PrivateDevices": "no"
-          }
+          "disable-privatedevices.conf": [
+            "[Service]",
+            "PrivateDevices=no"
+          ]
         },
         "user@.service.d": {
-          "Unit": {
-            "After": "systemd-user-sessions.service"
-          }
+          "10-login-barrier.conf": [
+            "[Unit]",
+            "After=systemd-user-sessions.service"
+          ]
+        },
+        "user@0.service.d": {
+          "10-login-barrier.conf": []
         }
       }
     },

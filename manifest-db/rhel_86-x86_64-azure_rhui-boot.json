@@ -2486,7 +2486,7 @@
                     "id": "sha256:340b3c65becfca3d39f2afeed9659505a33ee870270c4d115d9fefe8929ff806"
                   },
                   {
-                    "id": "sha256:10e429e047cea577ade1d52422a39af6349b4427b6aba8865dc4eba169c142ce"
+                    "id": "sha256:334ac6137a78b2d57afb209804d1ae2374d7b877aa12ef85d02aa6487e496140"
                   }
                 ]
               }
@@ -3449,9 +3449,6 @@
           "sha256:1065049dbd53849d35db269a23be54148cbe481122381ab71b72f62e83816b26": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-n8.6-20220201/Packages/gobject-introspection-1.56.1-1.el8.x86_64.rpm"
           },
-          "sha256:10e429e047cea577ade1d52422a39af6349b4427b6aba8865dc4eba169c142ce": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rhui-azure-20220227/rhui-azure-rhel8-2.2-198.noarch.rpm"
-          },
           "sha256:1136323a37c5940055c3891a260b26782b75ea986fb5fe02ad80364f60527450": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-n8.6-20220201/Packages/grub2-common-2.02-106.el8.noarch.rpm"
           },
@@ -3697,6 +3694,9 @@
           },
           "sha256:333f6871ae18253546f50fea5dcb97635da5ee74b2c109911a605ddd50c9226c": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-n8.6-20220201/Packages/libcap-2.26-5.el8.x86_64.rpm"
+          },
+          "sha256:334ac6137a78b2d57afb209804d1ae2374d7b877aa12ef85d02aa6487e496140": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-rhui-azure-20230418/Packages/r/rhui-azure-rhel8-2.2-484.noarch.rpm"
           },
           "sha256:336ed0cd6b743583edda90cb5730ca407721f6336b8d5eeca7d25981fcb4b28c": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el8/el8-x86_64-baseos-n8.6-20220201/Packages/sudo-1.8.29-8.el8.x86_64.rpm"
@@ -6123,7 +6123,7 @@
       "redhat-release-eula-8.6-0.0.el8.x86_64",
       "rhc-0.2.0-5.el8.x86_64",
       "rhsm-icons-1.28.25-1.el8.noarch",
-      "rhui-azure-rhel8-2.2-198.noarch",
+      "rhui-azure-rhel8-2.2-484.noarch",
       "rng-tools-6.14-4.git.b2b7934e.el8.x86_64",
       "rootfiles-8.1-22.el8.noarch",
       "rpm-4.14.3-21.el8.x86_64",
@@ -6265,7 +6265,7 @@
         "size": 67667738112,
         "start": 1051721728,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "ThSvcG-i0Ud-fZJa-4mQY-mFJh-whIs-NiejIa"
+        "uuid": "LxZiml-sChb-NExq-bLDx-ffRH-Vx1G-6uxTM5"
       },
       {
         "bootable": false,
@@ -6630,14 +6630,16 @@
     "systemd-service-dropins": {
       "/usr/lib/systemd/system": {
         "nm-cloud-setup.service.d": {
-          "Service": {
-            "Environment": "NM_CLOUD_SETUP_AZURE=yes"
-          }
+          "10-rh-enable-for-azure.conf": [
+            "[Service]",
+            "Environment=NM_CLOUD_SETUP_AZURE=yes"
+          ]
         },
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },

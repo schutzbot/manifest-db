@@ -1980,7 +1980,7 @@
         ]
       },
       {
-        "name": "image-tree",
+        "name": "ostree-deployment",
         "build": "name:build",
         "stages": [
           {
@@ -2199,7 +2199,7 @@
             "options": {
               "root_fs_uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75",
               "boot_fs_uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
-              "kernel_opts": "modprobe.blacklist=vc4,rw",
+              "kernel_opts": "modprobe.blacklist=vc4 rw",
               "uefi": {
                 "vendor": "fedora",
                 "install": true,
@@ -2248,32 +2248,30 @@
             "type": "org.osbuild.truncate",
             "options": {
               "filename": "disk.img",
-              "size": "10737418240"
+              "size": "4294967296"
             }
           },
           {
             "type": "org.osbuild.sfdisk",
             "options": {
-              "label": "gpt",
-              "uuid": "D209C89E-EA5E-4FBD-B161-B461CCE297E0",
+              "label": "dos",
+              "uuid": "0xc1748067",
               "partitions": [
                 {
+                  "bootable": true,
                   "size": 1026048,
                   "start": 2048,
-                  "type": "C12A7328-F81F-11D2-BA4B-00A0C93EC93B",
-                  "uuid": "68B2905B-DF3E-4FB3-80FA-49D1E773AA33"
+                  "type": "06"
                 },
                 {
                   "size": 2097152,
                   "start": 1028096,
-                  "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-                  "uuid": "CB07C243-BC44-4717-853E-28852021225B"
+                  "type": "83"
                 },
                 {
-                  "size": 17846239,
+                  "size": 5263360,
                   "start": 3125248,
-                  "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-                  "uuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562"
+                  "type": "83"
                 }
               ]
             },
@@ -2334,7 +2332,7 @@
                 "options": {
                   "filename": "disk.img",
                   "start": 3125248,
-                  "size": 17846239,
+                  "size": 5263360,
                   "lock": true
                 }
               }
@@ -2347,7 +2345,7 @@
                 "type": "org.osbuild.tree",
                 "origin": "org.osbuild.pipeline",
                 "references": [
-                  "name:image-tree"
+                  "name:ostree-deployment"
                 ]
               }
             },
@@ -2381,7 +2379,189 @@
                 "options": {
                   "filename": "disk.img",
                   "start": 3125248,
-                  "size": 17846239
+                  "size": 5263360
+                }
+              }
+            },
+            "mounts": [
+              {
+                "name": "root",
+                "type": "org.osbuild.ext4",
+                "source": "root",
+                "target": "/"
+              },
+              {
+                "name": "boot",
+                "type": "org.osbuild.ext4",
+                "source": "boot",
+                "target": "/boot"
+              },
+              {
+                "name": "boot.efi",
+                "type": "org.osbuild.fat",
+                "source": "boot.efi",
+                "target": "/boot/efi"
+              }
+            ]
+          },
+          {
+            "type": "org.osbuild.copy",
+            "inputs": {
+              "ostree-tree": {
+                "type": "org.osbuild.ostree.checkout",
+                "origin": "org.osbuild.source",
+                "references": [
+                  ""
+                ]
+              }
+            },
+            "options": {
+              "paths": [
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bcm2710-rpi-2-b.dtb",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bcm2710-rpi-3-b-plus.dtb",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bcm2710-rpi-3-b.dtb",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bcm2710-rpi-cm3.dtb",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bcm2710-rpi-zero-2-w.dtb",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bcm2710-rpi-zero-2.dtb",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bcm2711-rpi-4-b.dtb",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bcm2711-rpi-400.dtb",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bcm2711-rpi-cm4.dtb",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bcm2711-rpi-cm4s.dtb",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/bootcode.bin",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/config.txt",
+                  "to": "mount://root/boot/efi/config.txt"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/fixup.dat",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/fixup4.dat",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/fixup4cd.dat",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/fixup4db.dat",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/fixup4x.dat",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/fixup_cd.dat",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/fixup_db.dat",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/fixup_x.dat",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/overlays",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/share/uboot/rpi_arm64/u-boot.bin",
+                  "to": "mount://root/boot/efi/rpi-u-boot.bin"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/start.elf",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/start4.elf",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/start4cd.elf",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/start4db.elf",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/start4x.elf",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/start_cd.elf",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/start_db.elf",
+                  "to": "mount://root/boot/efi/"
+                },
+                {
+                  "from": "input://ostree-tree//usr/lib/ostree-boot/efi/start_x.elf",
+                  "to": "mount://root/boot/efi/"
+                }
+              ]
+            },
+            "devices": {
+              "boot": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "disk.img",
+                  "start": 1028096,
+                  "size": 2097152
+                }
+              },
+              "boot.efi": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "disk.img",
+                  "start": 2048,
+                  "size": 1026048
+                }
+              },
+              "root": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "disk.img",
+                  "start": 3125248,
+                  "size": 5263360
                 }
               }
             },

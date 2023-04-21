@@ -6067,14 +6067,16 @@
     "systemd-service-dropins": {
       "/usr/lib/systemd/system": {
         "nm-cloud-setup.service.d": {
-          "Service": {
-            "Environment": "NM_CLOUD_SETUP_AZURE=yes"
-          }
+          "10-rh-enable-for-azure.conf": [
+            "[Service]",
+            "Environment=NM_CLOUD_SETUP_AZURE=yes"
+          ]
         },
         "systemd-udev-trigger.service.d": {
-          "Unit": {
-            "RefuseManualStop": "true"
-          }
+          "systemd-udev-trigger-no-reload.conf": [
+            "[Unit]",
+            "RefuseManualStop=true"
+          ]
         }
       }
     },
