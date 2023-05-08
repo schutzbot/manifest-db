@@ -8,7 +8,7 @@ DNF_REPO_BASEURL=http://osbuild-composer-repos.s3.amazonaws.com
 
 # The osbuild-composer commit to run reverse-dependency test against.
 # Currently: rpmbuild: build rpms on RHEL 8.8 and 9.2
-OSBUILD_COMPOSER_COMMIT=caac5fc7af0ec59df7bcb590de233f82cdcef4e8
+OSBUILD_COMPOSER_COMMIT=$(jq -r '.global.dependencies."osbuild-composer".commit' Schutzfile)
 OSBUILD_COMMIT=$(jq -r '.global.dependencies.osbuild.commit' Schutzfile)
 
 # Get OS details.

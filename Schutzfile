@@ -3,6 +3,9 @@
     "dependencies": {
       "osbuild": {
         "commit": "2e3f5fc047cab73b68225f6d9d6817e824178d34"
+      },
+      "osbuild-composer": {
+        "commit": "dabc51d2521f37b753d78782d04276ec2b110765"
       }
     }
   },
