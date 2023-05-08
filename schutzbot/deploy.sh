@@ -30,7 +30,7 @@ fi
 # Set up dnf repositories with the RPMs we want to test
 sudo tee /etc/yum.repos.d/osbuild.repo << EOF
 [osbuild]
-name=osbuild ${CI_COMMIT_SHA}
+name=osbuild ${OSBUILD_COMMIT}
 baseurl=${DNF_REPO_BASEURL}/osbuild/${DISTRO_VERSION}/${ARCH}/${OSBUILD_COMMIT}
 enabled=1
 gpgcheck=0
