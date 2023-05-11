@@ -5145,6 +5145,27 @@
             }
           },
           {
+            "type": "org.osbuild.yum.repos",
+            "options": {
+              "filename": "example.repo",
+              "repos": [
+                {
+                  "id": "example",
+                  "baseurl": [
+                    "https://example.com/download/yum"
+                  ],
+                  "enabled": true,
+                  "gpgkey": [
+                    "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-example-0"
+                  ],
+                  "name": "Example repo",
+                  "gpgcheck": true,
+                  "repo_gpgcheck": false
+                }
+              ]
+            }
+          },
+          {
             "type": "org.osbuild.rhsm",
             "options": {
               "dnf-plugins": {
@@ -5287,6 +5308,15 @@
                     "id": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
                   }
                 ]
+              },
+              "file-e6e7e40c00b4d4aceb64629e41b6f31904359447a47f9c2eb603eb530804c5b1": {
+                "type": "org.osbuild.files",
+                "origin": "org.osbuild.source",
+                "references": [
+                  {
+                    "id": "sha256:e6e7e40c00b4d4aceb64629e41b6f31904359447a47f9c2eb603eb530804c5b1"
+                  }
+                ]
               }
             },
             "options": {
@@ -5309,6 +5339,11 @@
                 {
                   "from": "input://file-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855/sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
                   "to": "tree:///etc/empty_file.txt",
+                  "remove_destination": true
+                },
+                {
+                  "from": "input://file-e6e7e40c00b4d4aceb64629e41b6f31904359447a47f9c2eb603eb530804c5b1/sha256:e6e7e40c00b4d4aceb64629e41b6f31904359447a47f9c2eb603eb530804c5b1",
+                  "to": "tree:///etc/pki/rpm-gpg/RPM-GPG-KEY-example-0",
                   "remove_destination": true
                 }
               ]
@@ -7070,6 +7105,10 @@
           "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": {
             "encoding": "base64",
             "data": ""
+          },
+          "sha256:e6e7e40c00b4d4aceb64629e41b6f31904359447a47f9c2eb603eb530804c5b1": {
+            "encoding": "base64",
+            "data": "LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCgptUUdpQkdSQlNKVVJCQUN6Q29lOVVOZnhPVWlGTHE5YjYwd2VTQkZkcjM5bUxWaXNjZWNEV0FUTnZYdGdSb0svCnhsLzRxcGF5ekFMUkNRMkVrL3BNcmJLUEYvM25nRUN1QnY3UytySTRuL3JJaWE0Rk5jcXpZZVpBejRERTROUC8KZVVHdno0OXRXaG1IMTdoWC9ybUY5a3o1a0xxMmJEWkk0R0RnWlcvb01EZHQyaXZqMDkyTGptOWpSd0NneVF5MwpXRUs2Ukp2SWNTRWg5dmJkd1ZkTVBPY0QvaUhxTmVqVE1Gd0d5WmZDV0IwZUlPb3hVT1VuL1pacEVMVEwyVXBXCkdkdUNmM3R4YjVTa0s3TStXRGJiMFM1SXZOWG9pMHRjMTNTVGlENk94ZzJPOVBrU3Z2WWIrOHp4bGhOb1NUd3kKNTRqN1JmNUZsblEzVEFGZmp0UTVMQ3g1NkxLSzczajRSanZLVy8va3RtNW41NGV4c2dvOVJ5L2UxMlQ0NmRSZwo3dElsQS85MXJ6TG01N1F5YzczQTd6amdJemVmOU82VjVaem93QytwcC9qZmI1cFM5aFhnUk9la0xrTWdYMHZnCmlBNXJNNU9wcUs0YkFyVlAxbFJXbkx5dmdod08rVFc3NjNSVnVYbFMwc2Nmek15NGcwTmdyRzZqN1RJT0tFcXoKNHhReE91d2t1ZHFpUXIva09xS3VMeFFCWGErNU1Ka3loZlBtcVl3NXdwcXlDd0ZhLzdRNGIzTmlkV2xzWkNCMApaWE4wSUNodmMySjFhV3hrSUhSbGMzUWdaM0JuYTJWNUtTQThiM05pZFdsc1pFQmxlR0Z0Y0d4bExtTnZiVDZJCmV3UVRFUUlBT3hZaEJHQjh3b2lFUFJLQk84Q3IzMWx1bHBRZ01lanpCUUprUVVpVkFoc2pCUXNKQ0FjQ0FpSUMKQmhVS0NRZ0xBZ1FXQWdNQkFoNEhBaGVBQUFvSkVGbHVscFFnTWVqemFwTUFvTG1VZzFtTkRUUlVhQ3JOL2Z6bQpIWUxITDZqa0FKOXBFS2tKUWlIQjZTZkQwZmtpRDJHa0VMWUx1YmtCRFFSa1FVaVZFQVFBbEFBWHJRNTcydnV3CnhJM1c4R1NabU9RaUFZT1FtT0tSbG9MRXk2VlozTlNPYjl5MlRYajMzUVRrSkJQT00xN0F6QjdFK1lqWnJwVXQKZ2w2TGxYbWZqTWNKQWNYaEZhVUJDaWxBY013TWxMbDdEdG5Ta0xuTElYWW1IaU4wdjgzQkgvSDBFUHV0T2M1bAowUUl5dWd1dGlmcDlTSnoyK0VXcEM0YmpBN0dGa1E4QUF3VUQvMXRMRUdxQ0ozN084Z2Z6WXQyUFdrcUJFb09ZCjBaM3p3VlM2UFdXL0lJa2FrOWRBSjBpWDVOTWVGV3B6Rk5mdmlEUEhxaEVkVVI1NXpzeHlVWklabENYNWp3bUEKdDdxbTNjYkg0SE5VMU9ncTNROWh5a2JUUFdQWlZrcHZObS9UTzhUQTJicmhrejNudVM4SGJtaCtyalhGT1NaagpEUUJVeEl0dXVqMmhocFFFaUdBRUdCRUNBQ0FXSVFSZ2ZNS0loRDBTZ1R2QXE5OVpicGFVSURIbzh3VUNaRUZJCmxRSWJEQUFLQ1JCWmJwYVVJREhvODNmUUFLREhnRklhZ2dhTnN2RFFrajd2TVgwZmVjSFJoQUNmUzlCdnhuMlcKV1NiNlQrZ0NobVlCc2Vad2svaz0KPURRM2kKLS0tLS1FTkQgUEdQIFBVQkxJQyBLRVkgQkxPQ0stLS0tLQo="
           }
         }
       },
@@ -7929,7 +7968,7 @@
         "size": 10002349568,
         "start": 735051776,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "KwEGUi-xsy3-qUiI-X5Sb-koF6-TkVt-FC9Xmw"
+        "uuid": "UOMk0X-CBnG-fEMM-AecY-UVtk-MkKP-H2vJd6"
       },
       {
         "bootable": false,
@@ -8464,6 +8503,20 @@
           "D! /tmp/.font-unix 1777 root root 10d",
           "r! /tmp/.X[0-9]*-lock"
         ]
+      }
+    },
+    "yum_repos": {
+      "/etc/yum.repos.d": {
+        "example.repo": {
+          "example": {
+            "baseurl": "https://example.com/download/yum",
+            "enabled": "1",
+            "gpgcheck": "1",
+            "gpgkey": "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-example-0",
+            "name": "Example repo",
+            "repo_gpgcheck": "0"
+          }
+        }
       }
     }
   }
