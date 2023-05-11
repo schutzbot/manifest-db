@@ -17019,68 +17019,98 @@
       "context-mismatch": [
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/etc/NetworkManager/dispatcher.d"
+          "expected": "system_u:object_r:cockpit_var_run_t:s0",
+          "filename": "/run/cockpit"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/etc/NetworkManager/dispatcher.d/no-wait.d"
+          "expected": "system_u:object_r:cockpit_var_run_t:s0",
+          "filename": "/run/cockpit/active.motd"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/etc/NetworkManager/dispatcher.d/pre-down.d"
+          "expected": "system_u:object_r:cockpit_var_run_t:s0",
+          "filename": "/run/cockpit/inactive.motd"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/etc/NetworkManager/dispatcher.d/pre-up.d"
+          "expected": "system_u:object_r:cockpit_var_run_t:s0",
+          "filename": "/run/cockpit/motd"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-motd.service"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_dhclient_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/11-dhclient"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-http.service"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_chronyc_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/20-chrony-dhcp"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-http.socket"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_chronyc_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/20-chrony-onoffline"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-https-factory.socket"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/no-wait.d"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-https-factory@.service"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/pre-down.d"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-https@.service"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/pre-up.d"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-https@.socket"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:systemd_socket_proxyd_exec_t:s0",
-          "filename": "/usr/lib/systemd/systemd-socket-proxyd"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit.service"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_exec_t:s0",
-          "filename": "/usr/libexec/nm-dispatcher"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit.socket"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_session_exec_t:s0",
+          "filename": "/usr/libexec/cockpit-session"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_session_exec_t:s0",
+          "filename": "/usr/libexec/cockpit-ssh"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_ws_exec_t:s0",
+          "filename": "/usr/libexec/cockpit-tls"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_ws_exec_t:s0",
+          "filename": "/usr/libexec/cockpit-ws"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_ws_exec_t:s0",
+          "filename": "/usr/libexec/cockpit-wsinstance-factory"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_ws_exec_t:s0",
+          "filename": "/usr/share/cockpit/motd/update-motd"
         }
       ],
       "policy": {
