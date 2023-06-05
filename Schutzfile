@@ -2,7 +2,7 @@
   "global": {
     "dependencies": {
       "osbuild": {
-        "commit": "998f6403874d85c060bc1dd11285d330e9e99ee2"
+        "commit": "2e3f5fc047cab73b68225f6d9d6817e824178d34"
       }
     }
   },
@@ -542,47 +542,6 @@
             "title": "RHEL-9-RPMREPO-NIGHTLY-CRB",
             "name": "crb",
             "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-crb-n9.2-20221115"
-          }
-        ]
-      }
-    ]
-  },
-  "centos-stream-9": {
-    "repos": [
-      {
-        "file": "/etc/yum.repos.d/centos.repo",
-        "x86_64": [
-          {
-            "title": "baseos",
-            "name": "baseos",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-x86_64-baseos-20221115"
-          },
-          {
-            "title": "appstream",
-            "name": "appstream",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-x86_64-appstream-20221115"
-          },
-          {
-            "title": "crb",
-            "name": "crb",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-x86_64-crb-20221115"
-          }
-        ],
-        "aarch64": [
-          {
-            "title": "baseos",
-            "name": "baseos",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-aarch64-baseos-20221115"
-          },
-          {
-            "title": "appstream",
-            "name": "appstream",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-aarch64-appstream-20221115"
-          },
-          {
-            "title": "crb",
-            "name": "crb",
-            "baseurl": "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-aarch64-crb-20221115"
           }
         ]
       }
