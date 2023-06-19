@@ -400,7 +400,7 @@ def run_tests_cases(args):
     success = True
     if not tests:
         print(f"{RED}FAIL{RESET}: no tests to run")
-        success = False
+        return False
 
     # compute the bucket of tests this instance is gonna run.
     # by default, the bucket size is the entire test set and the bucket number
