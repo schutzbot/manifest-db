@@ -65,16 +65,12 @@ Regression:
           - aws/centos-stream-9-aarch64
       - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
         RUNNER:
-          - aws/rhel-8.7-ga-x86_64
-          - aws/rhel-8.7-ga-aarch64
-          - aws/rhel-8.9-nightly-x86_64
-          - aws/rhel-8.9-nightly-aarch64
+          - aws/rhel-8.8-ga-x86_64
+          - aws/rhel-8.8-ga-aarch64
           - aws/rhel-8.10-nightly-x86_64
           - aws/rhel-8.10-nightly-aarch64
-          - aws/rhel-9.1-ga-x86_64
-          - aws/rhel-9.1-ga-aarch64
-          - aws/rhel-9.3-nightly-x86_64
-          - aws/rhel-9.3-nightly-aarch64
+          - aws/rhel-9.2-ga-x86_64
+          - aws/rhel-9.2-ga-aarch64
           - aws/rhel-9.4-nightly-x86_64
           - aws/rhel-9.4-nightly-aarch64
         INTERNAL_NETWORK: "true"
@@ -116,8 +112,6 @@ Image-info-build:
     matrix:
       - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
         RUNNER:
-          - aws/fedora-36-x86_64
-          - aws/fedora-36-aarch64
           - aws/fedora-37-x86_64
           - aws/fedora-37-aarch64
           - aws/centos-stream-8-x86_64
@@ -126,24 +120,12 @@ Image-info-build:
           - aws/centos-stream-9-aarch64
       - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
         RUNNER:
-          - aws/rhel-8.6-ga-x86_64
-          - aws/rhel-8.6-ga-aarch64
-          - aws/rhel-8.7-ga-x86_64
-          - aws/rhel-8.7-ga-aarch64
-          - aws/rhel-8.8-nightly-x86_64
-          - aws/rhel-8.8-nightly-aarch64
-          - aws/rhel-8.9-nightly-x86_64
-          - aws/rhel-8.9-nightly-aarch64
+          - aws/rhel-8.8-ga-x86_64
+          - aws/rhel-8.8-ga-aarch64
           - aws/rhel-8.10-nightly-x86_64
           - aws/rhel-8.10-nightly-aarch64
-          - aws/rhel-9.0-ga-x86_64
-          - aws/rhel-9.0-ga-aarch64
-          - aws/rhel-9.1-ga-x86_64
-          - aws/rhel-9.1-ga-aarch64
-          - aws/rhel-9.2-nightly-x86_64
-          - aws/rhel-9.2-nightly-aarch64
-          - aws/rhel-9.3-nightly-x86_64
-          - aws/rhel-9.3-nightly-aarch64
+          - aws/rhel-9.2-ga-x86_64
+          - aws/rhel-9.2-ga-aarch64
           - aws/rhel-9.4-nightly-x86_64
           - aws/rhel-9.4-nightly-aarch64
         INTERNAL_NETWORK: "true"
