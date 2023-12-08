@@ -2596,12 +2596,12 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
-              "root": {
+              "-": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
@@ -2612,9 +2612,9 @@
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               }
             ]
@@ -5387,7 +5387,6 @@
       "changed": {
         "/boot/grub2/grub.cfg": ".M.......",
         "/etc/chrony.conf": "S.5....T.",
-        "/etc/machine-id": ".M.......",
         "/etc/nsswitch.conf": "....L....",
         "/etc/pam.d/fingerprint-auth": "....L....",
         "/etc/pam.d/password-auth": "....L....",

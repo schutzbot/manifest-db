@@ -6365,11 +6365,19 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
+              "-": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "disk.img",
+                  "start": 1435648,
+                  "size": 6952927
+                }
+              },
               "boot": {
                 "type": "org.osbuild.loopback",
                 "options": {
@@ -6378,28 +6386,20 @@
                   "size": 1024000
                 }
               },
-              "boot.efi": {
+              "boot-efi": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
                   "start": 2048,
                   "size": 409600
                 }
-              },
-              "root": {
-                "type": "org.osbuild.loopback",
-                "options": {
-                  "filename": "disk.img",
-                  "start": 1435648,
-                  "size": 6952927
-                }
               }
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               },
               {
@@ -6409,9 +6409,9 @@
                 "target": "/boot"
               },
               {
-                "name": "boot.efi",
+                "name": "boot-efi",
                 "type": "org.osbuild.fat",
-                "source": "boot.efi",
+                "source": "boot-efi",
                 "target": "/boot/efi"
               }
             ]
@@ -9371,6 +9371,7 @@
     "rpm-verify": {
       "changed": {
         "/boot/grub2/grub.cfg": ".M.......",
+        "/etc/machine-id": ".M.......",
         "/etc/rhsm/rhsm.conf": "..5....T.",
         "/etc/security/pwquality.conf": "S.5....T.",
         "/etc/ssh/sshd_config": "S.5....T.",

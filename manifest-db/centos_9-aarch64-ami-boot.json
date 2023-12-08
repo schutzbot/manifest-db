@@ -2299,6 +2299,14 @@
                     }
                   },
                   {
+                    "id": "sha256:940c544121c640759bd1030410505492e9e3ddd34c3e824bc6646573196e91a7",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
                     "id": "sha256:99c44796113108a47dd00f142aa89a517a025242afe2f17996117e366943b5a6",
                     "options": {
                       "metadata": {
@@ -4468,14 +4476,14 @@
                   "uuid": "68B2905B-DF3E-4FB3-80FA-49D1E773AA33"
                 },
                 {
-                  "size": 1024000,
+                  "size": 1228800,
                   "start": 411648,
                   "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
                   "uuid": "CB07C243-BC44-4717-853E-28852021225B"
                 },
                 {
-                  "size": 19535839,
-                  "start": 1435648,
+                  "size": 19331039,
+                  "start": 1640448,
                   "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
                   "uuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562"
                 }
@@ -4520,7 +4528,7 @@
                 "options": {
                   "filename": "image.raw",
                   "start": 411648,
-                  "size": 1024000,
+                  "size": 1228800,
                   "lock": true
                 }
               }
@@ -4537,8 +4545,8 @@
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "image.raw",
-                  "start": 1435648,
-                  "size": 19535839,
+                  "start": 1640448,
+                  "size": 19331039,
                   "lock": true
                 }
               }
@@ -4559,41 +4567,41 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
+              "-": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "image.raw",
+                  "start": 1640448,
+                  "size": 19331039
+                }
+              },
               "boot": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "image.raw",
                   "start": 411648,
-                  "size": 1024000
+                  "size": 1228800
                 }
               },
-              "boot.efi": {
+              "boot-efi": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "image.raw",
                   "start": 2048,
                   "size": 409600
                 }
-              },
-              "root": {
-                "type": "org.osbuild.loopback",
-                "options": {
-                  "filename": "image.raw",
-                  "start": 1435648,
-                  "size": 19535839
-                }
               }
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               },
               {
@@ -4603,9 +4611,9 @@
                 "target": "/boot"
               },
               {
-                "name": "boot.efi",
+                "name": "boot-efi",
                 "type": "org.osbuild.fat",
-                "source": "boot.efi",
+                "source": "boot-efi",
                 "target": "/boot/efi"
               }
             ]
@@ -5284,6 +5292,9 @@
           },
           "sha256:93fec0bfc665e770daab65f039e3566c47492d8eeeb9c830666576cc5f8c60fd": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-aarch64-baseos-20230101/Packages/lshw-B.02.19.2-9.el9.aarch64.rpm"
+          },
+          "sha256:940c544121c640759bd1030410505492e9e3ddd34c3e824bc6646573196e91a7": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-aarch64-baseos-20230101/Packages/initscripts-rename-device-10.11.5-1.el9.aarch64.rpm"
           },
           "sha256:94386170c99bb195481806f20ae034f246e863fc02a1eeaddf88212ae545f826": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-aarch64-baseos-20230101/Packages/nettle-3.8-3.el9.aarch64.rpm"
@@ -6256,6 +6267,7 @@
       "hwdata-0.348-9.5.el9.noarch",
       "ima-evm-utils-1.4-4.el9.aarch64",
       "inih-49-6.el9.aarch64",
+      "initscripts-rename-device-10.11.5-1.el9.aarch64",
       "initscripts-service-10.11.5-1.el9.noarch",
       "ipcalc-1.0.0-5.el9.aarch64",
       "iproute-5.18.0-1.el9.aarch64",
@@ -6550,8 +6562,8 @@
         "fstype": "xfs",
         "label": "root",
         "partuuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562",
-        "size": 10002349568,
-        "start": 735051776,
+        "size": 9897491968,
+        "start": 839909376,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
         "uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75"
       },
@@ -6570,7 +6582,7 @@
         "fstype": "xfs",
         "label": "boot",
         "partuuid": "CB07C243-BC44-4717-853E-28852021225B",
-        "size": 524288000,
+        "size": 629145600,
         "start": 210763776,
         "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
         "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8"
@@ -6610,6 +6622,7 @@
         "/boot/efi/EFI/centos/shimaa64.efi": ".......T.",
         "/boot/grub2/grub.cfg": ".M.......",
         "/etc/chrony.conf": "S.5....T.",
+        "/etc/machine-id": ".M.......",
         "/etc/nsswitch.conf": "....L....",
         "/etc/pam.d/fingerprint-auth": "....L....",
         "/etc/pam.d/password-auth": "....L....",

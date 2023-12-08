@@ -9299,7 +9299,7 @@
             "options": {
               "paths": [
                 {
-                  "path": "LiveOS"
+                  "path": "/LiveOS"
                 }
               ]
             }
@@ -9307,7 +9307,7 @@
           {
             "type": "org.osbuild.truncate",
             "options": {
-              "filename": "LiveOS/rootfs.img",
+              "filename": "/LiveOS/rootfs.img",
               "size": "4294967296"
             }
           },
@@ -10244,6 +10244,14 @@
                   },
                   {
                     "id": "sha256:a41dbe300e01c729801a0ce2c97739b19eec587baec1fe5fce011fd0e2ce4fc0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c447a8a221d05d80fb2559ef66bb0c457c00d6efe47a50ced0558accee3f07ee",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -11699,6 +11707,14 @@
                     }
                   },
                   {
+                    "id": "sha256:89dbc095894c4ec9076ad6dd2b5b00445e27521d1a9934cdf48f6405d62b99d3",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
                     "id": "sha256:20d254d2efcb133e24a35a4efbab6dcf64650d2bb7422c8265c79d1268e087f6",
                     "options": {
                       "metadata": {
@@ -12715,6 +12731,14 @@
                     }
                   },
                   {
+                    "id": "sha256:c06e59869aee47cdc60c9bf8ada3a55474d54678f1cadf153751aa53c1aee2cc",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
                     "id": "sha256:9af2449c6a132e864157476df84ee240fd2c8bcb83c9cdb5cdb397b1ced7e788",
                     "options": {
                       "metadata": {
@@ -13147,6 +13171,14 @@
                     }
                   },
                   {
+                    "id": "sha256:8507957f1ee7122ca5524717c85f706d88df509eafb4f5560b34af7d83b6ef00",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
                     "id": "sha256:5035021c5e73c5fa8178cc2c4bfbf630d2cce83e8df8ee37de483b2bf169e54f",
                     "options": {
                       "metadata": {
@@ -13306,10 +13338,10 @@
             "options": {
               "paths": [
                 {
-                  "path": "images"
+                  "path": "/images"
                 },
                 {
-                  "path": "images/pxeboot"
+                  "path": "/images/pxeboot"
                 }
               ]
             }
@@ -13397,12 +13429,12 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
-              "root": {
+              "-": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "images/efiboot.img",
@@ -13412,9 +13444,9 @@
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.fat",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               }
             ]
@@ -14977,6 +15009,9 @@
           "sha256:8503cd6f8c5c6c7938984234666ca3bcfbfe08713e618a8517aebabb4bd9dee2": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.2-20230101/Packages/setup-2.13.7-8.el9.noarch.rpm"
           },
+          "sha256:8507957f1ee7122ca5524717c85f706d88df509eafb4f5560b34af7d83b6ef00": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-appstream-n9.2-20230101/Packages/rhc-0.2.1-11.el9.aarch64.rpm"
+          },
           "sha256:851db2741d6c18986db6a9ffe10ae48f06a06f0db2e64fa776b624c029f745c3": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.2-20230101/Packages/libselinux-3.4-3.el9.aarch64.rpm"
           },
@@ -15636,6 +15671,9 @@
           },
           "sha256:c03053ce8367f515a8574741d14bc33361841f7d9b0a5b434448de6427c17efa": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.2-20230101/Packages/libtasn1-4.16.0-8.el9_1.aarch64.rpm"
+          },
+          "sha256:c06e59869aee47cdc60c9bf8ada3a55474d54678f1cadf153751aa53c1aee2cc": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-appstream-n9.2-20230101/Packages/insights-client-3.1.7-12.el9.noarch.rpm"
           },
           "sha256:c0741c985df11710805bd9d3a15eef3577518c110e63fd6a26b97bf36cf1116c": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.2-20230101/Packages/kernel-tools-libs-5.14.0-226.el9.aarch64.rpm"
@@ -16700,7 +16738,9 @@
       "hwdata-0.348-9.6.el9.noarch",
       "ima-evm-utils-1.4-4.el9.aarch64",
       "inih-49-6.el9.aarch64",
+      "initscripts-rename-device-10.11.5-1.el9.aarch64",
       "initscripts-service-10.11.5-1.el9.noarch",
+      "insights-client-3.1.7-12.el9.noarch",
       "ipcalc-1.0.0-5.el9.aarch64",
       "iproute-5.18.0-1.el9.aarch64",
       "iproute-tc-5.18.0-1.el9.aarch64",
@@ -16917,6 +16957,7 @@
       "parted-3.5-2.el9.aarch64",
       "passwd-0.80-12.el9.aarch64",
       "pbzip2-1.1.13-6.el9.aarch64",
+      "pciutils-3.7.0-5.el9.aarch64",
       "pciutils-libs-3.7.0-5.el9.aarch64",
       "pcre-8.44-3.el9.3.aarch64",
       "pcre2-10.40-2.el9.aarch64",
@@ -16995,6 +17036,7 @@
       "redhat-logos-90.4-1.el9.aarch64",
       "redhat-release-9.2-0.10.el9.aarch64",
       "redhat-release-eula-9.2-0.10.el9.aarch64",
+      "rhc-0.2.1-11.el9.aarch64",
       "rhsm-icons-4-1.el9.noarch",
       "rootfiles-8.1-31.el9.noarch",
       "rpcbind-1.2.6-5.el9.aarch64",
@@ -17147,6 +17189,7 @@
     "rpm-verify": {
       "changed": {
         "/etc/chrony.keys": "......G..",
+        "/etc/machine-id": ".M.......",
         "/etc/polkit-1/localauthority": "......G..",
         "/etc/sssd": "......G..",
         "/etc/sssd/conf.d": "......G..",
@@ -17181,63 +17224,98 @@
       "context-mismatch": [
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/etc/NetworkManager/dispatcher.d"
+          "expected": "system_u:object_r:cockpit_var_run_t:s0",
+          "filename": "/run/cockpit"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/etc/NetworkManager/dispatcher.d/no-wait.d"
+          "expected": "system_u:object_r:cockpit_var_run_t:s0",
+          "filename": "/run/cockpit/active.motd"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/etc/NetworkManager/dispatcher.d/pre-down.d"
+          "expected": "system_u:object_r:cockpit_var_run_t:s0",
+          "filename": "/run/cockpit/inactive.motd"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/etc/NetworkManager/dispatcher.d/pre-up.d"
+          "expected": "system_u:object_r:cockpit_var_run_t:s0",
+          "filename": "/run/cockpit/motd"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-motd.service"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_dhclient_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/11-dhclient"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-http.service"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_chronyc_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/20-chrony-dhcp"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-http.socket"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_chronyc_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/20-chrony-onoffline"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-https-factory.socket"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/no-wait.d"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-https-factory@.service"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/pre-down.d"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-https@.service"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_script_t:s0",
-          "filename": "/usr/lib/NetworkManager/dispatcher.d/pre-up.d"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit-wsinstance-https@.socket"
         },
         {
           "actual": "unconfined_u:object_r:tmp_t:s0",
-          "expected": "system_u:object_r:NetworkManager_dispatcher_exec_t:s0",
-          "filename": "/usr/libexec/nm-dispatcher"
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit.service"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_unit_file_t:s0",
+          "filename": "/usr/lib/systemd/system/cockpit.socket"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_session_exec_t:s0",
+          "filename": "/usr/libexec/cockpit-session"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_session_exec_t:s0",
+          "filename": "/usr/libexec/cockpit-ssh"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_ws_exec_t:s0",
+          "filename": "/usr/libexec/cockpit-tls"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_ws_exec_t:s0",
+          "filename": "/usr/libexec/cockpit-ws"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_ws_exec_t:s0",
+          "filename": "/usr/libexec/cockpit-wsinstance-factory"
+        },
+        {
+          "actual": "unconfined_u:object_r:tmp_t:s0",
+          "expected": "system_u:object_r:cockpit_ws_exec_t:s0",
+          "filename": "/usr/share/cockpit/motd/update-motd"
         }
       ],
       "policy": {
@@ -17259,6 +17337,8 @@
       "fwupd-refresh.timer",
       "gssproxy.service",
       "halt.target",
+      "insights-client-results.path",
+      "insights-client.timer",
       "kexec.target",
       "kvm_stat.service",
       "man-db-restart-cache-update.service",
@@ -17275,6 +17355,7 @@
       "rdisc.service",
       "remote-cryptsetup.target",
       "remote-veritysetup.target",
+      "rhcd.service",
       "rhsm-facts.service",
       "rhsm.service",
       "rpmdb-rebuild.service",
@@ -17315,6 +17396,7 @@
       "dnf-makecache.timer",
       "firewalld.service",
       "getty@.service",
+      "insights-client-boot.service",
       "irqbalance.service",
       "kdump.service",
       "logrotate.timer",

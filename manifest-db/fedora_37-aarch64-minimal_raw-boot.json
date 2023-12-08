@@ -6524,7 +6524,6 @@
         "/boot/efi/EFI/fedora/shim.efi": ".......T.",
         "/boot/efi/EFI/fedora/shimaa64.efi": ".......T.",
         "/boot/grub2/grub.cfg": ".M.......",
-        "/etc/machine-id": ".M.......",
         "/proc": ".M.......",
         "/sys": ".M......."
       },

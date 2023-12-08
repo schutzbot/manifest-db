@@ -4961,14 +4961,14 @@
                   "uuid": "68B2905B-DF3E-4FB3-80FA-49D1E773AA33"
                 },
                 {
-                  "size": 1024000,
+                  "size": 1228800,
                   "start": 411648,
                   "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
                   "uuid": "CB07C243-BC44-4717-853E-28852021225B"
                 },
                 {
-                  "size": 19535839,
-                  "start": 1435648,
+                  "size": 19331039,
+                  "start": 1640448,
                   "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
                   "uuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562"
                 }
@@ -5003,8 +5003,8 @@
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
-                  "start": 1435648,
-                  "size": 19535839,
+                  "start": 1640448,
+                  "size": 19331039,
                   "lock": true
                 }
               }
@@ -5039,7 +5039,7 @@
                 "options": {
                   "filename": "disk.img",
                   "start": 411648,
-                  "size": 1024000,
+                  "size": 1228800,
                   "lock": true
                 }
               }
@@ -5054,17 +5054,17 @@
             "devices": {
               "device": {
                 "type": "org.osbuild.lvm2.lv",
-                "parent": "rootvgvg",
+                "parent": "rootvg",
                 "options": {
                   "volume": "rootlv"
                 }
               },
-              "rootvgvg": {
+              "rootvg": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
-                  "start": 1435648,
-                  "size": 19535839,
+                  "start": 1640448,
+                  "size": 19331039,
                   "lock": true
                 }
               }
@@ -5078,17 +5078,17 @@
             "devices": {
               "device": {
                 "type": "org.osbuild.lvm2.lv",
-                "parent": "rootvgvg",
+                "parent": "rootvg",
                 "options": {
                   "volume": "optlv"
                 }
               },
-              "rootvgvg": {
+              "rootvg": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
-                  "start": 1435648,
-                  "size": 19535839,
+                  "start": 1640448,
+                  "size": 19331039,
                   "lock": true
                 }
               }
@@ -5109,20 +5109,27 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
+              "-": {
+                "type": "org.osbuild.lvm2.lv",
+                "parent": "rootvg",
+                "options": {
+                  "volume": "rootlv"
+                }
+              },
               "boot": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
                   "start": 411648,
-                  "size": 1024000
+                  "size": 1228800
                 }
               },
-              "boot.efi": {
+              "boot-efi": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
@@ -5132,32 +5139,25 @@
               },
               "opt": {
                 "type": "org.osbuild.lvm2.lv",
-                "parent": "rootvgvg",
+                "parent": "rootvg",
                 "options": {
                   "volume": "optlv"
                 }
               },
-              "root": {
-                "type": "org.osbuild.lvm2.lv",
-                "parent": "rootvgvg",
-                "options": {
-                  "volume": "rootlv"
-                }
-              },
-              "rootvgvg": {
+              "rootvg": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
-                  "start": 1435648,
-                  "size": 19535839
+                  "start": 1640448,
+                  "size": 19331039
                 }
               }
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               },
               {
@@ -5167,9 +5167,9 @@
                 "target": "/boot"
               },
               {
-                "name": "boot.efi",
+                "name": "boot-efi",
                 "type": "org.osbuild.fat",
-                "source": "boot.efi",
+                "source": "boot-efi",
                 "target": "/boot/efi"
               },
               {
@@ -5190,8 +5190,8 @@
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
-                  "start": 1435648,
-                  "size": 19535839,
+                  "start": 1640448,
+                  "size": 19331039,
                   "lock": true
                 }
               }
@@ -7370,10 +7370,10 @@
           }
         },
         "partuuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562",
-        "size": 10002349568,
-        "start": 735051776,
+        "size": 9897491968,
+        "start": 839909376,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "PtoU2I-7fq7-APXl-RjtQ-1fe7-a2TU-oRmZp5"
+        "uuid": "9L1bmL-ISir-FuxP-4xfQ-2g91-YjNa-YDOC2R"
       },
       {
         "bootable": false,
@@ -7390,7 +7390,7 @@
         "fstype": "xfs",
         "label": "boot",
         "partuuid": "CB07C243-BC44-4717-853E-28852021225B",
-        "size": 524288000,
+        "size": 629145600,
         "start": 210763776,
         "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
         "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8"
@@ -7439,6 +7439,7 @@
         "/boot/efi/EFI/centos/shimaa64.efi": ".......T.",
         "/boot/grub2/grub.cfg": ".M.......",
         "/etc/chrony.conf": "S.5....T.",
+        "/etc/machine-id": ".M.......",
         "/etc/udev/hwdb.bin": ".M.......",
         "/proc": ".M.......",
         "/sys": ".M.......",

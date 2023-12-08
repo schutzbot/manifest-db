@@ -9170,7 +9170,7 @@
             "options": {
               "paths": [
                 {
-                  "path": "LiveOS"
+                  "path": "/LiveOS"
                 }
               ]
             }
@@ -9178,7 +9178,7 @@
           {
             "type": "org.osbuild.truncate",
             "options": {
-              "filename": "LiveOS/rootfs.img",
+              "filename": "/LiveOS/rootfs.img",
               "size": "4294967296"
             }
           },
@@ -10755,6 +10755,14 @@
                   },
                   {
                     "id": "sha256:ffc002d596f08d97aca8ecc1be8916b3a55d8be35996a26854bf1dd6822381a3",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:940c544121c640759bd1030410505492e9e3ddd34c3e824bc6646573196e91a7",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -13073,10 +13081,10 @@
             "options": {
               "paths": [
                 {
-                  "path": "images"
+                  "path": "/images"
                 },
                 {
-                  "path": "images/pxeboot"
+                  "path": "/images/pxeboot"
                 }
               ]
             }
@@ -13164,12 +13172,12 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
-              "root": {
+              "-": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "images/efiboot.img",
@@ -13179,9 +13187,9 @@
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.fat",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               }
             ]
@@ -16434,6 +16442,7 @@
       "hwdata-0.348-9.5.el9.noarch",
       "ima-evm-utils-1.4-4.el9.aarch64",
       "inih-49-6.el9.aarch64",
+      "initscripts-rename-device-10.11.5-1.el9.aarch64",
       "initscripts-service-10.11.5-1.el9.noarch",
       "ipcalc-1.0.0-5.el9.aarch64",
       "iproute-5.18.0-1.el9.aarch64",
@@ -16812,6 +16821,7 @@
     "rpm-verify": {
       "changed": {
         "/etc/chrony.keys": "......G..",
+        "/etc/machine-id": ".M.......",
         "/etc/polkit-1/localauthority": "......G..",
         "/etc/sssd": "......G..",
         "/etc/sssd/conf.d": "......G..",

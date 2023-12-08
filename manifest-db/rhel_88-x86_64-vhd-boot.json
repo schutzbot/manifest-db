@@ -2775,12 +2775,12 @@
             "type": "org.osbuild.systemd",
             "options": {
               "enabled_services": [
-                "firewalld",
                 "nm-cloud-setup.service",
                 "nm-cloud-setup.timer",
                 "sshd",
                 "systemd-resolved",
-                "waagent"
+                "waagent",
+                "firewalld"
               ],
               "default_target": "multi-user.target"
             }
@@ -2891,39 +2891,39 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
-              "boot.efi": {
-                "type": "org.osbuild.loopback",
-                "options": {
-                  "filename": "disk.img",
-                  "start": 4096,
-                  "size": 204800
-                }
-              },
-              "root": {
+              "-": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
                   "start": 208896,
                   "size": 8179679
                 }
+              },
+              "boot-efi": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "disk.img",
+                  "start": 4096,
+                  "size": 204800
+                }
               }
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               },
               {
-                "name": "boot.efi",
+                "name": "boot-efi",
                 "type": "org.osbuild.fat",
-                "source": "boot.efi",
+                "source": "boot-efi",
                 "target": "/boot/efi"
               }
             ]
@@ -5973,7 +5973,6 @@
     "rpm-verify": {
       "changed": {
         "/boot/grub2/grub.cfg": ".M.......",
-        "/etc/machine-id": ".M.......",
         "/etc/rhsm/rhsm.conf": "..5....T.",
         "/etc/security/pwquality.conf": "S.5....T.",
         "/etc/ssh/sshd_config": "S.5....T.",

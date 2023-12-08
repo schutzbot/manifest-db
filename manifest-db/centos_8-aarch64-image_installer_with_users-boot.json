@@ -8708,7 +8708,7 @@
             "options": {
               "paths": [
                 {
-                  "path": "LiveOS"
+                  "path": "/LiveOS"
                 }
               ]
             }
@@ -8716,7 +8716,7 @@
           {
             "type": "org.osbuild.truncate",
             "options": {
-              "filename": "LiveOS/rootfs.img",
+              "filename": "/LiveOS/rootfs.img",
               "size": "4294967296"
             }
           },
@@ -12803,10 +12803,10 @@
             "options": {
               "paths": [
                 {
-                  "path": "images"
+                  "path": "/images"
                 },
                 {
-                  "path": "images/pxeboot"
+                  "path": "/images/pxeboot"
                 }
               ]
             }
@@ -12894,12 +12894,12 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
-              "root": {
+              "-": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "images/efiboot.img",
@@ -12909,9 +12909,9 @@
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.fat",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               }
             ]
@@ -16455,7 +16455,6 @@
     "rpm-verify": {
       "changed": {
         "/etc/chrony.keys": "......G..",
-        "/etc/machine-id": ".M.......",
         "/etc/polkit-1/localauthority": "......G..",
         "/etc/selinux/targeted/contexts/customizable_types": ".......T.",
         "/etc/sssd": "......G..",

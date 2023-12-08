@@ -2132,39 +2132,39 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
-              "boot.efi": {
-                "type": "org.osbuild.loopback",
-                "options": {
-                  "filename": "disk.img",
-                  "start": 2048,
-                  "size": 204800
-                }
-              },
-              "root": {
+              "-": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
                   "start": 206848,
                   "size": 8181727
                 }
+              },
+              "boot-efi": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "disk.img",
+                  "start": 2048,
+                  "size": 204800
+                }
               }
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               },
               {
-                "name": "boot.efi",
+                "name": "boot-efi",
                 "type": "org.osbuild.fat",
-                "source": "boot.efi",
+                "source": "boot-efi",
                 "target": "/boot/efi"
               }
             ]
@@ -4454,7 +4454,6 @@
         "/boot/efi/EFI/redhat/shim.efi": ".......T.",
         "/boot/efi/EFI/redhat/shimaa64-redhat.efi": ".......T.",
         "/boot/efi/EFI/redhat/shimaa64.efi": ".......T.",
-        "/etc/machine-id": ".M.......",
         "/proc": ".M.......",
         "/sys": ".M.......",
         "/var/spool/anacron/cron.daily": ".M.......",

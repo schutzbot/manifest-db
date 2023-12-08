@@ -2107,14 +2107,14 @@
                   "uuid": "68B2905B-DF3E-4FB3-80FA-49D1E773AA33"
                 },
                 {
-                  "size": 1048576,
+                  "size": 1024000,
                   "start": 411648,
-                  "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
+                  "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
                   "uuid": "CB07C243-BC44-4717-853E-28852021225B"
                 },
                 {
-                  "size": 19511263,
-                  "start": 1460224,
+                  "size": 19535839,
+                  "start": 1435648,
                   "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
                   "uuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562"
                 }
@@ -2150,7 +2150,8 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8"
+              "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8",
+              "label": "boot"
             },
             "devices": {
               "device": {
@@ -2158,7 +2159,7 @@
                 "options": {
                   "filename": "image.raw",
                   "start": 411648,
-                  "size": 1048576,
+                  "size": 1024000,
                   "lock": true
                 }
               }
@@ -2175,8 +2176,8 @@
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "image.raw",
-                  "start": 1460224,
-                  "size": 19511263,
+                  "start": 1435648,
+                  "size": 19535839,
                   "lock": true
                 }
               }
@@ -2197,41 +2198,41 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
+              "-": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "image.raw",
+                  "start": 1435648,
+                  "size": 19535839
+                }
+              },
               "boot": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "image.raw",
                   "start": 411648,
-                  "size": 1048576
+                  "size": 1024000
                 }
               },
-              "boot.efi": {
+              "boot-efi": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "image.raw",
                   "start": 2048,
                   "size": 409600
                 }
-              },
-              "root": {
-                "type": "org.osbuild.loopback",
-                "options": {
-                  "filename": "image.raw",
-                  "start": 1460224,
-                  "size": 19511263
-                }
               }
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               },
               {
@@ -2241,9 +2242,9 @@
                 "target": "/boot"
               },
               {
-                "name": "boot.efi",
+                "name": "boot-efi",
                 "type": "org.osbuild.fat",
-                "source": "boot.efi",
+                "source": "boot-efi",
                 "target": "/boot/efi"
               }
             ]
@@ -4297,8 +4298,8 @@
         "fstype": "xfs",
         "label": "root",
         "partuuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562",
-        "size": 9989766656,
-        "start": 747634688,
+        "size": 10002349568,
+        "start": 735051776,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
         "uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75"
       },
@@ -4315,11 +4316,11 @@
       {
         "bootable": false,
         "fstype": "xfs",
-        "label": null,
+        "label": "boot",
         "partuuid": "CB07C243-BC44-4717-853E-28852021225B",
-        "size": 536870912,
+        "size": 524288000,
         "start": 210763776,
-        "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
+        "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
         "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8"
       }
     ],
@@ -4411,7 +4412,6 @@
         "/boot/efi/EFI/redhat/shimaa64-redhat.efi": ".......T.",
         "/boot/efi/EFI/redhat/shimaa64.efi": ".......T.",
         "/etc/chrony.conf": "S.5....T.",
-        "/etc/machine-id": ".M.......",
         "/etc/nsswitch.conf": "....L....",
         "/etc/pam.d/fingerprint-auth": "....L....",
         "/etc/pam.d/password-auth": "....L....",

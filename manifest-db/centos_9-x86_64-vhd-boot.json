@@ -6430,14 +6430,14 @@
                   "uuid": "68B2905B-DF3E-4FB3-80FA-49D1E773AA33"
                 },
                 {
-                  "size": 1024000,
+                  "size": 1228800,
                   "start": 413696,
                   "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
                   "uuid": "CB07C243-BC44-4717-853E-28852021225B"
                 },
                 {
-                  "size": 6950879,
-                  "start": 1437696,
+                  "size": 6746079,
+                  "start": 1642496,
                   "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
                   "uuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562"
                 }
@@ -6482,7 +6482,7 @@
                 "options": {
                   "filename": "disk.img",
                   "start": 413696,
-                  "size": 1024000,
+                  "size": 1228800,
                   "lock": true
                 }
               }
@@ -6499,8 +6499,8 @@
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
-                  "start": 1437696,
-                  "size": 6950879,
+                  "start": 1642496,
+                  "size": 6746079,
                   "lock": true
                 }
               }
@@ -6521,41 +6521,41 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
+              "-": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "disk.img",
+                  "start": 1642496,
+                  "size": 6746079
+                }
+              },
               "boot": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
                   "start": 413696,
-                  "size": 1024000
+                  "size": 1228800
                 }
               },
-              "boot.efi": {
+              "boot-efi": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
                   "start": 4096,
                   "size": 409600
                 }
-              },
-              "root": {
-                "type": "org.osbuild.loopback",
-                "options": {
-                  "filename": "disk.img",
-                  "start": 1437696,
-                  "size": 6950879
-                }
               }
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               },
               {
@@ -6565,9 +6565,9 @@
                 "target": "/boot"
               },
               {
-                "name": "boot.efi",
+                "name": "boot-efi",
                 "type": "org.osbuild.fat",
-                "source": "boot.efi",
+                "source": "boot-efi",
                 "target": "/boot/efi"
               }
             ]
@@ -9407,8 +9407,8 @@
         "fstype": "xfs",
         "label": "root",
         "partuuid": "6264D520-3FB9-423F-8AB8-7A0A8E3D3562",
-        "size": 3558850048,
-        "start": 736100352,
+        "size": 3453992448,
+        "start": 840957952,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
         "uuid": "6e4ff95f-f662-45ee-a82a-bdf44a2d0b75"
       },
@@ -9427,7 +9427,7 @@
         "fstype": "xfs",
         "label": "boot",
         "partuuid": "CB07C243-BC44-4717-853E-28852021225B",
-        "size": 524288000,
+        "size": 629145600,
         "start": 211812352,
         "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
         "uuid": "0194fdc2-fa2f-4cc0-81d3-ff12045b73c8"
@@ -9478,6 +9478,7 @@
         "/boot/efi/EFI": ".M.......",
         "/boot/grub2/fonts/unicode.pf2": ".M.......",
         "/boot/grub2/grub.cfg": ".M.......",
+        "/etc/machine-id": ".M.......",
         "/etc/security/pwquality.conf": "S.5....T.",
         "/etc/ssh/sshd_config": "S.5....T.",
         "/etc/udev/hwdb.bin": ".M.......",

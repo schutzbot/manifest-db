@@ -2172,6 +2172,14 @@
                     }
                   },
                   {
+                    "id": "sha256:962a7fce2921080ff7b4e79f1b5eebfce591e0b3bea8ae226f9f8a497b89cb1a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
                     "id": "sha256:4c746d0d25a3aa5feea989b31b609b9808691e8ead19c7434cce81989c9cfa3d",
                     "options": {
                       "metadata": {
@@ -4764,6 +4772,14 @@
                     }
                   },
                   {
+                    "id": "sha256:806fc04dcdbf50363393b012a6448f688532683d81e74df4419bfc57d9b38409",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
                     "id": "sha256:1049a366f32235dd786ab2c41b29a464fa2987d691fcd8ecf778dafc645d2efe",
                     "options": {
                       "metadata": {
@@ -5079,11 +5095,19 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
+              "-": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "disk.img",
+                  "start": 1437696,
+                  "size": 19533791
+                }
+              },
               "boot": {
                 "type": "org.osbuild.loopback",
                 "options": {
@@ -5092,28 +5116,20 @@
                   "size": 1024000
                 }
               },
-              "boot.efi": {
+              "boot-efi": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
                   "start": 4096,
                   "size": 409600
                 }
-              },
-              "root": {
-                "type": "org.osbuild.loopback",
-                "options": {
-                  "filename": "disk.img",
-                  "start": 1437696,
-                  "size": 19533791
-                }
               }
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               },
               {
@@ -5123,9 +5139,9 @@
                 "target": "/boot"
               },
               {
-                "name": "boot.efi",
+                "name": "boot-efi",
                 "type": "org.osbuild.fat",
-                "source": "boot.efi",
+                "source": "boot-efi",
                 "target": "/boot/efi"
               }
             ]
@@ -5842,6 +5858,9 @@
           "sha256:7f8ec907e86b63d44e1b2fcf867077c2d1c4297d860164abd6e469b3af1e91e0": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.2-20230101/Packages/libcom_err-1.46.5-3.el9.x86_64.rpm"
           },
+          "sha256:806fc04dcdbf50363393b012a6448f688532683d81e74df4419bfc57d9b38409": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.2-20230101/Packages/rhc-0.2.1-11.el9.x86_64.rpm"
+          },
           "sha256:80fadaa3c82e156ae8977136ff16b10a6dee28778c96ae5803c153ad717a265c": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.2-20230101/Packages/e2fsprogs-libs-1.46.5-3.el9.x86_64.rpm"
           },
@@ -5964,6 +5983,9 @@
           },
           "sha256:95fa428623ac713c8fa6d5c00355881d4d8cf8029bb74a90a2d4ce16cf603816": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.2-20230101/Packages/libverto-libev-0.3.2-3.el9.x86_64.rpm"
+          },
+          "sha256:962a7fce2921080ff7b4e79f1b5eebfce591e0b3bea8ae226f9f8a497b89cb1a": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.2-20230101/Packages/initscripts-rename-device-10.11.5-1.el9.x86_64.rpm"
           },
           "sha256:9658da838021711f687cf283368664984bfb1c8b9176897d7d477a724a11a731": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.2-20230101/Packages/lz4-libs-1.9.3-5.el9.x86_64.rpm"
@@ -6940,6 +6962,7 @@
       "hwdata-0.348-9.6.el9.noarch",
       "ima-evm-utils-1.4-4.el9.x86_64",
       "inih-49-6.el9.x86_64",
+      "initscripts-rename-device-10.11.5-1.el9.x86_64",
       "initscripts-service-10.11.5-1.el9.noarch",
       "insights-client-3.1.7-12.el9.noarch",
       "ipcalc-1.0.0-5.el9.x86_64",
@@ -7195,6 +7218,7 @@
       "redhat-logos-90.4-1.el9.x86_64",
       "redhat-release-9.2-0.10.el9.x86_64",
       "redhat-release-eula-9.2-0.10.el9.x86_64",
+      "rhc-0.2.1-11.el9.x86_64",
       "rhsm-icons-4-1.el9.noarch",
       "rootfiles-8.1-31.el9.noarch",
       "rpcbind-1.2.6-5.el9.x86_64",
@@ -7398,6 +7422,7 @@
         "/boot/grub2/grub.cfg": ".M.......",
         "/etc/dnf/plugins/product-id.conf": "..5....T.",
         "/etc/dnf/plugins/subscription-manager.conf": "..5....T.",
+        "/etc/machine-id": ".M.......",
         "/etc/udev/hwdb.bin": ".M.......",
         "/proc": ".M.......",
         "/sys": ".M.......",
@@ -7440,6 +7465,7 @@
       "rdisc.service",
       "remote-cryptsetup.target",
       "remote-veritysetup.target",
+      "rhcd.service",
       "rhsm-facts.service",
       "rhsm.service",
       "rpmdb-rebuild.service",
