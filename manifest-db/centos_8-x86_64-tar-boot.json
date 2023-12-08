@@ -3646,7 +3646,6 @@
     ],
     "rpm-verify": {
       "changed": {
-        "/etc/machine-id": ".M.......",
         "/proc": ".M.......",
         "/sys": ".M.......",
         "/usr/bin/newgidmap": "........P",

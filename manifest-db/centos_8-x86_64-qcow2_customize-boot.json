@@ -5731,12 +5731,12 @@
             "devices": {
               "device": {
                 "type": "org.osbuild.lvm2.lv",
-                "parent": "rootvgvg",
+                "parent": "rootvg",
                 "options": {
                   "volume": "rootlv"
                 }
               },
-              "rootvgvg": {
+              "rootvg": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
@@ -5755,12 +5755,12 @@
             "devices": {
               "device": {
                 "type": "org.osbuild.lvm2.lv",
-                "parent": "rootvgvg",
+                "parent": "rootvg",
                 "options": {
                   "volume": "optlv"
                 }
               },
-              "rootvgvg": {
+              "rootvg": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
@@ -5803,11 +5803,18 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
+              "-": {
+                "type": "org.osbuild.lvm2.lv",
+                "parent": "rootvg",
+                "options": {
+                  "volume": "rootlv"
+                }
+              },
               "boot": {
                 "type": "org.osbuild.loopback",
                 "options": {
@@ -5816,7 +5823,7 @@
                   "size": 1048576
                 }
               },
-              "boot.efi": {
+              "boot-efi": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
@@ -5826,19 +5833,12 @@
               },
               "opt": {
                 "type": "org.osbuild.lvm2.lv",
-                "parent": "rootvgvg",
+                "parent": "rootvg",
                 "options": {
                   "volume": "optlv"
                 }
               },
-              "root": {
-                "type": "org.osbuild.lvm2.lv",
-                "parent": "rootvgvg",
-                "options": {
-                  "volume": "rootlv"
-                }
-              },
-              "rootvgvg": {
+              "rootvg": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
@@ -5849,9 +5849,9 @@
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               },
               {
@@ -5861,9 +5861,9 @@
                 "target": "/boot"
               },
               {
-                "name": "boot.efi",
+                "name": "boot-efi",
                 "type": "org.osbuild.fat",
-                "source": "boot.efi",
+                "source": "boot-efi",
                 "target": "/boot/efi"
               },
               {
@@ -8227,7 +8227,7 @@
         "size": 10093575680,
         "start": 643825664,
         "type": "E6D6D379-F507-44C2-A23C-238F2A3DF928",
-        "uuid": "Xc5M81-X7bo-AKhP-oda5-ecLg-cMdU-1H8AW3"
+        "uuid": "uA3Dn5-IbCV-7Gqw-C6dq-hYM7-1ljt-29vzGN"
       },
       {
         "bootable": false,
@@ -8296,7 +8296,6 @@
     "rpm-verify": {
       "changed": {
         "/etc/chrony.conf": "S.5....T.",
-        "/etc/machine-id": ".M.......",
         "/proc": ".M.......",
         "/sys": ".M.......",
         "/var/log/lastlog": ".M....G..",

@@ -8637,11 +8637,19 @@
               "paths": [
                 {
                   "from": "input://root-tree/",
-                  "to": "mount://root/"
+                  "to": "mount://-/"
                 }
               ]
             },
             "devices": {
+              "-": {
+                "type": "org.osbuild.loopback",
+                "options": {
+                  "filename": "disk.img",
+                  "start": 1437696,
+                  "size": 19533791
+                }
+              },
               "boot": {
                 "type": "org.osbuild.loopback",
                 "options": {
@@ -8650,28 +8658,20 @@
                   "size": 1024000
                 }
               },
-              "boot.efi": {
+              "boot-efi": {
                 "type": "org.osbuild.loopback",
                 "options": {
                   "filename": "disk.img",
                   "start": 4096,
                   "size": 409600
                 }
-              },
-              "root": {
-                "type": "org.osbuild.loopback",
-                "options": {
-                  "filename": "disk.img",
-                  "start": 1437696,
-                  "size": 19533791
-                }
               }
             },
             "mounts": [
               {
-                "name": "root",
+                "name": "-",
                 "type": "org.osbuild.xfs",
-                "source": "root",
+                "source": "-",
                 "target": "/"
               },
               {
@@ -8681,9 +8681,9 @@
                 "target": "/boot"
               },
               {
-                "name": "boot.efi",
+                "name": "boot-efi",
                 "type": "org.osbuild.fat",
-                "source": "boot.efi",
+                "source": "boot-efi",
                 "target": "/boot/efi"
               }
             ]
@@ -12666,6 +12666,7 @@
       "changed": {
         "/boot/grub2/grub.cfg": ".M.......",
         "/etc/chrony.conf": "S.5....T.",
+        "/etc/machine-id": ".M.......",
         "/etc/nsswitch.conf": "....L....",
         "/etc/pam.d/fingerprint-auth": "....L....",
         "/etc/pam.d/password-auth": "....L....",
