@@ -2688,7 +2688,7 @@ def append_partitions(report, image):
                 }
                 # XXX: remove inspect and just add once osbuild PR#1501 is merged
                 import inspect
-                if "partition" in inspect.getfullargspec(mounts.Mount):
+                if "partition" in inspect.getfullargspec(mounts.Mount).args:
                     # Just a filesystem, no partitions on this device
                     mnt_kwargs["partition"] = None
                 mmgr.mount(mounts.Mount(**mnt_kwargs))
