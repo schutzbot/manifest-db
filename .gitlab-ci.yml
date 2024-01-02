@@ -144,7 +144,7 @@ push-image-info:
   parallel:
     matrix:
       - RUNNER:
-          - aws/fedora-36-x86_64
+          - aws/fedora-37-x86_64
 
 finish:
   stage: finish
