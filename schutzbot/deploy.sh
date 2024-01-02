@@ -51,12 +51,10 @@ if [[ $ID == rhel || $ID == centos ]] && ! rpm -q epel-release; then
     sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION_ID%.*}.noarch.rpm
 fi
 
-# Install the Image Builder packages.
-# Note: installing only -tests to catch missing dependencies
-sudo dnf -y install osbuild-composer-tests
-
-# Set up a directory to hold repository overrides.
-sudo mkdir -p /etc/osbuild-composer/repositories
-
-# Temp fix until composer gains these dependencies
-sudo dnf -y install osbuild-luks2 osbuild-lvm2
+# Install packages needed to generate the test manifests
+sudo dnf -y install \
+  osbuild \
+  osbuild-luks2 \
+  osbuild-lvm2 \
+  osbuild-ostree \
+  python3
