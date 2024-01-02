@@ -54,6 +54,7 @@ fi
 # Install packages needed to generate the test manifests
 sudo dnf -y install \
   osbuild \
+  osbuild-depsolve-dnf \
   osbuild-luks2 \
   osbuild-lvm2 \
   osbuild-ostree \
