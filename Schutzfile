@@ -407,11 +407,6 @@
     ]
   },
   "rhel-9.3": {
-    "dependencies": {
-      "osbuild": {
-        "commit": "04eab998b719bdaadae11d2a87ef9bf2d538cbfb"
-      }
-    },
     "repos": [
       {
         "file": "/etc/yum.repos.d/rhel9internal.repo",
