@@ -90,7 +90,7 @@ Manifest-gen:
   parallel:
     matrix:
       - RUNNER:
-          - aws/rhel-9.0-ga-x86_64
+          - aws/fedora-39-x86_64
         INTERNAL_NETWORK: "true"
 
 Image-info-build:
@@ -112,8 +112,8 @@ Image-info-build:
     matrix:
       - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
         RUNNER:
-          - aws/fedora-37-x86_64
-          - aws/fedora-37-aarch64
+          - aws/fedora-39-x86_64
+          - aws/fedora-39-aarch64
           - aws/centos-stream-8-x86_64
           - aws/centos-stream-8-aarch64
           - aws/centos-stream-9-x86_64
@@ -144,7 +144,7 @@ push-image-info:
   parallel:
     matrix:
       - RUNNER:
-          - aws/fedora-37-x86_64
+          - aws/fedora-39-x86_64
 
 finish:
   stage: finish
