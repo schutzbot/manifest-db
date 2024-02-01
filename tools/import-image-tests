@@ -37,11 +37,11 @@ def load_test(name: str, fullpath: Union[str, pathlib.Path], filters: Dict[str, 
 
     manifest = data.get("manifest")
     if not manifest:
-        raise ValueError("no manifest")
+        raise ValueError("no 'manifest' to be found in manifest json")
 
-    req = data.get("compose-request")
+    req = data.get("build-request")
     if not req:
-        raise ValueError("no compose-request")
+        raise ValueError("no 'build-request' to be found in manifest json")
 
     if req["distro"] not in filters or req["arch"] not in filters[req["distro"]]:
         return {}
