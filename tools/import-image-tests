@@ -34,7 +34,6 @@ def list_tests(source: Union[str, pathlib.Path]) -> Iterator[Tuple[str, str]]:
 def load_test(name: str, fullpath: Union[str, pathlib.Path], filters: Dict[str, List[str]]) -> Dict[str, Any]:
     with open(fullpath, "r", encoding="utf-8") as f:
         data = json.load(f)
-    print(f"{RESET} Filters:  {filters} {RESET}", flush=True)
     manifest = data.get("manifest")
     if not manifest:
         raise ValueError("no 'manifest' to be found in manifest json")
@@ -128,6 +127,12 @@ def parse_distro(ci_file: Union[str, pathlib.Path]) -> Dict[str, List[str]]:
                         filters[distro] = [arch]
     return filters
 
+
+def report_filters(db_ignore, filters) -> None:
+    print(f"{RESET} Filters:  {filters} {RESET}", flush=True)
+    print(f"{RESET} Db-ignore:  {db_ignore} {RESET}", flush=True)
+
+
 def parse_db_ignore(db_ignore_file: Union[str, pathlib.Path]) -> List[str]:
     with open(db_ignore_file, "r", encoding="utf-8") as f:
         return f.read().splitlines()
@@ -187,6 +192,8 @@ def main():
     db_ignore = parse_db_ignore(args.db_ignore)
 
     filters = parse_distro(args.filter_with_ci_distros)
+
+    report_filters(db_ignore, filters)
 
     idx = 0
     failures = []
