@@ -34,7 +34,6 @@ def list_tests(source: Union[str, pathlib.Path]) -> Iterator[Tuple[str, str]]:
 def load_test(name: str, fullpath: Union[str, pathlib.Path], filters: Dict[str, List[str]]) -> Dict[str, Any]:
     with open(fullpath, "r", encoding="utf-8") as f:
         data = json.load(f)
-
     manifest = data.get("manifest")
     if not manifest:
         raise ValueError("no 'manifest' to be found in manifest json")
@@ -119,7 +118,7 @@ def parse_distro(ci_file: Union[str, pathlib.Path]) -> Dict[str, List[str]]:
                     elif "centos" in flavor:
                         distro = f"centos-{flavor.split('-')[2]}"
                     elif "rhel" in flavor:
-                        distro = f"rhel-{flavor.split('-')[1].replace('.', '')}"
+                        distro = f"rhel-{flavor.split('-')[1]}"
                     else:
                         raise ValueError(f"unknown distribution {flavor}")
                     if distro in filters:
@@ -127,6 +126,11 @@ def parse_distro(ci_file: Union[str, pathlib.Path]) -> Dict[str, List[str]]:
                     else:
                         filters[distro] = [arch]
     return filters
+
+
+def report_filters(filters) -> None:
+    print(f"{RESET} Filters:  {filters} {RESET}", flush=True)
+
 
 def parse_db_ignore(db_ignore_file: Union[str, pathlib.Path]) -> List[str]:
     with open(db_ignore_file, "r", encoding="utf-8") as f:
@@ -187,6 +191,8 @@ def main():
     db_ignore = parse_db_ignore(args.db_ignore)
 
     filters = parse_distro(args.filter_with_ci_distros)
+
+    report_filters(filters)
 
     idx = 0
     failures = []
