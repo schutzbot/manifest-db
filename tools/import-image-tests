@@ -128,9 +128,8 @@ def parse_distro(ci_file: Union[str, pathlib.Path]) -> Dict[str, List[str]]:
     return filters
 
 
-def report_filters(db_ignore, filters) -> None:
+def report_filters(filters) -> None:
     print(f"{RESET} Filters:  {filters} {RESET}", flush=True)
-    print(f"{RESET} Db-ignore:  {db_ignore} {RESET}", flush=True)
 
 
 def parse_db_ignore(db_ignore_file: Union[str, pathlib.Path]) -> List[str]:
@@ -193,7 +192,7 @@ def main():
 
     filters = parse_distro(args.filter_with_ci_distros)
 
-    report_filters(db_ignore, filters)
+    report_filters(filters)
 
     idx = 0
     failures = []

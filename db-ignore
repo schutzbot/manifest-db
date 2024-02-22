@@ -122,6 +122,8 @@ fedora_37-x86_64-edge_installer-boot
 fedora_37-x86_64-edge_raw_image-boot
 fedora_37-x86_64-edge_simplified_installer-boot
 fedora_37-x86_64-edge_installer_with_users-boot
+fedora_39-x86_64-ami-empty
+fedora_39-x86_64-iot_commit-kernel_debug
 rhel_94-aarch64-edge_ami-boot
 rhel_94-x86_64-edge_ami-boot
 fedora_37-aarch64-iot_raw_image-boot
@@ -171,3 +173,9 @@ rhel_92-aarch64-minimal_raw-boot
 rhel_92-x86_64-edge_ami-boot
 rhel_92-x86_64-minimal_raw-boot
 rhel_92-x86_64-ova-boot
+rhel_9.3-aarch64-edge_ami-edge_ostree_pull_user
+rhel_9.3-aarch64-edge_ami-edge_ostree_pull_user_fips
+rhel_9.3-aarch64-edge_ami-ostree_filesystem_customizations
+rhel_9.4-aarch64-edge_ami-edge_ostree_pull_user
+rhel_9.4-aarch64-edge_ami-edge_ostree_pull_user_fips
+rhel_9.4-aarch64-edge_ami-ostree_filesystem_customizations
