@@ -210,6 +210,7 @@ rhel_9.3-aarch64-edge_vsphere-edge_ostree_pull_fips
 rhel_9.3-aarch64-edge_vsphere-ostree_filesystem_customizations
 rhel_9.3-x86_64-tar-empty
 rhel_9.3-aarch64-tar-empty
+rhel_9.3-x86_64-ova-empty
 rhel_9.4-aarch64-edge_ami-edge_ostree_pull_user
 rhel_9.4-aarch64-edge_ami-edge_ostree_pull_user_fips
 rhel_9.4-aarch64-edge_ami-ostree_filesystem_customizations
@@ -268,6 +269,7 @@ rhel_8.9-x86_64-edge_installer-edge_ostree_pull_empty
 rhel_8.9-x86_64-edge_installer-unattended_iso_edge
 rhel_8.9-x86_64-edge_raw_image-edge_ostree_pull_empty
 rhel_8.9-x86_64-edge_simplified_installer-edge_ostree_pull_device
+rhel_8.9-x86_64-ova-empty
 rhel_8.9-aarch64-qcow2-all_with_oscap
 rhel_8.9-x86_64-qcow2-all_with_oscap
 rhel_8.10-aarch64-edge_commit-embed_containers
@@ -336,6 +338,9 @@ centos_8-aarch64-qcow2-all_with_oscap
 centos_8-x86_64-qcow2-all_with_oscap
 centos_8-x86_64-qcow2_customize-boot
 centos_8-aarch64-qcow2_customize-boot
+centos_8-aarch64-edge_installer-unattended_iso_edge
+centos_8-x86_64-edge_installer-unattended_iso_edge
+centos_8-x86_64-ova-empty
 centos_9-aarch64-edge_ami-edge_ostree_pull_user
 centos_9-x86_64-edge_ami-edge_ostree_pull_user
 centos_9-aarch64-edge_installer-edge_ostree_pull_empty
@@ -350,3 +355,6 @@ centos_9-aarch64-qcow2-all_with_oscap
 centos_9-aarch64-tar-empty
 centos_9-x86_64-qcow2-all_with_oscap
 centos_9-x86_64-tar-empty
+centos_9-aarch64-edge_installer-unattended_iso_edge
+centos_9-x86_64-edge_installer-unattended_iso_edge
+centos_9-x86_64-ova-empty
