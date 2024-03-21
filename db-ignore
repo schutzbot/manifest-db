@@ -251,6 +251,7 @@ rhel_9.4-x86_64-edge_vsphere-edge_ostree_pull_fips
 rhel_9.4-x86_64-edge_vsphere-ostree_filesystem_customizations
 rhel_9.4-aarch64-tar-empty
 rhel_9.4-x86_64-tar-empty
+rhel_9.4-x86_64-ova-empty
 rhel_8.9-aarch64-edge_commit-embed_containers
 rhel_8.9-aarch64-edge_commit-ostree
 rhel_8.9-aarch64-edge_container-embed_containers_2
@@ -290,6 +291,7 @@ rhel_8.10-x86_64-edge_installer-edge_ostree_pull_empty
 rhel_8.10-x86_64-edge_installer-unattended_iso_edge
 rhel_8.10-x86_64-edge_raw_image-edge_ostree_pull_empty
 rhel_8.10-x86_64-edge_simplified_installer-edge_ostree_pull_device
+rhel_8.10-x86_64-ova-empty
 fedora_39-aarch64-ami-empty
 fedora_39-aarch64-iot_commit-kernel_debug
 fedora_39-x86_64-ami-empty
