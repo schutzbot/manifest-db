@@ -60,6 +60,8 @@ class OSBuild:
             "--store", os.fspath(self.store),
             "--output-dir", os.fspath(self.outdir),
             "--json",
+            # improve visibility for real errors by logging to stderr
+            "--monitor=LogMonitor", "--monitor-fd=2",
         ]
 
         if args:
