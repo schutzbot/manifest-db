@@ -2,7 +2,7 @@
   "global": {
     "dependencies": {
       "osbuild": {
-        "commit": "f5d6d11f1d285ab8f6d512f79038d5aa27bac8c8"
+        "commit": "ab711cb63070ec34fbd4051440b86f6a3ed95b0d"
       },
       "osbuild-composer": {
         "commit": "edadbb3470f6ab8afc3fdd61e0989721d59ae39d"
