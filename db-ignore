@@ -310,6 +310,8 @@ fedora_39-aarch64-iot_simplified_installer-iot_ostree_pull_device
 fedora_39-x86_64-iot_qcow2_image-iot_ostree_pull_empty
 fedora_39-x86_64-iot_raw_image-iot_ostree_pull_empty
 fedora_39-x86_64-iot_simplified_installer-iot_ostree_pull_device
+fedora_39-aarch64-iot_installer-unattended_iso_iot.json
+fedora_39-x86_64-iot_installer-unattended_iso_iot.json
 fedora_39-x86_64-minimal_raw-empty
 fedora_39-x86_64-oci-empty
 fedora_39-aarch64-minimal_raw-empty
@@ -322,6 +324,7 @@ fedora_39-aarch64-qcow2-empty
 fedora_39-aarch64-qcow2-minimal
 fedora_39-aarch64-qcow2-minimal_pkgs
 fedora_39-x86_64-vhd-empty
+fedora_39-x86_64-ova-empty.json
 fedora_39-x86_64-vmdk-empty
 fedora_39-x86_64-openstack-empty
 fedora_39-x86_64-qcow2-all_customizations
