@@ -72,8 +72,8 @@ Regression:
           - aws/rhel-8.10-nightly-aarch64
           - aws/rhel-9.2-ga-x86_64
           - aws/rhel-9.2-ga-aarch64
-          - aws/rhel-9.4-nightly-x86_64
-          - aws/rhel-9.4-nightly-aarch64
+          - aws/rhel-9.5-nightly-x86_64
+          - aws/rhel-9.5-nightly-aarch64
         INTERNAL_NETWORK: "true"
 
 Manifest-gen:
@@ -126,8 +126,8 @@ Image-info-build:
           - aws/rhel-8.10-nightly-aarch64
           - aws/rhel-9.3-ga-x86_64
           - aws/rhel-9.3-ga-aarch64
-          - aws/rhel-9.4-nightly-x86_64
-          - aws/rhel-9.4-nightly-aarch64
+          - aws/rhel-9.5-nightly-x86_64
+          - aws/rhel-9.5-nightly-aarch64
         INTERNAL_NETWORK: "true"
 
 push-image-info:
