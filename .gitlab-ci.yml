@@ -58,8 +58,8 @@ Regression:
     matrix:
       - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
         RUNNER:
-          - aws/fedora-37-x86_64
-          - aws/fedora-37-aarch64
+          - aws/fedora-39-x86_64
+          - aws/fedora-39-aarch64
           - aws/centos-stream-9-x86_64
           - aws/centos-stream-9-aarch64
       - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
