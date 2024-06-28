@@ -8,7 +8,7 @@ centos_8-aarch64-edge_raw_image-edge_ostree_pull_empty
 centos_8-aarch64-edge_simplified_installer-boot
 centos_8-aarch64-edge_simplified_installer-edge_ostree_pull_device
 centos_8-aarch64-minimal_raw-boot
-centos_8-aarch64-qcow2-all_with_oscap
+centos_8-aarch64-qcow2-oscap_generic
 centos_8-aarch64-qcow2_customize-boot
 centos_8-x86_64-edge_installer-boot
 centos_8-x86_64-edge_installer-edge_ostree_pull_empty
@@ -24,7 +24,7 @@ centos_8-x86_64-image_installer_with_users-boot
 centos_8-x86_64-minimal_raw-boot
 centos_8-x86_64-ova-boot
 centos_8-x86_64-ova-empty
-centos_8-x86_64-qcow2-all_with_oscap
+centos_8-x86_64-qcow2-oscap_generic
 centos_8-x86_64-qcow2_customize-boot
 centos_9-aarch64-edge_ami-boot
 centos_9-aarch64-edge_ami-edge_ostree_pull_user
@@ -39,7 +39,7 @@ centos_9-aarch64-edge_simplified_installer-boot
 centos_9-aarch64-edge_simplified_installer-edge_ostree_pull_device
 centos_9-aarch64-edge_vsphere-edge_ostree_pull_empty
 centos_9-aarch64-minimal_raw-boot
-centos_9-aarch64-qcow2-all_with_oscap
+centos_9-aarch64-qcow2-oscap_generic
 centos_9-aarch64-tar-empty
 centos_9-x86_64-edge_ami-boot
 centos_9-x86_64-edge_ami-edge_ostree_pull_user
@@ -58,7 +58,7 @@ centos_9-x86_64-image_installer_with_users-boot
 centos_9-x86_64-minimal_raw-boot
 centos_9-x86_64-ova-boot
 centos_9-x86_64-ova-empty
-centos_9-x86_64-qcow2-all_with_oscap
+centos_9-x86_64-qcow2-oscap_generic
 centos_9-x86_64-tar-empty
 fedora_34-aarch64-fedora_iot_installer-boot
 fedora_34-aarch64-fedora_iot_installer_with_users-boot
@@ -143,7 +143,7 @@ fedora_39-aarch64-oci-empty
 fedora_39-aarch64-openstack-empty
 fedora_39-aarch64-qcow2-all_customizations
 fedora_39-aarch64-qcow2-all_with_fips
-fedora_39-aarch64-qcow2-all_with_oscap
+fedora_39-aarch64-qcow2-oscap_generic
 fedora_39-aarch64-qcow2-empty
 fedora_39-aarch64-qcow2-minimal
 fedora_39-aarch64-qcow2-minimal_pkgs
@@ -160,7 +160,7 @@ fedora_39-x86_64-openstack-empty
 fedora_39-x86_64-ova-empty
 fedora_39-x86_64-qcow2-all_customizations
 fedora_39-x86_64-qcow2-all_with_fips
-fedora_39-x86_64-qcow2-all_with_oscap
+fedora_39-x86_64-qcow2-oscap_generic
 fedora_39-x86_64-qcow2-empty
 fedora_39-x86_64-qcow2-minimal
 fedora_39-x86_64-qcow2-minimal_pkgs
@@ -254,7 +254,7 @@ rhel_8.9-aarch64-edge_installer-edge_ostree_pull_empty
 rhel_8.9-aarch64-edge_installer-unattended_iso_edge
 rhel_8.9-aarch64-edge_raw_image-edge_ostree_pull_empty
 rhel_8.9-aarch64-edge_simplified_installer-edge_ostree_pull_device
-rhel_8.9-aarch64-qcow2-all_with_oscap
+rhel_8.9-aarch64-qcow2-oscap_generic
 rhel_8.9-x86_64-edge_commit-embed_containers
 rhel_8.9-x86_64-edge_commit-ostree
 rhel_8.9-x86_64-edge_container-embed_containers_2
@@ -265,7 +265,7 @@ rhel_8.9-x86_64-edge_installer-unattended_iso_edge
 rhel_8.9-x86_64-edge_raw_image-edge_ostree_pull_empty
 rhel_8.9-x86_64-edge_simplified_installer-edge_ostree_pull_device
 rhel_8.9-x86_64-ova-empty
-rhel_8.9-x86_64-qcow2-all_with_oscap
+rhel_8.9-x86_64-qcow2-oscap_generic
 rhel_90-aarch64-edge_installer-boot
 rhel_90-aarch64-edge_installer_with_users-boot
 rhel_90-aarch64-edge_installer_with_users-boot
