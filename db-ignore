@@ -180,6 +180,7 @@ rhel_8.10-aarch64-edge_raw_image-edge_ostree_pull_empty
 rhel_810-aarch64-edge_simplified_installer-boot
 rhel_8.10-aarch64-edge_simplified_installer-edge_ostree_pull_device
 rhel_810-aarch64-minimal_raw-boot
+rhel_8.10-aarch64-ami-oscap_rhel8
 rhel_8.10-x86_64-edge_commit-embed_containers
 rhel_8.10-x86_64-edge_commit-ostree
 rhel_8.10-x86_64-edge_container-embed_containers_2
@@ -196,6 +197,7 @@ rhel_8.10-x86_64-edge_simplified_installer-edge_ostree_pull_device
 rhel_810-x86_64-minimal_raw-boot
 rhel_810-x86_64-ova-boot
 rhel_8.10-x86_64-ova-empty
+rhel_8.10-x86_64-ami-oscap_rhel8
 rhel_84-x86_64-rhel_edge_installer-boot
 rhel_84-x86_64-rhel_edge_installer_with_users-boot
 rhel_85-aarch64-edge_installer-boot
@@ -371,6 +373,7 @@ rhel_9.4-aarch64-edge_vsphere-edge_ostree_pull_fips
 rhel_9.4-aarch64-edge_vsphere-ostree_filesystem_customizations
 rhel_94-aarch64-minimal_raw-boot
 rhel_9.4-aarch64-tar-empty
+rhel_9.4-aarch64-ami-oscap_rhel9
 rhel_94-x86_64-edge_ami-boot
 rhel_9.4-x86_64-edge_ami-edge_ostree_pull_user
 rhel_9.4-x86_64-edge_ami-edge_ostree_pull_user_fips
@@ -399,6 +402,7 @@ rhel_94-x86_64-minimal_raw-boot
 rhel_94-x86_64-ova-boot
 rhel_9.4-x86_64-ova-empty
 rhel_9.4-x86_64-tar-empty
+rhel_9.4-x86_64-ami-oscap_rhel9
 rhel_9.5-aarch64-edge_ami-edge_ostree_pull_user
 rhel_9.5-aarch64-edge_ami-edge_ostree_pull_user_fips
 rhel_9.5-aarch64-edge_ami-ostree_filesystem_customizations
