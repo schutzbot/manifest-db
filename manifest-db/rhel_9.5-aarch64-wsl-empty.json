@@ -1,0 +1,3798 @@
+{
+  "id": "rhel_9.5-aarch64-wsl-empty",
+  "desc": {
+    "distro": "rhel-9.5",
+    "arch": "aarch64",
+    "image-type": "wsl"
+  },
+  "manifest": {
+    "version": "2",
+    "pipelines": [
+      {
+        "name": "build",
+        "runner": "org.osbuild.rhel95",
+        "stages": [
+          {
+            "type": "org.osbuild.rpm",
+            "inputs": {
+              "packages": {
+                "type": "org.osbuild.files",
+                "origin": "org.osbuild.source",
+                "references": [
+                  {
+                    "id": "sha256:59d24711260ff0e69762fc4e728279b0e7b6ecfdb5a9b8ba01cd96682c679022",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f0d59ca77b2ad1d21d4070e4113e814c658a0525c79a02679aa67b8964eecf68",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cb4002211f14107ae21e48d48da9302bef5cea009416a4f15a0eac3cfec00cb9",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f498b0813fa1a825d550e8e3a9e42255eabfa18e6fc96adfc6cc8fa7e16dd513",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7dc1febec9c2fb184ed4407f8a188ab267b7e46b3534866f702c6266008ababa",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a06414786e5b316a6bc411b4827d45d0364817071f924fed85c395df0ecd9450",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a40df45c8b7c571fd3e76a882eeb0e42e94093d2ec7b3fd8951dde50b8a8fd45",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:1e8b696cd7dc0e9e150cbc70d01d17bd99e83cd2966b57eb82e62f7244f1d5f9",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:8f3c118de68d018fdc9c114f924fb91c8edad6676bf00cca33c015fcad001d67",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:6b4e2bae51af42c1ab0f1ec7430ab19542747937a827eba8cac540cb7514a145",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c4ef55b06c9b5352b2338a6deccd25030472308b3ffe39735585967382e75419",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0367c77a9d07b0e3eead2cbb3eb638af2b3fc885da950cf9acd1f9f933f0b993",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:89fd2f50aa4590a7595cda93f1ee8529608549332d7172d0501e9ea64d140407",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:80e27ed2f946663ec408e6a861407b3692b77898333c10d399409c208e977603",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:5178f638660d1699fb06caeeac91f41c07da59b500e94adf2653df892f2cbdf8",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:342af53fbf4254e34b5f19a6be6f22c67551c26dd0c49016edc93e806621b75d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:298f1cada3cbcef6713098b9925694a0e30e8566f7a5bdbd72384520cf6c8360",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:524412f7ce56095508190116cb8ae141737857e4447979330c3cf75ca7017e6b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:daa67b1b0dc73c8e0f54a893738163be5dcac31dff1e0c418871f3cd3a58b5be",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cabc5756e526df52d3e5b712562153276f9e463f4d1afa2ac37a453c3785b91b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a4b7202ac90653a7d3e072c2444bde6a9270d6a818eb6f2ffcfcaa50774f1fad",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:74fffe15dd7f5a41c7d1990c2804defa1b45fb845da29465b73a81d5866e8a72",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e49d44b57e10eabc87162dcb694a003479108700d485541a68a498936766d61d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:922fb08fd4f11fbc576b1e19a5860dd36428e1ee24d5dc95a326913b6ca7521a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:44cfcf93d88c0ea112572d43374f4cd79c99ca2d8853eb50bb43f06a5e4738f2",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:5d72ee2b7658eb14e7f96c99f565a08d96915a10af22538eef12828821ae773a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:df01d909e4613514b1844d6ca26d0bcdff8a659762e507188d04ed046fb0cec4",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:583a247a199901d44dc8a96d46010e15f6211f98f7c61ba089825155b0562520",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:45710df49b439ddc4a2848fd3877367761b574234ae28b6be46f1cf54f3fcdca",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d747ed6e1916d8ea400c89ad6078a8c298e30d652ec21985c93539e34c587a73",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:85cac74df781d3d9c3ff1e388afe413eb8aa078b6c9580dba2c06c68e90cad26",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a9fdc9f8b470183d0c9524295a7bf6685e4cea865d235d08ec606332f3557674",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7c98786eea7783275ff88dc4b524ab4a9cc0c4c8b40206b2cdf7174d3e339918",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:9cc18ca21b0d234c0d0ac1a9b25743e0658cbd43bddc4bd055944d617772ab12",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:b6a73c9da522df55690b886c0a9af39338571d34ee6f0d4d9b994c8289df3412",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:73850c56a6e1bf131ade50d19dd9829d552bee3b0d20c996182e0e6218d6c299",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a3701fe9260c9e076b6b408bd901951121d38e4c3d3c6c52dadea59a286d1e39",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:24299f571bb150f78c062140584f4e98dd1d3b9e1abb63d9d64173ccc2fc65df",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:dc4eae31749196c0043225c6749e7306ff71f081c09cbdb2fc98a561087c4474",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e2565ca02144b9c5f5009efbf3d2586f80bfc1103e48ec4cc4b8ac75d096eaa6",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:fcc89253eb1ea0cc141cc7ebcb44082311272dec0016fbac4b777e6556ad997e",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7b60c9dcb68b34bf87ada12f9b3a3987ca9d14cb440c06e5bd782cca82e74962",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:b6f435b6b79b8a62729f581edead46542dc61fe7276117b2354c324c44ba8309",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d1e87d4e55d2b8f3d52604f1c56a8df56127c72338a6024db61cb44fc60481eb",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:162c83c3c1aef0f9a102a588c97cad26e6c6adee2086790d409ce91ce93823dc",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d33e180b97a603542cb6f1a78b1c3b0ce4af1bc59ee0bb32620c98a629726bc4",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ab7d6750e250217e313f472471298962d3a50a3ab410d357ce14063a0cb7eb27",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:662796606e4a5093377d0eff54c3e1be540f1c2f2e5ed36ace5b6a92405a431f",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:aee968114aed0238eb26cff42ec9b0819ad32e2bac99aa8124d55b480806aca5",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:657925cd0fc0abc03cc83ff3688e131a452ea673a5dcb815cd0fc168bf962fc7",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:8a9cfe3c4938e3c56a889a101c0b519d31b8215e9c73465d82c0cb01a0e92502",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:686c10b1763c225d402c79e45a452161641cb306080aaefe03a3f1ad2e638547",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:08968334789ba764986d3beb4745de28eb1e2ed401a03dba9d80e75e3179aa76",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:1657d94bbd79f93dc7a79d474316813bde681ce3a7f62f73314ec4d630e39349",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:fc1d5e93483d166ca7f2acb50c04c181db2f3e7b89dba8edc6b1e5f2b0f10619",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:969634cbd245356e33f3b1790ae6b752a88a59f1b4544a4bc6ee44f1e00ae43e",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:8272ab39ab64ab4bde0c5e31387be6e28270a1b1d81a33ba621e6e677b9e974e",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:4bb8f0696394b6ba83392434d829d31f3bb5b8099124bbc8452dd38002e481dd",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:786dfb8754d37f0ed7af299adef1d3f928240369fc680c337c16caa13b352f42",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0998ac158161c9d5f3b97c5dc6e35becd84da0ddc5d347a8af581ada529b3b5c",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:315ba29d3146cb69a628df5b3d09ad2803fd83538da407fd68815111e6f0fd8a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:6ce3d9795bbc0bdc90d3e1265223fd88965f2f007f79f2dd401faceeaff15521",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0cc66bee3af1b8939f108dce622a47a58482f182ab3abb851b3252a44315aa23",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c03053ce8367f515a8574741d14bc33361841f7d9b0a5b434448de6427c17efa",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f68934935fc209e7c595c5619df75f822cc832803e3ea6de2c92e3b91b4d5008",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d352371cbb7d5bd0c53fc699df953c8c1f184b056690b3c4571e57a6634015c5",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0da614844af2d111cb69e6af37dba930b71a815d0d9340e8aa87dba84bde42ab",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:80d6e32c111ab9c0b2c607475b6a6691cdf6abaec19fde27043e8710a94a8f0c",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f05030123425a5033bcca3f260313cafc199bc7bca57e9fb13c335bd087c35a7",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e955ad59fe95eb091409b8d98c1d1189eecb4ebd6553b94526b013c8a61826e0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cf1c773eb9194f5ee8236ebbe1979642953faa0509b99b9442cf5504dd4c1d56",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:3bc4dceda442b11c804971ba71ffc2ef398371cd993b207b886de87fb9d7f596",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e1dbd2c38a65b135427c7c8fe988ea70dc95f7e26c4c8177b7dcb23925020015",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:09ff81634b9741b286b42e2067270b4f95141a5ea03886f0610e25e9d0f941a2",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:68a97f7bec435800cdbaf8a0c84abb267c4106a97898daed48ce2f931b0f1230",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:220c4678e3a53cbd9ea7f531c88d10e567773c9160d836ecc923422425286ac0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:dcc2aa2e08194e245adc2ea37e7431b5e60d0e66978978bd60905ce9b75545a0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a0a66b588e1695222d15c8c0fcfb8d8e39d3edafc52a84ffc0f1b768c89f4be7",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0efbd5a20919f90392572fed2001be182eb469d3f792ceea79b79a459ed798b3",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:4066356440a1b3c2084cf7fb240dc0da06d42e1420d4ebf409ef581f258cb46b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7414ac9a20e3559301217e86cbe92003fc1702f1ad184037b2b9f8b5049f4e2b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:b9bca614e9819aafb4262be1c8d2c84aa3f449d64f8473cb726fe4239c192774",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:6ab8de40cc01fd6cdbb993db02c0bc426bb31738c6f958be47a1964d56695409",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:37683e8ae32dc4f5bfff343d91d83f595905fa4ec990f25a5d70da893a3d9033",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:099feef7e71b82cf0234e37d824fc81353d51dee55694e05181fa686ab50efae",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:98cda7a0f9d0995b6d0eab304e86be10b6b02a6890064a3d57c56259fb37e637",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:fa3bedb3d052733b02c0c6258759786abf0f61a52e70cccedeec9764df35870d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:81e7f4a37458072b2f0f86bdb36321ea5e30ef114ffb6a4e0a37fb29fd1c99a6",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f49c6d53f428bb3b610633af7b1053a6c1dc522762a9c6cb35195e519227eb51",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e6ec3390a736b085f403168c512a6b2b6f8e12a8fd5a4459f1c7dbbff2b67c33",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f9b01243e9b98b9b0b4cdf647ace118c1f29802948e82933806faf5127910a60",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:2d963fbff4044e88673c52fb03cc11d9395dcc2a0c27a26844477bf6eb1e8160",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a97940ecd1dff299d68585fe2df63aa2ab1f2aac126f4499e706af6bc5bfaf2b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:75c46aab03898c66ce16be556432b71aed7efcedce02b9263339c14f57b4fdc0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e4ba8861a76427a4e8a1dfaf3a606aeb86e140cea1c1a42d6d75ba0bedcba3ec",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:76c760f7e4ed054d158a31ef7927130baf917703c80eda92b0202b613aa81ef2",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:2ae424b368c6747124b51b205b9e11d74aeaff56b3de90e8cbd36012e0d17707",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:bd652458daf7266717027930e0d556dea0d21b4a78aec6c1d9a5dbc8ea411211",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:3ff6674e17367a11547cb5675af38d75a396a166b7ddb5cd35a85db78be69091",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:989d0640b56900fc2e59ecff5b9459ffd85b47e2b23b1844ebea593d00afc37c",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:05d81d7e82fc8c04c6eca7104e39c128c3ae05ee6915f49fdb5aaa278b358cd2",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ae9b99f19bfc812d9dacbaf47efe95d00eab64708fcf11b99346b594928f9c2a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c67205a62c1ef2ad5689382d9f1d1ddc84ca4eada797209d7561e16fa049fde1",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:4c871b961800c8a3088cad7d9732a6bc19fba560369cd9042aedff94fb8ff73e",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:6ca709ceee3cee5bb53a276a0368f339a46ccd961164a24dcea2dc5d0a2fafcf",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0891d395ce067121c28932534237ad1ce231f2bfa987411ad62e73a12d11eb6a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c41b14018cb679b44ca03856e7ccd1ebf4dd9afa5bfa20c1d43b2bb4b8912b81",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ec989d023f684a4366e52930804c5ccf73cd3bfca2edb349e8b3dd2980b1e583",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ec3b3c76f277640c7d298debb6d2d8653f035bc71ef30b58d87d06cb18bbbbe5",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:be34293b5108ca8961a08b0ff27c10fe04bb7c2441601290b713af99b12241f1",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f00009de82cf0d93cb98152f7ca44becc8a13a203859dd191561c5ac5d97a179",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cf0ddbc999d73c4112dbd56280166351c5727af9f2ce21e04b62b9fdc982b3fc",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:040edbf5c13ca99ec346a879c9efc8fa0b1b39b20a054981f05db977b6aa2b3f",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ea898908b49c4621bee8d6cac5bd37bf2cca5b4739d50435229cf88746d5162a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:68c822df014bf1fe78985d1672a1cd42ed82c2f4c4ff517e8dbb397907552edd",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:16dfccafa090ff446a374e81e11224e396f44b9c20eba9144cfb48d46a71f3e1",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:26ac21be6c1e396c7bcbaa9d4786e3275e996d9d78c01f75bbbc6962e6c9bef7",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:06931afb372ed4a6893e51558beaa6b0eab7adda0af93456fd99a081a8b80779",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:2e7f193e67235130c10f5579c2d2ec92e22e4098b6d12fb2855d93b1540c60f7",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:3fd73bd271e9c04dc297eb08c3829d276faee372f77666aad29f4b676ea220f4",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ab4b55d25fc1408d9272c81a83240727bf0109eafc570012a609ec62334a9836",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "options": {
+              "gpgkeys": [
+                "-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmQINBGIpIp4BEAC/o5e1WzLIsS6/JOQCs4XYATYTcf6B6ALzcP05G0W3uRpUQSrL\nFRKNrU8ZCelm/B+XSh2ljJNeklp2WLxYENDOsftDXGoyLr2hEkI5OyK267IHhFNJ\ng+BN+T5Cjh4ZiiWij6o9F7x2ZpxISE9M4iI80rwSv1KOnGSw5j2zD2EwoMjTVyVE\n/t3s5XJxnDclB7ZqL+cgjv0mWUY/4+b/OoRTkhq7b8QILuZp75Y64pkrndgakm1T\n8mAGXV02mEzpNj9DyAJdUqa11PIhMJMxxHOGHJ8CcHZ2NJL2e7yJf4orTj+cMhP5\nLzJcVlaXnQYu8Zkqa0V6J1Qdj8ZXL72QsmyicRYXAtK9Jm5pvBHuYU2m6Ja7dBEB\nVkhe7lTKhAjkZC5ErPmANNS9kPdtXCOpwN1lOnmD2m04hks3kpH9OTX7RkTFUSws\neARAfRID6RLfi59B9lmAbekecnsMIFMx7qR7ZKyQb3GOuZwNYOaYFevuxusSwCHv\n4FtLDIhk+Fge+EbPdEva+VLJeMOb02gC4V/cX/oFoPkxM1A5LHjkuAM+aFLAiIRd\nNp/tAPWk1k6yc+FqkcDqOttbP4ciiXb9JPtmzTCbJD8lgH0rGp8ufyMXC9x7/dqX\nTjsiGzyvlMnrkKB4GL4DqRFl8LAR02A3846DD8CAcaxoXggL2bJCU2rgUQARAQAB\ntDVSZWQgSGF0LCBJbmMuIChhdXhpbGlhcnkga2V5IDMpIDxzZWN1cml0eUByZWRo\nYXQuY29tPokCUgQTAQgAPBYhBH5GJCWMQGU11W1vE1BU5KRaY0CzBQJiKSKeAhsD\nBQsJCAcCAyICAQYVCgkICwIEFgIDAQIeBwIXgAAKCRBQVOSkWmNAsyBfEACuTN/X\nYR+QyzeRw0pXcTvMqzNE4DKKr97hSQEwZH1/v1PEPs5O3psuVUm2iam7bqYwG+ry\nEskAgMHi8AJmY0lioQD5/LTSLTrM8UyQnU3g17DHau1NHIFTGyaW4a7xviU4C2+k\nc6X0u1CPHI1U4Q8prpNcfLsldaNYlsVZtUtYSHKPAUcswXWliW7QYjZ5tMSbu8jR\nOMOc3mZuf0fcVFNu8+XSpN7qLhRNcPv+FCNmk/wkaQfH4Pv+jVsOgHqkV3aLqJeN\nkNUnpyEKYkNqo7mNfNVWOcl+Z1KKKwSkIi3vg8maC7rODsy6IX+Y96M93sqYDQom\naaWue2gvw6thEoH4SaCrCL78mj2YFpeg1Oew4QwVcBnt68KOPfL9YyoOicNs4Vuu\nfb/vjU2ONPZAeepIKA8QxCETiryCcP43daqThvIgdbUIiWne3gae6eSj0EuUPoYe\nH5g2Lw0qdwbHIOxqp2kvN96Ii7s1DK3VyhMt/GSPCxRnDRJ8oQKJ2W/I1IT5VtiU\nzMjjq5JcYzRPzHDxfVzT9CLeU/0XQ+2OOUAiZKZ0dzSyyVn8xbpviT7iadvjlQX3\nCINaPB+d2Kxa6uFWh+ZYOLLAgZ9B8NKutUHpXN66YSfe79xFBSFWKkJ8cSIMk13/\nIfs7ApKlKCCRDpwoDqx/sjIaj1cpOfLHYjnefg==\n=UZd/\n-----END PGP PUBLIC KEY BLOCK-----",
+                "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: GnuPG v2.0.22 (GNU/Linux)\n\nmQINBErgSTsBEACh2A4b0O9t+vzC9VrVtL1AKvUWi9OPCjkvR7Xd8DtJxeeMZ5eF\n0HtzIG58qDRybwUe89FZprB1ffuUKzdE+HcL3FbNWSSOXVjZIersdXyH3NvnLLLF\n0DNRB2ix3bXG9Rh/RXpFsNxDp2CEMdUvbYCzE79K1EnUTVh1L0Of023FtPSZXX0c\nu7Pb5DI5lX5YeoXO6RoodrIGYJsVBQWnrWw4xNTconUfNPk0EGZtEnzvH2zyPoJh\nXGF+Ncu9XwbalnYde10OCvSWAZ5zTCpoLMTvQjWpbCdWXJzCm6G+/hx9upke546H\n5IjtYm4dTIVTnc3wvDiODgBKRzOl9rEOCIgOuGtDxRxcQkjrC+xvg5Vkqn7vBUyW\n9pHedOU+PoF3DGOM+dqv+eNKBvh9YF9ugFAQBkcG7viZgvGEMGGUpzNgN7XnS1gj\n/DPo9mZESOYnKceve2tIC87p2hqjrxOHuI7fkZYeNIcAoa83rBltFXaBDYhWAKS1\nPcXS1/7JzP0ky7d0L6Xbu/If5kqWQpKwUInXtySRkuraVfuK3Bpa+X1XecWi24JY\nHVtlNX025xx1ewVzGNCTlWn1skQN2OOoQTV4C8/qFpTW6DTWYurd4+fE0OJFJZQF\nbuhfXYwmRlVOgN5i77NTIJZJQfYFj38c/Iv5vZBPokO6mffrOTv3MHWVgQARAQAB\ntDNSZWQgSGF0LCBJbmMuIChyZWxlYXNlIGtleSAyKSA8c2VjdXJpdHlAcmVkaGF0\nLmNvbT6JAjYEEwEIACACGwMGCwkIBwMCBBUCCAMEFgIDAQIeAQIXgAUCSuBJPAAK\nCRAZni+R/UMdUfIkD/9m3HWv07uJG26R3KBexTo2FFu3rmZs+m2nfW8R3dBX+k0o\nAOFpgJCsNgKwU81LOPrkMN19G0+Yn/ZTCDD7cIQ7dhYuDyEX97xh4une/EhnnRuh\nASzR+1xYbj/HcYZIL9kbslgpebMn+AhxbUTQF/mziug3hLidR9Bzvygq0Q09E11c\nOZL4BU6J2HqxL+9m2F+tnLdfhL7MsAq9nbmWAOpkbGefc5SXBSq0sWfwoes3X3yD\nQ8B5Xqr9AxABU7oUB+wRqvY69ZCxi/BhuuJCUxY89ZmwXfkVxeHl1tYfROUwOnJO\nGYSbI/o41KBK4DkIiDcT7QqvqvCyudnxZdBjL2QU6OrIJvWmKs319qSF9m3mXRSt\nZzWtB89Pj5LZ6cdtuHvW9GO4qSoBLmAfB313pGkbgi1DE6tqCLHlA0yQ8zv99OWV\ncMDGmS7tVTZqfX1xQJ0N3bNORQNtikJC3G+zBCJzIeZleeDlMDQcww00yWU1oE7/\nTo2UmykMGc7o9iggFWR2g0PIcKsA/SXdRKWPqCHG2uKHBvdRTQGupdXQ1sbV+AHw\nycyA/9H/mp/NUSNM2cqnBDcZ6GhlHt59zWtEveiuU5fpTbp4GVcFXbW8jStj8j8z\n1HI3cywZO8+YNPzqyx0JWsidXGkfzkPHyS4jTG84lfu2JG8m/nqLnRSeKpl20Q==\n=79bX\n-----END PGP PUBLIC KEY BLOCK-----"
+              ]
+            }
+          },
+          {
+            "type": "org.osbuild.selinux",
+            "options": {
+              "file_contexts": "etc/selinux/targeted/contexts/files/file_contexts",
+              "labels": {
+                "/usr/bin/cp": "system_u:object_r:install_exec_t:s0",
+                "/usr/bin/tar": "system_u:object_r:install_exec_t:s0"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "os",
+        "build": "name:build",
+        "stages": [
+          {
+            "type": "org.osbuild.rpm",
+            "inputs": {
+              "packages": {
+                "type": "org.osbuild.files",
+                "origin": "org.osbuild.source",
+                "references": [
+                  {
+                    "id": "sha256:59d24711260ff0e69762fc4e728279b0e7b6ecfdb5a9b8ba01cd96682c679022",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f0d59ca77b2ad1d21d4070e4113e814c658a0525c79a02679aa67b8964eecf68",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cb4002211f14107ae21e48d48da9302bef5cea009416a4f15a0eac3cfec00cb9",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f498b0813fa1a825d550e8e3a9e42255eabfa18e6fc96adfc6cc8fa7e16dd513",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7dc1febec9c2fb184ed4407f8a188ab267b7e46b3534866f702c6266008ababa",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a06414786e5b316a6bc411b4827d45d0364817071f924fed85c395df0ecd9450",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a40df45c8b7c571fd3e76a882eeb0e42e94093d2ec7b3fd8951dde50b8a8fd45",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:3b0d04aebd71691702a3c37d9f4b234b87c79b62c7ea8ec2f04133087b3776d4",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:6b4e2bae51af42c1ab0f1ec7430ab19542747937a827eba8cac540cb7514a145",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c4ef55b06c9b5352b2338a6deccd25030472308b3ffe39735585967382e75419",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0367c77a9d07b0e3eead2cbb3eb638af2b3fc885da950cf9acd1f9f933f0b993",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f61f9e3429cf5e6b90ba220f8ff94cd9a4fbb15879d18459c4a44004e9cc383d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:30c26caf56198f8ccc744840f8cad5d6868d4fa6c77997db7da1b06ab8546e95",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:80e27ed2f946663ec408e6a861407b3692b77898333c10d399409c208e977603",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:5178f638660d1699fb06caeeac91f41c07da59b500e94adf2653df892f2cbdf8",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:342af53fbf4254e34b5f19a6be6f22c67551c26dd0c49016edc93e806621b75d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:298f1cada3cbcef6713098b9925694a0e30e8566f7a5bdbd72384520cf6c8360",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d169ddf3a47520e5f73d4edb64e845910aa9ab48e0d0206e4a92a9f882f21882",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:8aa78a3d2ca4135a8655894e18e3653a381115c26caf95359b367bad01c776bd",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:524412f7ce56095508190116cb8ae141737857e4447979330c3cf75ca7017e6b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:adc29c4b81308a928d24e24216b36ac3441e47dbdd07be6694d993937b1d4442",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0cb5d68eae6132524936f8a522acfbf59ac0e48b7714cf549c9777a95fcf3d54",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f8fa597d1c6a27e56c58631c83b8f2949ab1fe1c21439fda5dcb1a266846950c",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e186f5fb020da75279f726a9a09bfefd8c60131157debd9ca0966036fd3b8d70",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d5273cf7dd4a1d0d0c34ae607aecff9125d1551df6a2e516dd5c68c2b0127f06",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:2212669ed94097297dac70035a1321d53e9f0a5421d6637c5b9646f6e7a7583d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:daa67b1b0dc73c8e0f54a893738163be5dcac31dff1e0c418871f3cd3a58b5be",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:15886470eb55b5d4999d07c603bf1ffcc292883f130d92e6bca447dbefd580c4",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cabc5756e526df52d3e5b712562153276f9e463f4d1afa2ac37a453c3785b91b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:dd033c668c1378da304bcd2acb28ab749bf3cac8daa37a197c94aed5943be872",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d4b490f97fec6df68d467e74eeac7f26210757973175d344d989804e4f1a3629",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a4b7202ac90653a7d3e072c2444bde6a9270d6a818eb6f2ffcfcaa50774f1fad",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:74fffe15dd7f5a41c7d1990c2804defa1b45fb845da29465b73a81d5866e8a72",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ab3c3b244489d3ccfe02b23f810614c898d25e65571ae72cb2c3e939072d6d80",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e49d44b57e10eabc87162dcb694a003479108700d485541a68a498936766d61d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:922fb08fd4f11fbc576b1e19a5860dd36428e1ee24d5dc95a326913b6ca7521a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:5d72ee2b7658eb14e7f96c99f565a08d96915a10af22538eef12828821ae773a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:df01d909e4613514b1844d6ca26d0bcdff8a659762e507188d04ed046fb0cec4",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:b8d86ab0a1db75c456ea1afd3cfb6412b30665e55ef6c3a5aa9fdcb9a5c7d972",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:783efaa825477d337abe7006c66de2a15e99abe86429657c5697d11dc910acf6",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:06ee05c8124040b150d366d2e02f5c75bcc26635d45f0337cfe6864a3c6f06cd",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:3f0883600463daa07012d99df9003a49a6a1bcb9abe14ecf28829c617d2ef658",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:583a247a199901d44dc8a96d46010e15f6211f98f7c61ba089825155b0562520",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:45710df49b439ddc4a2848fd3877367761b574234ae28b6be46f1cf54f3fcdca",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:db9eb59805f25764549f8105825c987b7bd359a86624d4633dd5d4283959ed97",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:9df855d4aa662aed90c1e7d219cf34fa63ce8e556729e5b3c536661b7e4e1a32",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e66c30ccde764c0583f2d99ef03625b7db6da23518db6c82df65921d2a411023",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:fff625bf4f0753eb7323b8933d264f3cc5c992bfecba8b082b204849297149cc",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e54b48ab07c2c8f70ebf74670514c8b552d2fb2278961d0b3a33c1f4fb0305dc",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d747ed6e1916d8ea400c89ad6078a8c298e30d652ec21985c93539e34c587a73",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:85cac74df781d3d9c3ff1e388afe413eb8aa078b6c9580dba2c06c68e90cad26",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a9fdc9f8b470183d0c9524295a7bf6685e4cea865d235d08ec606332f3557674",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7c98786eea7783275ff88dc4b524ab4a9cc0c4c8b40206b2cdf7174d3e339918",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:9cc18ca21b0d234c0d0ac1a9b25743e0658cbd43bddc4bd055944d617772ab12",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:b8f243fd6e7848b95b324e59c19bde42d7483e34afdae93e8de3531d758895b9",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:b6a73c9da522df55690b886c0a9af39338571d34ee6f0d4d9b994c8289df3412",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:73850c56a6e1bf131ade50d19dd9829d552bee3b0d20c996182e0e6218d6c299",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:90243203e9c3288b75154127eecc5608b8048251a6e3d11a1e923346cc360b40",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:24299f571bb150f78c062140584f4e98dd1d3b9e1abb63d9d64173ccc2fc65df",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:dc4eae31749196c0043225c6749e7306ff71f081c09cbdb2fc98a561087c4474",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e2565ca02144b9c5f5009efbf3d2586f80bfc1103e48ec4cc4b8ac75d096eaa6",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cbe13dadf0b61de3a258036baab50d70fbecb9bdcd07565b394589f58e2c6da8",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:2b7955811c0a1ce4e9eafac7853fc56d427c26de9d5b00d8ce1d641fcd3c8da5",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7b60c9dcb68b34bf87ada12f9b3a3987ca9d14cb440c06e5bd782cca82e74962",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:572421949b3618765eda46a2d4eb8945ebf785a6c85b38cf1307939a01379d07",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c994cb99685b64fddab20333dfaa114c5dba66accba701b91d8376d1f9c83b4d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:b6f435b6b79b8a62729f581edead46542dc61fe7276117b2354c324c44ba8309",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d1e87d4e55d2b8f3d52604f1c56a8df56127c72338a6024db61cb44fc60481eb",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:162c83c3c1aef0f9a102a588c97cad26e6c6adee2086790d409ce91ce93823dc",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d33e180b97a603542cb6f1a78b1c3b0ce4af1bc59ee0bb32620c98a629726bc4",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ab7d6750e250217e313f472471298962d3a50a3ab410d357ce14063a0cb7eb27",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:662796606e4a5093377d0eff54c3e1be540f1c2f2e5ed36ace5b6a92405a431f",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:87ff930132434e16650b4b40f0bb86e9edc5ce399608113afc0afbf2aa084a5e",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:aee968114aed0238eb26cff42ec9b0819ad32e2bac99aa8124d55b480806aca5",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:657925cd0fc0abc03cc83ff3688e131a452ea673a5dcb815cd0fc168bf962fc7",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:88e1737eadcb1d19059e8b269f9631f9a92791f65542b523b7c539b29512080d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:b07344f5116a1913e746042748b05f978d284833282d9633e29f3d595ab596e9",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c8c8043e19b87e054984343b134dec26b7d7a00ba35a5a8bcb7360e4487f8e09",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:8a9cfe3c4938e3c56a889a101c0b519d31b8215e9c73465d82c0cb01a0e92502",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:686c10b1763c225d402c79e45a452161641cb306080aaefe03a3f1ad2e638547",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:1657d94bbd79f93dc7a79d474316813bde681ce3a7f62f73314ec4d630e39349",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ff83a2d86c44f08da23e1ec8ffdede7e30bf6dd0489570621dd4b8cbd02e83cf",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7bebc8a5fc0f4be20a1dce94deccd2495196c34027e18a3a732a0f97b40c86bb",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a970577d9efaa0f7fbb66efc6df6cf3d600c58424ce5f4e3f24af2bf7ee7a91f",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:fc1d5e93483d166ca7f2acb50c04c181db2f3e7b89dba8edc6b1e5f2b0f10619",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:969634cbd245356e33f3b1790ae6b752a88a59f1b4544a4bc6ee44f1e00ae43e",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:8272ab39ab64ab4bde0c5e31387be6e28270a1b1d81a33ba621e6e677b9e974e",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:4bb8f0696394b6ba83392434d829d31f3bb5b8099124bbc8452dd38002e481dd",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:786dfb8754d37f0ed7af299adef1d3f928240369fc680c337c16caa13b352f42",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0998ac158161c9d5f3b97c5dc6e35becd84da0ddc5d347a8af581ada529b3b5c",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:315ba29d3146cb69a628df5b3d09ad2803fd83538da407fd68815111e6f0fd8a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:788d5721b9f18d9cbe321274f76be5ebd580394e7a51095cada4378c92e0b9a2",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:3da078c80d384e407b0ff1ebd639eb68c5f8d1ab600048ae95d4dcfbafcbcb65",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c03053ce8367f515a8574741d14bc33361841f7d9b0a5b434448de6427c17efa",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f68934935fc209e7c595c5619df75f822cc832803e3ea6de2c92e3b91b4d5008",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e8adee47f7fd4c892467dff5e0c587c20ef33fb1bf0bad4d87f3f5d3fe1746e0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d352371cbb7d5bd0c53fc699df953c8c1f184b056690b3c4571e57a6634015c5",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0da614844af2d111cb69e6af37dba930b71a815d0d9340e8aa87dba84bde42ab",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:80d6e32c111ab9c0b2c607475b6a6691cdf6abaec19fde27043e8710a94a8f0c",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f05030123425a5033bcca3f260313cafc199bc7bca57e9fb13c335bd087c35a7",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e955ad59fe95eb091409b8d98c1d1189eecb4ebd6553b94526b013c8a61826e0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:3c554403c511ebb0099fca8c3032e5ce8f837e037d343c68d5f6066deae468ec",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cf1c773eb9194f5ee8236ebbe1979642953faa0509b99b9442cf5504dd4c1d56",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:3bc4dceda442b11c804971ba71ffc2ef398371cd993b207b886de87fb9d7f596",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e1dbd2c38a65b135427c7c8fe988ea70dc95f7e26c4c8177b7dcb23925020015",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:09ff81634b9741b286b42e2067270b4f95141a5ea03886f0610e25e9d0f941a2",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:68a97f7bec435800cdbaf8a0c84abb267c4106a97898daed48ce2f931b0f1230",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:220c4678e3a53cbd9ea7f531c88d10e567773c9160d836ecc923422425286ac0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:19a4f0fdf05be50aaee21b0bb5e86165803c5bfb9c0faec59704f055e2c43a0e",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:6fb2eb0e66f94ce62b1f14f00704de0800664da8429df1df244ad7d9ee2c0b7b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:dcc2aa2e08194e245adc2ea37e7431b5e60d0e66978978bd60905ce9b75545a0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a0a66b588e1695222d15c8c0fcfb8d8e39d3edafc52a84ffc0f1b768c89f4be7",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0efbd5a20919f90392572fed2001be182eb469d3f792ceea79b79a459ed798b3",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:4066356440a1b3c2084cf7fb240dc0da06d42e1420d4ebf409ef581f258cb46b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7414ac9a20e3559301217e86cbe92003fc1702f1ad184037b2b9f8b5049f4e2b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:b9bca614e9819aafb4262be1c8d2c84aa3f449d64f8473cb726fe4239c192774",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:6ab8de40cc01fd6cdbb993db02c0bc426bb31738c6f958be47a1964d56695409",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:37683e8ae32dc4f5bfff343d91d83f595905fa4ec990f25a5d70da893a3d9033",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:b443edbb241b9f9ba03ce883b5f7449bfe4340cdb0215d8e97cb4e5db89455af",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:099feef7e71b82cf0234e37d824fc81353d51dee55694e05181fa686ab50efae",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:98cda7a0f9d0995b6d0eab304e86be10b6b02a6890064a3d57c56259fb37e637",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:fa3bedb3d052733b02c0c6258759786abf0f61a52e70cccedeec9764df35870d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:81e7f4a37458072b2f0f86bdb36321ea5e30ef114ffb6a4e0a37fb29fd1c99a6",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f49c6d53f428bb3b610633af7b1053a6c1dc522762a9c6cb35195e519227eb51",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a8c7514beb4c3cafa6341f43bbe285319d863b2893a34d91159dc8e90f615dd2",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:609ffc1ea49d733bf2fabf521851acf20e62cd873c3679f735bc7486b2434359",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f9b01243e9b98b9b0b4cdf647ace118c1f29802948e82933806faf5127910a60",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:49b0ab23d8436b6f0313cf69cd4992acd3b1ab3394753218cbd4d61dbbf5b2ae",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:9d1e8ce24c29b64e103187acceee6febac29832c1ca1e0e11798de27b6bd4fce",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d09386154d85f487aafcf2b88d5c3766f44684b0bf7df8ea35f8d6a45d994f16",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:26f20dd590b09a8f418dc6c51ba734ca3714902ccde9ca3e91201481ed2728ba",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:298a276622e42061af13cd50820ece993a463f657a6145cb957518c7b8765286",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e356c35e1621f2751a59eb0c10d52b2ed75fe78758ce9731415a72f099621b21",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c8ecba28d1becacbe1fc61f69546584c45337fbf81dc7baa2ac08ef72269ebd1",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e07c84ef1c2bdae2d18625e26be0ecaa5aa8b6876c249905670748cb3943c7a6",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f17b28b2e02016e13f5ae88256315a2817ef229ca53e67c251afbd5e541e91ef",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:2613cde45e991f83f14d39c059746cbc195e296cf16c207d853383eb4ed43dd6",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:60136000a760af65818cbe58a62b646b3a809e57ec7c4597db208dc03e83598f",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:af52887cccc937de789a399ba991cb49c5e98ab26742d017e2f58ed2d9eb5d0d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:2d963fbff4044e88673c52fb03cc11d9395dcc2a0c27a26844477bf6eb1e8160",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:219825121d761bf163e746f0ca424e4dfe071aece87c22ccd632abcf78ab4920",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:9dd2bfddff642d37b5a74057921e85a627cbd4cdee4e3d4d4f9a891a907660b3",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d74afacddfc8dc0b385e701a04859936f6766eb55954e18d0d5d2ecbd62b7bef",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cb381ec34606df7536dd437bd1894387c28a884539245b6f078923ff982c19d2",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:a97940ecd1dff299d68585fe2df63aa2ab1f2aac126f4499e706af6bc5bfaf2b",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:75c46aab03898c66ce16be556432b71aed7efcedce02b9263339c14f57b4fdc0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:1e7586cb9918e6c365105d452b9efedfaf5bb7c80309c5d0151043da847dc15f",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:9f725fc2ce9b46e8e36a7de556a575d0da55f89101834611a332fd4698206db3",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:97722cf3d797b17cbfdd6520d92cf0f9b0bdff6e497afab1f1719b600f172c53",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:9768aeea2156e3e7d9a731bf17441645f3ee97cc806fa1614fe1d20453cf2d23",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:e4ba8861a76427a4e8a1dfaf3a606aeb86e140cea1c1a42d6d75ba0bedcba3ec",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:76c760f7e4ed054d158a31ef7927130baf917703c80eda92b0202b613aa81ef2",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:d8f22f516a4ec64e83d6945d126e524d189c05e78e65a5dc50bd3c6fda64284f",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:6f6d37af19a021960e9eb213bd08361305a6550eef108f77a71798d9adf051ad",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7f660876d7dca61b16fde94c2c0d6e89f4db1410400f05ea1a325ce192582da0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:2ae424b368c6747124b51b205b9e11d74aeaff56b3de90e8cbd36012e0d17707",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:bd652458daf7266717027930e0d556dea0d21b4a78aec6c1d9a5dbc8ea411211",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:94e7ec73e7998cb2f94f5306fded9be2bc175e5a4c912fd3744f2ca18f2afce1",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:989d0640b56900fc2e59ecff5b9459ffd85b47e2b23b1844ebea593d00afc37c",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:9888a69b10a9b8193702b803296b1bdfdc188a751769e1aae06827c1154454e0",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:05d81d7e82fc8c04c6eca7104e39c128c3ae05ee6915f49fdb5aaa278b358cd2",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:5de8bbc85c804d6294c28046e3c5ed01b518ffbf9e6f6d05dc6bf3a8c05f0927",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c67205a62c1ef2ad5689382d9f1d1ddc84ca4eada797209d7561e16fa049fde1",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:0891d395ce067121c28932534237ad1ce231f2bfa987411ad62e73a12d11eb6a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:c41b14018cb679b44ca03856e7ccd1ebf4dd9afa5bfa20c1d43b2bb4b8912b81",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ec989d023f684a4366e52930804c5ccf73cd3bfca2edb349e8b3dd2980b1e583",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:5796f7e2d916f329b0de84a99aa5312dbebf4c2fd5a171868377bd4cec059855",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:66c73c5e907040a6e67f70452a1c00ebc4d07cf4c7cf2e2b2795a8260795fb2a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ec3b3c76f277640c7d298debb6d2d8653f035bc71ef30b58d87d06cb18bbbbe5",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:be34293b5108ca8961a08b0ff27c10fe04bb7c2441601290b713af99b12241f1",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f00009de82cf0d93cb98152f7ca44becc8a13a203859dd191561c5ac5d97a179",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cf0ddbc999d73c4112dbd56280166351c5727af9f2ce21e04b62b9fdc982b3fc",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:040edbf5c13ca99ec346a879c9efc8fa0b1b39b20a054981f05db977b6aa2b3f",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:cfdd2e932d3b5fbe23fb4e71f42f59eea9ae2944a4c5abb4feb440fcdcdafae9",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:ea898908b49c4621bee8d6cac5bd37bf2cca5b4739d50435229cf88746d5162a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:f23b34e4bc31b3e12508dedeac76672694746549cc354011223f9756eb5c264d",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:68c822df014bf1fe78985d1672a1cd42ed82c2f4c4ff517e8dbb397907552edd",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:16dfccafa090ff446a374e81e11224e396f44b9c20eba9144cfb48d46a71f3e1",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:179c828b8d0c553bef34e540f7bb616879e99bfdb722113320682c6ab24b172f",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:da83a7ab9cb8845c450be15ed798480184a2f86ab0324d7fd04335e9bfa41c82",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:61eef3ee2dcd3d2e3b784464e801cbea2e8e668271b4aff97529110b45915191",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:06931afb372ed4a6893e51558beaa6b0eab7adda0af93456fd99a081a8b80779",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:7504aa06310aab8dab544c4363efd3940bc3907dd6defe32143541dfc1496f50",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:2e7f193e67235130c10f5579c2d2ec92e22e4098b6d12fb2855d93b1540c60f7",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:9518ee9fbfb051362baf6fe3c589fdb4c670257f3913547ef75c8b54e1eba2e9",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:88f1d788f4e3324e450831e01e2d319b8336b0f4f9dcc297c9fd17560cbfe74f",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:3a0c754818904823c0772a0f8c69f39114b351930dbc1b568df2c4676cf527fc",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  },
+                  {
+                    "id": "sha256:559086733d1710325bf8ab631266d101214bafbc15e5d39f230609a616b1c04a",
+                    "options": {
+                      "metadata": {
+                        "rpm.check_gpg": true
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "options": {
+              "gpgkeys": [
+                "-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmQINBGIpIp4BEAC/o5e1WzLIsS6/JOQCs4XYATYTcf6B6ALzcP05G0W3uRpUQSrL\nFRKNrU8ZCelm/B+XSh2ljJNeklp2WLxYENDOsftDXGoyLr2hEkI5OyK267IHhFNJ\ng+BN+T5Cjh4ZiiWij6o9F7x2ZpxISE9M4iI80rwSv1KOnGSw5j2zD2EwoMjTVyVE\n/t3s5XJxnDclB7ZqL+cgjv0mWUY/4+b/OoRTkhq7b8QILuZp75Y64pkrndgakm1T\n8mAGXV02mEzpNj9DyAJdUqa11PIhMJMxxHOGHJ8CcHZ2NJL2e7yJf4orTj+cMhP5\nLzJcVlaXnQYu8Zkqa0V6J1Qdj8ZXL72QsmyicRYXAtK9Jm5pvBHuYU2m6Ja7dBEB\nVkhe7lTKhAjkZC5ErPmANNS9kPdtXCOpwN1lOnmD2m04hks3kpH9OTX7RkTFUSws\neARAfRID6RLfi59B9lmAbekecnsMIFMx7qR7ZKyQb3GOuZwNYOaYFevuxusSwCHv\n4FtLDIhk+Fge+EbPdEva+VLJeMOb02gC4V/cX/oFoPkxM1A5LHjkuAM+aFLAiIRd\nNp/tAPWk1k6yc+FqkcDqOttbP4ciiXb9JPtmzTCbJD8lgH0rGp8ufyMXC9x7/dqX\nTjsiGzyvlMnrkKB4GL4DqRFl8LAR02A3846DD8CAcaxoXggL2bJCU2rgUQARAQAB\ntDVSZWQgSGF0LCBJbmMuIChhdXhpbGlhcnkga2V5IDMpIDxzZWN1cml0eUByZWRo\nYXQuY29tPokCUgQTAQgAPBYhBH5GJCWMQGU11W1vE1BU5KRaY0CzBQJiKSKeAhsD\nBQsJCAcCAyICAQYVCgkICwIEFgIDAQIeBwIXgAAKCRBQVOSkWmNAsyBfEACuTN/X\nYR+QyzeRw0pXcTvMqzNE4DKKr97hSQEwZH1/v1PEPs5O3psuVUm2iam7bqYwG+ry\nEskAgMHi8AJmY0lioQD5/LTSLTrM8UyQnU3g17DHau1NHIFTGyaW4a7xviU4C2+k\nc6X0u1CPHI1U4Q8prpNcfLsldaNYlsVZtUtYSHKPAUcswXWliW7QYjZ5tMSbu8jR\nOMOc3mZuf0fcVFNu8+XSpN7qLhRNcPv+FCNmk/wkaQfH4Pv+jVsOgHqkV3aLqJeN\nkNUnpyEKYkNqo7mNfNVWOcl+Z1KKKwSkIi3vg8maC7rODsy6IX+Y96M93sqYDQom\naaWue2gvw6thEoH4SaCrCL78mj2YFpeg1Oew4QwVcBnt68KOPfL9YyoOicNs4Vuu\nfb/vjU2ONPZAeepIKA8QxCETiryCcP43daqThvIgdbUIiWne3gae6eSj0EuUPoYe\nH5g2Lw0qdwbHIOxqp2kvN96Ii7s1DK3VyhMt/GSPCxRnDRJ8oQKJ2W/I1IT5VtiU\nzMjjq5JcYzRPzHDxfVzT9CLeU/0XQ+2OOUAiZKZ0dzSyyVn8xbpviT7iadvjlQX3\nCINaPB+d2Kxa6uFWh+ZYOLLAgZ9B8NKutUHpXN66YSfe79xFBSFWKkJ8cSIMk13/\nIfs7ApKlKCCRDpwoDqx/sjIaj1cpOfLHYjnefg==\n=UZd/\n-----END PGP PUBLIC KEY BLOCK-----",
+                "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: GnuPG v2.0.22 (GNU/Linux)\n\nmQINBErgSTsBEACh2A4b0O9t+vzC9VrVtL1AKvUWi9OPCjkvR7Xd8DtJxeeMZ5eF\n0HtzIG58qDRybwUe89FZprB1ffuUKzdE+HcL3FbNWSSOXVjZIersdXyH3NvnLLLF\n0DNRB2ix3bXG9Rh/RXpFsNxDp2CEMdUvbYCzE79K1EnUTVh1L0Of023FtPSZXX0c\nu7Pb5DI5lX5YeoXO6RoodrIGYJsVBQWnrWw4xNTconUfNPk0EGZtEnzvH2zyPoJh\nXGF+Ncu9XwbalnYde10OCvSWAZ5zTCpoLMTvQjWpbCdWXJzCm6G+/hx9upke546H\n5IjtYm4dTIVTnc3wvDiODgBKRzOl9rEOCIgOuGtDxRxcQkjrC+xvg5Vkqn7vBUyW\n9pHedOU+PoF3DGOM+dqv+eNKBvh9YF9ugFAQBkcG7viZgvGEMGGUpzNgN7XnS1gj\n/DPo9mZESOYnKceve2tIC87p2hqjrxOHuI7fkZYeNIcAoa83rBltFXaBDYhWAKS1\nPcXS1/7JzP0ky7d0L6Xbu/If5kqWQpKwUInXtySRkuraVfuK3Bpa+X1XecWi24JY\nHVtlNX025xx1ewVzGNCTlWn1skQN2OOoQTV4C8/qFpTW6DTWYurd4+fE0OJFJZQF\nbuhfXYwmRlVOgN5i77NTIJZJQfYFj38c/Iv5vZBPokO6mffrOTv3MHWVgQARAQAB\ntDNSZWQgSGF0LCBJbmMuIChyZWxlYXNlIGtleSAyKSA8c2VjdXJpdHlAcmVkaGF0\nLmNvbT6JAjYEEwEIACACGwMGCwkIBwMCBBUCCAMEFgIDAQIeAQIXgAUCSuBJPAAK\nCRAZni+R/UMdUfIkD/9m3HWv07uJG26R3KBexTo2FFu3rmZs+m2nfW8R3dBX+k0o\nAOFpgJCsNgKwU81LOPrkMN19G0+Yn/ZTCDD7cIQ7dhYuDyEX97xh4une/EhnnRuh\nASzR+1xYbj/HcYZIL9kbslgpebMn+AhxbUTQF/mziug3hLidR9Bzvygq0Q09E11c\nOZL4BU6J2HqxL+9m2F+tnLdfhL7MsAq9nbmWAOpkbGefc5SXBSq0sWfwoes3X3yD\nQ8B5Xqr9AxABU7oUB+wRqvY69ZCxi/BhuuJCUxY89ZmwXfkVxeHl1tYfROUwOnJO\nGYSbI/o41KBK4DkIiDcT7QqvqvCyudnxZdBjL2QU6OrIJvWmKs319qSF9m3mXRSt\nZzWtB89Pj5LZ6cdtuHvW9GO4qSoBLmAfB313pGkbgi1DE6tqCLHlA0yQ8zv99OWV\ncMDGmS7tVTZqfX1xQJ0N3bNORQNtikJC3G+zBCJzIeZleeDlMDQcww00yWU1oE7/\nTo2UmykMGc7o9iggFWR2g0PIcKsA/SXdRKWPqCHG2uKHBvdRTQGupdXQ1sbV+AHw\nycyA/9H/mp/NUSNM2cqnBDcZ6GhlHt59zWtEveiuU5fpTbp4GVcFXbW8jStj8j8z\n1HI3cywZO8+YNPzqyx0JWsidXGkfzkPHyS4jTG84lfu2JG8m/nqLnRSeKpl20Q==\n=79bX\n-----END PGP PUBLIC KEY BLOCK-----"
+              ]
+            }
+          },
+          {
+            "type": "org.osbuild.fix-bls",
+            "options": {}
+          },
+          {
+            "type": "org.osbuild.locale",
+            "options": {
+              "language": "en_US.UTF-8"
+            }
+          },
+          {
+            "type": "org.osbuild.timezone",
+            "options": {
+              "zone": "America/New_York"
+            }
+          },
+          {
+            "type": "org.osbuild.sysconfig",
+            "options": {
+              "kernel": {
+                "update_default": true,
+                "default_kernel": "kernel"
+              },
+              "network": {
+                "networking": true,
+                "no_zero_conf": true
+              }
+            }
+          },
+          {
+            "type": "org.osbuild.rhsm.facts",
+            "options": {
+              "facts": {
+                "image-builder.osbuild-composer.api-type": "test-manifest"
+              }
+            }
+          },
+          {
+            "type": "org.osbuild.wsl.conf",
+            "options": {
+              "boot": {
+                "systemd": true
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "archive",
+        "build": "name:build",
+        "stages": [
+          {
+            "type": "org.osbuild.tar",
+            "inputs": {
+              "tree": {
+                "type": "org.osbuild.tree",
+                "origin": "org.osbuild.pipeline",
+                "references": [
+                  "name:os"
+                ]
+              }
+            },
+            "options": {
+              "filename": "disk.tar.gz"
+            }
+          }
+        ]
+      }
+    ],
+    "sources": {
+      "org.osbuild.curl": {
+        "items": {
+          "sha256:0367c77a9d07b0e3eead2cbb3eb638af2b3fc885da950cf9acd1f9f933f0b993": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/crypto-policies-20240304-1.gitb1c706d.el9.noarch.rpm"
+          },
+          "sha256:040edbf5c13ca99ec346a879c9efc8fa0b1b39b20a054981f05db977b6aa2b3f": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/tar-1.34-6.el9_1.aarch64.rpm"
+          },
+          "sha256:05d81d7e82fc8c04c6eca7104e39c128c3ae05ee6915f49fdb5aaa278b358cd2": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/rpm-libs-4.16.1.3-29.el9.aarch64.rpm"
+          },
+          "sha256:06931afb372ed4a6893e51558beaa6b0eab7adda0af93456fd99a081a8b80779": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/xz-libs-5.2.5-8.el9_0.aarch64.rpm"
+          },
+          "sha256:06ee05c8124040b150d366d2e02f5c75bcc26635d45f0337cfe6864a3c6f06cd": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/gobject-introspection-1.68.0-11.el9.aarch64.rpm"
+          },
+          "sha256:0891d395ce067121c28932534237ad1ce231f2bfa987411ad62e73a12d11eb6a": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/setup-2.13.7-10.el9.noarch.rpm"
+          },
+          "sha256:08968334789ba764986d3beb4745de28eb1e2ed401a03dba9d80e75e3179aa76": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libpsl-0.21.1-5.el9.aarch64.rpm"
+          },
+          "sha256:0998ac158161c9d5f3b97c5dc6e35becd84da0ddc5d347a8af581ada529b3b5c": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libsigsegv-2.13-4.el9.aarch64.rpm"
+          },
+          "sha256:099feef7e71b82cf0234e37d824fc81353d51dee55694e05181fa686ab50efae": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/pcre-8.44-4.el9.aarch64.rpm"
+          },
+          "sha256:09ff81634b9741b286b42e2067270b4f95141a5ea03886f0610e25e9d0f941a2": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/mpfr-4.1.0-7.el9.aarch64.rpm"
+          },
+          "sha256:0cb5d68eae6132524936f8a522acfbf59ac0e48b7714cf549c9777a95fcf3d54": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/dnf-4.14.0-12.el9.noarch.rpm"
+          },
+          "sha256:0cc66bee3af1b8939f108dce622a47a58482f182ab3abb851b3252a44315aa23": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libssh-config-0.10.4-13.el9.noarch.rpm"
+          },
+          "sha256:0da614844af2d111cb69e6af37dba930b71a815d0d9340e8aa87dba84bde42ab": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libuuid-2.37.4-18.el9.aarch64.rpm"
+          },
+          "sha256:0efbd5a20919f90392572fed2001be182eb469d3f792ceea79b79a459ed798b3": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/openssl-fips-provider-3.0.7-5.el9.aarch64.rpm"
+          },
+          "sha256:15886470eb55b5d4999d07c603bf1ffcc292883f130d92e6bca447dbefd580c4": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/file-libs-5.39-16.el9.aarch64.rpm"
+          },
+          "sha256:162c83c3c1aef0f9a102a588c97cad26e6c6adee2086790d409ce91ce93823dc": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libfdisk-2.37.4-18.el9.aarch64.rpm"
+          },
+          "sha256:1657d94bbd79f93dc7a79d474316813bde681ce3a7f62f73314ec4d630e39349": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libpwquality-1.4.4-8.el9.aarch64.rpm"
+          },
+          "sha256:16dfccafa090ff446a374e81e11224e396f44b9c20eba9144cfb48d46a71f3e1": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/util-linux-core-2.37.4-18.el9.aarch64.rpm"
+          },
+          "sha256:179c828b8d0c553bef34e540f7bb616879e99bfdb722113320682c6ab24b172f": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/vim-minimal-8.2.2637-20.el9_1.aarch64.rpm"
+          },
+          "sha256:19a4f0fdf05be50aaee21b0bb5e86165803c5bfb9c0faec59704f055e2c43a0e": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/nettle-3.9.1-1.el9.aarch64.rpm"
+          },
+          "sha256:1e7586cb9918e6c365105d452b9efedfaf5bb7c80309c5d0151043da847dc15f": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-pysocks-1.7.1-12.el9.noarch.rpm"
+          },
+          "sha256:1e8b696cd7dc0e9e150cbc70d01d17bd99e83cd2966b57eb82e62f7244f1d5f9": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/coreutils-8.32-35.el9.aarch64.rpm"
+          },
+          "sha256:219825121d761bf163e746f0ca424e4dfe071aece87c22ccd632abcf78ab4920": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-inotify-0.9.6-25.el9.noarch.rpm"
+          },
+          "sha256:220c4678e3a53cbd9ea7f531c88d10e567773c9160d836ecc923422425286ac0": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/ncurses-libs-6.2-10.20210508.el9.aarch64.rpm"
+          },
+          "sha256:2212669ed94097297dac70035a1321d53e9f0a5421d6637c5b9646f6e7a7583d": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/elfutils-libs-0.191-4.el9.aarch64.rpm"
+          },
+          "sha256:24299f571bb150f78c062140584f4e98dd1d3b9e1abb63d9d64173ccc2fc65df": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libcap-2.48-9.el9_2.aarch64.rpm"
+          },
+          "sha256:2613cde45e991f83f14d39c059746cbc195e296cf16c207d853383eb4ed43dd6": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-gpg-1.15.1-6.el9.aarch64.rpm"
+          },
+          "sha256:26ac21be6c1e396c7bcbaa9d4786e3275e996d9d78c01f75bbbc6962e6c9bef7": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/xz-5.2.5-8.el9_0.aarch64.rpm"
+          },
+          "sha256:26f20dd590b09a8f418dc6c51ba734ca3714902ccde9ca3e91201481ed2728ba": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-dbus-1.2.18-2.el9.aarch64.rpm"
+          },
+          "sha256:298a276622e42061af13cd50820ece993a463f657a6145cb957518c7b8765286": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-decorator-4.4.2-6.el9.noarch.rpm"
+          },
+          "sha256:298f1cada3cbcef6713098b9925694a0e30e8566f7a5bdbd72384520cf6c8360": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/dbus-common-1.12.20-8.el9.noarch.rpm"
+          },
+          "sha256:2ae424b368c6747124b51b205b9e11d74aeaff56b3de90e8cbd36012e0d17707": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/readline-8.1-4.el9.aarch64.rpm"
+          },
+          "sha256:2b7955811c0a1ce4e9eafac7853fc56d427c26de9d5b00d8ce1d641fcd3c8da5": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libcurl-minimal-7.76.1-29.el9_4.aarch64.rpm"
+          },
+          "sha256:2d963fbff4044e88673c52fb03cc11d9395dcc2a0c27a26844477bf6eb1e8160": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-iniparse-0.4-45.el9.noarch.rpm"
+          },
+          "sha256:2e7f193e67235130c10f5579c2d2ec92e22e4098b6d12fb2855d93b1540c60f7": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/zlib-1.2.11-40.el9.aarch64.rpm"
+          },
+          "sha256:30c26caf56198f8ccc744840f8cad5d6868d4fa6c77997db7da1b06ab8546e95": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/curl-minimal-7.76.1-29.el9_4.aarch64.rpm"
+          },
+          "sha256:315ba29d3146cb69a628df5b3d09ad2803fd83538da407fd68815111e6f0fd8a": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libsmartcols-2.37.4-18.el9.aarch64.rpm"
+          },
+          "sha256:342af53fbf4254e34b5f19a6be6f22c67551c26dd0c49016edc93e806621b75d": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/dbus-broker-28-7.el9.aarch64.rpm"
+          },
+          "sha256:37683e8ae32dc4f5bfff343d91d83f595905fa4ec990f25a5d70da893a3d9033": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/pam-1.5.1-19.el9.aarch64.rpm"
+          },
+          "sha256:3a0c754818904823c0772a0f8c69f39114b351930dbc1b568df2c4676cf527fc": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-appstream-n9.5-20240601/Packages/langpacks-core-font-en-3.0-16.el9.noarch.rpm"
+          },
+          "sha256:3b0d04aebd71691702a3c37d9f4b234b87c79b62c7ea8ec2f04133087b3776d4": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/coreutils-single-8.32-35.el9.aarch64.rpm"
+          },
+          "sha256:3bc4dceda442b11c804971ba71ffc2ef398371cd993b207b886de87fb9d7f596": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/lua-libs-5.4.4-4.el9.aarch64.rpm"
+          },
+          "sha256:3c554403c511ebb0099fca8c3032e5ce8f837e037d343c68d5f6066deae468ec": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libyaml-0.2.5-7.el9.aarch64.rpm"
+          },
+          "sha256:3da078c80d384e407b0ff1ebd639eb68c5f8d1ab600048ae95d4dcfbafcbcb65": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libstdc++-11.4.1-3.el9.aarch64.rpm"
+          },
+          "sha256:3f0883600463daa07012d99df9003a49a6a1bcb9abe14ecf28829c617d2ef658": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/gpgme-1.15.1-6.el9.aarch64.rpm"
+          },
+          "sha256:3fd73bd271e9c04dc297eb08c3829d276faee372f77666aad29f4b676ea220f4": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-appstream-n9.5-20240601/Packages/gawk-all-langpacks-5.1.0-6.el9.aarch64.rpm"
+          },
+          "sha256:3ff6674e17367a11547cb5675af38d75a396a166b7ddb5cd35a85db78be69091": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/redhat-release-eula-9.5-0.4.el9.aarch64.rpm"
+          },
+          "sha256:4066356440a1b3c2084cf7fb240dc0da06d42e1420d4ebf409ef581f258cb46b": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/openssl-fips-provider-so-3.0.7-5.el9.aarch64.rpm"
+          },
+          "sha256:44cfcf93d88c0ea112572d43374f4cd79c99ca2d8853eb50bb43f06a5e4738f2": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/glibc-gconv-extra-2.34-106.el9.aarch64.rpm"
+          },
+          "sha256:45710df49b439ddc4a2848fd3877367761b574234ae28b6be46f1cf54f3fcdca": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/gzip-1.12-1.el9.aarch64.rpm"
+          },
+          "sha256:49b0ab23d8436b6f0313cf69cd4992acd3b1ab3394753218cbd4d61dbbf5b2ae": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-chardet-4.0.0-5.el9.noarch.rpm"
+          },
+          "sha256:4bb8f0696394b6ba83392434d829d31f3bb5b8099124bbc8452dd38002e481dd": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libsemanage-3.6-1.el9.aarch64.rpm"
+          },
+          "sha256:4c871b961800c8a3088cad7d9732a6bc19fba560369cd9042aedff94fb8ff73e": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/selinux-policy-38.1.38-1.el9.noarch.rpm"
+          },
+          "sha256:5178f638660d1699fb06caeeac91f41c07da59b500e94adf2653df892f2cbdf8": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/dbus-1.12.20-8.el9.aarch64.rpm"
+          },
+          "sha256:524412f7ce56095508190116cb8ae141737857e4447979330c3cf75ca7017e6b": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/diffutils-3.7-12.el9.aarch64.rpm"
+          },
+          "sha256:559086733d1710325bf8ab631266d101214bafbc15e5d39f230609a616b1c04a": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-appstream-n9.5-20240601/Packages/langpacks-en-3.0-16.el9.noarch.rpm"
+          },
+          "sha256:572421949b3618765eda46a2d4eb8945ebf785a6c85b38cf1307939a01379d07": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libdnf-0.69.0-11.el9.aarch64.rpm"
+          },
+          "sha256:5796f7e2d916f329b0de84a99aa5312dbebf4c2fd5a171868377bd4cec059855": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/subscription-manager-1.29.40-1.el9.aarch64.rpm"
+          },
+          "sha256:583a247a199901d44dc8a96d46010e15f6211f98f7c61ba089825155b0562520": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/grep-3.6-5.el9.aarch64.rpm"
+          },
+          "sha256:59d24711260ff0e69762fc4e728279b0e7b6ecfdb5a9b8ba01cd96682c679022": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/acl-2.3.1-4.el9.aarch64.rpm"
+          },
+          "sha256:5d72ee2b7658eb14e7f96c99f565a08d96915a10af22538eef12828821ae773a": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/glibc-minimal-langpack-2.34-106.el9.aarch64.rpm"
+          },
+          "sha256:5de8bbc85c804d6294c28046e3c5ed01b518ffbf9e6f6d05dc6bf3a8c05f0927": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/rpm-sign-libs-4.16.1.3-29.el9.aarch64.rpm"
+          },
+          "sha256:60136000a760af65818cbe58a62b646b3a809e57ec7c4597db208dc03e83598f": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-hawkey-0.69.0-11.el9.aarch64.rpm"
+          },
+          "sha256:609ffc1ea49d733bf2fabf521851acf20e62cd873c3679f735bc7486b2434359": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/psmisc-23.4-3.el9.aarch64.rpm"
+          },
+          "sha256:61eef3ee2dcd3d2e3b784464e801cbea2e8e668271b4aff97529110b45915191": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/which-2.21-29.el9.aarch64.rpm"
+          },
+          "sha256:657925cd0fc0abc03cc83ff3688e131a452ea673a5dcb815cd0fc168bf962fc7": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libidn2-2.3.0-7.el9.aarch64.rpm"
+          },
+          "sha256:662796606e4a5093377d0eff54c3e1be540f1c2f2e5ed36ace5b6a92405a431f": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libgcrypt-1.10.0-10.el9_2.aarch64.rpm"
+          },
+          "sha256:66c73c5e907040a6e67f70452a1c00ebc4d07cf4c7cf2e2b2795a8260795fb2a": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/subscription-manager-rhsm-certificates-20220623-1.el9.noarch.rpm"
+          },
+          "sha256:686c10b1763c225d402c79e45a452161641cb306080aaefe03a3f1ad2e638547": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libnghttp2-1.43.0-5.el9_4.3.aarch64.rpm"
+          },
+          "sha256:68a97f7bec435800cdbaf8a0c84abb267c4106a97898daed48ce2f931b0f1230": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/ncurses-base-6.2-10.20210508.el9.noarch.rpm"
+          },
+          "sha256:68c822df014bf1fe78985d1672a1cd42ed82c2f4c4ff517e8dbb397907552edd": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/util-linux-2.37.4-18.el9.aarch64.rpm"
+          },
+          "sha256:6ab8de40cc01fd6cdbb993db02c0bc426bb31738c6f958be47a1964d56695409": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/p11-kit-trust-0.25.3-2.el9.aarch64.rpm"
+          },
+          "sha256:6b4e2bae51af42c1ab0f1ec7430ab19542747937a827eba8cac540cb7514a145": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/cracklib-2.9.6-27.el9.aarch64.rpm"
+          },
+          "sha256:6ca709ceee3cee5bb53a276a0368f339a46ccd961164a24dcea2dc5d0a2fafcf": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/selinux-policy-targeted-38.1.38-1.el9.noarch.rpm"
+          },
+          "sha256:6ce3d9795bbc0bdc90d3e1265223fd88965f2f007f79f2dd401faceeaff15521": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libssh-0.10.4-13.el9.aarch64.rpm"
+          },
+          "sha256:6f6d37af19a021960e9eb213bd08361305a6550eef108f77a71798d9adf051ad": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-systemd-234-18.el9.aarch64.rpm"
+          },
+          "sha256:6fb2eb0e66f94ce62b1f14f00704de0800664da8429df1df244ad7d9ee2c0b7b": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/npth-1.6-8.el9.aarch64.rpm"
+          },
+          "sha256:73850c56a6e1bf131ade50d19dd9829d552bee3b0d20c996182e0e6218d6c299": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libblkid-2.37.4-18.el9.aarch64.rpm"
+          },
+          "sha256:7414ac9a20e3559301217e86cbe92003fc1702f1ad184037b2b9f8b5049f4e2b": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/openssl-libs-3.2.1-1.el9.aarch64.rpm"
+          },
+          "sha256:74fffe15dd7f5a41c7d1990c2804defa1b45fb845da29465b73a81d5866e8a72": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/gdbm-libs-1.23-1.el9.aarch64.rpm"
+          },
+          "sha256:7504aa06310aab8dab544c4363efd3940bc3907dd6defe32143541dfc1496f50": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/yum-4.14.0-12.el9.noarch.rpm"
+          },
+          "sha256:75c46aab03898c66ce16be556432b71aed7efcedce02b9263339c14f57b4fdc0": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-pip-wheel-21.3.1-1.el9.noarch.rpm"
+          },
+          "sha256:76c760f7e4ed054d158a31ef7927130baf917703c80eda92b0202b613aa81ef2": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-six-1.15.0-9.el9.noarch.rpm"
+          },
+          "sha256:783efaa825477d337abe7006c66de2a15e99abe86429657c5697d11dc910acf6": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/gnutls-3.8.3-4.el9_4.aarch64.rpm"
+          },
+          "sha256:786dfb8754d37f0ed7af299adef1d3f928240369fc680c337c16caa13b352f42": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libsepol-3.6-1.el9.aarch64.rpm"
+          },
+          "sha256:788d5721b9f18d9cbe321274f76be5ebd580394e7a51095cada4378c92e0b9a2": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libsolv-0.7.24-3.el9.aarch64.rpm"
+          },
+          "sha256:7b60c9dcb68b34bf87ada12f9b3a3987ca9d14cb440c06e5bd782cca82e74962": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libdb-5.3.28-53.el9.aarch64.rpm"
+          },
+          "sha256:7bebc8a5fc0f4be20a1dce94deccd2495196c34027e18a3a732a0f97b40c86bb": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libreport-filesystem-2.15.2-6.el9.noarch.rpm"
+          },
+          "sha256:7c98786eea7783275ff88dc4b524ab4a9cc0c4c8b40206b2cdf7174d3e339918": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libacl-2.3.1-4.el9.aarch64.rpm"
+          },
+          "sha256:7dc1febec9c2fb184ed4407f8a188ab267b7e46b3534866f702c6266008ababa": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/bash-5.1.8-9.el9.aarch64.rpm"
+          },
+          "sha256:7f660876d7dca61b16fde94c2c0d6e89f4db1410400f05ea1a325ce192582da0": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-urllib3-1.26.5-5.el9.noarch.rpm"
+          },
+          "sha256:80d6e32c111ab9c0b2c607475b6a6691cdf6abaec19fde27043e8710a94a8f0c": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libverto-0.3.2-3.el9.aarch64.rpm"
+          },
+          "sha256:80e27ed2f946663ec408e6a861407b3692b77898333c10d399409c208e977603": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/cyrus-sasl-lib-2.1.27-21.el9.aarch64.rpm"
+          },
+          "sha256:81e7f4a37458072b2f0f86bdb36321ea5e30ef114ffb6a4e0a37fb29fd1c99a6": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/policycoreutils-3.6-2.1.el9.aarch64.rpm"
+          },
+          "sha256:8272ab39ab64ab4bde0c5e31387be6e28270a1b1d81a33ba621e6e677b9e974e": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libselinux-utils-3.6-1.el9.aarch64.rpm"
+          },
+          "sha256:85cac74df781d3d9c3ff1e388afe413eb8aa078b6c9580dba2c06c68e90cad26": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/kmod-libs-28-9.el9.aarch64.rpm"
+          },
+          "sha256:87ff930132434e16650b4b40f0bb86e9edc5ce399608113afc0afbf2aa084a5e": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libgomp-11.4.1-3.el9.aarch64.rpm"
+          },
+          "sha256:88e1737eadcb1d19059e8b269f9631f9a92791f65542b523b7c539b29512080d": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libksba-1.5.1-6.el9_1.aarch64.rpm"
+          },
+          "sha256:88f1d788f4e3324e450831e01e2d319b8336b0f4f9dcc297c9fd17560cbfe74f": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-appstream-n9.5-20240601/Packages/langpacks-core-en-3.0-16.el9.noarch.rpm"
+          },
+          "sha256:89fd2f50aa4590a7595cda93f1ee8529608549332d7172d0501e9ea64d140407": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/curl-7.76.1-29.el9_4.aarch64.rpm"
+          },
+          "sha256:8a9cfe3c4938e3c56a889a101c0b519d31b8215e9c73465d82c0cb01a0e92502": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libmount-2.37.4-18.el9.aarch64.rpm"
+          },
+          "sha256:8aa78a3d2ca4135a8655894e18e3653a381115c26caf95359b367bad01c776bd": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/dejavu-sans-fonts-2.37-18.el9.noarch.rpm"
+          },
+          "sha256:8f3c118de68d018fdc9c114f924fb91c8edad6676bf00cca33c015fcad001d67": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/coreutils-common-8.32-35.el9.aarch64.rpm"
+          },
+          "sha256:90243203e9c3288b75154127eecc5608b8048251a6e3d11a1e923346cc360b40": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libbpf-1.3.0-2.el9.aarch64.rpm"
+          },
+          "sha256:922fb08fd4f11fbc576b1e19a5860dd36428e1ee24d5dc95a326913b6ca7521a": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/glibc-common-2.34-106.el9.aarch64.rpm"
+          },
+          "sha256:94e7ec73e7998cb2f94f5306fded9be2bc175e5a4c912fd3744f2ca18f2afce1": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/rootfiles-8.1-31.el9.noarch.rpm"
+          },
+          "sha256:9518ee9fbfb051362baf6fe3c589fdb4c670257f3913547ef75c8b54e1eba2e9": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-appstream-n9.5-20240601/Packages/gdb-gdbserver-10.2-13.el9.aarch64.rpm"
+          },
+          "sha256:969634cbd245356e33f3b1790ae6b752a88a59f1b4544a4bc6ee44f1e00ae43e": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libselinux-3.6-1.el9.aarch64.rpm"
+          },
+          "sha256:9768aeea2156e3e7d9a731bf17441645f3ee97cc806fa1614fe1d20453cf2d23": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-setuptools-53.0.0-12.el9.noarch.rpm"
+          },
+          "sha256:97722cf3d797b17cbfdd6520d92cf0f9b0bdff6e497afab1f1719b600f172c53": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-rpm-4.16.1.3-29.el9.aarch64.rpm"
+          },
+          "sha256:9888a69b10a9b8193702b803296b1bdfdc188a751769e1aae06827c1154454e0": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/rpm-build-libs-4.16.1.3-29.el9.aarch64.rpm"
+          },
+          "sha256:989d0640b56900fc2e59ecff5b9459ffd85b47e2b23b1844ebea593d00afc37c": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/rpm-4.16.1.3-29.el9.aarch64.rpm"
+          },
+          "sha256:98cda7a0f9d0995b6d0eab304e86be10b6b02a6890064a3d57c56259fb37e637": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/pcre2-10.40-5.el9.aarch64.rpm"
+          },
+          "sha256:9cc18ca21b0d234c0d0ac1a9b25743e0658cbd43bddc4bd055944d617772ab12": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libarchive-3.5.3-4.el9.aarch64.rpm"
+          },
+          "sha256:9d1e8ce24c29b64e103187acceee6febac29832c1ca1e0e11798de27b6bd4fce": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-cloud-what-1.29.40-1.el9.aarch64.rpm"
+          },
+          "sha256:9dd2bfddff642d37b5a74057921e85a627cbd4cdee4e3d4d4f9a891a907660b3": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-libcomps-0.1.18-1.el9.aarch64.rpm"
+          },
+          "sha256:9df855d4aa662aed90c1e7d219cf34fa63ce8e556729e5b3c536661b7e4e1a32": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/ima-evm-utils-1.4-4.el9.aarch64.rpm"
+          },
+          "sha256:9f725fc2ce9b46e8e36a7de556a575d0da55f89101834611a332fd4698206db3": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-requests-2.25.1-8.el9.noarch.rpm"
+          },
+          "sha256:a06414786e5b316a6bc411b4827d45d0364817071f924fed85c395df0ecd9450": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/bzip2-libs-1.0.8-8.el9.aarch64.rpm"
+          },
+          "sha256:a0a66b588e1695222d15c8c0fcfb8d8e39d3edafc52a84ffc0f1b768c89f4be7": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/openssl-3.2.1-1.el9.aarch64.rpm"
+          },
+          "sha256:a3701fe9260c9e076b6b408bd901951121d38e4c3d3c6c52dadea59a286d1e39": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libbrotli-1.0.9-6.el9.aarch64.rpm"
+          },
+          "sha256:a40df45c8b7c571fd3e76a882eeb0e42e94093d2ec7b3fd8951dde50b8a8fd45": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/ca-certificates-2023.2.60_v7.0.306-90.1.el9_2.noarch.rpm"
+          },
+          "sha256:a4b7202ac90653a7d3e072c2444bde6a9270d6a818eb6f2ffcfcaa50774f1fad": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/gawk-5.1.0-6.el9.aarch64.rpm"
+          },
+          "sha256:a8c7514beb4c3cafa6341f43bbe285319d863b2893a34d91159dc8e90f615dd2": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/procps-ng-3.3.17-14.el9.aarch64.rpm"
+          },
+          "sha256:a970577d9efaa0f7fbb66efc6df6cf3d600c58424ce5f4e3f24af2bf7ee7a91f": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/librhsm-0.0.3-9.el9.aarch64.rpm"
+          },
+          "sha256:a97940ecd1dff299d68585fe2df63aa2ab1f2aac126f4499e706af6bc5bfaf2b": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-libs-3.9.18-3.el9.aarch64.rpm"
+          },
+          "sha256:a9fdc9f8b470183d0c9524295a7bf6685e4cea865d235d08ec606332f3557674": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/krb5-libs-1.21.1-2.el9.aarch64.rpm"
+          },
+          "sha256:ab3c3b244489d3ccfe02b23f810614c898d25e65571ae72cb2c3e939072d6d80": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/glib2-2.68.4-15.el9.aarch64.rpm"
+          },
+          "sha256:ab4b55d25fc1408d9272c81a83240727bf0109eafc570012a609ec62334a9836": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-appstream-n9.5-20240601/Packages/python-unversioned-command-3.9.18-3.el9.noarch.rpm"
+          },
+          "sha256:ab7d6750e250217e313f472471298962d3a50a3ab410d357ce14063a0cb7eb27": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libgcc-11.4.1-3.el9.aarch64.rpm"
+          },
+          "sha256:adc29c4b81308a928d24e24216b36ac3441e47dbdd07be6694d993937b1d4442": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/dmidecode-3.5-3.el9.aarch64.rpm"
+          },
+          "sha256:ae9b99f19bfc812d9dacbaf47efe95d00eab64708fcf11b99346b594928f9c2a": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/rpm-plugin-selinux-4.16.1.3-29.el9.aarch64.rpm"
+          },
+          "sha256:aee968114aed0238eb26cff42ec9b0819ad32e2bac99aa8124d55b480806aca5": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libgpg-error-1.42-5.el9.aarch64.rpm"
+          },
+          "sha256:af52887cccc937de789a399ba991cb49c5e98ab26742d017e2f58ed2d9eb5d0d": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-idna-2.10-7.el9_4.1.noarch.rpm"
+          },
+          "sha256:b07344f5116a1913e746042748b05f978d284833282d9633e29f3d595ab596e9": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libmnl-1.0.4-16.el9_4.aarch64.rpm"
+          },
+          "sha256:b443edbb241b9f9ba03ce883b5f7449bfe4340cdb0215d8e97cb4e5db89455af": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/passwd-0.80-12.el9.aarch64.rpm"
+          },
+          "sha256:b6a73c9da522df55690b886c0a9af39338571d34ee6f0d4d9b994c8289df3412": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libattr-2.5.1-3.el9.aarch64.rpm"
+          },
+          "sha256:b6f435b6b79b8a62729f581edead46542dc61fe7276117b2354c324c44ba8309": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libeconf-0.4.1-4.el9.aarch64.rpm"
+          },
+          "sha256:b8d86ab0a1db75c456ea1afd3cfb6412b30665e55ef6c3a5aa9fdcb9a5c7d972": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/gnupg2-2.3.3-4.el9.aarch64.rpm"
+          },
+          "sha256:b8f243fd6e7848b95b324e59c19bde42d7483e34afdae93e8de3531d758895b9": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libassuan-2.5.5-3.el9.aarch64.rpm"
+          },
+          "sha256:b9bca614e9819aafb4262be1c8d2c84aa3f449d64f8473cb726fe4239c192774": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/p11-kit-0.25.3-2.el9.aarch64.rpm"
+          },
+          "sha256:bd652458daf7266717027930e0d556dea0d21b4a78aec6c1d9a5dbc8ea411211": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/redhat-release-9.5-0.4.el9.aarch64.rpm"
+          },
+          "sha256:be34293b5108ca8961a08b0ff27c10fe04bb7c2441601290b713af99b12241f1": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/systemd-libs-252-35.el9.aarch64.rpm"
+          },
+          "sha256:c03053ce8367f515a8574741d14bc33361841f7d9b0a5b434448de6427c17efa": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libtasn1-4.16.0-8.el9_1.aarch64.rpm"
+          },
+          "sha256:c41b14018cb679b44ca03856e7ccd1ebf4dd9afa5bfa20c1d43b2bb4b8912b81": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/shadow-utils-4.9-8.el9.aarch64.rpm"
+          },
+          "sha256:c4ef55b06c9b5352b2338a6deccd25030472308b3ffe39735585967382e75419": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/cracklib-dicts-2.9.6-27.el9.aarch64.rpm"
+          },
+          "sha256:c67205a62c1ef2ad5689382d9f1d1ddc84ca4eada797209d7561e16fa049fde1": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/sed-4.8-9.el9.aarch64.rpm"
+          },
+          "sha256:c8c8043e19b87e054984343b134dec26b7d7a00ba35a5a8bcb7360e4487f8e09": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libmodulemd-2.13.0-2.el9.aarch64.rpm"
+          },
+          "sha256:c8ecba28d1becacbe1fc61f69546584c45337fbf81dc7baa2ac08ef72269ebd1": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-dnf-plugins-core-4.3.0-15.el9.noarch.rpm"
+          },
+          "sha256:c994cb99685b64fddab20333dfaa114c5dba66accba701b91d8376d1f9c83b4d": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libdnf-plugin-subscription-manager-1.29.40-1.el9.aarch64.rpm"
+          },
+          "sha256:cabc5756e526df52d3e5b712562153276f9e463f4d1afa2ac37a453c3785b91b": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/filesystem-3.16-2.el9.aarch64.rpm"
+          },
+          "sha256:cb381ec34606df7536dd437bd1894387c28a884539245b6f078923ff982c19d2": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-librepo-1.14.5-2.el9.aarch64.rpm"
+          },
+          "sha256:cb4002211f14107ae21e48d48da9302bef5cea009416a4f15a0eac3cfec00cb9": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/audit-libs-3.1.2-2.el9.aarch64.rpm"
+          },
+          "sha256:cbe13dadf0b61de3a258036baab50d70fbecb9bdcd07565b394589f58e2c6da8": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libcomps-0.1.18-1.el9.aarch64.rpm"
+          },
+          "sha256:cf0ddbc999d73c4112dbd56280166351c5727af9f2ce21e04b62b9fdc982b3fc": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/systemd-rpm-macros-252-35.el9.noarch.rpm"
+          },
+          "sha256:cf1c773eb9194f5ee8236ebbe1979642953faa0509b99b9442cf5504dd4c1d56": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libzstd-1.5.1-2.el9.aarch64.rpm"
+          },
+          "sha256:cfdd2e932d3b5fbe23fb4e71f42f59eea9ae2944a4c5abb4feb440fcdcdafae9": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/tpm2-tss-3.2.2-2.el9.aarch64.rpm"
+          },
+          "sha256:d09386154d85f487aafcf2b88d5c3766f44684b0bf7df8ea35f8d6a45d994f16": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-dateutil-2.8.1-7.el9.noarch.rpm"
+          },
+          "sha256:d169ddf3a47520e5f73d4edb64e845910aa9ab48e0d0206e4a92a9f882f21882": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/dbus-libs-1.12.20-8.el9.aarch64.rpm"
+          },
+          "sha256:d1e87d4e55d2b8f3d52604f1c56a8df56127c72338a6024db61cb44fc60481eb": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libevent-2.1.12-6.el9.aarch64.rpm"
+          },
+          "sha256:d33e180b97a603542cb6f1a78b1c3b0ce4af1bc59ee0bb32620c98a629726bc4": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libffi-3.4.2-8.el9.aarch64.rpm"
+          },
+          "sha256:d352371cbb7d5bd0c53fc699df953c8c1f184b056690b3c4571e57a6634015c5": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libutempter-1.2.1-6.el9.aarch64.rpm"
+          },
+          "sha256:d4b490f97fec6df68d467e74eeac7f26210757973175d344d989804e4f1a3629": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/fonts-filesystem-2.0.5-7.el9.1.noarch.rpm"
+          },
+          "sha256:d5273cf7dd4a1d0d0c34ae607aecff9125d1551df6a2e516dd5c68c2b0127f06": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/elfutils-libelf-0.191-4.el9.aarch64.rpm"
+          },
+          "sha256:d747ed6e1916d8ea400c89ad6078a8c298e30d652ec21985c93539e34c587a73": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/keyutils-libs-1.6.3-1.el9.aarch64.rpm"
+          },
+          "sha256:d74afacddfc8dc0b385e701a04859936f6766eb55954e18d0d5d2ecbd62b7bef": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-libdnf-0.69.0-11.el9.aarch64.rpm"
+          },
+          "sha256:d8f22f516a4ec64e83d6945d126e524d189c05e78e65a5dc50bd3c6fda64284f": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-subscription-manager-rhsm-1.29.40-1.el9.aarch64.rpm"
+          },
+          "sha256:da83a7ab9cb8845c450be15ed798480184a2f86ab0324d7fd04335e9bfa41c82": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/virt-what-1.25-5.el9.aarch64.rpm"
+          },
+          "sha256:daa67b1b0dc73c8e0f54a893738163be5dcac31dff1e0c418871f3cd3a58b5be": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/expat-2.5.0-2.el9_4.aarch64.rpm"
+          },
+          "sha256:db9eb59805f25764549f8105825c987b7bd359a86624d4633dd5d4283959ed97": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/hostname-3.23-6.el9.aarch64.rpm"
+          },
+          "sha256:dc4eae31749196c0043225c6749e7306ff71f081c09cbdb2fc98a561087c4474": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libcap-ng-0.8.2-7.el9.aarch64.rpm"
+          },
+          "sha256:dcc2aa2e08194e245adc2ea37e7431b5e60d0e66978978bd60905ce9b75545a0": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/openldap-2.6.6-3.el9.aarch64.rpm"
+          },
+          "sha256:dd033c668c1378da304bcd2acb28ab749bf3cac8daa37a197c94aed5943be872": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/findutils-4.8.0-6.el9.aarch64.rpm"
+          },
+          "sha256:df01d909e4613514b1844d6ca26d0bcdff8a659762e507188d04ed046fb0cec4": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/gmp-6.2.0-13.el9.aarch64.rpm"
+          },
+          "sha256:e07c84ef1c2bdae2d18625e26be0ecaa5aa8b6876c249905670748cb3943c7a6": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-gobject-base-3.40.1-6.el9.aarch64.rpm"
+          },
+          "sha256:e186f5fb020da75279f726a9a09bfefd8c60131157debd9ca0966036fd3b8d70": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/elfutils-default-yama-scope-0.191-4.el9.noarch.rpm"
+          },
+          "sha256:e1dbd2c38a65b135427c7c8fe988ea70dc95f7e26c4c8177b7dcb23925020015": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/lz4-libs-1.9.3-5.el9.aarch64.rpm"
+          },
+          "sha256:e2565ca02144b9c5f5009efbf3d2586f80bfc1103e48ec4cc4b8ac75d096eaa6": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libcom_err-1.46.5-5.el9.aarch64.rpm"
+          },
+          "sha256:e356c35e1621f2751a59eb0c10d52b2ed75fe78758ce9731415a72f099621b21": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-dnf-4.14.0-12.el9.noarch.rpm"
+          },
+          "sha256:e49d44b57e10eabc87162dcb694a003479108700d485541a68a498936766d61d": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/glibc-2.34-106.el9.aarch64.rpm"
+          },
+          "sha256:e4ba8861a76427a4e8a1dfaf3a606aeb86e140cea1c1a42d6d75ba0bedcba3ec": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-setuptools-wheel-53.0.0-12.el9.noarch.rpm"
+          },
+          "sha256:e54b48ab07c2c8f70ebf74670514c8b552d2fb2278961d0b3a33c1f4fb0305dc": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/json-glib-1.6.6-1.el9.aarch64.rpm"
+          },
+          "sha256:e66c30ccde764c0583f2d99ef03625b7db6da23518db6c82df65921d2a411023": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/iproute-6.2.0-6.el9_4.aarch64.rpm"
+          },
+          "sha256:e6ec3390a736b085f403168c512a6b2b6f8e12a8fd5a4459f1c7dbbff2b67c33": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/publicsuffix-list-dafsa-20210518-3.el9.noarch.rpm"
+          },
+          "sha256:e8adee47f7fd4c892467dff5e0c587c20ef33fb1bf0bad4d87f3f5d3fe1746e0": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libuser-0.63-13.el9.aarch64.rpm"
+          },
+          "sha256:e955ad59fe95eb091409b8d98c1d1189eecb4ebd6553b94526b013c8a61826e0": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libxml2-2.9.13-6.el9_4.aarch64.rpm"
+          },
+          "sha256:ea898908b49c4621bee8d6cac5bd37bf2cca5b4739d50435229cf88746d5162a": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/tzdata-2024a-2.el9.noarch.rpm"
+          },
+          "sha256:ec3b3c76f277640c7d298debb6d2d8653f035bc71ef30b58d87d06cb18bbbbe5": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/systemd-252-35.el9.aarch64.rpm"
+          },
+          "sha256:ec989d023f684a4366e52930804c5ccf73cd3bfca2edb349e8b3dd2980b1e583": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/sqlite-libs-3.34.1-7.el9_3.aarch64.rpm"
+          },
+          "sha256:f00009de82cf0d93cb98152f7ca44becc8a13a203859dd191561c5ac5d97a179": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/systemd-pam-252-35.el9.aarch64.rpm"
+          },
+          "sha256:f05030123425a5033bcca3f260313cafc199bc7bca57e9fb13c335bd087c35a7": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libxcrypt-4.4.18-3.el9.aarch64.rpm"
+          },
+          "sha256:f0d59ca77b2ad1d21d4070e4113e814c658a0525c79a02679aa67b8964eecf68": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/alternatives-1.24-1.el9.aarch64.rpm"
+          },
+          "sha256:f17b28b2e02016e13f5ae88256315a2817ef229ca53e67c251afbd5e541e91ef": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-gobject-base-noarch-3.40.1-6.el9.noarch.rpm"
+          },
+          "sha256:f23b34e4bc31b3e12508dedeac76672694746549cc354011223f9756eb5c264d": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/usermode-1.114-4.el9.aarch64.rpm"
+          },
+          "sha256:f498b0813fa1a825d550e8e3a9e42255eabfa18e6fc96adfc6cc8fa7e16dd513": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/basesystem-11-13.el9.noarch.rpm"
+          },
+          "sha256:f49c6d53f428bb3b610633af7b1053a6c1dc522762a9c6cb35195e519227eb51": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/popt-1.18-8.el9.aarch64.rpm"
+          },
+          "sha256:f61f9e3429cf5e6b90ba220f8ff94cd9a4fbb15879d18459c4a44004e9cc383d": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/crypto-policies-scripts-20240304-1.gitb1c706d.el9.noarch.rpm"
+          },
+          "sha256:f68934935fc209e7c595c5619df75f822cc832803e3ea6de2c92e3b91b4d5008": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libunistring-0.9.10-15.el9.aarch64.rpm"
+          },
+          "sha256:f8fa597d1c6a27e56c58631c83b8f2949ab1fe1c21439fda5dcb1a266846950c": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/dnf-data-4.14.0-12.el9.noarch.rpm"
+          },
+          "sha256:f9b01243e9b98b9b0b4cdf647ace118c1f29802948e82933806faf5127910a60": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/python3-3.9.18-3.el9.aarch64.rpm"
+          },
+          "sha256:fa3bedb3d052733b02c0c6258759786abf0f61a52e70cccedeec9764df35870d": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/pcre2-syntax-10.40-5.el9.noarch.rpm"
+          },
+          "sha256:fc1d5e93483d166ca7f2acb50c04c181db2f3e7b89dba8edc6b1e5f2b0f10619": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libseccomp-2.5.2-2.el9.aarch64.rpm"
+          },
+          "sha256:fcc89253eb1ea0cc141cc7ebcb44082311272dec0016fbac4b777e6556ad997e": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/libcurl-7.76.1-29.el9_4.aarch64.rpm"
+          },
+          "sha256:ff83a2d86c44f08da23e1ec8ffdede7e30bf6dd0489570621dd4b8cbd02e83cf": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/librepo-1.14.5-2.el9.aarch64.rpm"
+          },
+          "sha256:fff625bf4f0753eb7323b8933d264f3cc5c992bfecba8b082b204849297149cc": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/json-c-0.14-11.el9.aarch64.rpm"
+          }
+        }
+      }
+    }
+  },
+  "image-info": {
+    "/etc/resolv.conf": [],
+    "default-target": "graphical.target",
+    "dnf": {
+      "dnf.conf": {
+        "main": {
+          "best": "True",
+          "clean_requirements_on_remove": "True",
+          "gpgcheck": "1",
+          "installonly_limit": "3",
+          "skip_if_unavailable": "False"
+        }
+      }
+    },
+    "groups": [
+      "adm:x:4:",
+      "audio:x:63:",
+      "bin:x:1:",
+      "cdrom:x:11:",
+      "daemon:x:2:",
+      "dbus:x:81:",
+      "dialout:x:18:",
+      "disk:x:6:",
+      "floppy:x:19:",
+      "ftp:x:50:",
+      "games:x:20:",
+      "input:x:999:",
+      "kmem:x:9:",
+      "kvm:x:36:",
+      "lock:x:54:",
+      "lp:x:7:",
+      "mail:x:12:",
+      "man:x:15:",
+      "mem:x:8:",
+      "nobody:x:65534:",
+      "render:x:998:",
+      "root:x:0:",
+      "sys:x:3:",
+      "systemd-coredump:x:997:",
+      "systemd-journal:x:190:",
+      "tape:x:33:",
+      "tss:x:59:",
+      "tty:x:5:",
+      "users:x:100:",
+      "utempter:x:35:",
+      "utmp:x:22:",
+      "video:x:39:",
+      "wheel:x:10:"
+    ],
+    "hosts": [
+      "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4",
+      "::1         localhost localhost.localdomain localhost6 localhost6.localdomain6"
+    ],
+    "locale": {
+      "LANG": "en_US.UTF-8"
+    },
+    "machine-id": "",
+    "os-release": {
+      "ANSI_COLOR": "0;31",
+      "BUG_REPORT_URL": "https://issues.redhat.com/",
+      "CPE_NAME": "cpe:/o:redhat:enterprise_linux:9::baseos",
+      "DOCUMENTATION_URL": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9",
+      "HOME_URL": "https://www.redhat.com/",
+      "ID": "rhel",
+      "ID_LIKE": "fedora",
+      "LOGO": "fedora-logo-icon",
+      "NAME": "Red Hat Enterprise Linux",
+      "PLATFORM_ID": "platform:el9",
+      "PRETTY_NAME": "Red Hat Enterprise Linux 9.5 Beta (Plow)",
+      "REDHAT_BUGZILLA_PRODUCT": "Red Hat Enterprise Linux 9",
+      "REDHAT_BUGZILLA_PRODUCT_VERSION": "9.5",
+      "REDHAT_SUPPORT_PRODUCT": "Red Hat Enterprise Linux",
+      "REDHAT_SUPPORT_PRODUCT_VERSION": "9.5 Beta",
+      "VERSION": "9.5 (Plow)",
+      "VERSION_ID": "9.5"
+    },
+    "packages": [
+      "acl-2.3.1-4.el9.aarch64",
+      "alternatives-1.24-1.el9.aarch64",
+      "audit-libs-3.1.2-2.el9.aarch64",
+      "basesystem-11-13.el9.noarch",
+      "bash-5.1.8-9.el9.aarch64",
+      "bzip2-libs-1.0.8-8.el9.aarch64",
+      "ca-certificates-2023.2.60_v7.0.306-90.1.el9_2.noarch",
+      "coreutils-single-8.32-35.el9.aarch64",
+      "cracklib-2.9.6-27.el9.aarch64",
+      "cracklib-dicts-2.9.6-27.el9.aarch64",
+      "crypto-policies-20240304-1.gitb1c706d.el9.noarch",
+      "crypto-policies-scripts-20240304-1.gitb1c706d.el9.noarch",
+      "curl-minimal-7.76.1-29.el9_4.aarch64",
+      "cyrus-sasl-lib-2.1.27-21.el9.aarch64",
+      "dbus-1.12.20-8.el9.aarch64",
+      "dbus-broker-28-7.el9.aarch64",
+      "dbus-common-1.12.20-8.el9.noarch",
+      "dbus-libs-1.12.20-8.el9.aarch64",
+      "dejavu-sans-fonts-2.37-18.el9.noarch",
+      "diffutils-3.7-12.el9.aarch64",
+      "dmidecode-3.5-3.el9.aarch64",
+      "dnf-4.14.0-12.el9.noarch",
+      "dnf-data-4.14.0-12.el9.noarch",
+      "elfutils-default-yama-scope-0.191-4.el9.noarch",
+      "elfutils-libelf-0.191-4.el9.aarch64",
+      "elfutils-libs-0.191-4.el9.aarch64",
+      "expat-2.5.0-2.el9_4.aarch64",
+      "file-libs-5.39-16.el9.aarch64",
+      "filesystem-3.16-2.el9.aarch64",
+      "findutils-4.8.0-6.el9.aarch64",
+      "fonts-filesystem-2.0.5-7.el9.1.noarch",
+      "gawk-5.1.0-6.el9.aarch64",
+      "gdb-gdbserver-10.2-13.el9.aarch64",
+      "gdbm-libs-1.23-1.el9.aarch64",
+      "glib2-2.68.4-15.el9.aarch64",
+      "glibc-2.34-106.el9.aarch64",
+      "glibc-common-2.34-106.el9.aarch64",
+      "glibc-minimal-langpack-2.34-106.el9.aarch64",
+      "gmp-6.2.0-13.el9.aarch64",
+      "gnupg2-2.3.3-4.el9.aarch64",
+      "gnutls-3.8.3-4.el9_4.aarch64",
+      "gobject-introspection-1.68.0-11.el9.aarch64",
+      "gpg-pubkey-5a6340b3-6229229e",
+      "gpg-pubkey-fd431d51-4ae0493c",
+      "gpgme-1.15.1-6.el9.aarch64",
+      "grep-3.6-5.el9.aarch64",
+      "gzip-1.12-1.el9.aarch64",
+      "hostname-3.23-6.el9.aarch64",
+      "ima-evm-utils-1.4-4.el9.aarch64",
+      "iproute-6.2.0-6.el9_4.aarch64",
+      "json-c-0.14-11.el9.aarch64",
+      "json-glib-1.6.6-1.el9.aarch64",
+      "keyutils-libs-1.6.3-1.el9.aarch64",
+      "kmod-libs-28-9.el9.aarch64",
+      "krb5-libs-1.21.1-2.el9.aarch64",
+      "langpacks-core-en-3.0-16.el9.noarch",
+      "langpacks-core-font-en-3.0-16.el9.noarch",
+      "langpacks-en-3.0-16.el9.noarch",
+      "libacl-2.3.1-4.el9.aarch64",
+      "libarchive-3.5.3-4.el9.aarch64",
+      "libassuan-2.5.5-3.el9.aarch64",
+      "libattr-2.5.1-3.el9.aarch64",
+      "libblkid-2.37.4-18.el9.aarch64",
+      "libbpf-1.3.0-2.el9.aarch64",
+      "libcap-2.48-9.el9_2.aarch64",
+      "libcap-ng-0.8.2-7.el9.aarch64",
+      "libcom_err-1.46.5-5.el9.aarch64",
+      "libcomps-0.1.18-1.el9.aarch64",
+      "libcurl-minimal-7.76.1-29.el9_4.aarch64",
+      "libdb-5.3.28-53.el9.aarch64",
+      "libdnf-0.69.0-11.el9.aarch64",
+      "libdnf-plugin-subscription-manager-1.29.40-1.el9.aarch64",
+      "libeconf-0.4.1-4.el9.aarch64",
+      "libevent-2.1.12-6.el9.aarch64",
+      "libfdisk-2.37.4-18.el9.aarch64",
+      "libffi-3.4.2-8.el9.aarch64",
+      "libgcc-11.4.1-3.el9.aarch64",
+      "libgcrypt-1.10.0-10.el9_2.aarch64",
+      "libgomp-11.4.1-3.el9.aarch64",
+      "libgpg-error-1.42-5.el9.aarch64",
+      "libidn2-2.3.0-7.el9.aarch64",
+      "libksba-1.5.1-6.el9_1.aarch64",
+      "libmnl-1.0.4-16.el9_4.aarch64",
+      "libmodulemd-2.13.0-2.el9.aarch64",
+      "libmount-2.37.4-18.el9.aarch64",
+      "libnghttp2-1.43.0-5.el9_4.3.aarch64",
+      "libpwquality-1.4.4-8.el9.aarch64",
+      "librepo-1.14.5-2.el9.aarch64",
+      "libreport-filesystem-2.15.2-6.el9.noarch",
+      "librhsm-0.0.3-9.el9.aarch64",
+      "libseccomp-2.5.2-2.el9.aarch64",
+      "libselinux-3.6-1.el9.aarch64",
+      "libselinux-utils-3.6-1.el9.aarch64",
+      "libsemanage-3.6-1.el9.aarch64",
+      "libsepol-3.6-1.el9.aarch64",
+      "libsigsegv-2.13-4.el9.aarch64",
+      "libsmartcols-2.37.4-18.el9.aarch64",
+      "libsolv-0.7.24-3.el9.aarch64",
+      "libstdc++-11.4.1-3.el9.aarch64",
+      "libtasn1-4.16.0-8.el9_1.aarch64",
+      "libunistring-0.9.10-15.el9.aarch64",
+      "libuser-0.63-13.el9.aarch64",
+      "libutempter-1.2.1-6.el9.aarch64",
+      "libuuid-2.37.4-18.el9.aarch64",
+      "libverto-0.3.2-3.el9.aarch64",
+      "libxcrypt-4.4.18-3.el9.aarch64",
+      "libxml2-2.9.13-6.el9_4.aarch64",
+      "libyaml-0.2.5-7.el9.aarch64",
+      "libzstd-1.5.1-2.el9.aarch64",
+      "lua-libs-5.4.4-4.el9.aarch64",
+      "lz4-libs-1.9.3-5.el9.aarch64",
+      "mpfr-4.1.0-7.el9.aarch64",
+      "ncurses-base-6.2-10.20210508.el9.noarch",
+      "ncurses-libs-6.2-10.20210508.el9.aarch64",
+      "nettle-3.9.1-1.el9.aarch64",
+      "npth-1.6-8.el9.aarch64",
+      "openldap-2.6.6-3.el9.aarch64",
+      "openssl-3.2.1-1.el9.aarch64",
+      "openssl-fips-provider-3.0.7-5.el9.aarch64",
+      "openssl-fips-provider-so-3.0.7-5.el9.aarch64",
+      "openssl-libs-3.2.1-1.el9.aarch64",
+      "p11-kit-0.25.3-2.el9.aarch64",
+      "p11-kit-trust-0.25.3-2.el9.aarch64",
+      "pam-1.5.1-19.el9.aarch64",
+      "passwd-0.80-12.el9.aarch64",
+      "pcre-8.44-4.el9.aarch64",
+      "pcre2-10.40-5.el9.aarch64",
+      "pcre2-syntax-10.40-5.el9.noarch",
+      "policycoreutils-3.6-2.1.el9.aarch64",
+      "popt-1.18-8.el9.aarch64",
+      "procps-ng-3.3.17-14.el9.aarch64",
+      "psmisc-23.4-3.el9.aarch64",
+      "python3-3.9.18-3.el9.aarch64",
+      "python3-chardet-4.0.0-5.el9.noarch",
+      "python3-cloud-what-1.29.40-1.el9.aarch64",
+      "python3-dateutil-2.8.1-7.el9.noarch",
+      "python3-dbus-1.2.18-2.el9.aarch64",
+      "python3-decorator-4.4.2-6.el9.noarch",
+      "python3-dnf-4.14.0-12.el9.noarch",
+      "python3-dnf-plugins-core-4.3.0-15.el9.noarch",
+      "python3-gobject-base-3.40.1-6.el9.aarch64",
+      "python3-gobject-base-noarch-3.40.1-6.el9.noarch",
+      "python3-gpg-1.15.1-6.el9.aarch64",
+      "python3-hawkey-0.69.0-11.el9.aarch64",
+      "python3-idna-2.10-7.el9_4.1.noarch",
+      "python3-iniparse-0.4-45.el9.noarch",
+      "python3-inotify-0.9.6-25.el9.noarch",
+      "python3-libcomps-0.1.18-1.el9.aarch64",
+      "python3-libdnf-0.69.0-11.el9.aarch64",
+      "python3-librepo-1.14.5-2.el9.aarch64",
+      "python3-libs-3.9.18-3.el9.aarch64",
+      "python3-pip-wheel-21.3.1-1.el9.noarch",
+      "python3-pysocks-1.7.1-12.el9.noarch",
+      "python3-requests-2.25.1-8.el9.noarch",
+      "python3-rpm-4.16.1.3-29.el9.aarch64",
+      "python3-setuptools-53.0.0-12.el9.noarch",
+      "python3-setuptools-wheel-53.0.0-12.el9.noarch",
+      "python3-six-1.15.0-9.el9.noarch",
+      "python3-subscription-manager-rhsm-1.29.40-1.el9.aarch64",
+      "python3-systemd-234-18.el9.aarch64",
+      "python3-urllib3-1.26.5-5.el9.noarch",
+      "readline-8.1-4.el9.aarch64",
+      "redhat-release-9.5-0.4.el9.aarch64",
+      "rootfiles-8.1-31.el9.noarch",
+      "rpm-4.16.1.3-29.el9.aarch64",
+      "rpm-build-libs-4.16.1.3-29.el9.aarch64",
+      "rpm-libs-4.16.1.3-29.el9.aarch64",
+      "rpm-sign-libs-4.16.1.3-29.el9.aarch64",
+      "sed-4.8-9.el9.aarch64",
+      "setup-2.13.7-10.el9.noarch",
+      "shadow-utils-4.9-8.el9.aarch64",
+      "sqlite-libs-3.34.1-7.el9_3.aarch64",
+      "subscription-manager-1.29.40-1.el9.aarch64",
+      "subscription-manager-rhsm-certificates-20220623-1.el9.noarch",
+      "systemd-252-35.el9.aarch64",
+      "systemd-libs-252-35.el9.aarch64",
+      "systemd-pam-252-35.el9.aarch64",
+      "systemd-rpm-macros-252-35.el9.noarch",
+      "tar-1.34-6.el9_1.aarch64",
+      "tpm2-tss-3.2.2-2.el9.aarch64",
+      "tzdata-2024a-2.el9.noarch",
+      "usermode-1.114-4.el9.aarch64",
+      "util-linux-2.37.4-18.el9.aarch64",
+      "util-linux-core-2.37.4-18.el9.aarch64",
+      "vim-minimal-8.2.2637-20.el9_1.aarch64",
+      "virt-what-1.25-5.el9.aarch64",
+      "which-2.21-29.el9.aarch64",
+      "xz-libs-5.2.5-8.el9_0.aarch64",
+      "yum-4.14.0-12.el9.noarch",
+      "zlib-1.2.11-40.el9.aarch64"
+    ],
+    "passwd": [
+      "adm:x:3:4:adm:/var/adm:/sbin/nologin",
+      "bin:x:1:1:bin:/bin:/sbin/nologin",
+      "daemon:x:2:2:daemon:/sbin:/sbin/nologin",
+      "dbus:x:81:81:System message bus:/:/sbin/nologin",
+      "ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin",
+      "games:x:12:100:games:/usr/games:/sbin/nologin",
+      "halt:x:7:0:halt:/sbin:/sbin/halt",
+      "lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin",
+      "mail:x:8:12:mail:/var/spool/mail:/sbin/nologin",
+      "nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin",
+      "operator:x:11:0:operator:/root:/sbin/nologin",
+      "root:x:0:0:root:/root:/bin/bash",
+      "shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown",
+      "sync:x:5:0:sync:/sbin:/bin/sync",
+      "systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin",
+      "tss:x:59:59:Account used for TPM access:/:/sbin/nologin"
+    ],
+    "rhsm": {
+      "dnf-plugins": {
+        "product-id": {
+          "enabled": true
+        },
+        "subscription-manager": {
+          "enabled": true
+        }
+      },
+      "rhsm.conf": {
+        "logging": {
+          "default_log_level": "INFO"
+        },
+        "rhsm": {
+          "auto_enable_yum_plugins": "1",
+          "baseurl": "https://cdn.redhat.com",
+          "ca_cert_dir": "/etc/rhsm/ca/",
+          "consumercertdir": "/etc/pki/consumer",
+          "entitlementcertdir": "/etc/pki/entitlement",
+          "full_refresh_on_yum": "0",
+          "inotify": "1",
+          "manage_repos": "1",
+          "package_profile_on_trans": "0",
+          "pluginconfdir": "/etc/rhsm/pluginconf.d",
+          "plugindir": "/usr/share/rhsm-plugins",
+          "productcertdir": "/etc/pki/product",
+          "progress_messages": "1",
+          "repo_ca_cert": "/etc/rhsm/ca/redhat-uep.pem",
+          "repomd_gpg_url": "",
+          "report_package_profile": "1"
+        },
+        "rhsmcertd": {
+          "auto_registration": "0",
+          "auto_registration_interval": "60",
+          "autoattachinterval": "1440",
+          "certcheckinterval": "240",
+          "disable": "0",
+          "splay": "1"
+        },
+        "server": {
+          "hostname": "subscription.rhsm.redhat.com",
+          "insecure": "0",
+          "no_proxy": "",
+          "port": "443",
+          "prefix": "/subscription",
+          "proxy_hostname": "",
+          "proxy_password": "",
+          "proxy_port": "",
+          "proxy_scheme": "http",
+          "proxy_user": ""
+        }
+      }
+    },
+    "rpm-verify": {
+      "changed": {
+        "/proc": ".M.......",
+        "/sys": ".M.......",
+        "/usr/bin/newgidmap": "........P",
+        "/usr/bin/newuidmap": "........P"
+      },
+      "missing": []
+    },
+    "services-disabled": [
+      "console-getty.service",
+      "debug-shell.service",
+      "dnf-system-upgrade.service",
+      "exit.target",
+      "fstrim.timer",
+      "halt.target",
+      "kexec.target",
+      "poweroff.target",
+      "rhsm-facts.service",
+      "rhsm.service",
+      "rpmdb-rebuild.service",
+      "runlevel0.target",
+      "serial-getty@.service",
+      "systemd-boot-check-no-failures.service",
+      "systemd-sysext.service",
+      "systemd-sysupdate-reboot.timer",
+      "systemd-sysupdate.timer",
+      "tmp.mount"
+    ],
+    "services-enabled": [
+      "autovt@.service",
+      "ctrl-alt-del.target",
+      "dbus-broker.service",
+      "dbus.service",
+      "dbus.socket",
+      "dnf-makecache.timer",
+      "getty@.service",
+      "nis-domainname.service",
+      "reboot.target",
+      "remote-fs.target",
+      "rhsmcertd.service",
+      "runlevel6.target",
+      "selinux-autorelabel-mark.service",
+      "systemd-network-generator.service"
+    ],
+    "sysconfig": {
+      "kernel": {
+        "DEFAULTKERNEL": "kernel",
+        "UPDATEDEFAULT": "yes"
+      },
+      "network": {
+        "NETWORKING": "yes",
+        "NOZEROCONF": "yes"
+      }
+    },
+    "sysctl.d": {
+      "/usr/lib/sysctl.d": {
+        "10-default-yama-scope.conf": [
+          "kernel.yama.ptrace_scope = 0"
+        ],
+        "50-redhat.conf": [
+          "kernel.kptr_restrict = 1",
+          "net.ipv4.conf.default.rp_filter = 1",
+          "net.ipv4.conf.*.rp_filter = 1",
+          "-net.ipv4.conf.all.rp_filter"
+        ]
+      }
+    },
+    "systemd-service-dropins": {
+      "/usr/lib/systemd/system": {
+        "systemd-hostnamed.service.d": {
+          "disable-privatedevices.conf": [
+            "[Service]",
+            "PrivateDevices=no"
+          ]
+        },
+        "user@.service.d": {
+          "10-login-barrier.conf": [
+            "[Unit]",
+            "After=systemd-user-sessions.service"
+          ]
+        },
+        "user@0.service.d": {
+          "10-login-barrier.conf": []
+        }
+      }
+    },
+    "timezone": "New_York",
+    "tmpfiles.d": {
+      "/usr/lib/tmpfiles.d": {
+        "dnf.conf": [
+          "R /var/tmp/dnf*/locks/*",
+          "r /var/cache/dnf/download_lock.pid",
+          "r /var/cache/dnf/metadata_lock.pid",
+          "r /var/lib/dnf/rpmdb_lock.pid",
+          "r /var/log/log_lock.pid"
+        ],
+        "etc.conf": [
+          "L /etc/os-release - - - - ../usr/lib/os-release",
+          "L+ /etc/mtab - - - - ../proc/self/mounts",
+          "C! /etc/locale.conf - - - -",
+          "C! /etc/nsswitch.conf - - - -",
+          "C! /etc/pam.d - - - -",
+          "C! /etc/issue - - - -"
+        ],
+        "home.conf": [
+          "Q /home 0755 - - -",
+          "q /srv 0755 - - -"
+        ],
+        "journal-nocow.conf": [
+          "h /var/log/journal - - - - +C",
+          "h /var/log/journal/%m - - - - +C",
+          "h /var/log/journal/remote - - - - +C"
+        ],
+        "legacy.conf": [
+          "d /run/lock 0755 root root -",
+          "L /var/lock - - - - ../run/lock",
+          "L /var/log/README - - - - ../../usr/share/doc/systemd/README.logs",
+          "d /run/lock/subsys 0755 root root -",
+          "r! /forcefsck",
+          "r! /fastboot",
+          "r! /forcequotacheck"
+        ],
+        "libselinux.conf": [
+          "d /run/setrans 0755 root root"
+        ],
+        "pam.conf": [
+          "d /run/console 0755 root root -",
+          "d /run/faillock 0755 root root -",
+          "d /run/sepermit 0755 root root -",
+          "d /run/motd.d 0755 root root -",
+          "f /var/log/tallylog 0600 root root -"
+        ],
+        "provision.conf": [
+          "f^ /etc/motd.d/50-provision.conf - - - - login.motd",
+          "f^ /etc/issue.d/50-provision.conf - - - - login.issue",
+          "f^ /etc/hosts - - - - network.hosts",
+          "d- /root :0700 root :root -",
+          "d- /root/.ssh :0700 root :root -",
+          "f^ /root/.ssh/authorized_keys :0600 root :root - ssh.authorized_keys.root"
+        ],
+        "setup.conf": [
+          "f /run/motd 0644 root root -",
+          "d /run/motd.d 0755 root root -"
+        ],
+        "static-nodes-permissions.conf": [
+          "z /dev/snd/seq      0660 - audio -",
+          "z /dev/snd/timer    0660 - audio -",
+          "z /dev/loop-control 0660 - disk  -",
+          "z /dev/net/tun      0666 - -     -",
+          "z /dev/fuse         0666 - -     -",
+          "z /dev/kvm          0666 - kvm -",
+          "z /dev/vhost-net    0666 - kvm -",
+          "z /dev/vhost-vsock  0666 - kvm -"
+        ],
+        "subscription-manager.conf": [
+          "d /run/rhsm 0755 root root -"
+        ],
+        "systemd-nologin.conf": [
+          "F! /run/nologin 0644 - - - \"System is booting up. Unprivileged users are not permitted to log in yet. Please come back later. For technical details, see pam_nologin(8).\""
+        ],
+        "systemd-tmp.conf": [
+          "x /tmp/systemd-private-%b-*",
+          "X /tmp/systemd-private-%b-*/tmp",
+          "x /var/tmp/systemd-private-%b-*",
+          "X /var/tmp/systemd-private-%b-*/tmp",
+          "R! /tmp/systemd-private-*",
+          "R! /var/tmp/systemd-private-*",
+          "x  /var/lib/systemd/coredump/.#core*.%b*",
+          "r! /var/lib/systemd/coredump/.#*"
+        ],
+        "systemd.conf": [
+          "d /run/user 0755 root root -",
+          "F! /run/utmp 0664 root utmp -",
+          "d /run/systemd/ask-password 0755 root root -",
+          "d /run/systemd/seats 0755 root root -",
+          "d /run/systemd/sessions 0755 root root -",
+          "d /run/systemd/users 0755 root root -",
+          "d /run/systemd/machines 0755 root root -",
+          "d /run/systemd/shutdown 0755 root root -",
+          "d /run/log 0755 root root -",
+          "z /run/log/journal 2755 root systemd-journal - -",
+          "Z /run/log/journal/%m ~2750 root systemd-journal - -",
+          "a+ /run/log/journal    - - - - d:group::r-x,d:group:adm:r-x,d:group:wheel:r-x,group::r-x,group:adm:r-x,group:wheel:r-x",
+          "a+ /run/log/journal/%m - - - - d:group:adm:r-x,d:group:wheel:r-x,group:adm:r-x,group:wheel:r-x",
+          "a+ /run/log/journal/%m/*.journal* - - - - group:adm:r--,group:wheel:r--",
+          "z /var/log/journal 2755 root systemd-journal - -",
+          "z /var/log/journal/%m 2755 root systemd-journal - -",
+          "z /var/log/journal/%m/system.journal 0640 root systemd-journal - -",
+          "a+ /var/log/journal    - - - - d:group::r-x,d:group:adm:r-x,d:group:wheel:r-x,group::r-x,group:adm:r-x,group:wheel:r-x",
+          "a+ /var/log/journal/%m - - - - d:group:adm:r-x,d:group:wheel:r-x,group:adm:r-x,group:wheel:r-x",
+          "a+ /var/log/journal/%m/system.journal - - - - group:adm:r--,group:wheel:r--",
+          "d /var/lib/systemd 0755 root root -",
+          "d /var/lib/systemd/coredump 0755 root root 2w",
+          "d /var/lib/private 0700 root root -",
+          "d /var/log/private 0700 root root -",
+          "d /var/cache/private 0700 root root -",
+          "C /run/systemd/tpm2-pcr-signature.json 0444 root root - /.extra/tpm2-pcr-signature.json",
+          "C /run/systemd/tpm2-pcr-public-key.pem 0444 root root - /.extra/tpm2-pcr-public-key.pem"
+        ],
+        "tmp.conf": [
+          "q /tmp 1777 root root 10d",
+          "q /var/tmp 1777 root root 30d"
+        ],
+        "tpm2-tss-fapi.conf": [
+          "d       /var/lib/tpm2-tss/system/keystore   2775 tss  tss   -           -",
+          "a+      /var/lib/tpm2-tss/system/keystore   -    -    -     -           default:group:tss:rwx",
+          "d       /run/tpm2-tss/eventlog                2775 tss  tss   -           -",
+          "a+      /run/tpm2-tss/eventlog                -    -    -     -           default:group:tss:rwx"
+        ],
+        "var.conf": [
+          "q /var 0755 - - -",
+          "L /var/run - - - - ../run",
+          "d /var/log 0755 - - -",
+          "f /var/log/wtmp 0664 root utmp -",
+          "f /var/log/btmp 0660 root utmp -",
+          "f /var/log/lastlog 0664 root utmp -",
+          "d /var/cache 0755 - - -",
+          "d /var/lib 0755 - - -",
+          "d /var/spool 0755 - - -"
+        ],
+        "x11.conf": [
+          "D! /tmp/.X11-unix 1777 root root 10d",
+          "D! /tmp/.ICE-unix 1777 root root 10d",
+          "D! /tmp/.XIM-unix 1777 root root 10d",
+          "D! /tmp/.font-unix 1777 root root 10d",
+          "r! /tmp/.X[0-9]*-lock"
+        ]
+      }
+    }
+  }
+}
