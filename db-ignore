@@ -444,3 +444,9 @@ rhel_9.5-x86_64-edge_vsphere-edge_ostree_pull_fips
 rhel_9.5-x86_64-edge_vsphere-ostree_filesystem_customizations
 rhel_9.5-x86_64-ova-empty
 rhel_9.5-x86_64-tar-empty
+rhel_9.2-aarch64-edge_simplified_installer-ostree_filesystem_customizations_installer
+rhel_9.3-x86_64-edge_simplified_installer-ostree_filesystem_customizations_installer
+rhel_9.2-x86_64-edge_simplified_installer-ostree_filesystem_customizations_installer
+rhel_9.4-aarch64-edge_simplified_installer-ostree_filesystem_customizations_installer
+rhel_9.3-aarch64-edge_simplified_installer-ostree_filesystem_customizations_installer
+rhel_9.4-x86_64-edge_simplified_installer-ostree_filesystem_customizations_installer
