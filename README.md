@@ -44,7 +44,7 @@ different workflow than the one used to run the regression testing.
 
 #### 2/ on CI: Manifest generation
 
-The first job downloads the latest osbuild-composer sources from upstream,
+The first job downloads the latest `osbuild/images` sources from upstream,
 [generates all the test
 manifests](https://github.com/osbuild/manifest-db/blob/main/.gitlab-ci.yml#L68)
 using the gen-manifest tool and stores them as an
@@ -157,7 +157,7 @@ they should not belong in Composer
 
 Image definitions are the way we describe an image and there is one for every image
 we support. Definitions can be found in
-[osbuild-composer/internal/distros](https://github.com/osbuild/osbuild-composer/tree/main/internal/distro)
+[images](https://github.com/osbuild/images) repository.
 
 ### Image definitions must be tested
 

@@ -6,9 +6,6 @@ sudo dnf install -y jq
 
 DNF_REPO_BASEURL=http://osbuild-composer-repos.s3.amazonaws.com
 
-# The osbuild-composer commit to run reverse-dependency test against.
-# Currently: rpmbuild: build rpms on RHEL 8.8 and 9.2
-OSBUILD_COMPOSER_COMMIT=$(jq -r '.global.dependencies."osbuild-composer".commit' Schutzfile)
 OSBUILD_COMMIT=$(jq -r '.global.dependencies.osbuild.commit' Schutzfile)
 
 # Get OS details.
@@ -36,14 +33,6 @@ enabled=1
 gpgcheck=0
 # Default dnf repo priority is 99. Lower number means higher priority.
 priority=5
-
-[osbuild-composer]
-name=osbuild-composer ${OSBUILD_COMPOSER_COMMIT}
-baseurl=${DNF_REPO_BASEURL}/osbuild-composer/${DISTRO_VERSION}/${ARCH}/${OSBUILD_COMPOSER_COMMIT}
-enabled=1
-gpgcheck=0
-# Give this a slightly lower priority, because we used to have osbuild in this repo as well.
-priority=10
 EOF
 
 if [[ $ID == rhel || $ID == centos ]] && ! rpm -q epel-release; then
