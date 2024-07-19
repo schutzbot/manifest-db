@@ -35,11 +35,6 @@ gpgcheck=0
 priority=5
 EOF
 
-if [[ $ID == rhel || $ID == centos ]] && ! rpm -q epel-release; then
-    # Set up EPEL repository (for ansible and koji)
-    sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION_ID%.*}.noarch.rpm
-fi
-
 # Install packages needed to generate the test manifests
 sudo dnf -y install \
   osbuild \
