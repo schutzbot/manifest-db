@@ -62,6 +62,8 @@ Regression:
           - aws/fedora-39-aarch64
           - aws/centos-stream-9-x86_64
           - aws/centos-stream-9-aarch64
+          - aws/centos-stream-10-x86_64
+          - aws/centos-stream-10-aarch64
       - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
         RUNNER:
           - aws/rhel-8.10-ga-x86_64
@@ -112,6 +114,8 @@ Image-info-build:
           - aws/fedora-39-aarch64
           - aws/centos-stream-9-x86_64
           - aws/centos-stream-9-aarch64
+          - aws/centos-stream-10-x86_64
+          - aws/centos-stream-10-aarch64
       - PARALLEL_EXEC: ["1/4", "2/4", "3/4", "4/4"]
         RUNNER:
           - aws/rhel-8.10-ga-x86_64
