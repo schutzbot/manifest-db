@@ -1,3 +1,4 @@
+centos_10-x86_64-ova-empty
 centos_8-aarch64-edge_installer-boot
 centos_8-aarch64-edge_installer-edge_ostree_pull_empty
 centos_8-aarch64-edge_installer-unattended_iso_edge
@@ -166,6 +167,7 @@ fedora_39-x86_64-qcow2-minimal_pkgs
 fedora_39-x86_64-qcow2-oscap_generic
 fedora_39-x86_64-vhd-empty
 fedora_39-x86_64-vmdk-empty
+rhel_10.0-x86_64-ova-empty
 rhel_8.10-aarch64-ami-oscap_rhel8
 rhel_8.10-aarch64-edge_commit-embed_containers
 rhel_8.10-aarch64-edge_commit-ostree
