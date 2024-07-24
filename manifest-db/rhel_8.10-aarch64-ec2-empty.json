@@ -2017,13 +2017,13 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "f5a0ab53-a278-43d8-967c-8e181ac04265",
+                  "uuid": "fba4de4b-a168-4344-aac6-a64e245833e9",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
                 },
                 {
-                  "uuid": "b7bc1d11-df92-4291-a470-d7065b98ad72",
+                  "uuid": "8b316e91-2217-45b6-b316-b22d20dd10ae",
                   "vfs_type": "xfs",
                   "path": "/boot",
                   "options": "defaults"
@@ -2041,8 +2041,8 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "f5a0ab53-a278-43d8-967c-8e181ac04265",
-              "boot_fs_uuid": "b7bc1d11-df92-4291-a470-d7065b98ad72",
+              "root_fs_uuid": "fba4de4b-a168-4344-aac6-a64e245833e9",
+              "boot_fs_uuid": "8b316e91-2217-45b6-b316-b22d20dd10ae",
               "kernel_opts": "console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0 crashkernel=auto",
               "uefi": {
                 "vendor": "redhat"
@@ -2153,7 +2153,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "b7bc1d11-df92-4291-a470-d7065b98ad72"
+              "uuid": "8b316e91-2217-45b6-b316-b22d20dd10ae"
             },
             "devices": {
               "device": {
@@ -2170,7 +2170,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "f5a0ab53-a278-43d8-967c-8e181ac04265",
+              "uuid": "fba4de4b-a168-4344-aac6-a64e245833e9",
               "label": "root"
             },
             "devices": {
@@ -3578,7 +3578,7 @@
       "profile-id": "sssd"
     },
     "boot-environment": {
-      "kernelopts": "root=UUID=f5a0ab53-a278-43d8-967c-8e181ac04265 console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0 crashkernel=auto",
+      "kernelopts": "root=UUID=fba4de4b-a168-4344-aac6-a64e245833e9 console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0 crashkernel=auto",
       "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-553.el8_10.aarch64"
     },
     "bootloader": "unknown",
@@ -3801,7 +3801,7 @@
         "2"
       ],
       [
-        "UUID=b7bc1d11-df92-4291-a470-d7065b98ad72",
+        "UUID=8b316e91-2217-45b6-b316-b22d20dd10ae",
         "/boot",
         "xfs",
         "defaults",
@@ -3809,7 +3809,7 @@
         "0"
       ],
       [
-        "UUID=f5a0ab53-a278-43d8-967c-8e181ac04265",
+        "UUID=fba4de4b-a168-4344-aac6-a64e245833e9",
         "/",
         "xfs",
         "defaults",
@@ -4355,7 +4355,7 @@
         "size": 9452895744,
         "start": 1284505600,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "f5a0ab53-a278-43d8-967c-8e181ac04265"
+        "uuid": "fba4de4b-a168-4344-aac6-a64e245833e9"
       },
       {
         "bootable": false,
@@ -4375,7 +4375,7 @@
         "size": 1073741824,
         "start": 210763776,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "b7bc1d11-df92-4291-a470-d7065b98ad72"
+        "uuid": "8b316e91-2217-45b6-b316-b22d20dd10ae"
       }
     ],
     "passwd": [

@@ -2093,7 +2093,7 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "b772d851-ec61-4df5-8bea-922ffc5a8b37",
+                  "uuid": "b4424f50-9f2c-475c-8bda-cebb612748d4",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
@@ -2111,7 +2111,7 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "b772d851-ec61-4df5-8bea-922ffc5a8b37",
+              "root_fs_uuid": "b4424f50-9f2c-475c-8bda-cebb612748d4",
               "kernel_opts": "ro",
               "uefi": {
                 "vendor": "redhat"
@@ -2251,7 +2251,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "b772d851-ec61-4df5-8bea-922ffc5a8b37",
+              "uuid": "b4424f50-9f2c-475c-8bda-cebb612748d4",
               "label": "root"
             },
             "devices": {
@@ -3862,7 +3862,7 @@
   "image-info": {
     "/etc/resolv.conf": [],
     "boot-environment": {
-      "kernelopts": "root=UUID=b772d851-ec61-4df5-8bea-922ffc5a8b37 ro",
+      "kernelopts": "root=UUID=b4424f50-9f2c-475c-8bda-cebb612748d4 ro",
       "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-553.el8_10.x86_64"
     },
     "bootloader": "unknown",
@@ -3959,7 +3959,7 @@
         "2"
       ],
       [
-        "UUID=b772d851-ec61-4df5-8bea-922ffc5a8b37",
+        "UUID=b4424f50-9f2c-475c-8bda-cebb612748d4",
         "/",
         "xfs",
         "defaults",
@@ -4558,7 +4558,7 @@
         "size": 3222257152,
         "start": 106954752,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "b772d851-ec61-4df5-8bea-922ffc5a8b37"
+        "uuid": "b4424f50-9f2c-475c-8bda-cebb612748d4"
       },
       {
         "bootable": false,

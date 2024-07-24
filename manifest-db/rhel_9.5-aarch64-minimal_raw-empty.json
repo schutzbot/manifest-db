@@ -1047,7 +1047,7 @@
           {
             "type": "org.osbuild.kernel-cmdline",
             "options": {
-              "root_fs_uuid": "1b4e4c63-8538-4f6c-8ba6-6e4c10ef613b",
+              "root_fs_uuid": "0e98da02-7839-4b40-bb0d-1ac186d5520f",
               "kernel_opts": "ro"
             }
           },
@@ -4885,13 +4885,13 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "1b4e4c63-8538-4f6c-8ba6-6e4c10ef613b",
+                  "uuid": "0e98da02-7839-4b40-bb0d-1ac186d5520f",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
                 },
                 {
-                  "uuid": "243c8858-57ae-4ed7-a46a-1d4af135ecac",
+                  "uuid": "75c762a7-5fdc-425d-8550-47f67291557a",
                   "vfs_type": "xfs",
                   "path": "/boot",
                   "options": "defaults"
@@ -4909,8 +4909,8 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "1b4e4c63-8538-4f6c-8ba6-6e4c10ef613b",
-              "boot_fs_uuid": "243c8858-57ae-4ed7-a46a-1d4af135ecac",
+              "root_fs_uuid": "0e98da02-7839-4b40-bb0d-1ac186d5520f",
+              "boot_fs_uuid": "75c762a7-5fdc-425d-8550-47f67291557a",
               "kernel_opts": "ro",
               "uefi": {
                 "vendor": "redhat",
@@ -5051,7 +5051,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "243c8858-57ae-4ed7-a46a-1d4af135ecac",
+              "uuid": "75c762a7-5fdc-425d-8550-47f67291557a",
               "label": "boot"
             },
             "devices": {
@@ -5069,7 +5069,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "1b4e4c63-8538-4f6c-8ba6-6e4c10ef613b",
+              "uuid": "0e98da02-7839-4b40-bb0d-1ac186d5520f",
               "label": "root"
             },
             "devices": {
@@ -6620,7 +6620,7 @@
         "grub_users": "$grub_users",
         "initrd": "/initramfs-0-rescue-ffffffffffffffffffffffffffffffff.img",
         "linux": "/vmlinuz-0-rescue-ffffffffffffffffffffffffffffffff",
-        "options": "root=UUID=1b4e4c63-8538-4f6c-8ba6-6e4c10ef613b ro",
+        "options": "root=UUID=0e98da02-7839-4b40-bb0d-1ac186d5520f ro",
         "title": "Red Hat Enterprise Linux (0-rescue-ffffffffffffffffffffffffffffffff) 9.5 (Plow)",
         "version": "0-rescue-ffffffffffffffffffffffffffffffff"
       },
@@ -6630,7 +6630,7 @@
         "grub_users": "$grub_users",
         "initrd": "/initramfs-5.14.0-452.el9.aarch64.img",
         "linux": "/vmlinuz-5.14.0-452.el9.aarch64",
-        "options": "root=UUID=1b4e4c63-8538-4f6c-8ba6-6e4c10ef613b ro crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M",
+        "options": "root=UUID=0e98da02-7839-4b40-bb0d-1ac186d5520f ro crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M",
         "title": "Red Hat Enterprise Linux (5.14.0-452.el9.aarch64) 9.5 (Plow)",
         "version": "5.14.0-452.el9.aarch64"
       }
@@ -6719,7 +6719,7 @@
     ],
     "fstab": [
       [
-        "UUID=1b4e4c63-8538-4f6c-8ba6-6e4c10ef613b",
+        "UUID=0e98da02-7839-4b40-bb0d-1ac186d5520f",
         "/",
         "xfs",
         "defaults",
@@ -6727,7 +6727,7 @@
         "0"
       ],
       [
-        "UUID=243c8858-57ae-4ed7-a46a-1d4af135ecac",
+        "UUID=75c762a7-5fdc-425d-8550-47f67291557a",
         "/boot",
         "xfs",
         "defaults",
@@ -7308,7 +7308,7 @@
         "size": 3222257152,
         "start": 848297984,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "1b4e4c63-8538-4f6c-8ba6-6e4c10ef613b"
+        "uuid": "0e98da02-7839-4b40-bb0d-1ac186d5520f"
       },
       {
         "bootable": false,
@@ -7328,7 +7328,7 @@
         "size": 629145600,
         "start": 219152384,
         "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
-        "uuid": "243c8858-57ae-4ed7-a46a-1d4af135ecac"
+        "uuid": "75c762a7-5fdc-425d-8550-47f67291557a"
       }
     ],
     "passwd": [

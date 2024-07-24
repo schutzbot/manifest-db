@@ -1311,7 +1311,7 @@
           {
             "type": "org.osbuild.kernel-cmdline",
             "options": {
-              "root_fs_uuid": "b8d39e4b-9145-4d1d-9396-9b6bc3a56db2",
+              "root_fs_uuid": "41479c7d-af03-4e46-b7c6-0ed8abb00a41",
               "kernel_opts": "console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295"
             }
           },
@@ -6107,7 +6107,7 @@
                     }
                   },
                   {
-                    "id": "sha256:dcd1e5915fa99e300b23f1e7e53f4cc3e6f86a41e03883de3e6138669b808ef9",
+                    "id": "sha256:c74374bf7d7c00427c83e833a8b2d1eeb414e840ce31a6a4c4662d37c7a160c3",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -6301,13 +6301,13 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "b8d39e4b-9145-4d1d-9396-9b6bc3a56db2",
+                  "uuid": "41479c7d-af03-4e46-b7c6-0ed8abb00a41",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
                 },
                 {
-                  "uuid": "3eba3d2e-1dcf-4dbc-a2e1-85f5f726eada",
+                  "uuid": "99dfe084-c6fe-45ef-a229-58f3030a813a",
                   "vfs_type": "xfs",
                   "path": "/boot",
                   "options": "defaults"
@@ -6325,8 +6325,8 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "b8d39e4b-9145-4d1d-9396-9b6bc3a56db2",
-              "boot_fs_uuid": "3eba3d2e-1dcf-4dbc-a2e1-85f5f726eada",
+              "root_fs_uuid": "41479c7d-af03-4e46-b7c6-0ed8abb00a41",
+              "boot_fs_uuid": "99dfe084-c6fe-45ef-a229-58f3030a813a",
               "kernel_opts": "console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295",
               "legacy": "i386-pc",
               "uefi": {
@@ -6448,7 +6448,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "3eba3d2e-1dcf-4dbc-a2e1-85f5f726eada",
+              "uuid": "99dfe084-c6fe-45ef-a229-58f3030a813a",
               "label": "boot"
             },
             "devices": {
@@ -6466,7 +6466,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "b8d39e4b-9145-4d1d-9396-9b6bc3a56db2",
+              "uuid": "41479c7d-af03-4e46-b7c6-0ed8abb00a41",
               "label": "root"
             },
             "devices": {
@@ -8002,6 +8002,9 @@
           "sha256:c738948c9c36891c5139d290a59c11e376a24500d262e3787d92775607d60913": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.5-20240601/Packages/iproute-tc-6.2.0-6.el9_4.x86_64.rpm"
           },
+          "sha256:c74374bf7d7c00427c83e833a8b2d1eeb414e840ce31a6a4c4662d37c7a160c3": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-rhui-4-20240626/Packages/rh-amazon-rhui-client-ha-4.0.19-1.el9.noarch.rpm"
+          },
           "sha256:c8741059dea86ebdda75cb3c8d7bbe20363bd528cbf1f95d4a061f027cf57e0a": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.5-20240601/Packages/python3-jinja2-2.11.3-6.el9.noarch.rpm"
           },
@@ -8151,9 +8154,6 @@
           },
           "sha256:dc85c28902667c1bd3c6f19b6a08bdda5e1d25b11e832b269e15fde94e6ab52d": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-appstream-n9.5-20240601/Packages/perl-IO-1.43-481.el9.x86_64.rpm"
-          },
-          "sha256:dcd1e5915fa99e300b23f1e7e53f4cc3e6f86a41e03883de3e6138669b808ef9": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-rhui-4-20240515/Packages/rh-amazon-rhui-client-ha-4.0.16-1.el9.noarch.rpm"
           },
           "sha256:dce4011dbcaaf49e5d7a84804ab9f9db26dda33e50268225117f1048c7193c72": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.5-20240601/Packages/iputils-20210202-9.el9.x86_64.rpm"
@@ -8360,7 +8360,7 @@
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-baseos-n9.5-20240601/Packages/pcre2-syntax-10.40-5.el9.noarch.rpm"
           },
           "sha256:fa45ae8e5321bd331dd517069464b08348bfc2b7cacd016c803c99861a877e53": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-rhui-4-20240515/Packages/amazon-libdnf-plugin-1.0.1-1.el9.x86_64.rpm"
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-rhui-4-20240626/Packages/amazon-libdnf-plugin-1.0.1-1.el9.x86_64.rpm"
           },
           "sha256:fa7f1089c2f74b570b0267eec5bcc628d830b27b8bfd375c2bb015eab6ce419d": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-x86_64-ha-n9.5-20240601/Packages/fence-agents-brocade-4.10.0-73.el9.noarch.rpm"
@@ -8416,7 +8416,7 @@
         "grub_users": "$grub_users",
         "initrd": "/initramfs-5.14.0-452.el9.x86_64.img $tuned_initrd",
         "linux": "/vmlinuz-5.14.0-452.el9.x86_64",
-        "options": "root=UUID=b8d39e4b-9145-4d1d-9396-9b6bc3a56db2 console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M $tuned_params",
+        "options": "root=UUID=41479c7d-af03-4e46-b7c6-0ed8abb00a41 console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M $tuned_params",
         "title": "Red Hat Enterprise Linux (5.14.0-452.el9.x86_64) 9.5 (Plow)",
         "version": "5.14.0-452.el9.x86_64"
       }
@@ -8637,8 +8637,8 @@
     },
     "fstab": [
       [
-        "UUID=3eba3d2e-1dcf-4dbc-a2e1-85f5f726eada",
-        "/boot",
+        "UUID=41479c7d-af03-4e46-b7c6-0ed8abb00a41",
+        "/",
         "xfs",
         "defaults",
         "0",
@@ -8653,8 +8653,8 @@
         "2"
       ],
       [
-        "UUID=b8d39e4b-9145-4d1d-9396-9b6bc3a56db2",
-        "/",
+        "UUID=99dfe084-c6fe-45ef-a229-58f3030a813a",
+        "/boot",
         "xfs",
         "defaults",
         "0",
@@ -9291,7 +9291,7 @@
       "redhat-release-9.5-0.4.el9.x86_64",
       "redhat-release-eula-9.5-0.4.el9.x86_64",
       "resource-agents-4.10.0-57.el9.x86_64",
-      "rh-amazon-rhui-client-ha-4.0.16-1.el9.noarch",
+      "rh-amazon-rhui-client-ha-4.0.19-1.el9.noarch",
       "rhc-0.2.4-5.el9.x86_64",
       "rootfiles-8.1-31.el9.noarch",
       "rpcbind-1.2.6-7.el9.x86_64",
@@ -9376,7 +9376,7 @@
         "size": 9451847168,
         "start": 1285554176,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "b8d39e4b-9145-4d1d-9396-9b6bc3a56db2"
+        "uuid": "41479c7d-af03-4e46-b7c6-0ed8abb00a41"
       },
       {
         "bootable": false,
@@ -9396,7 +9396,7 @@
         "size": 1073741824,
         "start": 211812352,
         "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
-        "uuid": "3eba3d2e-1dcf-4dbc-a2e1-85f5f726eada"
+        "uuid": "99dfe084-c6fe-45ef-a229-58f3030a813a"
       },
       {
         "bootable": false,

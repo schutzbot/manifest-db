@@ -2060,7 +2060,7 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "969a4032-df96-4b02-9228-c2899ab2587b",
+                  "uuid": "253cccfd-45e1-4e79-969b-1fdcd66a825f",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
@@ -2078,7 +2078,7 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "969a4032-df96-4b02-9228-c2899ab2587b",
+              "root_fs_uuid": "253cccfd-45e1-4e79-969b-1fdcd66a825f",
               "kernel_opts": "net.ifnames=0 biosdevname=0 scsi_mod.use_blk_mq=Y crashkernel=auto console=ttyS0,38400n8d",
               "uefi": {
                 "vendor": "redhat"
@@ -2188,7 +2188,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "969a4032-df96-4b02-9228-c2899ab2587b",
+              "uuid": "253cccfd-45e1-4e79-969b-1fdcd66a825f",
               "label": "root"
             },
             "devices": {
@@ -3659,7 +3659,7 @@
     },
     "/etc/resolv.conf": [],
     "boot-environment": {
-      "kernelopts": "root=UUID=969a4032-df96-4b02-9228-c2899ab2587b net.ifnames=0 biosdevname=0 scsi_mod.use_blk_mq=Y crashkernel=auto console=ttyS0,38400n8d",
+      "kernelopts": "root=UUID=253cccfd-45e1-4e79-969b-1fdcd66a825f net.ifnames=0 biosdevname=0 scsi_mod.use_blk_mq=Y crashkernel=auto console=ttyS0,38400n8d",
       "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-553.el8_10.x86_64"
     },
     "bootloader": "unknown",
@@ -3747,20 +3747,20 @@
     "firewall-enabled": [],
     "fstab": [
       [
+        "UUID=253cccfd-45e1-4e79-969b-1fdcd66a825f",
+        "/",
+        "xfs",
+        "defaults",
+        "0",
+        "0"
+      ],
+      [
         "UUID=7B77-95E7",
         "/boot/efi",
         "vfat",
         "defaults,uid=0,gid=0,umask=077,shortname=winnt",
         "0",
         "2"
-      ],
-      [
-        "UUID=969a4032-df96-4b02-9228-c2899ab2587b",
-        "/",
-        "xfs",
-        "defaults",
-        "0",
-        "0"
       ]
     ],
     "groups": [
@@ -4321,7 +4321,7 @@
         "size": 21367864832,
         "start": 106954752,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "969a4032-df96-4b02-9228-c2899ab2587b"
+        "uuid": "253cccfd-45e1-4e79-969b-1fdcd66a825f"
       },
       {
         "bootable": false,

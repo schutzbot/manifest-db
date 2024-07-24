@@ -3279,7 +3279,7 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "51c4daea-9217-4e9b-b6f2-09636e0a7eac",
+                  "uuid": "dfdfb3c3-19e5-4d80-a49a-38b5862207f7",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
@@ -3297,7 +3297,7 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "51c4daea-9217-4e9b-b6f2-09636e0a7eac",
+              "root_fs_uuid": "dfdfb3c3-19e5-4d80-a49a-38b5862207f7",
               "kernel_opts": "console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=auto processor.max_cstate=1 intel_idle.max_cstate=1",
               "legacy": "i386-pc",
               "uefi": {
@@ -3410,7 +3410,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "51c4daea-9217-4e9b-b6f2-09636e0a7eac",
+              "uuid": "dfdfb3c3-19e5-4d80-a49a-38b5862207f7",
               "label": "root"
             },
             "devices": {
@@ -5956,7 +5956,7 @@
       "profile-id": "sssd"
     },
     "boot-environment": {
-      "kernelopts": "root=UUID=51c4daea-9217-4e9b-b6f2-09636e0a7eac console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=auto processor.max_cstate=1 intel_idle.max_cstate=1",
+      "kernelopts": "root=UUID=dfdfb3c3-19e5-4d80-a49a-38b5862207f7 console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=auto processor.max_cstate=1 intel_idle.max_cstate=1",
       "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-553.el8_10.x86_64"
     },
     "bootloader": "grub",
@@ -6177,20 +6177,20 @@
     },
     "fstab": [
       [
-        "UUID=51c4daea-9217-4e9b-b6f2-09636e0a7eac",
-        "/",
-        "xfs",
-        "defaults",
-        "0",
-        "0"
-      ],
-      [
         "UUID=7B77-95E7",
         "/boot/efi",
         "vfat",
         "defaults,uid=0,gid=0,umask=077,shortname=winnt",
         "0",
         "2"
+      ],
+      [
+        "UUID=dfdfb3c3-19e5-4d80-a49a-38b5862207f7",
+        "/",
+        "xfs",
+        "defaults",
+        "0",
+        "0"
       ]
     ],
     "groups": [
@@ -7120,7 +7120,7 @@
         "size": 10525588992,
         "start": 211812352,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "51c4daea-9217-4e9b-b6f2-09636e0a7eac"
+        "uuid": "dfdfb3c3-19e5-4d80-a49a-38b5862207f7"
       },
       {
         "bootable": false,

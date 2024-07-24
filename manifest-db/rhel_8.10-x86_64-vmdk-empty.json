@@ -2015,7 +2015,7 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "0063ccef-2c88-450c-9e48-d2851459c4fc",
+                  "uuid": "a403b728-8a6f-4f4d-9ec3-99fd60913d66",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
@@ -2033,7 +2033,7 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "0063ccef-2c88-450c-9e48-d2851459c4fc",
+              "root_fs_uuid": "a403b728-8a6f-4f4d-9ec3-99fd60913d66",
               "kernel_opts": "ro net.ifnames=0",
               "legacy": "i386-pc",
               "uefi": {
@@ -2129,7 +2129,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "0063ccef-2c88-450c-9e48-d2851459c4fc",
+              "uuid": "a403b728-8a6f-4f4d-9ec3-99fd60913d66",
               "label": "root"
             },
             "devices": {
@@ -3662,7 +3662,7 @@
   "image-info": {
     "/etc/resolv.conf": [],
     "boot-environment": {
-      "kernelopts": "root=UUID=0063ccef-2c88-450c-9e48-d2851459c4fc ro net.ifnames=0",
+      "kernelopts": "root=UUID=a403b728-8a6f-4f4d-9ec3-99fd60913d66 ro net.ifnames=0",
       "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-553.el8_10.x86_64"
     },
     "bootloader": "grub",
@@ -3865,20 +3865,20 @@
     ],
     "fstab": [
       [
-        "UUID=0063ccef-2c88-450c-9e48-d2851459c4fc",
-        "/",
-        "xfs",
-        "defaults",
-        "0",
-        "0"
-      ],
-      [
         "UUID=7B77-95E7",
         "/boot/efi",
         "vfat",
         "defaults,uid=0,gid=0,umask=077,shortname=winnt",
         "0",
         "2"
+      ],
+      [
+        "UUID=a403b728-8a6f-4f4d-9ec3-99fd60913d66",
+        "/",
+        "xfs",
+        "defaults",
+        "0",
+        "0"
       ]
     ],
     "groups": [
@@ -4439,7 +4439,7 @@
         "size": 4187995648,
         "start": 106954752,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "0063ccef-2c88-450c-9e48-d2851459c4fc"
+        "uuid": "a403b728-8a6f-4f4d-9ec3-99fd60913d66"
       },
       {
         "bootable": false,

@@ -1311,7 +1311,7 @@
           {
             "type": "org.osbuild.kernel-cmdline",
             "options": {
-              "root_fs_uuid": "06047f1b-adeb-4421-b648-b6925bc2b30c",
+              "root_fs_uuid": "84e284e6-fe66-4371-ac5c-8d9dad9553fc",
               "kernel_opts": "console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295"
             }
           },
@@ -4861,13 +4861,13 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "06047f1b-adeb-4421-b648-b6925bc2b30c",
+                  "uuid": "84e284e6-fe66-4371-ac5c-8d9dad9553fc",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
                 },
                 {
-                  "uuid": "237cd5a0-4d6c-496e-b2bb-559a2a222bbc",
+                  "uuid": "1f058f7b-7473-486a-b925-117138447d93",
                   "vfs_type": "xfs",
                   "path": "/boot",
                   "options": "defaults"
@@ -4885,8 +4885,8 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "06047f1b-adeb-4421-b648-b6925bc2b30c",
-              "boot_fs_uuid": "237cd5a0-4d6c-496e-b2bb-559a2a222bbc",
+              "root_fs_uuid": "84e284e6-fe66-4371-ac5c-8d9dad9553fc",
+              "boot_fs_uuid": "1f058f7b-7473-486a-b925-117138447d93",
               "kernel_opts": "console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295",
               "legacy": "i386-pc",
               "uefi": {
@@ -5008,7 +5008,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "237cd5a0-4d6c-496e-b2bb-559a2a222bbc",
+              "uuid": "1f058f7b-7473-486a-b925-117138447d93",
               "label": "boot"
             },
             "devices": {
@@ -5026,7 +5026,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "06047f1b-adeb-4421-b648-b6925bc2b30c",
+              "uuid": "84e284e6-fe66-4371-ac5c-8d9dad9553fc",
               "label": "root"
             },
             "devices": {
@@ -6413,7 +6413,7 @@
         "grub_users": "$grub_users",
         "initrd": "/initramfs-5.14.0-452.el9.x86_64.img $tuned_initrd",
         "linux": "/vmlinuz-5.14.0-452.el9.x86_64",
-        "options": "root=UUID=06047f1b-adeb-4421-b648-b6925bc2b30c console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M $tuned_params",
+        "options": "root=UUID=84e284e6-fe66-4371-ac5c-8d9dad9553fc console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M $tuned_params",
         "title": "Red Hat Enterprise Linux (5.14.0-452.el9.x86_64) 9.5 (Plow)",
         "version": "5.14.0-452.el9.x86_64"
       }
@@ -6634,15 +6634,7 @@
     },
     "fstab": [
       [
-        "UUID=06047f1b-adeb-4421-b648-b6925bc2b30c",
-        "/",
-        "xfs",
-        "defaults",
-        "0",
-        "0"
-      ],
-      [
-        "UUID=237cd5a0-4d6c-496e-b2bb-559a2a222bbc",
+        "UUID=1f058f7b-7473-486a-b925-117138447d93",
         "/boot",
         "xfs",
         "defaults",
@@ -6656,6 +6648,14 @@
         "defaults,uid=0,gid=0,umask=077,shortname=winnt",
         "0",
         "2"
+      ],
+      [
+        "UUID=84e284e6-fe66-4371-ac5c-8d9dad9553fc",
+        "/",
+        "xfs",
+        "defaults",
+        "0",
+        "0"
       ]
     ],
     "groups": [
@@ -7189,7 +7189,7 @@
         "size": 9451847168,
         "start": 1285554176,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "06047f1b-adeb-4421-b648-b6925bc2b30c"
+        "uuid": "84e284e6-fe66-4371-ac5c-8d9dad9553fc"
       },
       {
         "bootable": false,
@@ -7209,7 +7209,7 @@
         "size": 1073741824,
         "start": 211812352,
         "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
-        "uuid": "237cd5a0-4d6c-496e-b2bb-559a2a222bbc"
+        "uuid": "1f058f7b-7473-486a-b925-117138447d93"
       },
       {
         "bootable": false,

@@ -1991,7 +1991,7 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "ec49b12d-7ac9-4e42-be1b-de5dabfb0fc5",
+                  "uuid": "600eed72-a3d8-47a3-9e34-55c87d7f4b6d",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
@@ -2009,7 +2009,7 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "ec49b12d-7ac9-4e42-be1b-de5dabfb0fc5",
+              "root_fs_uuid": "600eed72-a3d8-47a3-9e34-55c87d7f4b6d",
               "kernel_opts": "ro net.ifnames=0",
               "uefi": {
                 "vendor": "redhat"
@@ -2097,7 +2097,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "ec49b12d-7ac9-4e42-be1b-de5dabfb0fc5",
+              "uuid": "600eed72-a3d8-47a3-9e34-55c87d7f4b6d",
               "label": "root"
             },
             "devices": {
@@ -3602,7 +3602,7 @@
   "image-info": {
     "/etc/resolv.conf": [],
     "boot-environment": {
-      "kernelopts": "root=UUID=ec49b12d-7ac9-4e42-be1b-de5dabfb0fc5 ro net.ifnames=0",
+      "kernelopts": "root=UUID=600eed72-a3d8-47a3-9e34-55c87d7f4b6d ro net.ifnames=0",
       "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-553.el8_10.aarch64"
     },
     "bootloader": "unknown",
@@ -3794,20 +3794,20 @@
     ],
     "fstab": [
       [
+        "UUID=600eed72-a3d8-47a3-9e34-55c87d7f4b6d",
+        "/",
+        "xfs",
+        "defaults",
+        "0",
+        "0"
+      ],
+      [
         "UUID=7B77-95E7",
         "/boot/efi",
         "vfat",
         "defaults,uid=0,gid=0,umask=077,shortname=winnt",
         "0",
         "2"
-      ],
-      [
-        "UUID=ec49b12d-7ac9-4e42-be1b-de5dabfb0fc5",
-        "/",
-        "xfs",
-        "defaults",
-        "0",
-        "0"
       ]
     ],
     "groups": [
@@ -4365,7 +4365,7 @@
         "size": 4189044224,
         "start": 105906176,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "ec49b12d-7ac9-4e42-be1b-de5dabfb0fc5"
+        "uuid": "600eed72-a3d8-47a3-9e34-55c87d7f4b6d"
       },
       {
         "bootable": false,

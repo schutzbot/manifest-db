@@ -1063,7 +1063,7 @@
           {
             "type": "org.osbuild.kernel-cmdline",
             "options": {
-              "root_fs_uuid": "506e16c5-7a92-438d-92c1-8517eff9a69b",
+              "root_fs_uuid": "9947cdda-6e77-4c0d-a60b-ebcc07115e9f",
               "kernel_opts": "console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0"
             }
           },
@@ -4443,7 +4443,7 @@
                     }
                   },
                   {
-                    "id": "sha256:70110c6995f1c0012f67913ef02a51f2d188be6bf25f8f3abc499c4d05780614",
+                    "id": "sha256:6a83c4e6ef884471be92796b98b6779560b1339ac6dad1caeb64ebe056e41e94",
                     "options": {
                       "metadata": {
                         "rpm.check_gpg": true
@@ -4625,13 +4625,13 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "506e16c5-7a92-438d-92c1-8517eff9a69b",
+                  "uuid": "9947cdda-6e77-4c0d-a60b-ebcc07115e9f",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
                 },
                 {
-                  "uuid": "3024af93-0db4-4091-9d69-ca9d459fd445",
+                  "uuid": "481b5526-fd3e-4fd8-b48c-f8c09f98e86b",
                   "vfs_type": "xfs",
                   "path": "/boot",
                   "options": "defaults"
@@ -4649,8 +4649,8 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "506e16c5-7a92-438d-92c1-8517eff9a69b",
-              "boot_fs_uuid": "3024af93-0db4-4091-9d69-ca9d459fd445",
+              "root_fs_uuid": "9947cdda-6e77-4c0d-a60b-ebcc07115e9f",
+              "boot_fs_uuid": "481b5526-fd3e-4fd8-b48c-f8c09f98e86b",
               "kernel_opts": "console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0",
               "uefi": {
                 "vendor": "redhat",
@@ -4764,7 +4764,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "3024af93-0db4-4091-9d69-ca9d459fd445",
+              "uuid": "481b5526-fd3e-4fd8-b48c-f8c09f98e86b",
               "label": "boot"
             },
             "devices": {
@@ -4782,7 +4782,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "506e16c5-7a92-438d-92c1-8517eff9a69b",
+              "uuid": "9947cdda-6e77-4c0d-a60b-ebcc07115e9f",
               "label": "root"
             },
             "devices": {
@@ -5124,7 +5124,7 @@
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/grub2-efi-aa64-2.06-80.el9.aarch64.rpm"
           },
           "sha256:309448c854e0671d985ea9dd9334ba0396afe69feb9a18cf2a4a87897e6f42e8": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-rhui-4-20240515/Packages/amazon-libdnf-plugin-1.0.1-1.el9.aarch64.rpm"
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-rhui-4-20240626/Packages/amazon-libdnf-plugin-1.0.1-1.el9.aarch64.rpm"
           },
           "sha256:30afedef0dc54497be53b49181c7263348175c14ed1b44ac04ed3b643d3825d4": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/dracut-057-53.git20240104.el9.aarch64.rpm"
@@ -5372,6 +5372,9 @@
           "sha256:69683117432e6c7ba0f7a08583a51beb38eb1dbf982037d50d30feef27287e59": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/parted-3.5-2.el9.aarch64.rpm"
           },
+          "sha256:6a83c4e6ef884471be92796b98b6779560b1339ac6dad1caeb64ebe056e41e94": {
+            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-rhui-4-20240626/Packages/rh-amazon-rhui-client-4.0.19-1.el9.noarch.rpm"
+          },
           "sha256:6ab8de40cc01fd6cdbb993db02c0bc426bb31738c6f958be47a1964d56695409": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/p11-kit-trust-0.25.3-2.el9.aarch64.rpm"
           },
@@ -5407,9 +5410,6 @@
           },
           "sha256:6fb2eb0e66f94ce62b1f14f00704de0800664da8429df1df244ad7d9ee2c0b7b": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/npth-1.6-8.el9.aarch64.rpm"
-          },
-          "sha256:70110c6995f1c0012f67913ef02a51f2d188be6bf25f8f3abc499c4d05780614": {
-            "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-rhui-4-20240515/Packages/rh-amazon-rhui-client-4.0.16-1.el9.noarch.rpm"
           },
           "sha256:70c87ada1dbf985286ff2746582b9992131faf396ab2097549e54ee2d65bb6f6": {
             "url": "https://rpmrepo.osbuild.org/v2/mirror/rhvpn/el9/el9-aarch64-baseos-n9.5-20240601/Packages/kernel-tools-libs-5.14.0-452.el9.aarch64.rpm"
@@ -6182,7 +6182,7 @@
         "grub_users": "$grub_users",
         "initrd": "/initramfs-5.14.0-452.el9.aarch64.img $tuned_initrd",
         "linux": "/vmlinuz-5.14.0-452.el9.aarch64",
-        "options": "root=UUID=506e16c5-7a92-438d-92c1-8517eff9a69b console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0 crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M $tuned_params",
+        "options": "root=UUID=9947cdda-6e77-4c0d-a60b-ebcc07115e9f console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0 crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M $tuned_params",
         "title": "Red Hat Enterprise Linux (5.14.0-452.el9.aarch64) 9.5 (Plow)",
         "version": "5.14.0-452.el9.aarch64"
       }
@@ -6397,16 +6397,8 @@
     },
     "fstab": [
       [
-        "UUID=3024af93-0db4-4091-9d69-ca9d459fd445",
+        "UUID=481b5526-fd3e-4fd8-b48c-f8c09f98e86b",
         "/boot",
-        "xfs",
-        "defaults",
-        "0",
-        "0"
-      ],
-      [
-        "UUID=506e16c5-7a92-438d-92c1-8517eff9a69b",
-        "/",
         "xfs",
         "defaults",
         "0",
@@ -6419,6 +6411,14 @@
         "defaults,uid=0,gid=0,umask=077,shortname=winnt",
         "0",
         "2"
+      ],
+      [
+        "UUID=9947cdda-6e77-4c0d-a60b-ebcc07115e9f",
+        "/",
+        "xfs",
+        "defaults",
+        "0",
+        "0"
       ]
     ],
     "groups": [
@@ -6886,7 +6886,7 @@
       "redhat-cloud-client-configuration-1-12.el9.noarch",
       "redhat-release-9.5-0.4.el9.aarch64",
       "redhat-release-eula-9.5-0.4.el9.aarch64",
-      "rh-amazon-rhui-client-4.0.16-1.el9.noarch",
+      "rh-amazon-rhui-client-4.0.19-1.el9.noarch",
       "rhc-0.2.4-5.el9.aarch64",
       "rootfiles-8.1-31.el9.noarch",
       "rpm-4.16.1.3-29.el9.aarch64",
@@ -6955,7 +6955,7 @@
         "size": 9452895744,
         "start": 1284505600,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "506e16c5-7a92-438d-92c1-8517eff9a69b"
+        "uuid": "9947cdda-6e77-4c0d-a60b-ebcc07115e9f"
       },
       {
         "bootable": false,
@@ -6975,7 +6975,7 @@
         "size": 1073741824,
         "start": 210763776,
         "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
-        "uuid": "3024af93-0db4-4091-9d69-ca9d459fd445"
+        "uuid": "481b5526-fd3e-4fd8-b48c-f8c09f98e86b"
       }
     ],
     "passwd": [
@@ -7537,8 +7537,8 @@
             "mirrorlist": "https://rhui.REGION.aws.ce.redhat.com/pulp/mirror/content/beta/rhel9/rhui/9/$basearch/appstream/debug",
             "name": "Red Hat Enterprise Linux 9 - AppStream Beta from RHUI (Debug RPMs)",
             "sslcacert": "/etc/pki/rhui/cdn.redhat.com-chain.crt",
-            "sslclientcert": "/etc/pki/rhui/product/content-rhel9.crt",
-            "sslclientkey": "/etc/pki/rhui/content-rhel9.key",
+            "sslclientcert": "/etc/pki/rhui/product/content-rhel9-debug.crt",
+            "sslclientkey": "/etc/pki/rhui/content-rhel9-debug.key",
             "sslverify": "1"
           },
           "rhel-9-appstream-beta-rhui-rpms": {
@@ -7559,8 +7559,8 @@
             "mirrorlist": "https://rhui.REGION.aws.ce.redhat.com/pulp/mirror/content/beta/rhel9/rhui/9/$basearch/appstream/source/SRPMS",
             "name": "Red Hat Enterprise Linux 9 - AppStream Beta from RHUI (Source RPMs)",
             "sslcacert": "/etc/pki/rhui/cdn.redhat.com-chain.crt",
-            "sslclientcert": "/etc/pki/rhui/product/content-rhel9.crt",
-            "sslclientkey": "/etc/pki/rhui/content-rhel9.key",
+            "sslclientcert": "/etc/pki/rhui/product/content-rhel9-source.crt",
+            "sslclientkey": "/etc/pki/rhui/content-rhel9-source.key",
             "sslverify": "1"
           },
           "rhel-9-baseos-beta-rhui-debug-rpms": {
@@ -7570,8 +7570,8 @@
             "mirrorlist": "https://rhui.REGION.aws.ce.redhat.com/pulp/mirror/content/beta/rhel9/rhui/9/$basearch/baseos/debug",
             "name": "Red Hat Enterprise Linux 9 - BaseOS Beta from RHUI (Debug RPMs)",
             "sslcacert": "/etc/pki/rhui/cdn.redhat.com-chain.crt",
-            "sslclientcert": "/etc/pki/rhui/product/content-rhel9.crt",
-            "sslclientkey": "/etc/pki/rhui/content-rhel9.key",
+            "sslclientcert": "/etc/pki/rhui/product/content-rhel9-debug.crt",
+            "sslclientkey": "/etc/pki/rhui/content-rhel9-debug.key",
             "sslverify": "1"
           },
           "rhel-9-baseos-beta-rhui-rpms": {
@@ -7592,8 +7592,8 @@
             "mirrorlist": "https://rhui.REGION.aws.ce.redhat.com/pulp/mirror/content/beta/rhel9/rhui/9/$basearch/baseos/source/SRPMS",
             "name": "Red Hat Enterprise Linux 9 - BaseOS Beta from RHUI (Source RPMs)",
             "sslcacert": "/etc/pki/rhui/cdn.redhat.com-chain.crt",
-            "sslclientcert": "/etc/pki/rhui/product/content-rhel9.crt",
-            "sslclientkey": "/etc/pki/rhui/content-rhel9.key",
+            "sslclientcert": "/etc/pki/rhui/product/content-rhel9-source.crt",
+            "sslclientkey": "/etc/pki/rhui/content-rhel9-source.key",
             "sslverify": "1"
           },
           "rhel-9-supplementary-beta-debug-rhui-rpms": {
@@ -7603,8 +7603,8 @@
             "mirrorlist": "https://rhui.REGION.aws.ce.redhat.com/pulp/mirror/content/beta/rhel9/rhui/9/$basearch/supplementary/debug",
             "name": "Red Hat Enterprise Linux 9 - Supplementary Beta (Debug RPMs) from RHUI",
             "sslcacert": "/etc/pki/rhui/cdn.redhat.com-chain.crt",
-            "sslclientcert": "/etc/pki/rhui/product/content-rhel9.crt",
-            "sslclientkey": "/etc/pki/rhui/content-rhel9.key",
+            "sslclientcert": "/etc/pki/rhui/product/content-rhel9-debug.crt",
+            "sslclientkey": "/etc/pki/rhui/content-rhel9-debug.key",
             "sslverify": "1"
           },
           "rhel-9-supplementary-beta-rhui-rpms": {
@@ -7625,8 +7625,8 @@
             "mirrorlist": "https://rhui.REGION.aws.ce.redhat.com/pulp/mirror/content/beta/rhel9/rhui/9/$basearch/supplementary/source/SRPMS",
             "name": "Red Hat Enterprise Linux 9 - Supplementary Beta (Source RPMs) from RHUI",
             "sslcacert": "/etc/pki/rhui/cdn.redhat.com-chain.crt",
-            "sslclientcert": "/etc/pki/rhui/product/content-rhel9.crt",
-            "sslclientkey": "/etc/pki/rhui/content-rhel9.key",
+            "sslclientcert": "/etc/pki/rhui/product/content-rhel9-source.crt",
+            "sslclientkey": "/etc/pki/rhui/content-rhel9-source.key",
             "sslverify": "1"
           }
         },

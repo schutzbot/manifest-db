@@ -2641,7 +2641,7 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "594d9b05-3dcd-4641-804b-fecb4543d27f",
+                  "uuid": "b94c406e-4588-4335-8f7c-7f1ee9301cf6",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
@@ -2659,7 +2659,7 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "594d9b05-3dcd-4641-804b-fecb4543d27f",
+              "root_fs_uuid": "b94c406e-4588-4335-8f7c-7f1ee9301cf6",
               "kernel_opts": "ro loglevel=3 crashkernel=auto console=tty1 console=ttyS0 earlyprintk=ttyS0 rootdelay=300",
               "uefi": {
                 "vendor": "redhat"
@@ -2771,7 +2771,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "594d9b05-3dcd-4641-804b-fecb4543d27f",
+              "uuid": "b94c406e-4588-4335-8f7c-7f1ee9301cf6",
               "label": "root"
             },
             "devices": {
@@ -4718,7 +4718,7 @@
       ]
     },
     "boot-environment": {
-      "kernelopts": "root=UUID=594d9b05-3dcd-4641-804b-fecb4543d27f ro loglevel=3 crashkernel=auto console=tty1 console=ttyS0 earlyprintk=ttyS0 rootdelay=300",
+      "kernelopts": "root=UUID=b94c406e-4588-4335-8f7c-7f1ee9301cf6 ro loglevel=3 crashkernel=auto console=tty1 console=ttyS0 earlyprintk=ttyS0 rootdelay=300",
       "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-553.el8_10.aarch64"
     },
     "bootloader": "unknown",
@@ -4938,20 +4938,20 @@
     ],
     "fstab": [
       [
-        "UUID=594d9b05-3dcd-4641-804b-fecb4543d27f",
-        "/",
-        "xfs",
-        "defaults",
-        "0",
-        "0"
-      ],
-      [
         "UUID=7B77-95E7",
         "/boot/efi",
         "vfat",
         "defaults,uid=0,gid=0,umask=077,shortname=winnt",
         "0",
         "2"
+      ],
+      [
+        "UUID=b94c406e-4588-4335-8f7c-7f1ee9301cf6",
+        "/",
+        "xfs",
+        "defaults",
+        "0",
+        "0"
       ]
     ],
     "groups": [
@@ -5699,7 +5699,7 @@
         "size": 4189044224,
         "start": 105906176,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "594d9b05-3dcd-4641-804b-fecb4543d27f"
+        "uuid": "b94c406e-4588-4335-8f7c-7f1ee9301cf6"
       },
       {
         "bootable": false,

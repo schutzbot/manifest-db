@@ -1103,7 +1103,7 @@
           {
             "type": "org.osbuild.kernel-cmdline",
             "options": {
-              "root_fs_uuid": "d6e4b49d-024b-4706-a853-c6d261fa4171",
+              "root_fs_uuid": "921eaded-8d78-4a12-9af1-1b72ad2e6b3e",
               "kernel_opts": "ro net.ifnames=0"
             }
           },
@@ -4568,13 +4568,13 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "d6e4b49d-024b-4706-a853-c6d261fa4171",
+                  "uuid": "921eaded-8d78-4a12-9af1-1b72ad2e6b3e",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
                 },
                 {
-                  "uuid": "748b5883-02d8-4544-b446-0fbbc734c59a",
+                  "uuid": "2f6f6cab-f937-48b6-b81c-d9da43a5b62d",
                   "vfs_type": "xfs",
                   "path": "/boot",
                   "options": "defaults"
@@ -4592,8 +4592,8 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "d6e4b49d-024b-4706-a853-c6d261fa4171",
-              "boot_fs_uuid": "748b5883-02d8-4544-b446-0fbbc734c59a",
+              "root_fs_uuid": "921eaded-8d78-4a12-9af1-1b72ad2e6b3e",
+              "boot_fs_uuid": "2f6f6cab-f937-48b6-b81c-d9da43a5b62d",
               "kernel_opts": "ro net.ifnames=0",
               "uefi": {
                 "vendor": "redhat",
@@ -4689,7 +4689,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "748b5883-02d8-4544-b446-0fbbc734c59a",
+              "uuid": "2f6f6cab-f937-48b6-b81c-d9da43a5b62d",
               "label": "boot"
             },
             "devices": {
@@ -4707,7 +4707,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "d6e4b49d-024b-4706-a853-c6d261fa4171",
+              "uuid": "921eaded-8d78-4a12-9af1-1b72ad2e6b3e",
               "label": "root"
             },
             "devices": {
@@ -6125,7 +6125,7 @@
         "grub_users": "$grub_users",
         "initrd": "/initramfs-5.14.0-452.el9.aarch64.img $tuned_initrd",
         "linux": "/vmlinuz-5.14.0-452.el9.aarch64",
-        "options": "root=UUID=d6e4b49d-024b-4706-a853-c6d261fa4171 ro net.ifnames=0 crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M $tuned_params",
+        "options": "root=UUID=921eaded-8d78-4a12-9af1-1b72ad2e6b3e ro net.ifnames=0 crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M $tuned_params",
         "title": "Red Hat Enterprise Linux (5.14.0-452.el9.aarch64) 9.5 (Plow)",
         "version": "5.14.0-452.el9.aarch64"
       }
@@ -6331,7 +6331,7 @@
     ],
     "fstab": [
       [
-        "UUID=748b5883-02d8-4544-b446-0fbbc734c59a",
+        "UUID=2f6f6cab-f937-48b6-b81c-d9da43a5b62d",
         "/boot",
         "xfs",
         "defaults",
@@ -6347,7 +6347,7 @@
         "2"
       ],
       [
-        "UUID=d6e4b49d-024b-4706-a853-c6d261fa4171",
+        "UUID=921eaded-8d78-4a12-9af1-1b72ad2e6b3e",
         "/",
         "xfs",
         "defaults",
@@ -6875,7 +6875,7 @@
         "size": 3222257152,
         "start": 1284505600,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "d6e4b49d-024b-4706-a853-c6d261fa4171"
+        "uuid": "921eaded-8d78-4a12-9af1-1b72ad2e6b3e"
       },
       {
         "bootable": false,
@@ -6895,7 +6895,7 @@
         "size": 1073741824,
         "start": 210763776,
         "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
-        "uuid": "748b5883-02d8-4544-b446-0fbbc734c59a"
+        "uuid": "2f6f6cab-f937-48b6-b81c-d9da43a5b62d"
       }
     ],
     "passwd": [

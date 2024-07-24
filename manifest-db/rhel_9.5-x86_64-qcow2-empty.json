@@ -1367,7 +1367,7 @@
           {
             "type": "org.osbuild.kernel-cmdline",
             "options": {
-              "root_fs_uuid": "0d3c1c59-ef32-461f-a780-bae193841bdc",
+              "root_fs_uuid": "109e51a0-ed71-4b7f-b223-81cbbb13ac91",
               "kernel_opts": "console=tty0 console=ttyS0,115200n8 no_timer_check net.ifnames=0"
             }
           },
@@ -4965,13 +4965,13 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "0d3c1c59-ef32-461f-a780-bae193841bdc",
+                  "uuid": "109e51a0-ed71-4b7f-b223-81cbbb13ac91",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
                 },
                 {
-                  "uuid": "ece735ff-0e63-452b-9035-b5fd94f17790",
+                  "uuid": "3e31c4e9-d530-444f-8846-93e692309197",
                   "vfs_type": "xfs",
                   "path": "/boot",
                   "options": "defaults"
@@ -4989,8 +4989,8 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "0d3c1c59-ef32-461f-a780-bae193841bdc",
-              "boot_fs_uuid": "ece735ff-0e63-452b-9035-b5fd94f17790",
+              "root_fs_uuid": "109e51a0-ed71-4b7f-b223-81cbbb13ac91",
+              "boot_fs_uuid": "3e31c4e9-d530-444f-8846-93e692309197",
               "kernel_opts": "console=tty0 console=ttyS0,115200n8 no_timer_check net.ifnames=0",
               "legacy": "i386-pc",
               "uefi": {
@@ -5100,7 +5100,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "ece735ff-0e63-452b-9035-b5fd94f17790",
+              "uuid": "3e31c4e9-d530-444f-8846-93e692309197",
               "label": "boot"
             },
             "devices": {
@@ -5118,7 +5118,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "0d3c1c59-ef32-461f-a780-bae193841bdc",
+              "uuid": "109e51a0-ed71-4b7f-b223-81cbbb13ac91",
               "label": "root"
             },
             "devices": {
@@ -6597,7 +6597,7 @@
         "grub_users": "$grub_users",
         "initrd": "/initramfs-5.14.0-452.el9.x86_64.img $tuned_initrd",
         "linux": "/vmlinuz-5.14.0-452.el9.x86_64",
-        "options": "root=UUID=0d3c1c59-ef32-461f-a780-bae193841bdc console=tty0 console=ttyS0,115200n8 no_timer_check net.ifnames=0 crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M $tuned_params",
+        "options": "root=UUID=109e51a0-ed71-4b7f-b223-81cbbb13ac91 console=tty0 console=ttyS0,115200n8 no_timer_check net.ifnames=0 crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M $tuned_params",
         "title": "Red Hat Enterprise Linux (5.14.0-452.el9.x86_64) 9.5 (Plow)",
         "version": "5.14.0-452.el9.x86_64"
       }
@@ -6805,8 +6805,16 @@
     },
     "fstab": [
       [
-        "UUID=0d3c1c59-ef32-461f-a780-bae193841bdc",
+        "UUID=109e51a0-ed71-4b7f-b223-81cbbb13ac91",
         "/",
+        "xfs",
+        "defaults",
+        "0",
+        "0"
+      ],
+      [
+        "UUID=3e31c4e9-d530-444f-8846-93e692309197",
+        "/boot",
         "xfs",
         "defaults",
         "0",
@@ -6819,14 +6827,6 @@
         "defaults,uid=0,gid=0,umask=077,shortname=winnt",
         "0",
         "2"
-      ],
-      [
-        "UUID=ece735ff-0e63-452b-9035-b5fd94f17790",
-        "/boot",
-        "xfs",
-        "defaults",
-        "0",
-        "0"
       ]
     ],
     "groups": [
@@ -7371,7 +7371,7 @@
         "size": 9451847168,
         "start": 1285554176,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "0d3c1c59-ef32-461f-a780-bae193841bdc"
+        "uuid": "109e51a0-ed71-4b7f-b223-81cbbb13ac91"
       },
       {
         "bootable": false,
@@ -7391,7 +7391,7 @@
         "size": 1073741824,
         "start": 211812352,
         "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
-        "uuid": "ece735ff-0e63-452b-9035-b5fd94f17790"
+        "uuid": "3e31c4e9-d530-444f-8846-93e692309197"
       },
       {
         "bootable": false,

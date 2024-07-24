@@ -1063,7 +1063,7 @@
           {
             "type": "org.osbuild.kernel-cmdline",
             "options": {
-              "root_fs_uuid": "75118cea-012c-4587-9318-3d6919ad80c2",
+              "root_fs_uuid": "bf3d035b-6bc3-4676-bc0b-e475f2130a10",
               "kernel_opts": "console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0"
             }
           },
@@ -4577,13 +4577,13 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "75118cea-012c-4587-9318-3d6919ad80c2",
+                  "uuid": "bf3d035b-6bc3-4676-bc0b-e475f2130a10",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
                 },
                 {
-                  "uuid": "2ae35546-b2a3-4e03-97c2-75111ac1d2f5",
+                  "uuid": "ce6c3e36-cb0c-485a-8b1a-9a767d858b86",
                   "vfs_type": "xfs",
                   "path": "/boot",
                   "options": "defaults"
@@ -4601,8 +4601,8 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "75118cea-012c-4587-9318-3d6919ad80c2",
-              "boot_fs_uuid": "2ae35546-b2a3-4e03-97c2-75111ac1d2f5",
+              "root_fs_uuid": "bf3d035b-6bc3-4676-bc0b-e475f2130a10",
+              "boot_fs_uuid": "ce6c3e36-cb0c-485a-8b1a-9a767d858b86",
               "kernel_opts": "console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0",
               "uefi": {
                 "vendor": "redhat",
@@ -4716,7 +4716,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "2ae35546-b2a3-4e03-97c2-75111ac1d2f5",
+              "uuid": "ce6c3e36-cb0c-485a-8b1a-9a767d858b86",
               "label": "boot"
             },
             "devices": {
@@ -4734,7 +4734,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "75118cea-012c-4587-9318-3d6919ad80c2",
+              "uuid": "bf3d035b-6bc3-4676-bc0b-e475f2130a10",
               "label": "root"
             },
             "devices": {
@@ -6093,7 +6093,7 @@
         "grub_users": "$grub_users",
         "initrd": "/initramfs-5.14.0-452.el9.aarch64.img $tuned_initrd",
         "linux": "/vmlinuz-5.14.0-452.el9.aarch64",
-        "options": "root=UUID=75118cea-012c-4587-9318-3d6919ad80c2 console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0 crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M $tuned_params",
+        "options": "root=UUID=bf3d035b-6bc3-4676-bc0b-e475f2130a10 console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 iommu.strict=0 crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M $tuned_params",
         "title": "Red Hat Enterprise Linux (5.14.0-452.el9.aarch64) 9.5 (Plow)",
         "version": "5.14.0-452.el9.aarch64"
       }
@@ -6308,15 +6308,15 @@
     },
     "fstab": [
       [
-        "UUID=2ae35546-b2a3-4e03-97c2-75111ac1d2f5",
-        "/boot",
-        "xfs",
-        "defaults",
+        "UUID=7B77-95E7",
+        "/boot/efi",
+        "vfat",
+        "defaults,uid=0,gid=0,umask=077,shortname=winnt",
         "0",
-        "0"
+        "2"
       ],
       [
-        "UUID=75118cea-012c-4587-9318-3d6919ad80c2",
+        "UUID=bf3d035b-6bc3-4676-bc0b-e475f2130a10",
         "/",
         "xfs",
         "defaults",
@@ -6324,12 +6324,12 @@
         "0"
       ],
       [
-        "UUID=7B77-95E7",
-        "/boot/efi",
-        "vfat",
-        "defaults,uid=0,gid=0,umask=077,shortname=winnt",
+        "UUID=ce6c3e36-cb0c-485a-8b1a-9a767d858b86",
+        "/boot",
+        "xfs",
+        "defaults",
         "0",
-        "2"
+        "0"
       ]
     ],
     "groups": [
@@ -6860,7 +6860,7 @@
         "size": 9452895744,
         "start": 1284505600,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "75118cea-012c-4587-9318-3d6919ad80c2"
+        "uuid": "bf3d035b-6bc3-4676-bc0b-e475f2130a10"
       },
       {
         "bootable": false,
@@ -6880,7 +6880,7 @@
         "size": 1073741824,
         "start": 210763776,
         "type": "BC13C2FF-59E6-4262-A352-B275FD6F7172",
-        "uuid": "2ae35546-b2a3-4e03-97c2-75111ac1d2f5"
+        "uuid": "ce6c3e36-cb0c-485a-8b1a-9a767d858b86"
       }
     ],
     "passwd": [

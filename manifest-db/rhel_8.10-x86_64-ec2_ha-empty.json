@@ -2558,7 +2558,7 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "260b2d9d-2f26-4eba-8b6e-c849c351549b",
+                  "uuid": "932384a8-2132-4cd3-9dc4-1d5646081a72",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
@@ -2576,7 +2576,7 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "260b2d9d-2f26-4eba-8b6e-c849c351549b",
+              "root_fs_uuid": "932384a8-2132-4cd3-9dc4-1d5646081a72",
               "kernel_opts": "console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=auto",
               "legacy": "i386-pc",
               "uefi": {
@@ -2689,7 +2689,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "260b2d9d-2f26-4eba-8b6e-c849c351549b",
+              "uuid": "932384a8-2132-4cd3-9dc4-1d5646081a72",
               "label": "root"
             },
             "devices": {
@@ -4609,7 +4609,7 @@
       "profile-id": "sssd"
     },
     "boot-environment": {
-      "kernelopts": "root=UUID=260b2d9d-2f26-4eba-8b6e-c849c351549b console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=auto",
+      "kernelopts": "root=UUID=932384a8-2132-4cd3-9dc4-1d5646081a72 console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=auto",
       "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-553.el8_10.x86_64"
     },
     "bootloader": "grub",
@@ -4830,20 +4830,20 @@
     },
     "fstab": [
       [
-        "UUID=260b2d9d-2f26-4eba-8b6e-c849c351549b",
-        "/",
-        "xfs",
-        "defaults",
-        "0",
-        "0"
-      ],
-      [
         "UUID=7B77-95E7",
         "/boot/efi",
         "vfat",
         "defaults,uid=0,gid=0,umask=077,shortname=winnt",
         "0",
         "2"
+      ],
+      [
+        "UUID=932384a8-2132-4cd3-9dc4-1d5646081a72",
+        "/",
+        "xfs",
+        "defaults",
+        "0",
+        "0"
       ]
     ],
     "groups": [
@@ -5560,7 +5560,7 @@
         "size": 10525588992,
         "start": 211812352,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "260b2d9d-2f26-4eba-8b6e-c849c351549b"
+        "uuid": "932384a8-2132-4cd3-9dc4-1d5646081a72"
       },
       {
         "bootable": false,

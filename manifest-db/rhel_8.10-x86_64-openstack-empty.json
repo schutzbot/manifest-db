@@ -2021,7 +2021,7 @@
             "options": {
               "filesystems": [
                 {
-                  "uuid": "f2d14248-fafb-41b3-947c-aeed7b4b853a",
+                  "uuid": "85b05879-efe4-459a-9eab-5efdccc8c1e5",
                   "vfs_type": "xfs",
                   "path": "/",
                   "options": "defaults"
@@ -2039,7 +2039,7 @@
           {
             "type": "org.osbuild.grub2",
             "options": {
-              "root_fs_uuid": "f2d14248-fafb-41b3-947c-aeed7b4b853a",
+              "root_fs_uuid": "85b05879-efe4-459a-9eab-5efdccc8c1e5",
               "kernel_opts": "ro net.ifnames=0",
               "legacy": "i386-pc",
               "uefi": {
@@ -2135,7 +2135,7 @@
           {
             "type": "org.osbuild.mkfs.xfs",
             "options": {
-              "uuid": "f2d14248-fafb-41b3-947c-aeed7b4b853a",
+              "uuid": "85b05879-efe4-459a-9eab-5efdccc8c1e5",
               "label": "root"
             },
             "devices": {
@@ -3674,7 +3674,7 @@
   "image-info": {
     "/etc/resolv.conf": [],
     "boot-environment": {
-      "kernelopts": "root=UUID=f2d14248-fafb-41b3-947c-aeed7b4b853a ro net.ifnames=0",
+      "kernelopts": "root=UUID=85b05879-efe4-459a-9eab-5efdccc8c1e5 ro net.ifnames=0",
       "saved_entry": "ffffffffffffffffffffffffffffffff-4.18.0-553.el8_10.x86_64"
     },
     "bootloader": "grub",
@@ -3877,7 +3877,7 @@
         "2"
       ],
       [
-        "UUID=f2d14248-fafb-41b3-947c-aeed7b4b853a",
+        "UUID=85b05879-efe4-459a-9eab-5efdccc8c1e5",
         "/",
         "xfs",
         "defaults",
@@ -4445,7 +4445,7 @@
         "size": 4187995648,
         "start": 106954752,
         "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
-        "uuid": "f2d14248-fafb-41b3-947c-aeed7b4b853a"
+        "uuid": "85b05879-efe4-459a-9eab-5efdccc8c1e5"
       },
       {
         "bootable": false,
